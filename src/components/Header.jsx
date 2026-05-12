@@ -2,7 +2,7 @@ import { getLevelInfo } from '../lib/engine'
 import { getProfile as loadProfile } from '../lib/storage'
 import { LEVELS } from '../data/config'
 
-export default function Header({ profile, onSwitchProfile, onLeaderboard, onAchievements, onHistory, onDailyChallenge, dailyAvailable }) {
+export default function Header({ profile, onSwitchProfile, onLeaderboard, onAchievements, onHistory, onAnalytics, onDailyChallenge, dailyAvailable }) {
   const { current, next, progress, xpIntoLevel, xpForLevel } = getLevelInfo(profile.totalXP)
   const accuracy = profile.casesAnswered > 0
     ? Math.round((profile.correctAnswers / profile.casesAnswered) * 100)
@@ -62,6 +62,9 @@ export default function Header({ profile, onSwitchProfile, onLeaderboard, onAchi
                 <span className="text-gold-400 text-[10px] font-bold">⭐ Daily</span>
               </button>
             )}
+            <button onClick={onAnalytics} className="text-slate-500 hover:text-slate-300 text-xs transition-colors" title="Analytics">
+              📈
+            </button>
             <button onClick={onHistory} className="text-slate-500 hover:text-slate-300 text-xs transition-colors" title="Case History">
               📋
             </button>

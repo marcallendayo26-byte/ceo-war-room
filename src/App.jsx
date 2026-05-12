@@ -10,6 +10,7 @@ import AchievementToast from './components/AchievementToast'
 import AchievementsPanel from './components/AchievementsPanel'
 import Leaderboard from './components/Leaderboard'
 import HistoryPanel from './components/HistoryPanel'
+import AnalyticsPanel from './components/AnalyticsPanel'
 import {
   pickNextCase, updateCooldown, applyConsequences,
   calcXP, getLevelInfo, updateCategoryStats,
@@ -36,6 +37,8 @@ function freshGameState(profile) {
     showLeaderboard: false,
     showAchievements: false,
     showHistory: false,
+    showAnalytics: false,
+    caseStartTime: Date.now(),
     isDaily: false,
     rivalRefresh: 0,
   }
@@ -106,7 +109,11 @@ export default function App() {
 
       const retriesCorrect = (p.retriesCorrect || 0) + (isRetry && isCorrect ? 1 : 0)
 
-      // Case history — keep last 50, skip retry duplicates
+      // Passive time tracking — cap at 5 min to exclude idle time
+      const rawTime = Date.now() - (prev.caseStartTime || Date.now())
+      const timeSpent = Math.min(rawTime, 5 * 60 * 1000)
+
+      // Case history — keep last 50
       const historyEntry = {
         caseId: c.id,
         category: c.category,
@@ -116,6 +123,7 @@ export default function App() {
         isCorrect,
         xpDelta,
         isRetry,
+        timeSpent,
         timestamp: Date.now(),
       }
       const prevHistory = p.caseHistory || []
@@ -189,6 +197,7 @@ export default function App() {
       currentCase: { ...prev.lastResult.caseData },
       isRetry: true,
       lastResult: null,
+      caseStartTime: Date.now(),
     }))
   }, [])
 
@@ -207,6 +216,7 @@ export default function App() {
         weakSpotAlert: null,
         isRetry: false,
         isDaily: false,
+        caseStartTime: Date.now(),
       }
     })
   }, [])
@@ -219,6 +229,7 @@ export default function App() {
       phase: 'playing',
       currentCase: getDailyCase(),
       isDaily: true,
+      caseStartTime: Date.now(),
     }))
   }, [])
 
@@ -235,7 +246,8 @@ export default function App() {
   }
 
   const { profile, currentCase, phase, lastResult, leveledUpTo, pendingAchievement,
-    weakSpotAlert, showLeaderboard, showAchievements, showHistory, isDaily, isRetry } = game
+    weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
+    isDaily, isRetry } = game
 
   const dailyAvailable = !isDailyCompleted(profile)
 
@@ -247,6 +259,7 @@ export default function App() {
         onLeaderboard={() => setGame(p => ({ ...p, showLeaderboard: true }))}
         onAchievements={() => setGame(p => ({ ...p, showAchievements: true }))}
         onHistory={() => setGame(p => ({ ...p, showHistory: true }))}
+        onAnalytics={() => setGame(p => ({ ...p, showAnalytics: true }))}
         onDailyChallenge={handleDailyChallenge}
         dailyAvailable={dailyAvailable}
       />
@@ -355,6 +368,13 @@ export default function App() {
         <HistoryPanel
           profile={profile}
           onClose={() => setGame(p => ({ ...p, showHistory: false }))}
+        />
+      )}
+
+      {showAnalytics && (
+        <AnalyticsPanel
+          profile={profile}
+          onClose={() => setGame(p => ({ ...p, showAnalytics: false }))}
         />
       )}
     </div>
