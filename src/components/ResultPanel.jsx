@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion'
 import { CATEGORY_COLORS, HEALTH_LABELS } from '../data/config'
-import { healthBarValue } from '../lib/engine'
 
-export default function ResultPanel({ result, onNext }) {
-  const { caseData, chosen, isCorrect, xpDelta, streakBonus, newStreak, healthDelta } = result
+export default function ResultPanel({ result, onNext, onRetry }) {
+  const { caseData, chosen, isCorrect, xpDelta, streakBonus, newStreak, healthDelta, isDaily, isRetry } = result
   const optionLabels = ['A', 'B', 'C', 'D']
-
   const relevantDeltas = Object.entries(healthDelta).filter(([, v]) => v !== 0)
 
   return (
@@ -16,15 +14,9 @@ export default function ResultPanel({ result, onNext }) {
       className="space-y-4"
     >
       {/* Verdict banner */}
-      <div
-        className={`rounded-2xl px-6 py-4 border ${
-          isCorrect
-            ? 'bg-emerald-500/10 border-emerald-500/30'
-            : 'bg-red-500/10 border-red-500/30'
-        }`}
-      >
+      <div className={`rounded-2xl px-6 py-4 border ${isCorrect ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'}`}>
         <div className="flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className={`text-2xl font-black ${isCorrect ? 'text-emerald-400' : 'text-red-400'}`}>
               {isCorrect ? '✓ Correct' : '✗ Wrong'}
             </span>
@@ -33,14 +25,25 @@ export default function ResultPanel({ result, onNext }) {
                 🔥 {newStreak} streak
               </span>
             )}
+            {isDaily && (
+              <span className="bg-gold-500/20 text-gold-400 text-xs font-bold px-2.5 py-1 rounded-full border border-gold-500/30">
+                ⭐ Daily Challenge
+              </span>
+            )}
+            {isRetry && (
+              <span className="bg-white/8 text-slate-400 text-xs font-semibold px-2.5 py-1 rounded-full">
+                ↩ Retry
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-2">
             {streakBonus > 0 && (
-              <span className="text-gold-400 text-sm font-bold">+{streakBonus} streak bonus</span>
+              <span className="text-gold-400 text-sm font-bold">+{streakBonus} streak</span>
             )}
-            <span
-              className={`text-xl font-black ${xpDelta > 0 ? 'text-brand-400' : 'text-red-400'}`}
-            >
+            {isDaily && isCorrect && (
+              <span className="text-gold-400 text-sm font-bold">3x</span>
+            )}
+            <span className={`text-xl font-black ${xpDelta > 0 ? 'text-brand-400' : 'text-red-400'}`}>
               {xpDelta > 0 ? '+' : ''}{xpDelta} XP
             </span>
           </div>
@@ -60,11 +63,7 @@ export default function ResultPanel({ result, onNext }) {
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Company Impact</p>
           <div className="flex flex-wrap gap-2">
             {relevantDeltas.map(([key, delta]) => (
-              <div
-                key={key}
-                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold
-                  ${delta > 0 ? 'bg-emerald-500/12 text-emerald-400' : 'bg-red-500/12 text-red-400'}`}
-              >
+              <div key={key} className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold ${delta > 0 ? 'bg-emerald-500/12 text-emerald-400' : 'bg-red-500/12 text-red-400'}`}>
                 <span>{HEALTH_LABELS[key]}</span>
                 <span>{delta > 0 ? '+' : ''}{delta}</span>
               </div>
@@ -81,10 +80,7 @@ export default function ResultPanel({ result, onNext }) {
         </div>
 
         <div className="border-t border-white/6 pt-4">
-          <p
-            className="text-[10px] font-bold uppercase tracking-widest mb-1"
-            style={{ color: CATEGORY_COLORS[caseData.category] }}
-          >
+          <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: CATEGORY_COLORS[caseData.category] }}>
             Framework
           </p>
           <p className="text-slate-300 text-sm leading-relaxed">{caseData.framework}</p>
@@ -95,7 +91,7 @@ export default function ResultPanel({ result, onNext }) {
           <p className="text-white font-semibold text-sm italic">"{caseData.principle}"</p>
         </div>
 
-        {caseData.traps && caseData.traps.length > 0 && (
+        {caseData.traps?.length > 0 && (
           <div className="border-t border-white/6 pt-4">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Why smart people get this wrong</p>
             <ul className="space-y-2">
@@ -110,13 +106,23 @@ export default function ResultPanel({ result, onNext }) {
         )}
       </div>
 
-      <button
-        onClick={onNext}
-        className="w-full py-4 rounded-2xl font-bold text-sm tracking-wide transition-all duration-150
-          bg-brand-500 hover:bg-brand-600 text-white active:scale-[0.98]"
-      >
-        Next Case →
-      </button>
+      {/* Actions */}
+      <div className="flex gap-3">
+        {!isCorrect && !isRetry && (
+          <button
+            onClick={onRetry}
+            className="flex-1 py-4 rounded-2xl font-bold text-sm border border-white/12 text-slate-300 hover:border-white/25 hover:text-white transition-all"
+          >
+            ↩ Retry (½ XP)
+          </button>
+        )}
+        <button
+          onClick={onNext}
+          className="flex-1 py-4 rounded-2xl font-bold text-sm bg-brand-500 hover:bg-brand-600 text-white transition-all active:scale-[0.98]"
+        >
+          Next Case →
+        </button>
+      </div>
     </motion.div>
   )
 }

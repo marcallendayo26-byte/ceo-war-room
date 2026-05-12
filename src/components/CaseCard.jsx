@@ -5,7 +5,7 @@ import { CATEGORY_COLORS } from '../data/config'
 const DIFFICULTY_LABELS = { 1: 'Foundational', 2: 'Intermediate', 3: 'Executive' }
 const DIFFICULTY_COLORS = { 1: '#34d399', 2: '#fbbf24', 3: '#f87171' }
 
-export default function CaseCard({ caseData, onAnswer }) {
+export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false }) {
   const [selected, setSelected] = useState(null)
 
   const handleSelect = (idx) => {
@@ -38,6 +38,16 @@ export default function CaseCard({ caseData, onAnswer }) {
           >
             {DIFFICULTY_LABELS[caseData.difficulty]}
           </span>
+          {isDaily && (
+            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-gold-500/15 text-gold-400">
+              ⭐ Daily · 3x XP
+            </span>
+          )}
+          {isRetry && (
+            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/8 text-slate-400">
+              ↩ Retry · ½ XP
+            </span>
+          )}
         </div>
 
         <p className="text-slate-300 text-sm leading-relaxed">{caseData.scenario}</p>

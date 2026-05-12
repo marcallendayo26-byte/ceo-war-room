@@ -1,79 +1,147 @@
 import { useState, useEffect, useCallback } from 'react'
+import ProfileSelect from './components/ProfileSelect'
 import Header from './components/Header'
 import CaseCard from './components/CaseCard'
 import ResultPanel from './components/ResultPanel'
 import HealthMeters from './components/HealthMeters'
+import CategoryStats from './components/CategoryStats'
 import LevelUpModal from './components/LevelUpModal'
+import AchievementToast from './components/AchievementToast'
+import AchievementsPanel from './components/AchievementsPanel'
+import Leaderboard from './components/Leaderboard'
 import {
-  buildInitialState, pickNextCase, updateCooldown,
-  applyConsequences, calcXP, getLevelInfo,
+  pickNextCase, updateCooldown, applyConsequences,
+  calcXP, getLevelInfo, updateCategoryStats,
+  getWeakSpot, getDailyCase, getTodayStr, isDailyCompleted,
+  getInitialHealth,
 } from './lib/engine'
-import { loadState, saveState, clearState } from './lib/storage'
+import {
+  getProfile, saveProfile, getActiveProfileId, setActiveProfile,
+} from './lib/storage'
+import { checkNewAchievements } from './data/achievements'
 
-function mergeWithSaved(initial, saved) {
-  if (!saved) return initial
+// ─── Game state helpers ────────────────────────────────────────────────────
+
+function freshGameState(profile) {
+  const level = getLevelInfo(profile.totalXP).current.level
   return {
-    ...initial,
-    totalXP: saved.totalXP ?? initial.totalXP,
-    streak: saved.streak ?? initial.streak,
-    bestStreak: saved.bestStreak ?? initial.bestStreak,
-    casesAnswered: saved.casesAnswered ?? initial.casesAnswered,
-    correctAnswers: saved.correctAnswers ?? initial.correctAnswers,
-    cooldownIds: saved.cooldownIds ?? initial.cooldownIds,
-    health: { ...initial.health, ...(saved.health ?? {}) },
+    profile: { ...profile, health: profile.health || getInitialHealth() },
+    currentCase: pickNextCase(profile.cooldownIds || [], level),
+    phase: 'playing',
+    lastResult: null,
+    leveledUpTo: null,
+    pendingAchievement: null,
+    weakSpotAlert: null,
+    showLeaderboard: false,
+    showAchievements: false,
+    isDaily: false,
+    rivalRefresh: 0,
   }
 }
 
+// ─── App ───────────────────────────────────────────────────────────────────
+
 export default function App() {
-  const [state, setState] = useState(() => {
-    const base = buildInitialState()
-    const saved = loadState()
-    const merged = mergeWithSaved(base, saved)
-    merged.currentCase = pickNextCase(merged.cooldownIds, getLevelInfo(merged.totalXP).current.level)
-    return merged
-  })
+  const [screen, setScreen] = useState('profile-select')
+  const [game, setGame] = useState(null)
 
-  // Save on every state change
+  // Load active profile on mount
   useEffect(() => {
-    saveState(state)
-  }, [state])
+    const id = getActiveProfileId()
+    if (id) {
+      const p = getProfile(id)
+      if (p) {
+        setGame(freshGameState(p))
+        setScreen('game')
+      }
+    }
+  }, [])
 
-  const handleAnswer = useCallback((chosenIdx) => {
-    setState(prev => {
-      const c = prev.currentCase
+  // ─── Profile selection ───────────────────────────────────────────────────
+
+  const handleProfileSelected = useCallback(id => {
+    const p = getProfile(id)
+    if (!p) return
+    setGame(freshGameState(p))
+    setScreen('game')
+  }, [])
+
+  const handleSwitchProfile = useCallback(() => {
+    setActiveProfile(null)
+    setScreen('profile-select')
+    setGame(null)
+  }, [])
+
+  // ─── Answer handler ──────────────────────────────────────────────────────
+
+  const processAnswer = useCallback((chosenIdx, isRetry = false, isDaily = false) => {
+    setGame(prev => {
+      const c = isDaily ? getDailyCase() : prev.currentCase
+      const p = prev.profile
       const isCorrect = chosenIdx === c.correct
-      const prevLevel = getLevelInfo(prev.totalXP).current.level
+      const prevLevel = getLevelInfo(p.totalXP).current.level
 
-      const newStreak = isCorrect ? prev.streak + 1 : 0
-      const bestStreak = Math.max(prev.bestStreak, newStreak)
+      const newStreak = isCorrect && !isRetry ? p.streak + 1 : (isCorrect ? p.streak : 0)
+      const bestStreak = Math.max(p.bestStreak || 0, newStreak)
 
-      // XP — streakBonus is only included when correct
-      const baseXP = calcXP(isCorrect, c.difficulty, newStreak)
-      // Separate streak bonus for display
-      const streakBonus = isCorrect
-        ? ([10, 5, 3].includes(newStreak) ? (newStreak === 10 ? 50 : newStreak === 5 ? 20 : 10) : 0)
-        : 0
-      const xpDelta = baseXP  // already includes streak bonus from calcXP
-
-      const totalXP = Math.max(0, prev.totalXP + xpDelta)
+      const { xp: xpDelta, streakBonus } = calcXP(isCorrect, c.difficulty, newStreak, isRetry, isDaily)
+      const totalXP = Math.max(0, p.totalXP + xpDelta)
       const newLevel = getLevelInfo(totalXP).current.level
       const leveledUp = newLevel > prevLevel
 
-      // Health: only apply consequences on correct answer
-      const consequences = isCorrect ? c.consequences : {}
-      const health = applyConsequences(prev.health, consequences)
+      const health = applyConsequences(p.health || getInitialHealth(), isCorrect ? c.consequences : {})
+      const cooldownIds = isDaily ? p.cooldownIds : updateCooldown(p.cooldownIds || [], c.id)
+      const categoryStats = updateCategoryStats(p.categoryStats || {}, c.category, isCorrect)
 
-      const cooldownIds = updateCooldown(prev.cooldownIds, c.id)
+      // Daily challenge tracking
+      let dailyChallenge = p.dailyChallenge
+      let dailyChallengesCompleted = p.dailyChallengesCompleted || 0
+      if (isDaily) {
+        const alreadyCounted = dailyChallenge?.date === getTodayStr() && dailyChallenge?.completed
+        dailyChallenge = { date: getTodayStr(), caseId: c.id, completed: true, correct: isCorrect }
+        if (!alreadyCounted && isCorrect) dailyChallengesCompleted++
+      }
 
-      return {
-        ...prev,
+      const retriesCorrect = (p.retriesCorrect || 0) + (isRetry && isCorrect ? 1 : 0)
+
+      const updatedProfile = {
+        ...p,
         totalXP,
         streak: newStreak,
         bestStreak,
-        casesAnswered: prev.casesAnswered + 1,
-        correctAnswers: prev.correctAnswers + (isCorrect ? 1 : 0),
+        casesAnswered: p.casesAnswered + 1,
+        correctAnswers: p.correctAnswers + (isCorrect ? 1 : 0),
+        retriesCorrect,
+        dailyChallengesCompleted,
         cooldownIds,
         health,
+        categoryStats,
+        dailyChallenge,
+        sessionStats: {
+          correct: (p.sessionStats?.correct || 0) + (isCorrect ? 1 : 0),
+          wrong: (p.sessionStats?.wrong || 0) + (isCorrect ? 0 : 1),
+          xpEarned: (p.sessionStats?.xpEarned || 0) + Math.max(0, xpDelta),
+        },
+      }
+
+      // Check achievements
+      const newAchievements = checkNewAchievements(updatedProfile)
+      if (newAchievements.length > 0) {
+        const now = Date.now()
+        newAchievements.forEach(a => { updatedProfile.achievements[a.id] = now })
+      }
+
+      saveProfile(updatedProfile)
+
+      // Weak spot alert every 5 cases (but not on first answer)
+      let weakSpotAlert = null
+      if (updatedProfile.casesAnswered % 5 === 0 && updatedProfile.casesAnswered > 0) {
+        weakSpotAlert = getWeakSpot(updatedProfile.categoryStats)
+      }
+
+      return {
+        ...prev,
+        profile: updatedProfile,
         phase: 'result',
         lastResult: {
           caseData: c,
@@ -83,69 +151,152 @@ export default function App() {
           streakBonus,
           newStreak,
           healthDelta: isCorrect ? c.consequences : {},
+          isDaily,
+          isRetry,
         },
         leveledUpTo: leveledUp ? getLevelInfo(totalXP).current : null,
-        sessionStats: {
-          correct: prev.sessionStats.correct + (isCorrect ? 1 : 0),
-          wrong: prev.sessionStats.wrong + (isCorrect ? 0 : 1),
-          xpEarned: prev.sessionStats.xpEarned + Math.max(0, xpDelta),
-        },
+        pendingAchievement: newAchievements[0] || null,
+        weakSpotAlert,
+        isDaily: false,
       }
     })
   }, [])
 
-  const handleNext = useCallback(() => {
-    setState(prev => ({
+  const handleAnswer = useCallback(idx => processAnswer(idx, false, false), [processAnswer])
+  const handleDailyAnswer = useCallback(idx => processAnswer(idx, false, true), [processAnswer])
+  const handleRetry = useCallback(() => {
+    setGame(prev => ({
       ...prev,
       phase: 'playing',
-      currentCase: pickNextCase(prev.cooldownIds, getLevelInfo(prev.totalXP).current.level),
+      currentCase: { ...prev.lastResult.caseData },
+      isRetry: true,
       lastResult: null,
-      leveledUpTo: null,
     }))
   }, [])
 
-  const handleDismissLevelUp = useCallback(() => {
-    setState(prev => ({ ...prev, leveledUpTo: null }))
+  // ─── Next case ───────────────────────────────────────────────────────────
+
+  const handleNext = useCallback(() => {
+    setGame(prev => {
+      const level = getLevelInfo(prev.profile.totalXP).current.level
+      return {
+        ...prev,
+        phase: 'playing',
+        currentCase: pickNextCase(prev.profile.cooldownIds, level),
+        lastResult: null,
+        leveledUpTo: null,
+        pendingAchievement: null,
+        weakSpotAlert: null,
+        isRetry: false,
+        isDaily: false,
+      }
+    })
   }, [])
 
-  const handleReset = useCallback(() => {
-    if (!window.confirm('Reset all progress? This cannot be undone.')) return
-    clearState()
-    const base = buildInitialState()
-    base.currentCase = pickNextCase([], 1)
-    setState(base)
+  // ─── Daily challenge ─────────────────────────────────────────────────────
+
+  const handleDailyChallenge = useCallback(() => {
+    setGame(prev => ({
+      ...prev,
+      phase: 'playing',
+      currentCase: getDailyCase(),
+      isDaily: true,
+    }))
   }, [])
 
-  const { phase, currentCase, lastResult, leveledUpTo } = state
+  // ─── Modals ──────────────────────────────────────────────────────────────
+
+  const handleDismissLevelUp = useCallback(() => setGame(p => ({ ...p, leveledUpTo: null })), [])
+  const handleDismissAchievement = useCallback(() => setGame(p => ({ ...p, pendingAchievement: null })), [])
+  const handleDismissWeakSpot = useCallback(() => setGame(p => ({ ...p, weakSpotAlert: null })), [])
+
+  // ─── Render ──────────────────────────────────────────────────────────────
+
+  if (screen === 'profile-select' || !game) {
+    return <ProfileSelect onProfileSelected={handleProfileSelected} />
+  }
+
+  const { profile, currentCase, phase, lastResult, leveledUpTo, pendingAchievement,
+    weakSpotAlert, showLeaderboard, showAchievements, isDaily, isRetry } = game
+
+  const dailyAvailable = !isDailyCompleted(profile)
 
   return (
     <div className="min-h-screen" style={{ background: 'rgb(7 15 28)' }}>
-      <Header state={state} onReset={handleReset} />
+      <Header
+        profile={profile}
+        onSwitchProfile={handleSwitchProfile}
+        onLeaderboard={() => setGame(p => ({ ...p, showLeaderboard: true }))}
+        onAchievements={() => setGame(p => ({ ...p, showAchievements: true }))}
+        onDailyChallenge={handleDailyChallenge}
+        dailyAvailable={dailyAvailable}
+      />
 
       <main className="max-w-4xl mx-auto px-4 py-6 grid lg:grid-cols-[1fr_220px] gap-6 items-start">
         {/* Main play area */}
-        <div className="min-w-0">
+        <div className="min-w-0 space-y-3">
+          {/* Daily challenge banner */}
+          {dailyAvailable && phase === 'playing' && !isDaily && (
+            <div
+              className="rounded-2xl border border-gold-500/25 bg-gold-500/6 px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-gold-500/10 transition-colors"
+              onClick={handleDailyChallenge}
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-lg">⭐</span>
+                <div>
+                  <p className="text-gold-400 text-xs font-bold">Daily Challenge available</p>
+                  <p className="text-slate-500 text-[10px]">One special case today · 3x XP reward</p>
+                </div>
+              </div>
+              <span className="text-gold-400 text-xs font-bold">Play →</span>
+            </div>
+          )}
+
+          {/* Weak spot alert */}
+          {weakSpotAlert && (
+            <div className="rounded-2xl border border-red-500/25 bg-red-500/6 px-4 py-3 flex items-center justify-between">
+              <div>
+                <p className="text-red-400 text-xs font-bold">Weak Spot Detected</p>
+                <p className="text-slate-400 text-[11px]">
+                  {weakSpotAlert.category}: {weakSpotAlert.correct}/{weakSpotAlert.total} correct ({Math.round(weakSpotAlert.pct * 100)}% accuracy). Drill this area.
+                </p>
+              </div>
+              <button onClick={handleDismissWeakSpot} className="text-slate-600 hover:text-slate-400 text-xs ml-3">✕</button>
+            </div>
+          )}
+
           {phase === 'playing' && currentCase && (
-            <CaseCard key={currentCase.id} caseData={currentCase} onAnswer={handleAnswer} />
+            <CaseCard
+              key={currentCase.id + (isRetry ? '-retry' : '') + (isDaily ? '-daily' : '')}
+              caseData={currentCase}
+              onAnswer={isDaily ? handleDailyAnswer : handleAnswer}
+              isDaily={isDaily}
+              isRetry={isRetry}
+            />
           )}
           {phase === 'result' && lastResult && (
-            <ResultPanel result={lastResult} onNext={handleNext} />
+            <ResultPanel
+              result={lastResult}
+              onNext={handleNext}
+              onRetry={handleRetry}
+            />
           )}
         </div>
 
-        {/* Sidebar: health meters */}
-        <div className="lg:sticky lg:top-24">
-          <HealthMeters health={state.health} />
+        {/* Sidebar */}
+        <div className="lg:sticky lg:top-24 space-y-4">
+          <HealthMeters health={profile.health || getInitialHealth()} />
+          <CategoryStats categoryStats={profile.categoryStats} />
 
-          {/* Session mini-stats */}
-          <div className="mt-4 bg-navy-800 border border-white/8 rounded-2xl p-4">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">This Session</p>
+          {/* Session stats */}
+          <div className="bg-navy-800 border border-white/8 rounded-2xl p-4">
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Session</p>
             <div className="space-y-2">
               {[
-                { label: 'Correct', value: state.sessionStats.correct, color: '#34d399' },
-                { label: 'Wrong', value: state.sessionStats.wrong, color: '#f87171' },
-                { label: 'XP earned', value: `+${state.sessionStats.xpEarned}`, color: '#3b9eff' },
-                { label: 'Best streak', value: state.bestStreak, color: '#fbbf24' },
+                { label: 'Correct', value: profile.sessionStats?.correct || 0, color: '#34d399' },
+                { label: 'Wrong', value: profile.sessionStats?.wrong || 0, color: '#f87171' },
+                { label: 'XP earned', value: `+${profile.sessionStats?.xpEarned || 0}`, color: '#3b9eff' },
+                { label: 'Best streak', value: profile.bestStreak || 0, color: '#fbbf24' },
               ].map(({ label, value, color }) => (
                 <div key={label} className="flex justify-between text-xs">
                   <span className="text-slate-500">{label}</span>
@@ -157,7 +308,29 @@ export default function App() {
         </div>
       </main>
 
+      {/* Overlays */}
       <LevelUpModal level={leveledUpTo} onDismiss={handleDismissLevelUp} />
+      <AchievementToast achievement={pendingAchievement} onDismiss={handleDismissAchievement} />
+
+      {showLeaderboard && (
+        <Leaderboard
+          activeProfileId={profile.id}
+          onClose={() => setGame(p => ({ ...p, showLeaderboard: false }))}
+          onRivalsUpdated={() => setGame(p => ({
+            ...p,
+            showLeaderboard: false,
+            profile: { ...p.profile, ...getProfile(p.profile.id) },
+            rivalRefresh: p.rivalRefresh + 1,
+          }))}
+        />
+      )}
+
+      {showAchievements && (
+        <AchievementsPanel
+          profile={profile}
+          onClose={() => setGame(p => ({ ...p, showAchievements: false }))}
+        />
+      )}
     </div>
   )
 }
