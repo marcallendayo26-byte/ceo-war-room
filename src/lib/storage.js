@@ -90,6 +90,7 @@ export function buildNewProfile(id, name, color) {
     categoryStats: {},      // { [category]: { correct, total } }
     dailyChallenge: null,   // { date, caseId, completed, correct }
     rivalId: null,
+    caseHistory: [],        // last 50 entries, oldest first
     sessionStats: { correct: 0, wrong: 0, xpEarned: 0 },
   }
 }

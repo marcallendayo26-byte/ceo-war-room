@@ -9,6 +9,7 @@ import LevelUpModal from './components/LevelUpModal'
 import AchievementToast from './components/AchievementToast'
 import AchievementsPanel from './components/AchievementsPanel'
 import Leaderboard from './components/Leaderboard'
+import HistoryPanel from './components/HistoryPanel'
 import {
   pickNextCase, updateCooldown, applyConsequences,
   calcXP, getLevelInfo, updateCategoryStats,
@@ -34,6 +35,7 @@ function freshGameState(profile) {
     weakSpotAlert: null,
     showLeaderboard: false,
     showAchievements: false,
+    showHistory: false,
     isDaily: false,
     rivalRefresh: 0,
   }
@@ -104,6 +106,21 @@ export default function App() {
 
       const retriesCorrect = (p.retriesCorrect || 0) + (isRetry && isCorrect ? 1 : 0)
 
+      // Case history — keep last 50, skip retry duplicates
+      const historyEntry = {
+        caseId: c.id,
+        category: c.category,
+        difficulty: c.difficulty,
+        chosen: chosenIdx,
+        correct: c.correct,
+        isCorrect,
+        xpDelta,
+        isRetry,
+        timestamp: Date.now(),
+      }
+      const prevHistory = p.caseHistory || []
+      const caseHistory = [...prevHistory, historyEntry].slice(-50)
+
       const updatedProfile = {
         ...p,
         totalXP,
@@ -117,6 +134,7 @@ export default function App() {
         health,
         categoryStats,
         dailyChallenge,
+        caseHistory,
         sessionStats: {
           correct: (p.sessionStats?.correct || 0) + (isCorrect ? 1 : 0),
           wrong: (p.sessionStats?.wrong || 0) + (isCorrect ? 0 : 1),
@@ -217,7 +235,7 @@ export default function App() {
   }
 
   const { profile, currentCase, phase, lastResult, leveledUpTo, pendingAchievement,
-    weakSpotAlert, showLeaderboard, showAchievements, isDaily, isRetry } = game
+    weakSpotAlert, showLeaderboard, showAchievements, showHistory, isDaily, isRetry } = game
 
   const dailyAvailable = !isDailyCompleted(profile)
 
@@ -228,6 +246,7 @@ export default function App() {
         onSwitchProfile={handleSwitchProfile}
         onLeaderboard={() => setGame(p => ({ ...p, showLeaderboard: true }))}
         onAchievements={() => setGame(p => ({ ...p, showAchievements: true }))}
+        onHistory={() => setGame(p => ({ ...p, showHistory: true }))}
         onDailyChallenge={handleDailyChallenge}
         dailyAvailable={dailyAvailable}
       />
@@ -329,6 +348,13 @@ export default function App() {
         <AchievementsPanel
           profile={profile}
           onClose={() => setGame(p => ({ ...p, showAchievements: false }))}
+        />
+      )}
+
+      {showHistory && (
+        <HistoryPanel
+          profile={profile}
+          onClose={() => setGame(p => ({ ...p, showHistory: false }))}
         />
       )}
     </div>
