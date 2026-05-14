@@ -12,6 +12,7 @@ import Leaderboard from './components/Leaderboard'
 import HistoryPanel from './components/HistoryPanel'
 import AnalyticsPanel from './components/AnalyticsPanel'
 import SettingsPanel from './components/SettingsPanel'
+import PrestigeModal from './components/PrestigeModal'
 import WelcomeScreen from './components/WelcomeScreen'
 import {
   pickNextCase, updateCooldown, applyConsequences,
@@ -36,6 +37,7 @@ function freshGameState(profile) {
     phase: 'playing',
     lastResult: null,
     leveledUpTo: null,
+    prestigedTo: null,
     pendingAchievement: null,
     weakSpotAlert: null,
     showLeaderboard: false,
@@ -102,9 +104,16 @@ export default function App() {
       const bestStreak = Math.max(p.bestStreak || 0, newStreak)
 
       const { xp: xpDelta, streakBonus } = calcXP(isCorrect, c.difficulty, newStreak, isRetry, isDaily)
-      const totalXP = Math.max(0, p.totalXP + xpDelta)
+      const rawXP = Math.max(0, p.totalXP + xpDelta)
+
+      // Prestige: first correct non-retry answer while already at max level
+      const shouldPrestige = prevLevel === 10 && isCorrect && !isRetry
+      let newPrestige = p.prestige || 0
+      const totalXP = shouldPrestige ? 0 : rawXP
+      if (shouldPrestige) newPrestige++
+
       const newLevel = getLevelInfo(totalXP).current.level
-      const leveledUp = newLevel > prevLevel
+      const leveledUp = !shouldPrestige && newLevel > prevLevel
 
       const health = applyConsequences(p.health || getInitialHealth(), isCorrect ? c.consequences : {})
       const cooldownIds = isDaily ? p.cooldownIds : updateCooldown(p.cooldownIds || [], c.id)
@@ -144,6 +153,7 @@ export default function App() {
       const updatedProfile = {
         ...p,
         totalXP,
+        prestige: newPrestige,
         streak: newStreak,
         bestStreak,
         casesAnswered: p.casesAnswered + 1,
@@ -193,6 +203,7 @@ export default function App() {
           isRetry,
         },
         leveledUpTo: leveledUp ? getLevelInfo(totalXP).current : null,
+        prestigedTo: shouldPrestige ? newPrestige : null,
         pendingAchievement: newAchievements[0] || null,
         weakSpotAlert,
         isDaily: false,
@@ -248,6 +259,7 @@ export default function App() {
   // ─── Modals ──────────────────────────────────────────────────────────────
 
   const handleDismissLevelUp = useCallback(() => setGame(p => ({ ...p, leveledUpTo: null })), [])
+  const handleDismissPrestige = useCallback(() => setGame(p => ({ ...p, prestigedTo: null })), [])
   const handleDismissAchievement = useCallback(() => setGame(p => ({ ...p, pendingAchievement: null })), [])
   const handleDismissWeakSpot = useCallback(() => setGame(p => ({ ...p, weakSpotAlert: null })), [])
 
@@ -288,7 +300,7 @@ export default function App() {
     return <ProfileSelect onProfileSelected={handleProfileSelected} />
   }
 
-  const { profile, currentCase, phase, lastResult, leveledUpTo, pendingAchievement,
+  const { profile, currentCase, phase, lastResult, leveledUpTo, prestigedTo, pendingAchievement,
     weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
     showSettings, isDaily, isRetry } = game
 
@@ -403,6 +415,7 @@ export default function App() {
 
       {/* Overlays */}
       <LevelUpModal level={leveledUpTo} onDismiss={handleDismissLevelUp} />
+      <PrestigeModal prestige={prestigedTo} onDismiss={handleDismissPrestige} />
       <AchievementToast achievement={pendingAchievement} onDismiss={handleDismissAchievement} />
 
       {showLeaderboard && (

@@ -1,6 +1,19 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Pencil } from 'lucide-react'
+
+function toRoman(n) {
+  const map = [
+    [1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],
+    [100,'C'],[90,'XC'],[50,'L'],[40,'XL'],
+    [10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I'],
+  ]
+  let result = ''
+  for (const [val, sym] of map) {
+    while (n >= val) { result += sym; n -= val }
+  }
+  return result
+}
 import {
   PROFILE_COLORS, getAllProfiles, createProfile,
   deleteProfile, setActiveProfile, updateProfile,
@@ -51,6 +64,15 @@ function ProfileCard({ profile, onSelect, onDelete, onEdit, rivalId }) {
             >
               Lv.{current.level}
             </span>
+            {(profile.prestige || 0) > 0 && (
+              <span
+                className="text-[9px] font-black px-1.5 py-0.5 rounded-full flex-shrink-0"
+                style={{ background: 'rgba(245,158,11,0.15)', color: '#fbbf24' }}
+                title={`Prestige ${toRoman(profile.prestige)}`}
+              >
+                ✦{toRoman(profile.prestige)}
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-2 mb-3">
             <p className="text-slate-500 text-xs">{current.title}</p>

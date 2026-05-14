@@ -301,6 +301,29 @@ export const ACHIEVEMENTS = [
     roles: ['cfo'],
     check: p => (p.categoryStats?.['Pricing Strategy']?.correct || 0) >= 10,
   },
+
+  // ── Prestige ───────────────────────────────────────────────────────────────
+  {
+    id: 'prestige_1',
+    title: 'Prestige I',
+    desc: 'Reach Level 10 and reset. The cycle begins again.',
+    icon: '✦',
+    check: p => (p.prestige || 0) >= 1,
+  },
+  {
+    id: 'prestige_2',
+    title: 'Prestige II',
+    desc: 'Two full cycles. Most never complete one.',
+    icon: '✦✦',
+    check: p => (p.prestige || 0) >= 2,
+  },
+  {
+    id: 'prestige_3',
+    title: 'Prestige III',
+    desc: 'Three cycles. There is nothing left to prove.',
+    icon: '✦✦✦',
+    check: p => (p.prestige || 0) >= 3,
+  },
 ]
 
 // Returns achievements visible to the given role (universal + role-specific)

@@ -2,6 +2,19 @@ import { BarChart2, ClipboardList, Award, Trophy, CalendarDays, Settings } from 
 import { getLevelInfo } from '../lib/engine'
 import { getProfile as loadProfile } from '../lib/storage'
 
+function toRoman(n) {
+  const map = [
+    [1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],
+    [100,'C'],[90,'XC'],[50,'L'],[40,'XL'],
+    [10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I'],
+  ]
+  let result = ''
+  for (const [val, sym] of map) {
+    while (n >= val) { result += sym; n -= val }
+  }
+  return result
+}
+
 export default function Header({
   profile, onSwitchProfile,
   onLeaderboard, onAchievements, onHistory, onAnalytics,
@@ -86,7 +99,16 @@ export default function Header({
 
         {/* XP / Level bar */}
         <div className="flex items-center gap-3">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center gap-1.5">
+            {(profile.prestige || 0) > 0 && (
+              <span
+                className="text-[9px] font-black px-1.5 py-0.5 rounded-full"
+                style={{ background: 'rgba(245,158,11,0.15)', color: '#fbbf24' }}
+                title={`Prestige ${toRoman(profile.prestige)}`}
+              >
+                ✦{toRoman(profile.prestige)}
+              </span>
+            )}
             <span className="text-[10px] font-bold text-brand-400 uppercase tracking-widest">Lv.{current.level}</span>
           </div>
           <div className="flex-1">

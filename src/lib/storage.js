@@ -120,6 +120,7 @@ export function buildNewProfile(id, name, color, role = 'ceo') {
     role,
     createdAt: Date.now(),
     totalXP: 0,
+    prestige: 0,
     streak: 0,
     bestStreak: 0,
     casesAnswered: 0,
