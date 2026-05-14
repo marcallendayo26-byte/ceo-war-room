@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Download, Upload, X, FileText, Type } from 'lucide-react'
 import { exportData, importData } from '../lib/storage'
@@ -26,12 +26,11 @@ export default function SettingsPanel({ onClose }) {
     e.target.value = ''
   }
 
-  const currentSize = getFontSize()
+  const [currentSize, setCurrentSize] = useState(getFontSize)
 
   const handleFontSize = (id) => {
     setFontSize(id)
-    // force a re-render so active state updates immediately
-    window.dispatchEvent(new Event('acumen-prefs-changed'))
+    setCurrentSize(id)
   }
 
   return (
