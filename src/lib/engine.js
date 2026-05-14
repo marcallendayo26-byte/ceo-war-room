@@ -1,21 +1,29 @@
 import { CASES as CASES1 } from '../data/cases'
 import { CASES2 } from '../data/cases2'
+import { CASES3 } from '../data/cases3'
 import { CASES_TECH } from '../data/cases_tech'
 import { CASES_TECH2 } from '../data/cases_tech2'
+import { CASES_TECH3 } from '../data/cases_tech3'
+import { CASES_TECH4 } from '../data/cases_tech4'
+import { CASES_TECH5 } from '../data/cases_tech5'
 import { CASES_PM } from '../data/cases_pm'
 import { CASES_PM2 } from '../data/cases_pm2'
 import { CASES_PM3 } from '../data/cases_pm3'
 import { CASES_PM4 } from '../data/cases_pm4'
 import { CASES_PM5 } from '../data/cases_pm5'
+import { CASES_PM6 } from '../data/cases_pm6'
+import { CASES_PM7 } from '../data/cases_pm7'
 import { CASES_EM } from '../data/cases_em'
 import { CASES_EM2 } from '../data/cases_em2'
 import { CASES_EM3 } from '../data/cases_em3'
 import { CASES_EM4 } from '../data/cases_em4'
 import { CASES_EM5 } from '../data/cases_em5'
+import { CASES_EM6 } from '../data/cases_em6'
 import { CASES_CSM } from '../data/cases_csm'
 import { CASES_CSM2 } from '../data/cases_csm2'
 import { CASES_CSM3 } from '../data/cases_csm3'
 import { CASES_CSM4 } from '../data/cases_csm4'
+import { CASES_CSM5 } from '../data/cases_csm5'
 import { CASES_SALES } from '../data/cases_sales'
 import { CASES_SALES2 } from '../data/cases_sales2'
 import { CASES_SALES3 } from '../data/cases_sales3'
@@ -24,6 +32,7 @@ import { CASES_BD } from '../data/cases_bd'
 import { CASES_BD2 } from '../data/cases_bd2'
 import { CASES_BD3 } from '../data/cases_bd3'
 import { CASES_BD4 } from '../data/cases_bd4'
+import { CASES_BD5 } from '../data/cases_bd5'
 import { CASES_CFO } from '../data/cases_cfo'
 import { CASES_CFO2 } from '../data/cases_cfo2'
 import { CASES_CFO3 } from '../data/cases_cfo3'
@@ -32,17 +41,18 @@ import { CASES_CFO5 } from '../data/cases_cfo5'
 import { CASES_CFO6 } from '../data/cases_cfo6'
 import { CASES_CFO7 } from '../data/cases_cfo7'
 import { CASES_CFO8 } from '../data/cases_cfo8'
+import { CASES_CFO9 } from '../data/cases_cfo9'
 
-const CEO_CASES = [...CASES1, ...CASES2]
-const TECH_CASES = [...CASES_TECH, ...CASES_TECH2]
-const PM_CASES = [...CASES_PM, ...CASES_PM2, ...CASES_PM3, ...CASES_PM4, ...CASES_PM5]
-const EM_CASES = [...CASES_EM, ...CASES_EM2, ...CASES_EM3, ...CASES_EM4, ...CASES_EM5]
-const CSM_CASES = [...CASES_CSM, ...CASES_CSM2, ...CASES_CSM3, ...CASES_CSM4]
+const CEO_CASES = [...CASES1, ...CASES2, ...CASES3]
+const TECH_CASES = [...CASES_TECH, ...CASES_TECH2, ...CASES_TECH3, ...CASES_TECH4, ...CASES_TECH5]
+const PM_CASES = [...CASES_PM, ...CASES_PM2, ...CASES_PM3, ...CASES_PM4, ...CASES_PM5, ...CASES_PM6, ...CASES_PM7]
+const EM_CASES = [...CASES_EM, ...CASES_EM2, ...CASES_EM3, ...CASES_EM4, ...CASES_EM5, ...CASES_EM6]
+const CSM_CASES = [...CASES_CSM, ...CASES_CSM2, ...CASES_CSM3, ...CASES_CSM4, ...CASES_CSM5]
 const SALES_CASES = [...CASES_SALES, ...CASES_SALES2, ...CASES_SALES3, ...CASES_SALES4]
-const BD_CASES = [...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4]
+const BD_CASES = [...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4, ...CASES_BD5]
 const CFO_CASES = [
   ...CASES_CFO, ...CASES_CFO2, ...CASES_CFO3, ...CASES_CFO4,
-  ...CASES_CFO5, ...CASES_CFO6, ...CASES_CFO7, ...CASES_CFO8,
+  ...CASES_CFO5, ...CASES_CFO6, ...CASES_CFO7, ...CASES_CFO8, ...CASES_CFO9,
 ]
 
 function getCasePool(role) {
