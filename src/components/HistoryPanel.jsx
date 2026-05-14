@@ -1,38 +1,14 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CASES as CASES1 } from '../data/cases'
-import { CASES2 } from '../data/cases2'
-import { CASES_TECH } from '../data/cases_tech'
-import { CASES_TECH2 } from '../data/cases_tech2'
-import { CASES_PM } from '../data/cases_pm'
-import { CASES_PM2 } from '../data/cases_pm2'
-import { CASES_PM3 } from '../data/cases_pm3'
-import { CASES_PM4 } from '../data/cases_pm4'
-import { CASES_EM } from '../data/cases_em'
-import { CASES_EM2 } from '../data/cases_em2'
-import { CASES_EM3 } from '../data/cases_em3'
-import { CASES_EM4 } from '../data/cases_em4'
-import { CASES_CSM } from '../data/cases_csm'
-import { CASES_CSM2 } from '../data/cases_csm2'
-import { CASES_CSM3 } from '../data/cases_csm3'
-import { CASES_CSM4 } from '../data/cases_csm4'
-import { CASES_SALES } from '../data/cases_sales'
-import { CASES_SALES2 } from '../data/cases_sales2'
-import { CASES_SALES3 } from '../data/cases_sales3'
-import { CASES_SALES4 } from '../data/cases_sales4'
-import { CASES_BD } from '../data/cases_bd'
-import { CASES_BD2 } from '../data/cases_bd2'
-import { CASES_BD3 } from '../data/cases_bd3'
-import { CASES_BD4 } from '../data/cases_bd4'
+import { getCaseById } from '../lib/engine'
 import { CATEGORY_COLORS, CATEGORIES_BY_ROLE } from '../data/config'
-
-const ALL_CASES = [...CASES1, ...CASES2, ...CASES_TECH, ...CASES_TECH2, ...CASES_PM, ...CASES_PM2, ...CASES_PM3, ...CASES_PM4, ...CASES_EM, ...CASES_EM2, ...CASES_EM3, ...CASES_EM4, ...CASES_CSM, ...CASES_CSM2, ...CASES_CSM3, ...CASES_CSM4, ...CASES_SALES, ...CASES_SALES2, ...CASES_SALES3, ...CASES_SALES4, ...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4]
 
 const DIFFICULTY_LABELS = { 1: 'Foundational', 2: 'Intermediate', 3: 'Executive' }
 const OPTION_LABELS = ['A', 'B', 'C', 'D']
+const PAGE_SIZE = 30
 
 function HistoryEntry({ entry, isOpen, onToggle }) {
-  const caseData = ALL_CASES.find(c => c.id === entry.caseId)
+  const caseData = getCaseById(entry.caseId)
   if (!caseData) return null
 
   const color = CATEGORY_COLORS[caseData.category]
@@ -111,6 +87,7 @@ function HistoryEntry({ entry, isOpen, onToggle }) {
 export default function HistoryPanel({ profile, onClose }) {
   const [filter, setFilter] = useState('All')
   const [openId, setOpenId] = useState(null)
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
 
   const FILTERS = ['All', 'Wrong only', ...(CATEGORIES_BY_ROLE[profile?.role] || CATEGORIES_BY_ROLE.ceo)]
 
@@ -122,8 +99,17 @@ export default function HistoryPanel({ profile, onClose }) {
     return e.category === filter
   })
 
+  const visible = filtered.slice(0, visibleCount)
+  const hasMore = filtered.length > visibleCount
+
   const totalWrong = history.filter(e => !e.isCorrect).length
   const accuracy = history.length > 0 ? Math.round(((history.length - totalWrong) / history.length) * 100) : 0
+
+  function handleFilterChange(f) {
+    setFilter(f)
+    setVisibleCount(PAGE_SIZE)
+    setOpenId(null)
+  }
 
   return (
     <AnimatePresence>
@@ -159,7 +145,7 @@ export default function HistoryPanel({ profile, onClose }) {
               {FILTERS.map(f => (
                 <button
                   key={f}
-                  onClick={() => setFilter(f)}
+                  onClick={() => handleFilterChange(f)}
                   className={`text-[10px] font-bold px-2.5 py-1 rounded-full transition-all ${
                     filter === f
                       ? 'bg-brand-500 text-white'
@@ -182,7 +168,7 @@ export default function HistoryPanel({ profile, onClose }) {
                 {history.length === 0 ? 'No cases answered yet.' : 'Nothing matches this filter.'}
               </p>
             )}
-            {filtered.map((entry, i) => (
+            {visible.map((entry) => (
               <HistoryEntry
                 key={`${entry.caseId}-${entry.timestamp}`}
                 entry={entry}
@@ -192,6 +178,14 @@ export default function HistoryPanel({ profile, onClose }) {
                 )}
               />
             ))}
+            {hasMore && (
+              <button
+                onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
+                className="w-full py-2.5 text-slate-500 hover:text-white text-xs font-bold transition-colors border border-white/6 hover:border-white/15 rounded-xl"
+              >
+                Load more ({filtered.length - visibleCount} remaining)
+              </button>
+            )}
           </div>
         </motion.div>
       </motion.div>

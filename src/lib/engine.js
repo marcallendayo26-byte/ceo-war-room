@@ -97,6 +97,17 @@ function getCasePool(role) {
 export function getCasesForRole(role) {
   return getCasePool(role)
 }
+
+// Lookup a case by ID across ALL role pools (used by HistoryPanel and others)
+const ALL_POOLS_FLAT = [
+  ...CEO_CASES, ...TECH_CASES, ...PM_CASES, ...EM_CASES,
+  ...CSM_CASES, ...SALES_CASES, ...BD_CASES, ...CFO_CASES,
+  ...CMO_CASES, ...CHRO_CASES,
+]
+const CASE_BY_ID = new Map(ALL_POOLS_FLAT.map(c => [c.id, c]))
+export function getCaseById(id) {
+  return CASE_BY_ID.get(id) || null
+}
 import {
   LEVELS, XP_CORRECT, XP_WRONG, STREAK_BONUS,
   COOLDOWN_SIZE, COOLDOWN_WEIGHT, DIFFICULTY_BOOST,
@@ -151,8 +162,15 @@ export function pickNextCase(cooldownIds, currentLevel, role = 'ceo', excludeId 
     const narrowed = pool.filter(c => c.category === categoryFilter)
     if (narrowed.length > 0) pool = narrowed   // fall back to full pool if category has no cases
   }
+
+  // Dynamic cooldown: suppress the most-recently-seen 60% of the pool.
+  // This guarantees a user must work through ~40% of cases before seeing
+  // any given case again — much better than a fixed window of 15.
+  const effectiveCooldownSize = Math.floor(pool.length * 0.6)
+  const activeCooldown = new Set((cooldownIds || []).slice(0, effectiveCooldownSize))
+
   const weights = pool.map(c => {
-    let w = cooldownIds.includes(c.id) ? COOLDOWN_WEIGHT : 1.0
+    let w = activeCooldown.has(c.id) ? COOLDOWN_WEIGHT : 1.0
     for (const { minLevel, difficulty, multiplier } of DIFFICULTY_BOOST) {
       if (currentLevel >= minLevel && c.difficulty === difficulty) {
         w *= multiplier

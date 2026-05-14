@@ -22,8 +22,10 @@ export const STREAK_BONUS = [
   { streak: 10, bonus: 50 },
 ]
 
-// Cooldown: cases in the last N plays have near-zero probability
-export const COOLDOWN_SIZE = 15
+// Cooldown: store the last N answered case IDs in the profile.
+// pickNextCase uses a dynamic window (60% of the active pool) drawn from
+// this list, so this value just needs to be >= the largest pool size.
+export const COOLDOWN_SIZE = 160
 
 // Weight for cooldown cases (vs 1.0 for fresh cases)
 export const COOLDOWN_WEIGHT = 0.04

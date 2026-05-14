@@ -134,7 +134,7 @@ export default function App() {
       const rawTime = Date.now() - (prev.caseStartTime || Date.now())
       const timeSpent = Math.min(rawTime, 5 * 60 * 1000)
 
-      // Case history — keep last 50
+      // Case history — keep last 200
       const historyEntry = {
         caseId: c.id,
         category: c.category,
@@ -148,7 +148,7 @@ export default function App() {
         timestamp: Date.now(),
       }
       const prevHistory = p.caseHistory || []
-      const caseHistory = [...prevHistory, historyEntry].slice(-50)
+      const caseHistory = [...prevHistory, historyEntry].slice(-200)
 
       const updatedProfile = {
         ...p,
