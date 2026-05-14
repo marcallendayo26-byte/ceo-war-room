@@ -2,8 +2,8 @@ import { motion } from 'framer-motion'
 import { ROLES } from '../data/config'
 
 const PROOF_POINTS = [
-  { value: '8', label: 'Leadership roles' },
-  { value: '611', label: 'Real-world scenarios' },
+  { value: '10', label: 'Leadership roles' },
+  { value: '970+', label: 'Real-world scenarios' },
   { value: '10', label: 'Levels of mastery' },
 ]
 
@@ -17,6 +17,8 @@ const ROLE_BLURBS = {
   sales: 'Pipeline, negotiation, objections, and deal close',
   bd:    'Partnerships, channels, alliances, and ecosystem',
   cfo:   'Unit economics, cash, pricing, and capital decisions',
+  cmo:   'Brand, demand gen, analytics, and product marketing',
+  chro:  'Talent, culture, comp, org design, and HR ops',
 }
 
 export default function WelcomeScreen({ onGetStarted }) {

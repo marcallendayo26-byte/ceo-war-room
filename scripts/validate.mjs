@@ -58,6 +58,22 @@ import { CASES_CFO6 }         from '../src/data/cases_cfo6.js'
 import { CASES_CFO7 }         from '../src/data/cases_cfo7.js'
 import { CASES_CFO8 }         from '../src/data/cases_cfo8.js'
 import { CASES_CFO9 }         from '../src/data/cases_cfo9.js'
+import { CASES_CMO }          from '../src/data/cases_cmo.js'
+import { CASES_CMO2 }         from '../src/data/cases_cmo2.js'
+import { CASES_CMO3 }         from '../src/data/cases_cmo3.js'
+import { CASES_CMO4 }         from '../src/data/cases_cmo4.js'
+import { CASES_CMO5 }         from '../src/data/cases_cmo5.js'
+import { CASES_CMO6 }         from '../src/data/cases_cmo6.js'
+import { CASES_CMO7 }         from '../src/data/cases_cmo7.js'
+import { CASES_CMO8 }         from '../src/data/cases_cmo8.js'
+import { CASES_CHRO }         from '../src/data/cases_chro.js'
+import { CASES_CHRO2 }        from '../src/data/cases_chro2.js'
+import { CASES_CHRO3 }        from '../src/data/cases_chro3.js'
+import { CASES_CHRO4 }        from '../src/data/cases_chro4.js'
+import { CASES_CHRO5 }        from '../src/data/cases_chro5.js'
+import { CASES_CHRO6 }        from '../src/data/cases_chro6.js'
+import { CASES_CHRO7 }        from '../src/data/cases_chro7.js'
+import { CASES_CHRO8 }        from '../src/data/cases_chro8.js'
 
 const ALL_CASES = [
   ...CASES1, ...CASES2, ...CASES3,
@@ -69,6 +85,10 @@ const ALL_CASES = [
   ...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4, ...CASES_BD5,
   ...CASES_CFO, ...CASES_CFO2, ...CASES_CFO3, ...CASES_CFO4,
   ...CASES_CFO5, ...CASES_CFO6, ...CASES_CFO7, ...CASES_CFO8, ...CASES_CFO9,
+  ...CASES_CMO, ...CASES_CMO2, ...CASES_CMO3, ...CASES_CMO4,
+  ...CASES_CMO5, ...CASES_CMO6, ...CASES_CMO7, ...CASES_CMO8,
+  ...CASES_CHRO, ...CASES_CHRO2, ...CASES_CHRO3, ...CASES_CHRO4,
+  ...CASES_CHRO5, ...CASES_CHRO6, ...CASES_CHRO7, ...CASES_CHRO8,
 ]
 
 const VALID_HEALTH_KEYS = new Set([

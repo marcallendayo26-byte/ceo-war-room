@@ -42,6 +42,31 @@ import { CASES_CFO6 } from '../data/cases_cfo6'
 import { CASES_CFO7 } from '../data/cases_cfo7'
 import { CASES_CFO8 } from '../data/cases_cfo8'
 import { CASES_CFO9 } from '../data/cases_cfo9'
+import { CASES_CMO } from '../data/cases_cmo'
+import { CASES_CMO2 } from '../data/cases_cmo2'
+import { CASES_CMO3 } from '../data/cases_cmo3'
+import { CASES_CMO4 } from '../data/cases_cmo4'
+import { CASES_CMO5 } from '../data/cases_cmo5'
+import { CASES_CMO6 } from '../data/cases_cmo6'
+import { CASES_CMO7 } from '../data/cases_cmo7'
+import { CASES_CMO8 } from '../data/cases_cmo8'
+import { CASES_CHRO } from '../data/cases_chro'
+import { CASES_CHRO2 } from '../data/cases_chro2'
+import { CASES_CHRO3 } from '../data/cases_chro3'
+import { CASES_CHRO4 } from '../data/cases_chro4'
+import { CASES_CHRO5 } from '../data/cases_chro5'
+import { CASES_CHRO6 } from '../data/cases_chro6'
+import { CASES_CHRO7 } from '../data/cases_chro7'
+import { CASES_CHRO8 } from '../data/cases_chro8'
+
+const CMO_CASES = [
+  ...CASES_CMO, ...CASES_CMO2, ...CASES_CMO3, ...CASES_CMO4,
+  ...CASES_CMO5, ...CASES_CMO6, ...CASES_CMO7, ...CASES_CMO8,
+]
+const CHRO_CASES = [
+  ...CASES_CHRO, ...CASES_CHRO2, ...CASES_CHRO3, ...CASES_CHRO4,
+  ...CASES_CHRO5, ...CASES_CHRO6, ...CASES_CHRO7, ...CASES_CHRO8,
+]
 
 const CEO_CASES = [...CASES1, ...CASES2, ...CASES3]
 const TECH_CASES = [...CASES_TECH, ...CASES_TECH2, ...CASES_TECH3, ...CASES_TECH4, ...CASES_TECH5]
@@ -63,6 +88,8 @@ function getCasePool(role) {
   if (role === 'sales') return SALES_CASES
   if (role === 'bd') return BD_CASES
   if (role === 'cfo') return CFO_CASES
+  if (role === 'cmo') return CMO_CASES
+  if (role === 'chro') return CHRO_CASES
   return CEO_CASES
 }
 

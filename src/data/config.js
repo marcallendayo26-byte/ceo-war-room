@@ -136,6 +136,24 @@ export const CATEGORY_COLORS = {
   'Ecosystem & Marketplace':  '#ea580c',
   'Partner Relations':        '#ca8a04',
   'Corporate Development':    '#dc2626',
+  // CMO role
+  'Brand & Positioning':          '#db2777',
+  'Demand Generation':            '#2563eb',
+  'Content & SEO':                '#059669',
+  'Marketing-Sales Alignment':    '#7c3aed',
+  'Analytics & Attribution':      '#0891b2',
+  'PR & Communications':          '#ea580c',
+  'Campaign Strategy':            '#ca8a04',
+  'Product Marketing':            '#dc2626',
+  // CHRO role
+  'Talent Acquisition':           '#2563eb',
+  'Performance Management':       '#059669',
+  'Compensation & Benefits':      '#7c3aed',
+  'Learning & Development':       '#db2777',
+  'Culture & Engagement':         '#0891b2',
+  'HR Operations':                '#ea580c',
+  'Organizational Design':        '#ca8a04',
+  'Employee Relations':           '#dc2626',
   // Enterprise pack — new categories
   'Contracting & Legal Risk':         '#6366f1',
   'Board & Governance':               '#8b5cf6',
@@ -162,6 +180,8 @@ export const CATEGORIES_BY_ROLE = {
   csm:   ['Onboarding', 'Product Adoption', 'Churn Prevention', 'Escalation Management', 'QBR & Executive Engagement', 'Renewals', 'Expansion Revenue', 'CS Operations', 'AMS & Support Operations'],
   sales: ['Pipeline Management', 'Discovery', 'Negotiation', 'Objection Handling', 'Account Strategy', 'Competitive Selling', 'Quota & Forecasting', 'Deal Execution'],
   bd:    ['Partnership Strategy', 'Deal Structuring', 'Channel Management', 'Alliance & Co-Sell', 'Market Expansion', 'Ecosystem & Marketplace', 'Partner Relations', 'Corporate Development', 'Strategic Partner & Equity'],
+  cmo:   ['Brand & Positioning', 'Demand Generation', 'Content & SEO', 'Marketing-Sales Alignment', 'Analytics & Attribution', 'PR & Communications', 'Campaign Strategy', 'Product Marketing'],
+  chro:  ['Talent Acquisition', 'Performance Management', 'Compensation & Benefits', 'Learning & Development', 'Culture & Engagement', 'HR Operations', 'Organizational Design', 'Employee Relations'],
 }
 
 export const ROLES = [
@@ -212,5 +232,17 @@ export const ROLES = [
     label: 'CFO / Finance Lead',
     description: 'Unit economics, cash & runway, pricing strategy, capital allocation, and M&A.',
     icon: '💰',
+  },
+  {
+    id: 'cmo',
+    label: 'CMO / Marketing Lead',
+    description: 'Brand strategy, demand generation, content & SEO, analytics, PR, and product marketing.',
+    icon: '📣',
+  },
+  {
+    id: 'chro',
+    label: 'CHRO / People Lead',
+    description: 'Talent acquisition, performance management, compensation, culture, and org design.',
+    icon: '👥',
   },
 ]

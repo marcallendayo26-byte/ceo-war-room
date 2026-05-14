@@ -302,6 +302,58 @@ export const ACHIEVEMENTS = [
     check: p => (p.categoryStats?.['Pricing Strategy']?.correct || 0) >= 10,
   },
 
+  // ── CMO / Marketing Lead ───────────────────────────────────────────────────
+  {
+    id: 'brand_architect',
+    title: 'Brand Architect',
+    desc: '10 Brand & Positioning cases answered correctly.',
+    icon: '📣',
+    roles: ['cmo'],
+    check: p => (p.categoryStats?.['Brand & Positioning']?.correct || 0) >= 10,
+  },
+  {
+    id: 'pipeline_marketer',
+    title: 'Pipeline Marketer',
+    desc: '10 Demand Generation cases answered correctly.',
+    icon: '📈',
+    roles: ['cmo'],
+    check: p => (p.categoryStats?.['Demand Generation']?.correct || 0) >= 10,
+  },
+  {
+    id: 'attribution_expert',
+    title: 'Attribution Expert',
+    desc: '5 Analytics & Attribution cases answered correctly.',
+    icon: '📊',
+    roles: ['cmo'],
+    check: p => (p.categoryStats?.['Analytics & Attribution']?.correct || 0) >= 5,
+  },
+
+  // ── CHRO / People Lead ─────────────────────────────────────────────────────
+  {
+    id: 'talent_magnet',
+    title: 'Talent Magnet',
+    desc: '10 Talent Acquisition cases answered correctly.',
+    icon: '🌱',
+    roles: ['chro'],
+    check: p => (p.categoryStats?.['Talent Acquisition']?.correct || 0) >= 10,
+  },
+  {
+    id: 'culture_champion',
+    title: 'Culture Champion',
+    desc: '10 Culture & Engagement cases answered correctly.',
+    icon: '🏆',
+    roles: ['chro'],
+    check: p => (p.categoryStats?.['Culture & Engagement']?.correct || 0) >= 10,
+  },
+  {
+    id: 'org_designer',
+    title: 'Org Designer',
+    desc: '5 Organizational Design cases answered correctly.',
+    icon: '🏗️',
+    roles: ['chro'],
+    check: p => (p.categoryStats?.['Organizational Design']?.correct || 0) >= 5,
+  },
+
   // ── Prestige ───────────────────────────────────────────────────────────────
   {
     id: 'prestige_1',
