@@ -469,7 +469,7 @@ export const CASES = [
       "Identify the bottleneck in the delivery process before adding resources.",
       "Stop taking on new projects until the backlog is cleared.",
       "Hire 3 more developers immediately to increase capacity.",
-      "Push the team to work faster. Set stricter deadlines with accountability."
+      "Assign a dedicated project coordinator to each active project, run daily standups, and require end-of-day blocker reports — tighter visibility should surface where work is stalling within 4 weeks."
     ],
     correct: 0,
     consequences: {"cash":0,"growth":5,"profitability":10,"customerTrust":10,"teamMorale":5,"executionRisk":-15,"strategicPosition":5},
@@ -479,7 +479,7 @@ export const CASES = [
     traps: [
       "More developers may not solve the problem if the bottleneck is upstream (requirements, feedback, QA, decisions).",
       "Stopping sales starves the business. The answer is to fix delivery, not pause growth.",
-      "Pushing a constrained team harder without removing the constraint just burns people out."
+      "Adding coordination overhead and visibility does not remove the constraint. If the bottleneck is code review or client sign-off, daily standups will surface symptoms but not fix throughput."
     ]
   },
   {
@@ -492,7 +492,7 @@ export const CASES = [
       "Hire a part-time coordinator.",
       "Analyze which tasks are highest-volume and highest-value first, then decide hire vs. automate per task.",
       "Automate everything using no-code tools like Zapier or Make.",
-      "Do neither. Ask the team to reduce time spent on admin work."
+      "Audit the 3 hours of daily admin, identify which specific tasks each person considers lowest-value, and eliminate or deprioritize those tasks — reduce the burden without adding headcount or tools."
     ],
     correct: 1,
     consequences: {"cash":0,"growth":5,"profitability":10,"customerTrust":0,"teamMorale":10,"executionRisk":-5,"strategicPosition":5},
@@ -502,7 +502,7 @@ export const CASES = [
     traps: [
       "A coordinator can handle complex tasks but is expensive for simple data entry. You may also hire the wrong skill set.",
       "Automating everything without analysis may over-invest in tools for low-volume tasks.",
-      "Asking the team to just do less is not a solution. The work still needs to happen."
+      "Identifying low-value tasks is useful but does not distinguish between tasks that can be safely dropped and those that are invisible dependencies. You may eliminate steps that prevent errors or keep clients informed, discovering the gap only after something breaks."
     ]
   },
   {
@@ -561,7 +561,7 @@ export const CASES = [
       "Conduct a post-mortem, automate the vulnerable step, and share the findings with the client.",
       "Automate the deployment step so it cannot be skipped.",
       "Add the skipped step to a mandatory review checklist and retrain the team.",
-      "Accept the apology was sufficient. Move on."
+      "Schedule a formal review call with the client, walk through exactly what happened, and present the specific steps taken to prevent recurrence — close the loop professionally and document the conversation."
     ],
     correct: 0,
     consequences: {"cash":0,"growth":0,"profitability":0,"customerTrust":15,"teamMorale":10,"executionRisk":-20,"strategicPosition":5},
@@ -569,9 +569,9 @@ export const CASES = [
     framework: "Blameless Post-Mortem — do not find who made the mistake. Find what in the system allowed the mistake to happen, then fix the system.",
     principle: "A good apology explains what happened. A great one shows it cannot happen again.",
     traps: [
-      "Moving on without change means this happens again.",
       "Automating is right but incomplete without a post-mortem to check for other vulnerable manual steps.",
-      "Checklists fail under time pressure. They address process but not root cause."
+      "Checklists fail under time pressure. They address process but not root cause.",
+      "Closing the loop with the client restores the relationship but does not fix the underlying system. Without a post-mortem and automation, the same manual step remains vulnerable the next time the team is under pressure."
     ]
   },
   {
@@ -604,8 +604,8 @@ export const CASES = [
     scenario: "Your best engineer has been offered a 50% salary increase by a competitor. They have been with you 3 years, know everything about the codebase, and are well-liked by the team. You cannot match the salary immediately. They are giving you 2 weeks to respond.",
     quote: "\"We have to match it. Losing them would destroy the team.\"",
     options: [
-      "Match the salary increase immediately, even if it means other budget cuts.",
-      "Let them go. You cannot build a culture around retention by salary matching.",
+      "Commit to a 25% immediate salary adjustment as a show of good faith, with a written promise to close the remaining gap at the next budget cycle.",
+      "Have a direct conversation, acknowledge you cannot match the offer, and articulate what this role offers that the competitor cannot: codebase ownership, team trust, and a clearer promotion path — let them make a fully informed choice.",
       "Ask for an honest conversation first. Find out what they actually want.",
       "Counter with a combination: smaller salary increase, equity stake, and a clear promotion path."
     ],
@@ -615,8 +615,8 @@ export const CASES = [
     framework: "Retention Diagnostics — the competing offer is the symptom. The cause is usually an unmet need: growth, recognition, belonging, or meaningful work.",
     principle: "Before you match the offer, understand why they are looking.",
     traps: [
-      "Matching salaries reactively is expensive and sets a precedent. Now every team member knows the way to get a raise is to get an outside offer.",
-      "Too quick to walk away from someone with 3 years of context. At least have the conversation.",
+      "Commits to a budget adjustment before understanding whether salary is even the real issue. If the root cause is career growth or recognition, a partial raise resolves nothing and costs money you did not need to spend.",
+      "Concedes the salary gap before exploring what the person actually values. If ownership or growth matters more than money, you have framed a retention conversation as a loss you did not need to accept.",
       "Equity and promotion path can be compelling but only if that is what they actually want. You are still guessing."
     ]
   },
@@ -768,7 +768,7 @@ export const CASES = [
       "Pivot to a different market immediately.",
       "Accelerate differentiation: focus on the segments and use cases where your depth clearly beats their free tool.",
       "Match their free offer. Protect market share now, monetize later.",
-      "Wait and watch. VC-funded free tools often disappear when funding runs out."
+      "Proactively reach out to the two paused prospects, acknowledge the free option exists, and offer a structured 30-day comparison framework — your depth versus their breadth — so they can make an informed decision rather than defaulting to free."
     ],
     correct: 1,
     consequences: {"cash":0,"growth":5,"profitability":0,"customerTrust":5,"teamMorale":10,"executionRisk":-5,"strategicPosition":20},
@@ -778,7 +778,7 @@ export const CASES = [
     traps: [
       "Pivoting entire markets in response to one competitor is an overreaction. You lose everything you have built.",
       "Matching a free offer means you give up revenue and fund your own disruption. You will run out of cash before they do.",
-      "Waiting is passive. The time you wait is time the competitor spends building relationships with your prospects."
+      "Framing the comparison gives you presence in the evaluation but positions you as defensive. Prospects who came to you for depth are now re-evaluating on the competitor's terms, a frame you chose to accept."
     ]
   },
   {
