@@ -81,7 +81,7 @@ export function downloadCasesPDF() {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CEO War Room — Case Library</title>
+<title>InnoFac Acumen — Case Library</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -227,7 +227,7 @@ export function downloadCasesPDF() {
 </style>
 </head>
 <body>
-<div class="cover-title">CEO War Room — Case Library</div>
+<div class="cover-title">InnoFac Acumen — Case Library</div>
 <p class="cover-sub">
   Generated <strong>${date}</strong>
   &nbsp;·&nbsp; <strong>${totalCases}</strong> scenarios across <strong>${ROLES.length}</strong> roles

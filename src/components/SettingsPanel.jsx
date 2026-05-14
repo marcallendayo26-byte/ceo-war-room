@@ -1,8 +1,9 @@
 import { useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Download, Upload, X, FileText } from 'lucide-react'
+import { Download, Upload, X, FileText, Type } from 'lucide-react'
 import { exportData, importData } from '../lib/storage'
 import { downloadCasesPDF } from '../lib/generatePDF'
+import { FONT_SIZES, getFontSize, setFontSize } from '../lib/prefs'
 
 export default function SettingsPanel({ onClose }) {
   const fileInputRef = useRef(null)
@@ -18,11 +19,19 @@ export default function SettingsPanel({ onClose }) {
       if (ok) {
         window.location.reload()
       } else {
-        alert('Restore failed — the selected file is not a valid CEO War Room backup.')
+        alert('Restore failed — the selected file is not a valid InnoFac Acumen backup.')
       }
     }
     reader.readAsText(file)
     e.target.value = ''
+  }
+
+  const currentSize = getFontSize()
+
+  const handleFontSize = (id) => {
+    setFontSize(id)
+    // force a re-render so active state updates immediately
+    window.dispatchEvent(new Event('acumen-prefs-changed'))
   }
 
   return (
@@ -63,7 +72,31 @@ export default function SettingsPanel({ onClose }) {
             </button>
           </div>
 
-          <div className="space-y-2">
+          {/* ── Font size ───────────────────────────────────────────────── */}
+          <div className="mb-5">
+            <div className="flex items-center gap-2 mb-3">
+              <Type size={12} className="text-slate-500" />
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Text Size</p>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              {FONT_SIZES.map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => handleFontSize(id)}
+                  className={`py-2 rounded-xl border text-sm font-semibold transition-all ${
+                    currentSize === id
+                      ? 'border-brand-500 bg-brand-500/15 text-brand-400'
+                      : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Case library ─────────────────────────────────────────────── */}
+          <div className="space-y-2 mb-5">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Case Library</p>
 
             <button
@@ -80,7 +113,8 @@ export default function SettingsPanel({ onClose }) {
             </button>
           </div>
 
-          <div className="space-y-2 mt-4">
+          {/* ── Progress backup ──────────────────────────────────────────── */}
+          <div className="space-y-2">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">Progress Backup</p>
 
             <button

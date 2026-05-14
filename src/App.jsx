@@ -23,6 +23,7 @@ import {
   getProfile, saveProfile, getActiveProfileId, setActiveProfile, getAllProfiles,
 } from './lib/storage'
 import { checkNewAchievements } from './data/achievements'
+import { applyFontSize, getFontSize } from './lib/prefs'
 
 // ─── Game state helpers ────────────────────────────────────────────────────
 
@@ -57,6 +58,9 @@ export default function App() {
     return Object.keys(profiles).length === 0 ? 'welcome' : 'profile-select'
   })
   const [game, setGame] = useState(null)
+
+  // Restore font-size preference immediately on mount
+  useEffect(() => { applyFontSize(getFontSize()) }, [])
 
   // Load active profile on mount
   useEffect(() => {

@@ -81,7 +81,7 @@ export function exportData() {
     const a = document.createElement('a')
     a.href = url
     const date = new Date().toISOString().split('T')[0]
-    a.download = `ceo-war-room-backup-${date}.json`
+    a.download = `innofac-acumen-backup-${date}.json`
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)

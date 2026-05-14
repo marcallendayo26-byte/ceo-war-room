@@ -34,7 +34,7 @@ export default function WelcomeScreen({ onGetStarted }) {
           className="text-center mb-10"
         >
           <p className="text-brand-400 text-[11px] font-bold uppercase tracking-[0.2em] mb-5">
-            CEO War Room
+            InnoFac Acumen
           </p>
 
           <h1 className="text-white font-black leading-tight mb-4" style={{ fontSize: 'clamp(1.75rem, 5vw, 2.5rem)' }}>

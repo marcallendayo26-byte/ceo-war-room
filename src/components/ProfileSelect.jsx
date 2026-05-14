@@ -357,7 +357,7 @@ export default function ProfileSelect({ onProfileSelected }) {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-10"
       >
-        <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-2">CEO War Room</p>
+        <p className="text-brand-400 text-xs font-bold uppercase tracking-widest mb-2">InnoFac Acumen</p>
         <h1 className="text-white text-3xl font-black mb-2">Who's playing?</h1>
         <p className="text-slate-500 text-sm">Each profile has its own level, XP, and progress.</p>
       </motion.div>
