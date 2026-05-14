@@ -1,8 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { ACHIEVEMENTS } from '../data/achievements'
+import { getAchievementsForRole } from '../data/achievements'
 
 export default function AchievementsPanel({ profile, onClose }) {
+  const role = profile?.role || 'ceo'
   const unlocked = profile?.achievements || {}
+  const achievements = getAchievementsForRole(role)
+  const unlockedCount = achievements.filter(a => !!unlocked[a.id]).length
 
   return (
     <AnimatePresence>
@@ -25,14 +28,18 @@ export default function AchievementsPanel({ profile, onClose }) {
             <div>
               <p className="text-white font-black text-lg">Achievements</p>
               <p className="text-slate-500 text-xs">
-                {Object.keys(unlocked).length} / {ACHIEVEMENTS.length} unlocked
+                {unlockedCount} / {achievements.length} unlocked
               </p>
             </div>
-            <button onClick={onClose} className="text-slate-600 hover:text-slate-300 transition-colors">✕</button>
+            <button
+              onClick={onClose}
+              className="text-slate-600 hover:text-slate-300 transition-colors"
+              aria-label="Close achievements"
+            >✕</button>
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            {ACHIEVEMENTS.map(a => {
+            {achievements.map(a => {
               const isUnlocked = !!unlocked[a.id]
               return (
                 <div

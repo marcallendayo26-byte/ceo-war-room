@@ -31,10 +31,10 @@ export function setActiveProfile(id) {
   save(store)
 }
 
-export function createProfile(name, color) {
+export function createProfile(name, color, role = 'ceo') {
   const store = load()
   const id = `p_${Date.now()}`
-  store.profiles[id] = buildNewProfile(id, name, color)
+  store.profiles[id] = buildNewProfile(id, name, color, role)
   store.activeProfileId = id
   save(store)
   return store.profiles[id]
@@ -43,6 +43,13 @@ export function createProfile(name, color) {
 export function saveProfile(profile) {
   const store = load()
   store.profiles[profile.id] = profile
+  save(store)
+}
+
+export function updateProfile(id, updates) {
+  const store = load()
+  if (!store.profiles[id]) return
+  store.profiles[id] = { ...store.profiles[id], ...updates }
   save(store)
 }
 
@@ -64,6 +71,40 @@ export function clearAll() {
   localStorage.removeItem(KEY)
 }
 
+// ─── Backup: export / import ───────────────────────────────────────────────
+
+export function exportData() {
+  try {
+    const json = JSON.stringify(load(), null, 2)
+    const blob = new Blob([json], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    const date = new Date().toISOString().split('T')[0]
+    a.download = `ceo-war-room-backup-${date}.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+    return true
+  } catch {
+    return false
+  }
+}
+
+export function importData(jsonString) {
+  try {
+    const parsed = JSON.parse(jsonString)
+    if (!parsed.profiles || typeof parsed.profiles !== 'object') {
+      throw new Error('Invalid backup: missing profiles object')
+    }
+    save(parsed)
+    return true
+  } catch {
+    return false
+  }
+}
+
 // ─── Profile shape ─────────────────────────────────────────────────────────
 
 export const PROFILE_COLORS = [
@@ -71,11 +112,12 @@ export const PROFILE_COLORS = [
   '#ea580c', '#0891b2', '#dc2626', '#ca8a04',
 ]
 
-export function buildNewProfile(id, name, color) {
+export function buildNewProfile(id, name, color, role = 'ceo') {
   return {
     id,
     name,
     color,
+    role,
     createdAt: Date.now(),
     totalXP: 0,
     streak: 0,

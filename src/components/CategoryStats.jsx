@@ -1,7 +1,7 @@
-import { CATEGORY_COLORS } from '../data/config'
+import { CATEGORY_COLORS, CATEGORIES_BY_ROLE } from '../data/config'
 
-export default function CategoryStats({ categoryStats }) {
-  const categories = Object.keys(CATEGORY_COLORS)
+export default function CategoryStats({ categoryStats, role = 'ceo' }) {
+  const categories = CATEGORIES_BY_ROLE[role] || CATEGORIES_BY_ROLE.ceo
 
   return (
     <div className="bg-navy-800 border border-white/8 rounded-2xl p-4">

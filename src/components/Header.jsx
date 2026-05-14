@@ -1,16 +1,23 @@
+import { BarChart2, ClipboardList, Award, Trophy, CalendarDays, Settings } from 'lucide-react'
 import { getLevelInfo } from '../lib/engine'
 import { getProfile as loadProfile } from '../lib/storage'
-import { LEVELS } from '../data/config'
 
-export default function Header({ profile, onSwitchProfile, onLeaderboard, onAchievements, onHistory, onAnalytics, onDailyChallenge, dailyAvailable }) {
+export default function Header({
+  profile, onSwitchProfile,
+  onLeaderboard, onAchievements, onHistory, onAnalytics,
+  onDailyChallenge, dailyAvailable,
+  onSettings,
+}) {
   const { current, next, progress, xpIntoLevel, xpForLevel } = getLevelInfo(profile.totalXP)
-  const accuracy = profile.casesAnswered > 0
-    ? Math.round((profile.correctAnswers / profile.casesAnswered) * 100)
-    : 0
 
-  // Rival info
   const rivalProfile = profile.rivalId ? loadProfile(profile.rivalId) : null
   const xpGap = rivalProfile ? profile.totalXP - rivalProfile.totalXP : null
+
+  const iconBtn = (label) => ({
+    className: 'w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-200 hover:bg-white/8 transition-all focus:outline-none focus:ring-1 focus:ring-brand-500/50',
+    'aria-label': label,
+    title: label,
+  })
 
   return (
     <header className="bg-navy-900 border-b border-white/8 px-4 py-3 sticky top-0 z-30">
@@ -21,7 +28,8 @@ export default function Header({ profile, onSwitchProfile, onLeaderboard, onAchi
             {/* Avatar + name */}
             <button
               onClick={onSwitchProfile}
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-1 focus:ring-brand-500/50 rounded-lg px-1 py-0.5"
+              aria-label="Switch profile"
               title="Switch profile"
             >
               <div
@@ -52,28 +60,27 @@ export default function Header({ profile, onSwitchProfile, onLeaderboard, onAchi
             )}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-0.5">
             {dailyAvailable && (
               <button
                 onClick={onDailyChallenge}
-                className="flex items-center gap-1.5 bg-gold-500/15 border border-gold-500/30 rounded-full px-2.5 py-1 hover:bg-gold-500/20 transition-colors"
+                className="flex items-center gap-1.5 bg-gold-500/15 border border-gold-500/30 rounded-full px-2.5 py-1 hover:bg-gold-500/20 transition-colors mr-1 focus:outline-none focus:ring-1 focus:ring-gold-500/50"
+                aria-label="Daily Challenge — 3x XP"
                 title="Daily Challenge — 3x XP"
               >
-                <span className="text-gold-400 text-[10px] font-bold">⭐ Daily</span>
+                <CalendarDays size={11} className="text-gold-400" />
+                <span className="text-gold-400 text-[10px] font-bold">Daily</span>
               </button>
             )}
-            <button onClick={onAnalytics} className="text-slate-500 hover:text-slate-300 text-xs transition-colors" title="Analytics">
-              📈
-            </button>
-            <button onClick={onHistory} className="text-slate-500 hover:text-slate-300 text-xs transition-colors" title="Case History">
-              📋
-            </button>
-            <button onClick={onAchievements} className="text-slate-500 hover:text-slate-300 text-xs transition-colors" title="Achievements">
-              🏅
-            </button>
-            <button onClick={onLeaderboard} className="text-slate-500 hover:text-slate-300 text-xs transition-colors" title="Leaderboard">
-              🏆
-            </button>
+
+            <button onClick={onAnalytics}    {...iconBtn('Analytics')}><BarChart2    size={15} /></button>
+            <button onClick={onHistory}      {...iconBtn('Case History')}><ClipboardList size={15} /></button>
+            <button onClick={onAchievements} {...iconBtn('Achievements')}><Award        size={15} /></button>
+            <button onClick={onLeaderboard}  {...iconBtn('Leaderboard')}><Trophy       size={15} /></button>
+
+            <div className="w-px h-4 bg-white/10 mx-1" />
+
+            <button onClick={onSettings} {...iconBtn('Settings')}><Settings size={15} /></button>
           </div>
         </div>
 

@@ -11,6 +11,8 @@ import AchievementsPanel from './components/AchievementsPanel'
 import Leaderboard from './components/Leaderboard'
 import HistoryPanel from './components/HistoryPanel'
 import AnalyticsPanel from './components/AnalyticsPanel'
+import SettingsPanel from './components/SettingsPanel'
+import WelcomeScreen from './components/WelcomeScreen'
 import {
   pickNextCase, updateCooldown, applyConsequences,
   calcXP, getLevelInfo, updateCategoryStats,
@@ -18,7 +20,7 @@ import {
   getInitialHealth,
 } from './lib/engine'
 import {
-  getProfile, saveProfile, getActiveProfileId, setActiveProfile,
+  getProfile, saveProfile, getActiveProfileId, setActiveProfile, getAllProfiles,
 } from './lib/storage'
 import { checkNewAchievements } from './data/achievements'
 
@@ -26,9 +28,10 @@ import { checkNewAchievements } from './data/achievements'
 
 function freshGameState(profile) {
   const level = getLevelInfo(profile.totalXP).current.level
+  const role = profile.role || 'ceo'
   return {
     profile: { ...profile, health: profile.health || getInitialHealth() },
-    currentCase: pickNextCase(profile.cooldownIds || [], level),
+    currentCase: pickNextCase(profile.cooldownIds || [], level, role),
     phase: 'playing',
     lastResult: null,
     leveledUpTo: null,
@@ -38,6 +41,7 @@ function freshGameState(profile) {
     showAchievements: false,
     showHistory: false,
     showAnalytics: false,
+    showSettings: false,
     caseStartTime: Date.now(),
     isDaily: false,
     rivalRefresh: 0,
@@ -47,7 +51,11 @@ function freshGameState(profile) {
 // ─── App ───────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [screen, setScreen] = useState('profile-select')
+  const [screen, setScreen] = useState(() => {
+    // Show welcome only when there are genuinely no profiles yet
+    const profiles = getAllProfiles()
+    return Object.keys(profiles).length === 0 ? 'welcome' : 'profile-select'
+  })
   const [game, setGame] = useState(null)
 
   // Load active profile on mount
@@ -73,7 +81,7 @@ export default function App() {
 
   const handleSwitchProfile = useCallback(() => {
     setActiveProfile(null)
-    setScreen('profile-select')
+    setScreen('profile-select')  // always go to profile-select, never back to welcome
     setGame(null)
   }, [])
 
@@ -209,7 +217,7 @@ export default function App() {
       return {
         ...prev,
         phase: 'playing',
-        currentCase: pickNextCase(prev.profile.cooldownIds, level),
+        currentCase: pickNextCase(prev.profile.cooldownIds, level, prev.profile.role || 'ceo'),
         lastResult: null,
         leveledUpTo: null,
         pendingAchievement: null,
@@ -227,7 +235,7 @@ export default function App() {
     setGame(prev => ({
       ...prev,
       phase: 'playing',
-      currentCase: getDailyCase(),
+      currentCase: getDailyCase(prev.profile.role || 'ceo'),
       isDaily: true,
       caseStartTime: Date.now(),
     }))
@@ -239,7 +247,38 @@ export default function App() {
   const handleDismissAchievement = useCallback(() => setGame(p => ({ ...p, pendingAchievement: null })), [])
   const handleDismissWeakSpot = useCallback(() => setGame(p => ({ ...p, weakSpotAlert: null })), [])
 
+  // ─── Drill weak category ─────────────────────────────────────────────────
+
+  const handleDrillCategory = useCallback((category) => {
+    setGame(prev => {
+      const level = getLevelInfo(prev.profile.totalXP).current.level
+      const drillCase = pickNextCase(
+        prev.profile.cooldownIds, level, prev.profile.role || 'ceo', null, category
+      )
+      return {
+        ...prev,
+        phase: 'playing',
+        currentCase: drillCase,
+        weakSpotAlert: null,
+        lastResult: null,
+        leveledUpTo: null,
+        pendingAchievement: null,
+        isRetry: false,
+        isDaily: false,
+        caseStartTime: Date.now(),
+      }
+    })
+  }, [])
+
+  // ─── Settings panel ──────────────────────────────────────────────────────
+
+  const handleOpenSettings = useCallback(() => setGame(p => ({ ...p, showSettings: true })), [])
+
   // ─── Render ──────────────────────────────────────────────────────────────
+
+  if (screen === 'welcome') {
+    return <WelcomeScreen onGetStarted={() => setScreen('profile-select')} />
+  }
 
   if (screen === 'profile-select' || !game) {
     return <ProfileSelect onProfileSelected={handleProfileSelected} />
@@ -247,7 +286,7 @@ export default function App() {
 
   const { profile, currentCase, phase, lastResult, leveledUpTo, pendingAchievement,
     weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
-    isDaily, isRetry } = game
+    showSettings, isDaily, isRetry } = game
 
   const dailyAvailable = !isDailyCompleted(profile)
 
@@ -262,6 +301,7 @@ export default function App() {
         onAnalytics={() => setGame(p => ({ ...p, showAnalytics: true }))}
         onDailyChallenge={handleDailyChallenge}
         dailyAvailable={dailyAvailable}
+        onSettings={handleOpenSettings}
       />
 
       <main className="max-w-4xl mx-auto px-4 py-6 grid lg:grid-cols-[1fr_220px] gap-6 items-start">
@@ -286,14 +326,27 @@ export default function App() {
 
           {/* Weak spot alert */}
           {weakSpotAlert && (
-            <div className="rounded-2xl border border-red-500/25 bg-red-500/6 px-4 py-3 flex items-center justify-between">
-              <div>
+            <div className="rounded-2xl border border-red-500/25 bg-red-500/6 px-4 py-3 flex items-center justify-between gap-3">
+              <div className="min-w-0">
                 <p className="text-red-400 text-xs font-bold">Weak Spot Detected</p>
                 <p className="text-slate-400 text-[11px]">
-                  {weakSpotAlert.category}: {weakSpotAlert.correct}/{weakSpotAlert.total} correct ({Math.round(weakSpotAlert.pct * 100)}% accuracy). Drill this area.
+                  {weakSpotAlert.category}: {weakSpotAlert.correct}/{weakSpotAlert.total} correct ({Math.round(weakSpotAlert.pct * 100)}% accuracy)
                 </p>
               </div>
-              <button onClick={handleDismissWeakSpot} className="text-slate-600 hover:text-slate-400 text-xs ml-3">✕</button>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <button
+                  onClick={() => handleDrillCategory(weakSpotAlert.category)}
+                  className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors"
+                  aria-label={`Practice ${weakSpotAlert.category} cases`}
+                >
+                  Practice this →
+                </button>
+                <button
+                  onClick={handleDismissWeakSpot}
+                  className="text-slate-600 hover:text-slate-400 text-xs"
+                  aria-label="Dismiss weak spot alert"
+                >✕</button>
+              </div>
             </div>
           )}
 
@@ -304,6 +357,7 @@ export default function App() {
               onAnswer={isDaily ? handleDailyAnswer : handleAnswer}
               isDaily={isDaily}
               isRetry={isRetry}
+              keyboardActive={!showLeaderboard && !showAchievements && !showHistory && !showAnalytics && !showSettings}
             />
           )}
           {phase === 'result' && lastResult && (
@@ -317,8 +371,11 @@ export default function App() {
 
         {/* Sidebar */}
         <div className="lg:sticky lg:top-24 space-y-4">
-          <HealthMeters health={profile.health || getInitialHealth()} />
-          <CategoryStats categoryStats={profile.categoryStats} />
+          <HealthMeters
+            health={profile.health || getInitialHealth()}
+            healthDelta={phase === 'result' && lastResult ? lastResult.healthDelta : null}
+          />
+          <CategoryStats categoryStats={profile.categoryStats} role={profile.role || 'ceo'} />
 
           {/* Session stats */}
           <div className="bg-navy-800 border border-white/8 rounded-2xl p-4">
@@ -376,6 +433,10 @@ export default function App() {
           profile={profile}
           onClose={() => setGame(p => ({ ...p, showAnalytics: false }))}
         />
+      )}
+
+      {showSettings && (
+        <SettingsPanel onClose={() => setGame(p => ({ ...p, showSettings: false }))} />
       )}
     </div>
   )

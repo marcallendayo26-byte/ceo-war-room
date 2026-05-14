@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { CATEGORY_COLORS } from '../data/config'
 
 const DIFFICULTY_LABELS = { 1: 'Foundational', 2: 'Intermediate', 3: 'Executive' }
 const DIFFICULTY_COLORS = { 1: '#34d399', 2: '#fbbf24', 3: '#f87171' }
+const KEY_MAP = { a: 0, b: 1, c: 2, d: 3 }
 
-export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false }) {
+export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false, keyboardActive = true }) {
   const [selected, setSelected] = useState(null)
 
   const handleSelect = (idx) => {
@@ -13,6 +14,23 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
     setSelected(idx)
     setTimeout(() => onAnswer(idx), 200)
   }
+
+  // A/B/C/D keyboard shortcuts
+  useEffect(() => {
+    if (!keyboardActive || selected !== null) return
+    const handler = (e) => {
+      // Don't fire inside text inputs or when a modifier is held
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
+      if (e.metaKey || e.ctrlKey || e.altKey) return
+      const idx = KEY_MAP[e.key.toLowerCase()]
+      if (idx !== undefined && idx < caseData.options.length) {
+        e.preventDefault()
+        handleSelect(idx)
+      }
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [keyboardActive, selected, caseData.options.length])
 
   const optionLabels = ['A', 'B', 'C', 'D']
 
@@ -61,15 +79,21 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
 
       {/* Options */}
       <div className="p-4 space-y-2.5">
-        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">What do you recommend?</p>
+        <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">
+          What do you recommend?
+          {keyboardActive && selected === null && (
+            <span className="ml-2 text-slate-700 normal-case font-normal">Press A · B · C · D</span>
+          )}
+        </p>
         {caseData.options.map((option, idx) => (
           <button
             key={idx}
             onClick={() => handleSelect(idx)}
             disabled={selected !== null}
+            aria-label={`Option ${optionLabels[idx]}: ${option}`}
             className={`w-full text-left rounded-xl px-4 py-3 flex items-start gap-3 transition-all duration-150 border
               ${selected === null
-                ? 'border-white/8 bg-white/4 hover:bg-white/8 hover:border-brand-500/40 cursor-pointer'
+                ? 'border-white/8 bg-white/4 hover:bg-white/8 hover:border-brand-500/40 cursor-pointer focus:outline-none focus:border-brand-500/60 focus:bg-white/8'
                 : selected === idx
                   ? 'border-brand-500/60 bg-brand-500/10 cursor-default'
                   : 'border-white/4 bg-white/2 opacity-40 cursor-default'

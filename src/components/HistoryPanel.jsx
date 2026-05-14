@@ -1,15 +1,38 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CASES } from '../data/cases'
-import { CATEGORY_COLORS } from '../data/config'
+import { CASES as CASES1 } from '../data/cases'
+import { CASES2 } from '../data/cases2'
+import { CASES_TECH } from '../data/cases_tech'
+import { CASES_TECH2 } from '../data/cases_tech2'
+import { CASES_PM } from '../data/cases_pm'
+import { CASES_PM2 } from '../data/cases_pm2'
+import { CASES_PM3 } from '../data/cases_pm3'
+import { CASES_PM4 } from '../data/cases_pm4'
+import { CASES_EM } from '../data/cases_em'
+import { CASES_EM2 } from '../data/cases_em2'
+import { CASES_EM3 } from '../data/cases_em3'
+import { CASES_EM4 } from '../data/cases_em4'
+import { CASES_CSM } from '../data/cases_csm'
+import { CASES_CSM2 } from '../data/cases_csm2'
+import { CASES_CSM3 } from '../data/cases_csm3'
+import { CASES_CSM4 } from '../data/cases_csm4'
+import { CASES_SALES } from '../data/cases_sales'
+import { CASES_SALES2 } from '../data/cases_sales2'
+import { CASES_SALES3 } from '../data/cases_sales3'
+import { CASES_SALES4 } from '../data/cases_sales4'
+import { CASES_BD } from '../data/cases_bd'
+import { CASES_BD2 } from '../data/cases_bd2'
+import { CASES_BD3 } from '../data/cases_bd3'
+import { CASES_BD4 } from '../data/cases_bd4'
+import { CATEGORY_COLORS, CATEGORIES_BY_ROLE } from '../data/config'
 
-const FILTERS = ['All', 'Wrong only', 'Strategy', 'Finance', 'Sales', 'Product', 'Operations', 'Leadership', 'Crisis', 'Enterprise']
+const ALL_CASES = [...CASES1, ...CASES2, ...CASES_TECH, ...CASES_TECH2, ...CASES_PM, ...CASES_PM2, ...CASES_PM3, ...CASES_PM4, ...CASES_EM, ...CASES_EM2, ...CASES_EM3, ...CASES_EM4, ...CASES_CSM, ...CASES_CSM2, ...CASES_CSM3, ...CASES_CSM4, ...CASES_SALES, ...CASES_SALES2, ...CASES_SALES3, ...CASES_SALES4, ...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4]
 
 const DIFFICULTY_LABELS = { 1: 'Foundational', 2: 'Intermediate', 3: 'Executive' }
 const OPTION_LABELS = ['A', 'B', 'C', 'D']
 
 function HistoryEntry({ entry, isOpen, onToggle }) {
-  const caseData = CASES.find(c => c.id === entry.caseId)
+  const caseData = ALL_CASES.find(c => c.id === entry.caseId)
   if (!caseData) return null
 
   const color = CATEGORY_COLORS[caseData.category]
@@ -88,6 +111,8 @@ function HistoryEntry({ entry, isOpen, onToggle }) {
 export default function HistoryPanel({ profile, onClose }) {
   const [filter, setFilter] = useState('All')
   const [openId, setOpenId] = useState(null)
+
+  const FILTERS = ['All', 'Wrong only', ...(CATEGORIES_BY_ROLE[profile?.role] || CATEGORIES_BY_ROLE.ceo)]
 
   const history = [...(profile?.caseHistory || [])].reverse() // newest first
 

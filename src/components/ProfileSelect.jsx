@@ -1,16 +1,24 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { PROFILE_COLORS, getAllProfiles, createProfile, deleteProfile, setActiveProfile } from '../lib/storage'
+import { Pencil } from 'lucide-react'
+import {
+  PROFILE_COLORS, getAllProfiles, createProfile,
+  deleteProfile, setActiveProfile, updateProfile,
+} from '../lib/storage'
 import { getLevelInfo } from '../lib/engine'
 import { ACHIEVEMENTS } from '../data/achievements'
+import { ROLES } from '../data/config'
 
-function ProfileCard({ profile, onSelect, onDelete, rivalId }) {
+// ─── Profile card ─────────────────────────────────────────────────────────────
+
+function ProfileCard({ profile, onSelect, onDelete, onEdit, rivalId }) {
   const { current } = getLevelInfo(profile.totalXP)
   const accuracy = profile.casesAnswered > 0
     ? Math.round((profile.correctAnswers / profile.casesAnswered) * 100)
     : 0
   const unlockedCount = Object.keys(profile.achievements || {}).length
   const isRival = rivalId === profile.id
+  const roleInfo = ROLES.find(r => r.id === (profile.role || 'ceo'))
 
   return (
     <motion.div
@@ -44,7 +52,13 @@ function ProfileCard({ profile, onSelect, onDelete, rivalId }) {
               Lv.{current.level}
             </span>
           </div>
-          <p className="text-slate-500 text-xs mb-3">{current.title}</p>
+          <div className="flex items-center gap-2 mb-3">
+            <p className="text-slate-500 text-xs">{current.title}</p>
+            <span className="text-slate-600 text-[10px]">·</span>
+            <span className="text-slate-500 text-[10px]">
+              {roleInfo?.icon} {roleInfo?.label}
+            </span>
+          </div>
 
           <div className="grid grid-cols-3 gap-2 text-xs">
             <div>
@@ -78,27 +92,136 @@ function ProfileCard({ profile, onSelect, onDelete, rivalId }) {
         })()}
       </div>
 
-      {/* Delete */}
-      <button
-        onClick={e => { e.stopPropagation(); onDelete(profile.id) }}
-        className="absolute top-3 right-3 text-slate-700 hover:text-red-400 transition-colors text-xs opacity-0 group-hover:opacity-100"
-        title="Delete profile"
-      >
-        ✕
-      </button>
+      {/* Edit + Delete — visible on hover */}
+      <div className="absolute top-3 right-3 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+        <button
+          onClick={e => { e.stopPropagation(); onEdit(profile.id) }}
+          className="text-slate-500 hover:text-slate-200 transition-colors p-1 rounded-lg hover:bg-white/8"
+          title="Edit profile"
+          aria-label="Edit profile"
+        >
+          <Pencil size={13} />
+        </button>
+        <button
+          onClick={e => { e.stopPropagation(); onDelete(profile.id) }}
+          className="text-slate-600 hover:text-red-400 transition-colors p-1 rounded-lg hover:bg-white/8 text-xs leading-none"
+          title="Delete profile"
+          aria-label="Delete profile"
+        >
+          ✕
+        </button>
+      </div>
     </motion.div>
   )
 }
 
-function CreateProfileForm({ onCreated, onCancel }) {
-  const [name, setName] = useState('')
-  const [color, setColor] = useState(PROFILE_COLORS[0])
+// ─── Edit profile form ────────────────────────────────────────────────────────
+
+function EditProfileForm({ profile, onSaved, onCancel }) {
+  const [name, setName] = useState(profile.name)
+  const [color, setColor] = useState(profile.color)
 
   const handleSubmit = e => {
     e.preventDefault()
     const trimmed = name.trim()
     if (!trimmed) return
-    const profile = createProfile(trimmed, color)
+    updateProfile(profile.id, { name: trimmed, color })
+    onSaved()
+  }
+
+  const roleInfo = ROLES.find(r => r.id === (profile.role || 'ceo'))
+
+  return (
+    <motion.form
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      onSubmit={handleSubmit}
+      className="bg-navy-800 border border-brand-500/40 rounded-2xl p-6"
+      onClick={e => e.stopPropagation()}
+    >
+      <div className="flex items-center gap-3 mb-5">
+        <div
+          className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black text-base flex-shrink-0"
+          style={{ background: color }}
+        >
+          {(name.trim()[0] || profile.name[0]).toUpperCase()}
+        </div>
+        <div>
+          <p className="text-white font-bold text-sm">Edit Profile</p>
+          <p className="text-slate-500 text-[11px]">
+            {roleInfo?.icon} {roleInfo?.label} · Your progress is kept
+          </p>
+        </div>
+      </div>
+
+      {/* Name */}
+      <div className="mb-4">
+        <label className="block text-slate-400 text-xs mb-1.5">Display name</label>
+        <input
+          autoFocus
+          type="text"
+          maxLength={20}
+          value={name}
+          onChange={e => setName(e.target.value)}
+          className="w-full bg-white/8 border border-white/12 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500 transition-colors"
+          style={{ colorScheme: 'dark' }}
+        />
+      </div>
+
+      {/* Color */}
+      <div className="mb-5">
+        <label className="block text-slate-400 text-xs mb-2">Profile color</label>
+        <div className="flex gap-2 flex-wrap">
+          {PROFILE_COLORS.map(c => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setColor(c)}
+              className="w-8 h-8 rounded-xl transition-transform"
+              style={{
+                background: c,
+                outline: color === c ? '3px solid white' : 'none',
+                outlineOffset: '2px',
+                transform: color === c ? 'scale(1.15)' : 'scale(1)',
+              }}
+              aria-label={`Select color ${c}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="flex gap-2">
+        <button
+          type="submit"
+          disabled={!name.trim()}
+          className="flex-1 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm disabled:opacity-40 transition-colors"
+        >
+          Save changes
+        </button>
+        <button
+          type="button"
+          onClick={onCancel}
+          className="px-4 py-2.5 rounded-xl border border-white/10 text-slate-400 hover:text-white text-sm transition-colors"
+        >
+          Cancel
+        </button>
+      </div>
+    </motion.form>
+  )
+}
+
+// ─── Create profile form ──────────────────────────────────────────────────────
+
+function CreateProfileForm({ onCreated, onCancel }) {
+  const [name, setName] = useState('')
+  const [color, setColor] = useState(PROFILE_COLORS[0])
+  const [role, setRole] = useState('ceo')
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const trimmed = name.trim()
+    if (!trimmed) return
+    const profile = createProfile(trimmed, color, role)
     onCreated(profile)
   }
 
@@ -112,6 +235,28 @@ function CreateProfileForm({ onCreated, onCancel }) {
       <p className="text-white font-bold mb-4">Create Profile</p>
 
       <div className="mb-4">
+        <label className="block text-slate-400 text-xs mb-2">Your role</label>
+        <div className="grid grid-cols-2 gap-2">
+          {ROLES.map(r => (
+            <button
+              key={r.id}
+              type="button"
+              onClick={() => setRole(r.id)}
+              className={`rounded-xl border p-3 text-left transition-all ${
+                role === r.id
+                  ? 'border-brand-500 bg-brand-500/10'
+                  : 'border-white/10 hover:border-white/20'
+              }`}
+            >
+              <div className="text-lg mb-1">{r.icon}</div>
+              <div className="text-white text-xs font-bold leading-tight">{r.label}</div>
+              <div className="text-slate-500 text-[10px] mt-0.5 leading-tight">{r.description}</div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="mb-4">
         <label className="block text-slate-400 text-xs mb-1.5">Your name</label>
         <input
           autoFocus
@@ -120,7 +265,8 @@ function CreateProfileForm({ onCreated, onCancel }) {
           placeholder="e.g. Allen, Jose, Maria..."
           value={name}
           onChange={e => setName(e.target.value)}
-          className="w-full bg-white/6 border border-white/12 rounded-xl px-4 py-2.5 text-white placeholder-slate-600 text-sm focus:outline-none focus:border-brand-500 transition-colors"
+          className="w-full bg-white/8 border border-white/12 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500 transition-colors"
+          style={{ colorScheme: 'dark' }}
         />
       </div>
 
@@ -135,7 +281,7 @@ function CreateProfileForm({ onCreated, onCancel }) {
               className="w-8 h-8 rounded-xl transition-transform"
               style={{
                 background: c,
-                outline: color === c ? `3px solid white` : 'none',
+                outline: color === c ? '3px solid white' : 'none',
                 outlineOffset: '2px',
                 transform: color === c ? 'scale(1.15)' : 'scale(1)',
               }}
@@ -164,9 +310,14 @@ function CreateProfileForm({ onCreated, onCancel }) {
   )
 }
 
+// ─── Main ProfileSelect screen ────────────────────────────────────────────────
+
 export default function ProfileSelect({ onProfileSelected }) {
   const [profiles, setProfiles] = useState(() => getAllProfiles())
   const [creating, setCreating] = useState(false)
+  const [editingId, setEditingId] = useState(null)
+
+  const refresh = () => setProfiles(getAllProfiles())
 
   const profileList = Object.values(profiles).sort((a, b) => b.totalXP - a.totalXP)
 
@@ -178,16 +329,25 @@ export default function ProfileSelect({ onProfileSelected }) {
   const handleDelete = id => {
     if (!window.confirm('Delete this profile? All progress will be lost.')) return
     deleteProfile(id)
-    setProfiles(getAllProfiles())
+    refresh()
+  }
+
+  const handleEdit = id => {
+    setCreating(false)
+    setEditingId(id)
+  }
+
+  const handleEditSaved = () => {
+    refresh()
+    setEditingId(null)
   }
 
   const handleCreated = profile => {
-    setProfiles(getAllProfiles())
+    refresh()
     setCreating(false)
     onProfileSelected(profile.id)
   }
 
-  // Any rival among profiles (grab the first one found)
   const rivalId = profileList.find(p => p.rivalId)?.rivalId || null
 
   return (
@@ -204,14 +364,23 @@ export default function ProfileSelect({ onProfileSelected }) {
 
       <div className="w-full max-w-md space-y-3">
         <AnimatePresence mode="popLayout">
-          {profileList.map((p, i) => (
+          {profileList.map(p => (
             <motion.div key={p.id} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -20 }}>
-              <ProfileCard
-                profile={p}
-                onSelect={handleSelect}
-                onDelete={handleDelete}
-                rivalId={rivalId}
-              />
+              {editingId === p.id ? (
+                <EditProfileForm
+                  profile={p}
+                  onSaved={handleEditSaved}
+                  onCancel={() => setEditingId(null)}
+                />
+              ) : (
+                <ProfileCard
+                  profile={p}
+                  onSelect={handleSelect}
+                  onDelete={handleDelete}
+                  onEdit={handleEdit}
+                  rivalId={rivalId}
+                />
+              )}
             </motion.div>
           ))}
         </AnimatePresence>
@@ -219,13 +388,15 @@ export default function ProfileSelect({ onProfileSelected }) {
         {creating ? (
           <CreateProfileForm onCreated={handleCreated} onCancel={() => setCreating(false)} />
         ) : (
-          <motion.button
-            layout
-            onClick={() => setCreating(true)}
-            className="w-full py-4 rounded-2xl border border-dashed border-white/15 text-slate-500 hover:text-white hover:border-white/30 text-sm font-semibold transition-all"
-          >
-            + New Profile
-          </motion.button>
+          !editingId && (
+            <motion.button
+              layout
+              onClick={() => setCreating(true)}
+              className="w-full py-4 rounded-2xl border border-dashed border-white/15 text-slate-500 hover:text-white hover:border-white/30 text-sm font-semibold transition-all"
+            >
+              + New Profile
+            </motion.button>
+          )
         )}
 
         {profileList.length === 0 && !creating && (

@@ -1,4 +1,65 @@
-import { CASES } from '../data/cases'
+import { CASES as CASES1 } from '../data/cases'
+import { CASES2 } from '../data/cases2'
+import { CASES_TECH } from '../data/cases_tech'
+import { CASES_TECH2 } from '../data/cases_tech2'
+import { CASES_PM } from '../data/cases_pm'
+import { CASES_PM2 } from '../data/cases_pm2'
+import { CASES_PM3 } from '../data/cases_pm3'
+import { CASES_PM4 } from '../data/cases_pm4'
+import { CASES_PM5 } from '../data/cases_pm5'
+import { CASES_EM } from '../data/cases_em'
+import { CASES_EM2 } from '../data/cases_em2'
+import { CASES_EM3 } from '../data/cases_em3'
+import { CASES_EM4 } from '../data/cases_em4'
+import { CASES_EM5 } from '../data/cases_em5'
+import { CASES_CSM } from '../data/cases_csm'
+import { CASES_CSM2 } from '../data/cases_csm2'
+import { CASES_CSM3 } from '../data/cases_csm3'
+import { CASES_CSM4 } from '../data/cases_csm4'
+import { CASES_SALES } from '../data/cases_sales'
+import { CASES_SALES2 } from '../data/cases_sales2'
+import { CASES_SALES3 } from '../data/cases_sales3'
+import { CASES_SALES4 } from '../data/cases_sales4'
+import { CASES_BD } from '../data/cases_bd'
+import { CASES_BD2 } from '../data/cases_bd2'
+import { CASES_BD3 } from '../data/cases_bd3'
+import { CASES_BD4 } from '../data/cases_bd4'
+import { CASES_CFO } from '../data/cases_cfo'
+import { CASES_CFO2 } from '../data/cases_cfo2'
+import { CASES_CFO3 } from '../data/cases_cfo3'
+import { CASES_CFO4 } from '../data/cases_cfo4'
+import { CASES_CFO5 } from '../data/cases_cfo5'
+import { CASES_CFO6 } from '../data/cases_cfo6'
+import { CASES_CFO7 } from '../data/cases_cfo7'
+import { CASES_CFO8 } from '../data/cases_cfo8'
+
+const CEO_CASES = [...CASES1, ...CASES2]
+const TECH_CASES = [...CASES_TECH, ...CASES_TECH2]
+const PM_CASES = [...CASES_PM, ...CASES_PM2, ...CASES_PM3, ...CASES_PM4, ...CASES_PM5]
+const EM_CASES = [...CASES_EM, ...CASES_EM2, ...CASES_EM3, ...CASES_EM4, ...CASES_EM5]
+const CSM_CASES = [...CASES_CSM, ...CASES_CSM2, ...CASES_CSM3, ...CASES_CSM4]
+const SALES_CASES = [...CASES_SALES, ...CASES_SALES2, ...CASES_SALES3, ...CASES_SALES4]
+const BD_CASES = [...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4]
+const CFO_CASES = [
+  ...CASES_CFO, ...CASES_CFO2, ...CASES_CFO3, ...CASES_CFO4,
+  ...CASES_CFO5, ...CASES_CFO6, ...CASES_CFO7, ...CASES_CFO8,
+]
+
+function getCasePool(role) {
+  if (role === 'tech') return TECH_CASES
+  if (role === 'pm') return PM_CASES
+  if (role === 'em') return EM_CASES
+  if (role === 'csm') return CSM_CASES
+  if (role === 'sales') return SALES_CASES
+  if (role === 'bd') return BD_CASES
+  if (role === 'cfo') return CFO_CASES
+  return CEO_CASES
+}
+
+// Public accessor used by PDF export — always reflects the live case pools
+export function getCasesForRole(role) {
+  return getCasePool(role)
+}
 import {
   LEVELS, XP_CORRECT, XP_WRONG, STREAK_BONUS,
   COOLDOWN_SIZE, COOLDOWN_WEIGHT, DIFFICULTY_BOOST,
@@ -46,8 +107,13 @@ export function calcXP(isCorrect, difficulty, streak, isRetry = false, isDaily =
 
 // ─── Weighted random case selection ────────────────────────────────────────
 
-export function pickNextCase(cooldownIds, currentLevel, excludeId = null) {
-  const pool = excludeId ? CASES.filter(c => c.id !== excludeId) : CASES
+export function pickNextCase(cooldownIds, currentLevel, role = 'ceo', excludeId = null, categoryFilter = null) {
+  const CASES = getCasePool(role)
+  let pool = excludeId ? CASES.filter(c => c.id !== excludeId) : CASES
+  if (categoryFilter) {
+    const narrowed = pool.filter(c => c.category === categoryFilter)
+    if (narrowed.length > 0) pool = narrowed   // fall back to full pool if category has no cases
+  }
   const weights = pool.map(c => {
     let w = cooldownIds.includes(c.id) ? COOLDOWN_WEIGHT : 1.0
     for (const { minLevel, difficulty, multiplier } of DIFFICULTY_BOOST) {
@@ -70,10 +136,9 @@ export function pickNextCase(cooldownIds, currentLevel, excludeId = null) {
 
 // ─── Daily challenge ───────────────────────────────────────────────────────
 
-export function getDailyCase() {
-  const today = new Date()
-  const dateStr = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
-  // Deterministic hash of date → same case for everyone on the same day
+export function getDailyCase(role = 'ceo') {
+  const CASES = getCasePool(role)
+  const dateStr = `${getTodayStr()}-${role}`
   let hash = 0
   for (const ch of dateStr) hash = (hash * 31 + ch.charCodeAt(0)) & 0xffffffff
   return CASES[Math.abs(hash) % CASES.length]
