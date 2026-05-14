@@ -58,6 +58,12 @@ import { CASES_CHRO5 } from '../data/cases_chro5'
 import { CASES_CHRO6 } from '../data/cases_chro6'
 import { CASES_CHRO7 } from '../data/cases_chro7'
 import { CASES_CHRO8 } from '../data/cases_chro8'
+import { CASES4 } from '../data/cases4'
+import { CASES_TECH6 } from '../data/cases_tech6'
+import { CASES_PM8 } from '../data/cases_pm8'
+import { CASES_CSM6 } from '../data/cases_csm6'
+import { CASES_CFO10 } from '../data/cases_cfo10'
+import { CASES_BD6 } from '../data/cases_bd6'
 
 const CMO_CASES = [
   ...CASES_CMO, ...CASES_CMO2, ...CASES_CMO3, ...CASES_CMO4,
@@ -68,16 +74,16 @@ const CHRO_CASES = [
   ...CASES_CHRO5, ...CASES_CHRO6, ...CASES_CHRO7, ...CASES_CHRO8,
 ]
 
-const CEO_CASES = [...CASES1, ...CASES2, ...CASES3]
-const TECH_CASES = [...CASES_TECH, ...CASES_TECH2, ...CASES_TECH3, ...CASES_TECH4, ...CASES_TECH5]
-const PM_CASES = [...CASES_PM, ...CASES_PM2, ...CASES_PM3, ...CASES_PM4, ...CASES_PM5, ...CASES_PM6, ...CASES_PM7]
+const CEO_CASES = [...CASES1, ...CASES2, ...CASES3, ...CASES4]
+const TECH_CASES = [...CASES_TECH, ...CASES_TECH2, ...CASES_TECH3, ...CASES_TECH4, ...CASES_TECH5, ...CASES_TECH6]
+const PM_CASES = [...CASES_PM, ...CASES_PM2, ...CASES_PM3, ...CASES_PM4, ...CASES_PM5, ...CASES_PM6, ...CASES_PM7, ...CASES_PM8]
 const EM_CASES = [...CASES_EM, ...CASES_EM2, ...CASES_EM3, ...CASES_EM4, ...CASES_EM5, ...CASES_EM6]
-const CSM_CASES = [...CASES_CSM, ...CASES_CSM2, ...CASES_CSM3, ...CASES_CSM4, ...CASES_CSM5]
+const CSM_CASES = [...CASES_CSM, ...CASES_CSM2, ...CASES_CSM3, ...CASES_CSM4, ...CASES_CSM5, ...CASES_CSM6]
 const SALES_CASES = [...CASES_SALES, ...CASES_SALES2, ...CASES_SALES3, ...CASES_SALES4]
-const BD_CASES = [...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4, ...CASES_BD5]
+const BD_CASES = [...CASES_BD, ...CASES_BD2, ...CASES_BD3, ...CASES_BD4, ...CASES_BD5, ...CASES_BD6]
 const CFO_CASES = [
   ...CASES_CFO, ...CASES_CFO2, ...CASES_CFO3, ...CASES_CFO4,
-  ...CASES_CFO5, ...CASES_CFO6, ...CASES_CFO7, ...CASES_CFO8, ...CASES_CFO9,
+  ...CASES_CFO5, ...CASES_CFO6, ...CASES_CFO7, ...CASES_CFO8, ...CASES_CFO9, ...CASES_CFO10,
 ]
 
 function getCasePool(role) {

@@ -3,7 +3,7 @@ import { ROLES } from '../data/config'
 
 const PROOF_POINTS = [
   { value: '10', label: 'Leadership roles' },
-  { value: '970+', label: 'Real-world scenarios' },
+  { value: '1,000+', label: 'Real-world scenarios' },
   { value: '10', label: 'Levels of mastery' },
 ]
 

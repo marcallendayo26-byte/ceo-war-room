@@ -74,6 +74,12 @@ import { CASES_CHRO5 }        from '../src/data/cases_chro5.js'
 import { CASES_CHRO6 }        from '../src/data/cases_chro6.js'
 import { CASES_CHRO7 }        from '../src/data/cases_chro7.js'
 import { CASES_CHRO8 }        from '../src/data/cases_chro8.js'
+import { CASES4 }             from '../src/data/cases4.js'
+import { CASES_TECH6 }        from '../src/data/cases_tech6.js'
+import { CASES_PM8 }          from '../src/data/cases_pm8.js'
+import { CASES_CSM6 }         from '../src/data/cases_csm6.js'
+import { CASES_CFO10 }        from '../src/data/cases_cfo10.js'
+import { CASES_BD6 }          from '../src/data/cases_bd6.js'
 
 const ALL_CASES = [
   ...CASES1, ...CASES2, ...CASES3,
@@ -89,6 +95,7 @@ const ALL_CASES = [
   ...CASES_CMO5, ...CASES_CMO6, ...CASES_CMO7, ...CASES_CMO8,
   ...CASES_CHRO, ...CASES_CHRO2, ...CASES_CHRO3, ...CASES_CHRO4,
   ...CASES_CHRO5, ...CASES_CHRO6, ...CASES_CHRO7, ...CASES_CHRO8,
+  ...CASES4, ...CASES_TECH6, ...CASES_PM8, ...CASES_CSM6, ...CASES_CFO10, ...CASES_BD6,
 ]
 
 const VALID_HEALTH_KEYS = new Set([

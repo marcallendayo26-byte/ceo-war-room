@@ -354,6 +354,56 @@ export const ACHIEVEMENTS = [
     check: p => (p.categoryStats?.['Organizational Design']?.correct || 0) >= 5,
   },
 
+  // ── Innovation Layer ──────────────────────────────────────────────────────
+  {
+    id: 'innovation_strategist',
+    title: 'Innovation Strategist',
+    desc: '10 Innovation Strategy cases answered correctly.',
+    icon: '🚀',
+    roles: ['ceo'],
+    check: p => (p.categoryStats?.['Innovation Strategy']?.correct || 0) >= 10,
+  },
+  {
+    id: 'delivery_innovator',
+    title: 'Delivery Innovator',
+    desc: '8 Delivery Innovation cases answered correctly.',
+    icon: '⚙️',
+    roles: ['tech'],
+    check: p => (p.categoryStats?.['Delivery Innovation']?.correct || 0) >= 8,
+  },
+  {
+    id: 'product_innovator',
+    title: 'Product Innovator',
+    desc: '8 Product Innovation cases answered correctly.',
+    icon: '💡',
+    roles: ['pm'],
+    check: p => (p.categoryStats?.['Product Innovation']?.correct || 0) >= 8,
+  },
+  {
+    id: 'ams_innovator',
+    title: 'AMS Innovator',
+    desc: '5 AMS Innovation cases answered correctly.',
+    icon: '🛎️',
+    roles: ['csm'],
+    check: p => (p.categoryStats?.['AMS Innovation']?.correct || 0) >= 5,
+  },
+  {
+    id: 'commercial_innovator',
+    title: 'Commercial Innovator',
+    desc: '5 Commercial Innovation cases answered correctly.',
+    icon: '💎',
+    roles: ['cfo'],
+    check: p => (p.categoryStats?.['Commercial Innovation']?.correct || 0) >= 5,
+  },
+  {
+    id: 'ecosystem_architect',
+    title: 'Ecosystem Architect',
+    desc: '5 Ecosystem Innovation cases answered correctly.',
+    icon: '🌐',
+    roles: ['bd'],
+    check: p => (p.categoryStats?.['Ecosystem Innovation']?.correct || 0) >= 5,
+  },
+
   // ── Prestige ───────────────────────────────────────────────────────────────
   {
     id: 'prestige_1',

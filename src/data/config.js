@@ -168,20 +168,27 @@ export const CATEGORY_COLORS = {
   'Strategic Partner & Equity':       '#f59e0b',
   'AMS & Support Operations':         '#3b82f6',
   'Engineering Org Design':           '#22c55e',
+  // Innovation layer
+  'Innovation Strategy':              '#7c3aed',
+  'Delivery Innovation':              '#0891b2',
+  'Product Innovation':               '#db2777',
+  'AMS Innovation':                   '#059669',
+  'Commercial Innovation':            '#ca8a04',
+  'Ecosystem Innovation':             '#6366f1',
 }
 
 // ─── Role → category mapping ───────────────────────────────────────────────
 // Single source of truth used by CategoryStats, HistoryPanel, and validation.
 
 export const CATEGORIES_BY_ROLE = {
-  ceo:   ['Strategy', 'Finance', 'Sales', 'Product', 'Operations', 'Leadership', 'Crisis', 'Enterprise', 'Marketing', 'Ethics', 'Contracting & Legal Risk', 'Board & Governance'],
-  cfo:   ['Unit Economics', 'Cash & Runway', 'Financial Planning', 'Pricing Strategy', 'Capital Allocation', 'Fundraising & Investors', 'Cost Structure', 'M&A', 'Commercial Costing'],
-  tech:  ['Project Delivery', 'Client Management', 'Technical Decisions', 'Implementation', 'Hypercare', 'AMS', 'Risk & Quality', 'Team & Resources', 'Data Migration', 'Adoption & Change Management', 'Security & Compliance'],
-  pm:    ['Roadmap & Prioritization', 'Discovery & Research', 'Metrics & Analytics', 'Stakeholder Management', 'Go-to-Market', 'Feature Decisions', 'Team & Process', 'Growth & Monetization', 'Influencing Without Authority', 'Product vs Implementation', 'AI & Emerging Tech'],
+  ceo:   ['Strategy', 'Finance', 'Sales', 'Product', 'Operations', 'Leadership', 'Crisis', 'Enterprise', 'Marketing', 'Ethics', 'Contracting & Legal Risk', 'Board & Governance', 'Innovation Strategy'],
+  cfo:   ['Unit Economics', 'Cash & Runway', 'Financial Planning', 'Pricing Strategy', 'Capital Allocation', 'Fundraising & Investors', 'Cost Structure', 'M&A', 'Commercial Costing', 'Commercial Innovation'],
+  tech:  ['Project Delivery', 'Client Management', 'Technical Decisions', 'Implementation', 'Hypercare', 'AMS', 'Risk & Quality', 'Team & Resources', 'Data Migration', 'Adoption & Change Management', 'Security & Compliance', 'Delivery Innovation'],
+  pm:    ['Roadmap & Prioritization', 'Discovery & Research', 'Metrics & Analytics', 'Stakeholder Management', 'Go-to-Market', 'Feature Decisions', 'Team & Process', 'Growth & Monetization', 'Influencing Without Authority', 'Product vs Implementation', 'AI & Emerging Tech', 'Product Innovation'],
   em:    ['Technical Debt', 'Architecture Decisions', 'Hiring & Staffing', 'IC Management', 'Sprint & Delivery', 'Incident Response', 'Cross-functional', 'Team Culture', 'Negotiating Up & Across', 'Engineering Org Design'],
-  csm:   ['Onboarding', 'Product Adoption', 'Churn Prevention', 'Escalation Management', 'QBR & Executive Engagement', 'Renewals', 'Expansion Revenue', 'CS Operations', 'AMS & Support Operations'],
+  csm:   ['Onboarding', 'Product Adoption', 'Churn Prevention', 'Escalation Management', 'QBR & Executive Engagement', 'Renewals', 'Expansion Revenue', 'CS Operations', 'AMS & Support Operations', 'AMS Innovation'],
   sales: ['Pipeline Management', 'Discovery', 'Negotiation', 'Objection Handling', 'Account Strategy', 'Competitive Selling', 'Quota & Forecasting', 'Deal Execution'],
-  bd:    ['Partnership Strategy', 'Deal Structuring', 'Channel Management', 'Alliance & Co-Sell', 'Market Expansion', 'Ecosystem & Marketplace', 'Partner Relations', 'Corporate Development', 'Strategic Partner & Equity'],
+  bd:    ['Partnership Strategy', 'Deal Structuring', 'Channel Management', 'Alliance & Co-Sell', 'Market Expansion', 'Ecosystem & Marketplace', 'Partner Relations', 'Corporate Development', 'Strategic Partner & Equity', 'Ecosystem Innovation'],
   cmo:   ['Brand & Positioning', 'Demand Generation', 'Content & SEO', 'Marketing-Sales Alignment', 'Analytics & Attribution', 'PR & Communications', 'Campaign Strategy', 'Product Marketing'],
   chro:  ['Talent Acquisition', 'Performance Management', 'Compensation & Benefits', 'Learning & Development', 'Culture & Engagement', 'HR Operations', 'Organizational Design', 'Employee Relations'],
 }
