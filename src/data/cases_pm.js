@@ -168,7 +168,7 @@ export const CASES_PM = [
     quote: "\"Investors need predictability. Customers are asking for commitments.\"",
     options: [
       "Agree to a full 12-month roadmap with monthly milestones — predictability is what investors and customers need.",
-      "Create the 12-month roadmap for external use and plan internally to ignore most of it after Q1.",
+      "Publish a 12-month roadmap with quarterly milestones, but frame every item as 'target' rather than 'committed' to preserve flexibility while meeting the investor ask.",
       "Push back entirely — detailed long-term roadmaps are anti-agile and destroy learning velocity.",
       "Propose a tiered structure: 3-month committed near-term, 6-month directional themes, 12-month strategic vision only."
     ],
@@ -179,8 +179,8 @@ export const CASES_PM = [
     principle: "Commit to outcomes, not features. Share themes, not tickets.",
     traps: [
       "A 12-month feature-level roadmap guarantees you will be apologizing for missed commitments within six months.",
-      "Refusing to give investors and customers any roadmap visibility is a trust-destroying overcorrection.",
-      "Two-faced roadmaps — one for show, one for real — destroy team credibility the moment anyone compares them."
+      "Labeling every item 'target' on a 12-month feature roadmap does not protect you — enterprise customers and investors treat published feature lists as commitments regardless of the disclaimer, and you will still be held to them at the next QBR.",
+      "Refusing to give investors and customers any roadmap visibility is a trust-destroying overcorrection that signals the team does not have a strategy."
     ]
   },
   {

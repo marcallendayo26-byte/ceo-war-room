@@ -28,7 +28,7 @@ export const CASES_TECH4 = [
     scenario: "The sales team at the flagship branch reports that deal entry in the new DMS takes five minutes versus two minutes in the old system. On weekends — their highest-traffic days — the team has started completing deals on paper and entering them into the system at end of day. You have logs showing the system response time is under 800ms consistently. The branch manager says 'your system is slower than what we had and my team will not use it.'",
     options: [
       "Accept the branch manager's feedback and escalate to your product team to investigate system performance improvements.",
-      "Dismiss the performance complaint — logs prove the system is fast. Focus entirely on training.",
+      "Use the system response logs to confirm the platform is performing within SLA, then schedule a mandatory deal entry retraining session focused on speed and shortcut keys for the full sales team.",
       "Walk through the end-to-end deal entry flow side-by-side with a salesperson during a quiet period, map every step and click, and identify whether the time difference is system latency, step count, or workflow unfamiliarity.",
       "Implement a simplified 'fast entry' mode that captures only the mandatory fields during peak hours, with full data entry required within 24 hours.",
     ],
@@ -39,7 +39,7 @@ export const CASES_TECH4 = [
     principle: "Log data tells you what the system is doing. Observation tells you what the user is doing.",
     traps: [
       "Accepting the performance complaint without log evidence means your product team investigates a non-existent infrastructure problem.",
-      "Dismissing feedback with logs is accurate but adversarial — it does not fix the five-minute deal entry problem the branch manager is experiencing.",
+      "Retraining on speed and shortcuts addresses a training hypothesis you have not yet validated — if the real bottleneck is step count or screen navigation, faster typing on the same flow produces the same five-minute result.",
       "A fast-entry mode solves the immediate friction but may create data quality problems when 24-hour completion is missed, and it does not fix the workflow for the 90% of time that is not peak-hour.",
     ],
   },
@@ -137,7 +137,7 @@ export const CASES_TECH4 = [
     difficulty: 3,
     scenario: "Four months post-go-live, during a quarterly review, you discover that the finance team's approval workflow in the new system is being run in parallel with their old manual process. Finance staff approve purchase orders in the new system and then route the same PO for a physical signature from the department head — doubling the work. The workaround has been in place since week 2 of go-live. No one escalated it. When you ask why, the finance manager says 'we were not comfortable that the system approvals would be accepted by auditors and no one confirmed they would.'",
     options: [
-      "Document the workaround as an ongoing risk and include it in the next quarterly review report.",
+      "Work directly with the finance manager to map the system approval workflow to the specific audit standards she is concerned about, produce a written compliance alignment document, and use it to retire the manual process.",
       "Remove access to the parallel manual process to force adoption of the system workflow.",
       "Convene a session with the finance manager, the client's CFO, and your compliance consultant to resolve the audit acceptance question formally, then design a transition plan to retire the manual process once confirmed.",
       "Provide the finance team with a written confirmation that system approvals are audit-compliant, and give them a 30-day deadline to retire the manual process.",
@@ -148,7 +148,7 @@ export const CASES_TECH4 = [
     framework: "Compliance-Driven Workaround Resolution — when a workaround exists because a compliance question was never answered, the resolution path is the compliance question, not the workaround removal. Fix the root cause before retiring the safety net.",
     principle: "A workaround built on an unanswered compliance question will persist until the compliance question is answered at sufficient authority.",
     traps: [
-      "Logging the workaround as a risk accepts that double-handling of POs will continue indefinitely — every finance approval takes twice the time it should.",
+      "A compliance alignment document produced without the CFO or external auditor has no formal standing — the finance manager cannot independently validate that the system approval will satisfy her company's auditors, so the manual process stays as insurance.",
       "Removing manual process access without resolving the audit question is aggressive and may expose the client to real compliance risk during their next audit.",
       "A written confirmation from your team is not the same as a formal CFO-and-auditor-endorsed ruling — the finance manager will not retire the manual process on your assurance alone.",
     ],

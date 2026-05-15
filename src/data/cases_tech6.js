@@ -86,7 +86,7 @@ export const CASES_TECH6 = [
     "difficulty": 2,
     "scenario": "Cutover weekends are consistently chaotic. There is no master task list, communication between site teams and the central team breaks down, tasks are discovered in real time, and dependencies are missed. Post-cutover analysis of three recent go-lives shows the same categories of issues: sequence errors, missed dependency checks, and communication gaps between teams.",
     "options": [
-      "Run a post-mortem after every cutover and use the findings to brief the team better on the next one.",
+      "Designate a senior consultant as the cutover lead for each go-live, giving them authority to sequence tasks and coordinate all site and central teams in real time during the cutover weekend.",
       "Design a Cutover Runbook: a sequenced, time-stamped task list with owner assignments, dependency markers, go/no-go checkpoints, and a real-time status dashboard for the cutover command team.",
       "Add a dedicated cutover project manager to own coordination across all teams during go-live weekends.",
       "Move to a phased cutover model where individual modules go live sequentially over several weeks to reduce weekend complexity."
@@ -102,7 +102,7 @@ export const CASES_TECH6 = [
     "framework": "Cutover Engineering — go-live cutover is a high-stakes, time-compressed operation. It must be engineered like a deployment procedure, not planned like a meeting agenda. Every task, sequence, dependency, and checkpoint should be designed before the cutover begins.",
     "principle": "A cutover weekend discovers nothing that a good runbook could not have anticipated. Chaos is a design deficit.",
     "traps": [
-      "Post-mortems improve the next team briefing but do not produce a reusable artefact — the same gaps appear in the next cutover because the process is still improvised.",
+      "A senior cutover lead improves real-time coordination but the sequencing still lives in their head — the same dependency errors recur when that individual is unavailable, and the coordination quality regresses to chaos the moment the lead changes.",
       "A dedicated cutover PM is an expensive coordination layer that still depends on the PM's ability to manage an undocumented, improvised sequence.",
       "Phased cutover trades weekend chaos for weeks of parallel-running complexity and increases the window in which two systems must remain in sync."
     ]
@@ -195,7 +195,7 @@ export const CASES_TECH6 = [
     "scenario": "Your implementation methodology exists primarily in the heads of four senior consultants. Two clients have formally complained about inconsistent experiences — different project managers gave them different answers on scope, configuration decisions, and escalation handling for the same scenarios. Three junior consultants joined in the last six months and are making ad-hoc decisions that senior staff have to correct after the fact.",
     "options": [
       "Pair every junior consultant with a senior consultant throughout each project until they are fully trained.",
-      "Run a monthly knowledge-sharing session where senior consultants share their experience with the team.",
+      "Build a structured case library documenting the 50 most common implementation decisions with senior consultants' recommended responses, and require all consultants to review it before each new project.",
       "Build an Implementation Playbook: documented decision frameworks for the 20 most common implementation scenarios, role-based responsibility matrices, escalation protocols, configuration decision trees, and onboarding modules that junior consultants complete before going to site.",
       "Promote one of the four senior consultants to a Head of Delivery role responsible for reviewing all project decisions."
     ],
@@ -211,7 +211,7 @@ export const CASES_TECH6 = [
     "principle": "Expertise that exists only in experienced heads cannot be quality-controlled, scaled, or taught reliably. Write it down.",
     "traps": [
       "Senior-junior pairing produces effective individual development but makes quality dependent on the chemistry and availability of that pairing — it does not reduce the underlying tribal-knowledge risk.",
-      "Monthly knowledge-sharing creates awareness of what senior consultants would do, but awareness at a session does not become a decision guide in the field three weeks later.",
+      "A case library improves pre-project awareness but does not guide decisions in the moment — junior consultants will still make ad-hoc calls when a situation feels different from any case they reviewed, and inconsistency across projects persists.",
       "A Head of Delivery review layer adds a sign-off step but does not equip junior consultants to make good decisions independently — it just catches them after the fact, more formally."
     ]
   },

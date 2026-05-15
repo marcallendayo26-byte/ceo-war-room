@@ -87,7 +87,7 @@ export const CASES_PM5 = [
     difficulty: 3,
     scenario: 'Engineering estimated a critical feature at 14 weeks. Based on your experience with similar features and conversations with individual engineers on the team, you believe 8–9 weeks is achievable. The EM is defending the estimate. The feature is blocking a major product launch and you can\'t force a re-estimate — but the gap is real.',
     options: [
-      'Accept the 14-week estimate and adjust the launch date accordingly — challenging estimates openly damages the PM-engineering relationship.',
+      'Request a one-on-one with the EM, walk through the 14-week estimate task by task, and ask them to justify each component — if the assumptions are conservative, the conversation will surface it.',
       'Escalate to the CTO that engineering\'s estimate is unreasonable and blocking a critical product initiative.',
       'Ask the EM to break the estimate into component tasks and share the breakdown, then review it together to identify where assumptions may be conservative.',
       'Propose a joint 90-minute bottom-up re-estimation session with the full engineering team, structured around explicit complexity assumptions — to build a shared estimate that both teams own.',
@@ -103,7 +103,7 @@ export const CASES_PM5 = [
     framework: 'Collaborative re-estimation: challenge estimates not by disputing them, but by creating a structured process where assumptions become explicit. When engineers defend estimates out loud, they often revise conservative buffers themselves without being pushed.',
     principle: 'You can\'t negotiate an estimate by assertion. You can by making assumptions visible.',
     traps: [
-      'Directly telling engineering their estimate is too high — this triggers defensiveness and makes the EM dig in harder on the original number.',
+      'A one-on-one where you ask the EM to justify each task positions you as an auditor of their engineering judgment — the EM defends the estimate rather than re-examining it, and no revised number emerges because the conversation lacks the structured process for assumptions to surface publicly.',
       'Escalating to CTO before exhausting the peer-level negotiation — it signals you don\'t trust the EM and creates lasting adversarial dynamics.',
       'Accepting the estimate to preserve the relationship — a 14-week feature for an 8-week job is a trust problem when the pattern repeats quarter after quarter.',
     ],
@@ -225,7 +225,7 @@ export const CASES_PM5 = [
     options: [
       'Return to Legal with a specific technical counter-proposal: implement field-level anonymization for the three data points they flagged, run a pseudonymization audit on the remaining data pipeline, and offer a joint technical review session with your engineering lead and their privacy counsel before launch.',
       'Ask the CPO to overrule Legal\'s objection — they have the business authority to accept compliance risk.',
-      'Delay the feature launch indefinitely until Legal provides a written approval with specific conditions.',
+      'Launch the feature to clients outside EU jurisdiction immediately — they are not subject to GDPR — and continue seeking Legal clearance for EU clients in parallel, splitting the rollout by regulatory exposure.',
       'Redesign the feature to remove behavioral tracking entirely and launch a reduced version that avoids the compliance question.',
     ],
     correct: 0,
@@ -241,7 +241,7 @@ export const CASES_PM5 = [
     traps: [
       'Treating "cannot approve" as a final answer rather than a negotiating position — Legal is describing a risk they can\'t accept, not issuing an irreversible verdict.',
       'Asking the CPO to override Legal — this creates liability exposure and teaches Legal that your team bypasses them, making every future review harder.',
-      'Redesigning to remove the core feature — you\'ve traded a compliance conversation for a product failure and still haven\'t resolved the underlying relationship with Legal.',
+      'A geography-segmented rollout treats GDPR as a jurisdictional flag rather than a design problem — Legal\'s objection is to how the feature collects and stores behavioral data, which is the same architecture in every market; launching outside the EU creates a live feature that must be pulled or rearchitected the moment you expand.',
     ],
   },
 

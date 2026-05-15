@@ -29,7 +29,7 @@ export const CASES_TECH2 = [
     scenario: "Your system integration relies on a third-party vendor providing an API. Your team says the API has been unstable. The vendor blames incorrect calls from your team. Your client's IT team says both parties are wrong and their firewall is configured correctly. The project is 2 weeks behind and no one is taking ownership.",
     quote: "\"Each party is saying it is the other's fault. We just need to wait for them to sort it out.\"",
     options: [
-      "Wait for the vendor and client IT to resolve the conflict between themselves.",
+      "Assign your most senior developer to reproduce the API errors in isolation using a test harness and deliver a written root-cause report to both the vendor and client IT within 48 hours.",
       "Take unilateral ownership: run a joint technical session with all three parties, share logs from all sides, and identify the root cause together.",
       "Escalate to your client's project sponsor and ask them to force their IT team to fix it.",
       "Build a workaround that bypasses the problematic integration entirely."
@@ -40,7 +40,7 @@ export const CASES_TECH2 = [
     framework: "Multi-Vendor Conflict Resolution — when vendors are blaming each other, convene a joint session with all parties and shared evidence. Blame cycles only end when everyone is in the same room.",
     principle: "The party who calls the meeting owns the resolution. Take the lead.",
     traps: [
-      "Waiting for others to resolve it means 2 weeks becomes 4. No one will resolve it without external pressure.",
+      "A one-sided root-cause report from your developer carries no authority with the vendor or client IT — each party will dispute findings they were not present to validate, and the blame cycle restarts.",
       "Escalating to the sponsor before attempting a technical resolution wastes executive political capital on a solvable engineering problem.",
       "A bypass workaround may work short-term but creates permanent technical debt and does not fix the underlying integration."
     ]
@@ -52,7 +52,7 @@ export const CASES_TECH2 = [
     scenario: "During sprint planning for Sprint 3, your team realizes that a core assumption from the project kickoff — that the client's existing user database could be used directly — is wrong. Their database schema is incompatible with your system's authentication model. This was never validated before development started.",
     quote: "\"We should have caught this at kickoff. The team should have asked more questions.\"",
     options: [
-      "Blame the team for not validating assumptions and move on.",
+      "Add a sprint buffer to absorb the rework, quietly update the project timeline internally, and communicate to the client only when the rework is complete.",
       "Absorb the rework silently. It is your team's fault for not validating earlier.",
       "Document the assumption failure, assess the rework impact, raise it as a risk item with the client, and implement an assumption validation checklist for remaining sprints.",
       "Raise a change request immediately. The client should have provided accurate technical documentation."
@@ -63,7 +63,7 @@ export const CASES_TECH2 = [
     framework: "Assumption Log — every major technical assumption should be documented and validated before work begins. A living assumption log prevents the same failure from recurring.",
     principle: "An assumption that is never validated is a risk that has already materialized — you just do not know it yet.",
     traps: [
-      "Blame does not fix the rework or prevent the next assumption failure.",
+      "Absorbing the rework silently without client visibility destroys your timeline credibility when the delay surfaces — and it always surfaces — leaving you without a documented reason for the slip.",
       "Absorbing silently is appropriate only if the impact is genuinely minor. A schema incompatibility is not minor.",
       "A change request may be warranted, but raising it before assessing impact puts you in a weak negotiating position."
     ]
@@ -75,8 +75,8 @@ export const CASES_TECH2 = [
     scenario: "Your team's sprint velocity looks healthy on paper — they are hitting 40 story points per sprint consistently. But three client-facing features scheduled for this release have not actually been delivered. Investigation reveals that developers have been splitting stories into smaller, easier sub-tasks to inflate their velocity numbers.",
     quote: "\"Velocity is a team metric, not a delivery metric. Let us not overreact.\"",
     options: [
-      "Ignore it. Velocity is an internal tool and the team is trying to hit targets.",
-      "Confront the developers publicly in the next stand-up to prevent it happening again.",
+      "Recalibrate the sprint capacity target downward to match the team's actual throughput, so velocity and delivery realign without changing the sizing process.",
+      "Set a minimum story-point threshold per ticket to prevent further splitting, and apply it retroactively to audit the last three sprints.",
       "Report the velocity inflation to the client immediately as a project risk.",
       "Reset the velocity measurement: redefine story sizing criteria, review the backlog for inflated splits, and have a private team conversation about delivery accountability."
     ],
@@ -86,8 +86,8 @@ export const CASES_TECH2 = [
     framework: "Velocity Integrity — story points measure work completed, not work attempted. When velocity and delivery diverge, the measurement system is broken.",
     principle: "Velocity that does not predict delivery is not a metric. It is a vanity number.",
     traps: [
-      "Ignoring gaming means future sprint forecasts are meaningless and the delivery gap compounds.",
-      "Public confrontation in stand-up damages psychological safety and turns a management issue into a team conflict.",
+      "Lowering the capacity target treats the symptom but not the root cause — story sizes are still inflated, so velocity numbers still do not predict delivery.",
+      "A minimum point threshold discourages sub-task splitting but does not address why the team felt compelled to inflate in the first place; the behaviour resurfaces in other forms.",
       "Reporting to the client before resolving internally is premature and creates unnecessary alarm."
     ]
   },
@@ -100,8 +100,8 @@ export const CASES_TECH2 = [
     options: [
       "Schedule a 1-hour close-out session, complete the acceptance certificate and lessons learned together, and deliver the knowledge handover documentation within the week.",
       "Send the final invoice and close the project commercially without the formal documents.",
-      "Leave it. The client is satisfied and the team has moved on.",
-      "Wait until the client raises it. They will ask when they need the documents."
+      "Send the outstanding documents to the client by email without scheduling a session, and ask them to sign and return the acceptance certificate at their convenience.",
+      "Close the project internally, mark it complete in your project management system, and follow up on the outstanding paperwork during the next scheduled touchpoint."
     ],
     correct: 0,
     consequences: {"cash":5,"growth":5,"profitability":10,"customerTrust":10,"teamMorale":5,"executionRisk":-10,"strategicPosition":10},
@@ -110,8 +110,8 @@ export const CASES_TECH2 = [
     principle: "A project is not done until it is documented. Happy clients become unhappy clients when they cannot find the knowledge 6 months later.",
     traps: [
       "An unclosed project with no signed acceptance is an open liability. Anyone can dispute what was delivered.",
-      "Sending a final invoice without an acceptance certificate makes the invoice legally contestable.",
-      "Waiting for the client to ask means the close-out never happens — and neither does the final invoice."
+      "Emailing documents to a busy client with no structured session produces no signatures and no lessons learned — documents sit unread and the project stays legally open.",
+      "Closing the project internally without the signed acceptance certificate means your final invoice has no formal delivery proof behind it — a serious exposure if the client disputes scope months later."
     ]
   },
   {
@@ -121,7 +121,7 @@ export const CASES_TECH2 = [
     scenario: "Your key internal champion at the client — the person who championed the project to their board, understands the goals, and has been your main contact for 4 months — has just resigned. Their replacement is a senior manager who was skeptical of the project from the start and is now responsible for its success.",
     quote: "\"We just need to give the new manager time to get comfortable. They will come around.\"",
     options: [
-      "Continue as normal and let the new manager find their footing.",
+      "Prepare a comprehensive project status report covering all decisions made to date and send it to the new manager before the end of the week.",
       "Request an urgent onboarding meeting with the new manager before they form opinions based on secondhand information.",
       "Ask the outgoing champion to brief their replacement before they leave.",
       "Escalate to the executive sponsor immediately to ensure project continuity."
@@ -132,7 +132,7 @@ export const CASES_TECH2 = [
     framework: "Stakeholder Transition Management — when a project champion leaves, the first 2 weeks with their replacement are the highest-impact window. Brief them before someone else does.",
     principle: "A skeptic briefed by you early becomes a neutral. A skeptic briefed by rumor becomes an adversary.",
     traps: [
-      "Waiting for the new manager to \"come around\" while they form opinions from secondhand accounts is a passive strategy that usually fails.",
+      "A written status report gives a skeptical new manager raw information without context or relationship — they will interpret it through their existing skepticism rather than the intent behind the decisions.",
       "Relying on the outgoing champion to hand over context is unreliable — they are mentally disengaged from a job they are leaving.",
       "Escalating to the executive sponsor before meeting the new manager directly creates political tension before a relationship is established."
     ]
@@ -167,9 +167,9 @@ export const CASES_TECH2 = [
     scenario: "A competing firm is pitching a similar system to one of your client's subsidiaries. You discover that the competitor's proposal contains methodology diagrams, project timeline structures, and onboarding frameworks that are near-identical to documents you shared with the client during the sales process — documents covered by your NDA.",
     quote: "\"It could be a coincidence. Methodologies look similar in this industry.\"",
     options: [
-      "Do nothing. It is hard to prove and confrontation will damage the relationship.",
+      "Document the similarities in detail, share the evidence with your business development director, and flag it as a competitive intelligence concern to monitor in future proposals.",
       "Raise it directly with the client's legal or procurement team, share the evidence, and ask for an explanation.",
-      "Terminate the client relationship immediately for breach of NDA.",
+      "Send the client's procurement lead a formal written notice citing the NDA clause and requesting a written explanation within 5 business days before taking further action.",
       "Report it to your legal team first and let them determine the appropriate response."
     ],
     correct: 3,
@@ -178,9 +178,9 @@ export const CASES_TECH2 = [
     framework: "IP Breach Response Protocol — document the evidence, engage legal first, then take advised action. Never confront a potential breach without legal guidance.",
     principle: "IP protection starts with your legal team, not the client conversation.",
     traps: [
-      "Doing nothing signals that your NDA has no teeth and invites future disclosure.",
+      "Treating a potential NDA breach as a competitive intelligence issue rather than a legal matter means you document the concern but take no protective action — the breach continues and your legal position weakens the longer you wait.",
       "Going to the client directly before legal review may waive certain legal remedies or escalate prematurely.",
-      "Terminating a contract without legal process exposes you to counter-claims and destroys any remediation opportunity."
+      "Issuing a formal written notice to the client before legal review exposes your legal strategy, may be inadmissible as proper notice depending on the NDA's cure clause, and triggers a defensive response without giving you the leverage that a properly advised approach would."
     ]
   },
   {
@@ -192,7 +192,7 @@ export const CASES_TECH2 = [
     options: [
       "Meet privately with the operations director to understand their concerns and establish communication protocols together.",
       "Have your developers set their phones to do-not-disturb after 7pm and not respond until morning.",
-      "Continue as-is. Highly responsive service is a competitive advantage.",
+      "Set up a shared Slack channel with the operations director and all developer leads so all client questions are visible, tracked, and answered in one place.",
       "Escalate to the client's executive sponsor and ask them to manage their operations director's communication style."
     ],
     correct: 0,
@@ -201,8 +201,8 @@ export const CASES_TECH2 = [
     framework: "Client Communication Boundary Setting — establish working hours and communication protocols early. When these are violated, address it directly and early rather than absorbing indefinitely.",
     principle: "Clients who do not trust the process need the process explained and demonstrated, not bypassed.",
     traps: [
-      "\"Highly engaged\" clients who contact your team at 11pm are a burnout and attrition risk.",
       "Having developers unilaterally go silent creates client anxiety and escalations without addressing the root cause.",
+      "A shared channel with all developer leads included gives the operations director direct access to the entire team at all hours — it formalises the exact behaviour you are trying to reduce rather than containing it.",
       "Escalating past the operations director before speaking with them directly creates political damage before a conversation has been attempted."
     ]
   },
@@ -260,7 +260,7 @@ export const CASES_TECH2 = [
     quote: "\"Everyone uses open-source libraries. GPL is fine.\"",
     options: [
       "Keep the library. GPL is commonly misunderstood and practically never enforced.",
-      "Remove it immediately regardless of the rework cost.",
+      "Switch from the GPL library to a permissively licensed alternative (MIT or Apache 2.0) immediately, and absorb the 3-4 week rework as a security and compliance obligation.",
       "Use a GPL license exception — contact the library author and request a commercial license.",
       "Get a formal legal opinion on the specific use case before making a change decision."
     ],
@@ -271,7 +271,7 @@ export const CASES_TECH2 = [
     principle: "License risk is IP risk. Get legal clarity before you ship, not after.",
     traps: [
       "\"Practically never enforced\" is not a legal standard. GPL enforcement actions do happen, especially at acquisition due diligence.",
-      "Removing immediately without legal assessment may be unnecessary and costly if your use case is compliant.",
+      "Switching immediately without a legal assessment may be unnecessary — your specific use of the library (linked vs. embedded, distributed vs. SaaS) could be compliant — and a rushed 3-4 week rework introduces regression risk with no confirmed benefit.",
       "A commercial license exception may be the right outcome — but only after legal confirms it is actually needed."
     ]
   },
@@ -353,7 +353,7 @@ export const CASES_TECH2 = [
     options: [
       "Support indefinite dual-running. Safety comes first.",
       "Recommend immediate decommission. The new system is proven and the cost is wasteful.",
-      "Let the client decide entirely. It is their cost and their risk tolerance.",
+      "Recommend a 6-month read-only retention window before decommission, giving the IT team ample time to identify any edge cases the new system may have missed.",
       "Propose a structured decommission plan: data archival, final migration of any remaining edge-case data, a 90-day read-only retention window, then full shutdown."
     ],
     correct: 3,
@@ -364,7 +364,7 @@ export const CASES_TECH2 = [
     traps: [
       "Indefinite dual-running means both systems must be patched, maintained, and supported simultaneously.",
       "Immediate decommission without a structured plan misses data archival and edge-case migration — creating a real risk.",
-      "Deferring to the client without providing professional guidance is abdicating your advisory role."
+      "A 6-month read-only window costs ₱480K in continued licensing and maintenance — six times what a structured 90-day plan costs — and the IT team's \"edge case\" concern is better addressed by a targeted data validation exercise, not an extended runway that delays cost savings with no defined exit criteria."
     ]
   },
   {
@@ -397,9 +397,9 @@ export const CASES_TECH2 = [
     scenario: "It is Monday morning, Day 1 of go-live. Your support inbox has 34 tickets already. Half are from users saying they \"cannot log in\" or \"do not know what to do.\" When you investigate, you discover that the client's IT team sent the go-live announcement email to all staff on Friday at 5:30pm — most never saw it before arriving this morning.",
     quote: "\"The email was sent. That is the client's communication problem.\"",
     options: [
-      "Tell the client their IT team should have communicated better. It is not your problem.",
+      "Triage all 34 tickets immediately, prioritize login issues, and assign two developers to resolve them remotely via the help desk queue.",
       "Pause all other tickets and run a live walk-in support session at the client's office for the first 3 hours.",
-      "Close all \"cannot log in\" tickets and ask users to re-log the issue through the official channel.",
+      "Send a broadcast email to all staff with step-by-step login instructions and links to the quick-start guide, then let the help desk queue clear naturally.",
       "Send a help desk triage message to all affected users with login instructions and a link to the quick-start guide."
     ],
     correct: 1,
@@ -408,9 +408,9 @@ export const CASES_TECH2 = [
     framework: "Go-Live Day 1 Surge Response — when a communication failure creates a user support surge on Day 1, deploy a physical support presence. It is faster than ticket triage and converts anxiety into confidence.",
     principle: "Day 1 of go-live is a user confidence problem, not a technical problem. Solve it like one.",
     traps: [
-      "Blaming the client's IT team does not help 34 users who cannot access the system they need to do their job.",
-      "A mass help email is the right communication but insufficient alone — many users won't read it under pressure.",
-      "Closing tickets and asking users to re-log creates adversarial relationships on Day 1."
+      "Remote ticket triage for \"cannot log in\" issues takes far longer than in-person resolution — without knowing which users are affected or what device configuration they are on, help desk staff spend most of the time gathering context rather than solving the problem.",
+      "A broadcast email on Day 1 morning reaches users who are already at their desks and already anxious — many will not read it before calling again, and it does nothing for users with configuration issues that a written guide cannot resolve.",
+      "A triage message with login instructions addresses users who can read and follow steps, but a Day 1 surge means many affected users are already anxious and on the phone — a text-based guide cannot replace the confidence that a human presence provides."
     ]
   },
   {
@@ -420,7 +420,7 @@ export const CASES_TECH2 = [
     scenario: "It is 10:30am on a Tuesday. Your system has been down for 45 minutes due to a database connection failure. The client's CEO, CFO, and 3 department heads are all sending messages simultaneously to different people on your team asking for updates. Your developers are in the middle of fixing the issue. Every message they respond to delays the fix by 5-10 minutes.",
     quote: "\"Everyone deserves an update. Let the developers respond to each stakeholder.\"",
     options: [
-      "Have each developer respond to whoever is messaging them.",
+      "Send a single incident acknowledgement message to all stakeholders now, promising a resolution update within 30 minutes, then let the developers focus on the fix.",
       "Silence all communication until the system is restored, then send one comprehensive update.",
       "Nominate one person as the sole incident communicator. That person gives updates every 15 minutes. Developers respond to no one except internal technical discussion.",
       "Ask the client to nominate a single point of contact on their side to reduce the volume."
@@ -431,7 +431,7 @@ export const CASES_TECH2 = [
     framework: "Incident Communication Protocol — one communicator, one update cadence, all stakeholders. Never let communication interrupt resolution. This is the ITIL incident management standard.",
     principle: "The fastest way to fix an outage is to let the fixers fix it.",
     traps: [
-      "Five executives messaging five different developers simultaneously produces 5 distracted developers and a longer outage.",
+      "A single acknowledgement message buys time but does not cover the ongoing pressure — executives will reply with follow-up questions, and without a designated communicator, a developer will eventually get pulled in to answer.",
       "Silence during an outage creates escalations and executive panic that are worse than a brief update.",
       "Asking the client to manage their own executives during a live outage you caused is tone-deaf."
     ]
@@ -467,9 +467,9 @@ export const CASES_TECH2 = [
     quote: "\"They are an existing client. We should support the acquisition at no extra cost.\"",
     options: [
       "Treat the acquisition as a new project — migration, onboarding, and a revised AMS contract.",
-      "Support the merger at no extra cost. They are a loyal client.",
+      "Extend the existing AMS contract to cover the acquired company at the current per-user rate, and handle the migration workstream under the AMS as an implementation service.",
       "Add the 1,200 users at the contracted per-user rate and propose a migration project separately.",
-      "Decline to support the merger. It is outside the original AMS scope."
+      "Negotiate a flat fee increase on the annual AMS contract to cover the additional users and migration, without separating migration as a distinct project engagement."
     ],
     correct: 0,
     consequences: {"cash":10,"growth":10,"profitability":15,"customerTrust":10,"teamMorale":5,"executionRisk":-10,"strategicPosition":15},
@@ -477,9 +477,9 @@ export const CASES_TECH2 = [
     framework: "Acquisition-Triggered Contract Review — when a client acquires another company, it triggers both a project (migration/onboarding) and a contract revision (updated scope and pricing). Handle both.",
     principle: "Loyal clients deserve fair pricing. Not free pricing.",
     traps: [
-      "Supporting a doubled user base and migration project at no extra cost is a significant commercial loss.",
-      "Per-user pricing only addresses headcount. It misses migration effort, change management, and integration work.",
-      "Declining to support a client's strategic acquisition damages a long-term relationship unnecessarily."
+      "Absorbing the migration workstream into the existing AMS treats a time-bounded project deliverable as an ongoing support obligation — the migration cost is buried in AMS pricing and you have no formal project structure to manage it.",
+      "Per-user pricing only addresses headcount. It misses migration effort, change management, and integration work — meaning you recover the licensing revenue but not the delivery cost.",
+      "A flat fee increase bundles project work and support work into a single contract line, making it impossible to scope or govern the migration properly — scope creep from the migration bleeds into AMS with no commercial boundary."
     ]
   },
   {
@@ -489,10 +489,10 @@ export const CASES_TECH2 = [
     scenario: "Your AMS contract includes a disaster recovery SLA: full system recovery within 4 hours of a declared disaster. The client requests a DR test this quarter. During the test, the recovery takes 9 hours — more than double the SLA. The backup restoration process has errors, and 3% of data from the last 48 hours is missing.",
     quote: "\"It was just a test. Real disasters will be handled differently.\"",
     options: [
-      "Note the results, reassure the client, and plan to improve the DR process over time.",
+      "Share the full DR test results with the client, acknowledge the gap, and present a 90-day improvement roadmap to bring recovery time in line with the SLA.",
       "Immediately treat the failed DR test as a critical finding: disclose the gap to the client formally, identify root causes, and present a remediation plan within 2 weeks.",
       "Revise the SLA downward in the next contract renewal to match actual capability.",
-      "Run another DR test in 30 days without disclosing the first test failure to the client."
+      "Convene an internal post-mortem to identify and fix the backup restoration errors, then run a second DR test in 30 days before disclosing any results to the client."
     ],
     correct: 1,
     consequences: {"cash":-10,"growth":0,"profitability":-5,"customerTrust":20,"teamMorale":5,"executionRisk":-25,"strategicPosition":5},
@@ -500,9 +500,9 @@ export const CASES_TECH2 = [
     framework: "DR Test Failure Response — a failed DR test is a finding that must be disclosed and remediated. It is not a test result to be normalized or hidden.",
     principle: "A DR SLA you cannot meet is not a safety net. It is a false promise.",
     traps: [
-      "\"Plan to improve over time\" is not a response to a discovered 4-hour SLA breach. The client made business continuity decisions based on that SLA.",
+      "A 90-day roadmap without immediately disclosing the gap means the client continues to operate on a business continuity plan based on a 4-hour SLA that you now know is false — if a real disaster occurs during the 90-day window, the client suffers the consequence of information you withheld.",
       "Reducing the SLA at renewal without disclosing the current gap is a cover-up.",
-      "Running a second test without disclosing the first failure to the client is fraudulent."
+      "Fixing the issue before disclosure may seem prudent, but it means the client makes business continuity decisions during that 30-day window based on a 4-hour SLA commitment you know is undeliverable — the remediation must be disclosed alongside the finding, not instead of it."
     ]
   },
   {
@@ -512,10 +512,10 @@ export const CASES_TECH2 = [
     scenario: "Your automated dependency scanner flags a critical CVE (Common Vulnerabilities and Exposures) in a third-party library you use for PDF generation. The vulnerability allows remote code execution if a malicious PDF is uploaded through your file upload feature. The library has not released a patch yet. Your product is in production with 600 active clients.",
     quote: "\"There is no patch yet. We cannot do anything until the library fixes it.\"",
     options: [
-      "Wait for the library maintainer to release a patch.",
+      "Add the CVE to the project risk register, notify the client of the known vulnerability, and check the library's GitHub for patch progress weekly.",
       "Disable the PDF upload feature immediately and notify clients, pending a fix.",
       "Assess the real-world exploitability: if the file upload is authenticated and the attack vector is impractical, implement compensating controls while awaiting the patch.",
-      "Replace the library with an alternative immediately, regardless of the rework cost."
+      "Replace the PDF generation library immediately with a maintained alternative, prioritise it above all other sprint work, and deploy the replacement within the current sprint."
     ],
     correct: 2,
     consequences: {"cash":-5,"growth":0,"profitability":0,"customerTrust":10,"teamMorale":5,"executionRisk":-20,"strategicPosition":5},
@@ -523,9 +523,9 @@ export const CASES_TECH2 = [
     framework: "CVE Response Framework — assess exploitability in context, apply compensating controls, monitor for patch, plan migration. Not all CVEs have the same real-world risk profile.",
     principle: "Vulnerability severity is theoretical. Exploitability in your environment is what determines urgency.",
     traps: [
-      "\"Wait for the patch\" with a remote code execution vulnerability in production is a security abdication.",
+      "Logging the CVE and notifying the client without implementing compensating controls leaves a remote code execution vulnerability active in production while your team watches a GitHub thread — documentation is not a security control.",
       "Disabling a feature for 600 clients is a significant operational impact — only justified if compensating controls are insufficient.",
-      "Immediate library replacement without a patch is faster than waiting but may introduce new bugs and requires full regression testing."
+      "Replacing the library without assessing exploitability first may spend 3-4 weeks of sprint capacity on a migration where the actual attack vector in your environment was low-risk — and the replacement itself introduces new untested code into the PDF processing path."
     ]
   },
   {
@@ -560,7 +560,7 @@ export const CASES_TECH2 = [
     options: [
       "Fix the bug, then create a data profile of the production edge cases and add representative test data to staging to prevent recurrence.",
       "Fix the bug in production using a hotfix, and document staging as permanently limited.",
-      "Close the staging test case. If staging cannot reproduce it, staging has done its job.",
+      "Fix the bug and add a targeted unit test for the specific production record that triggered it, so staging will catch any regression to that exact case.",
       "Replace staging with a production data clone, anonymized for privacy compliance."
     ],
     correct: 0,
@@ -570,7 +570,7 @@ export const CASES_TECH2 = [
     principle: "Fix the bug and fix the gap that hid it.",
     traps: [
       "Closing the staging test case means the next production-only bug will be discovered the same way — in production.",
-      "Accepting staging as permanently limited is a permanent quality debt.",
+      "A single targeted unit test only protects against regression of that exact record — the broader class of edge cases (null values, legacy characters, irregular lengths) remains invisible in staging, and the next production-only bug will surface the same way.",
       "A full production clone is expensive, requires ongoing anonymization, and often still diverges over time."
     ]
   },
@@ -651,9 +651,9 @@ export const CASES_TECH2 = [
     quote: "\"They are too valuable technically to risk losing. Better to manage around the behavior.\"",
     options: [
       "Have a direct, private conversation: share the specific behaviors and their impact, set clear expectations, and put them on a 60-day behavioral improvement plan.",
-      "Terminate their employment immediately. Toxic behavior cannot be tolerated.",
-      "Manage around it. Their technical output is irreplaceable.",
-      "Move them to a solo architecture role with no team interaction to contain the damage."
+      "Have the three reporting team members document their experiences in writing, share those statements with HR, and let HR lead the disciplinary process.",
+      "Reassign this developer to lead an independent technical workstream — a solo architecture spike or R&D initiative — so their strengths are utilised without the friction points.",
+      "Discuss the reported behavior privately with the developer, acknowledge their technical contribution, and coach them informally on communication style without documenting the conversation or setting formal expectations."
     ],
     correct: 0,
     consequences: {"cash":0,"growth":5,"profitability":0,"customerTrust":0,"teamMorale":20,"executionRisk":-10,"strategicPosition":10},
@@ -661,9 +661,9 @@ export const CASES_TECH2 = [
     framework: "Behavioral Performance Management — technical performance and behavioral performance are both performance. Low technical performers get improvement plans. So do toxic high performers.",
     principle: "Managing around toxic behavior tells every other team member that brilliance buys immunity from accountability.",
     traps: [
-      "Managing around the behavior signals to the three reporters that their experience does not matter. Expect more quiet resignations.",
-      "Immediate termination without a documented improvement plan creates legal exposure and wastes a potentially recoverable asset.",
-      "A solo role removes the team friction but rewards the behavior and does not address it."
+      "Routing the issue through HR without a prior direct conversation means the developer receives formal HR action without ever hearing from their manager first — this is both procedurally unfair and tactically weaker than a documented direct conversation.",
+      "Reassigning to a solo workstream removes the friction but rewards the behavior with a less accountable role — the team observes that dismissiveness earns autonomy, and the developer never receives feedback that their conduct was the problem.",
+      "An informal coaching conversation without documentation or formal expectations gives the developer no clear understanding that their behaviour is a performance issue — if the behaviour continues, you have no documented basis for escalation and the three reporters feel their experiences were minimised."
     ]
   },
 ]

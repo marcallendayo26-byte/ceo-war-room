@@ -147,7 +147,7 @@ export const CASES_PM4 = [
       "Approve the redesign now — the designer's point about compounding debt is correct and should be prioritized.",
       "Reject it — committed roadmap work takes precedence and design debt can wait.",
       "Acknowledge the legitimacy of the debt, commit to a specific sprint slot immediately after the current roadmap commitments, and add it to the official schedule.",
-      "Let the designer work on the settings page independently in parallel with feature development."
+      "Decompose the settings page redesign into small cleanup tasks and assign them as low-point additions to upcoming sprints, absorbing the work across the next four sprints without a dedicated block."
     ],
     correct: 2,
     consequences: {"teamMorale":15,"executionRisk":-5,"customerTrust":5,"strategicPosition":5},
@@ -157,7 +157,7 @@ export const CASES_PM4 = [
     traps: [
       "Dropping committed feature work for design debt when you have enterprise commitments creates a credibility problem with customers.",
       "Rejecting with no plan sets up the identical conversation in three sprints, plus accumulated additional debt.",
-      "Parallel workstreams require parallel engineering capacity the team does not have — design work without engineering to implement it produces mockups, not progress."
+      "Spreading a three-week coherent design overhaul across four sprints as low-point items means it never gets prioritized when sprint capacity is tight — it becomes a permanent background task that is always deprioritized in favor of the real sprint work."
     ]
   },
   {

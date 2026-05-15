@@ -7,7 +7,7 @@ export const CASES_TECH5 = [
     options: [
       'Log the SSO request as a change request, provide a formal effort estimate and cost, and present the client with two options: extend the timeline or fund a parallel SSO workstream.',
       'Proceed with go-live as planned and add SSO in the first post-launch sprint as a fast-follow.',
-      'Accept the SSO request at no charge — enterprise clients expect SSO and withholding it risks the relationship.',
+      'Agree to deliver SSO by go-live by running it as an internal parallel workstream — reassign two developers from non-critical backlog items to the SSO integration and absorb the cost to protect the client relationship.',
       'Escalate to your sales director and ask them to negotiate the scope change with the client\'s account sponsor.',
     ],
     correct: 0,
@@ -17,7 +17,7 @@ export const CASES_TECH5 = [
     principle: 'A scope request made six weeks into a ten-week project is not a clarification. It is a change.',
     traps: [
       'Absorbing SSO at no charge signals that your SOW is negotiable under pressure — every subsequent enterprise client will test this.',
-      'Post-launch SSO promised informally becomes a Day 1 hypercare escalation if the client\'s IT team blocks user provisioning at go-live.',
+      'Absorbing SSO scope to protect the relationship signals that your SOW has no commercial finality — the next enterprise client will request the same accommodation, and your delivery team carries the cost without a change record.',
       'Escalating to sales before presenting your own commercial position makes you look like you cannot manage your own project commercially.',
     ],
   },
@@ -72,7 +72,7 @@ export const CASES_TECH5 = [
     scenario: 'Three weeks after go-live, the client\'s IT director requests full admin-level database access to run custom SQL queries for operational reporting. Your architecture team warns that direct database access bypasses all application-layer validation and audit logging, creates data integrity risk, and violates your security baseline. The IT director says they need it to build internal dashboards and the platform\'s built-in reports are not flexible enough.',
     options: [
       'Grant read-only database access limited to non-sensitive tables. Full admin access is the risk, not read-only.',
-      'Grant the access — the client owns their data and has the right to query it however they choose.',
+      'Grant read-only access to a purpose-built database view layer with sensitive columns masked — this gives the IT director SQL access for dashboard building while limiting exposure to non-sensitive fields.',
       'Grant access for a 30-day trial period and conduct a security review at the end of the trial.',
       'Decline direct database access and propose alternatives: extend the reporting API, provide a read-only reporting replica with row-level security, or build the specific reports they need within the platform.',
     ],
@@ -83,7 +83,7 @@ export const CASES_TECH5 = [
     principle: 'The client owns their data. They do not own the right to bypass the security controls that protect it.',
     traps: [
       'Read-only access to all tables still exposes customer financial records, cross-branch data, and configuration secrets stored in the database.',
-      'Granting access on a 30-day trial normalizes the access pattern and creates a precedent that is very difficult to revoke after the trial period.',
+      'A masked view layer still bypasses application-layer audit logging — direct database queries are invisible to your platform\'s audit trail regardless of which columns are exposed, and view access routinely expands when the IT director finds they need additional fields for their dashboards.',
       'Client data ownership does not override platform security architecture — conflating the two creates long-term liability.',
     ],
   },
@@ -117,7 +117,7 @@ export const CASES_TECH5 = [
     options: [
       'Provide the CISO with a formal remediation response: confirm the high-severity findings are in an undeployed module with evidence, present a remediation plan for the medium findings, and commit to patching the high-severity findings in the next platform release cycle.',
       'Delay go-live until all 8 findings — including the high-severity ones — are fully remediated.',
-      'Proceed with go-live without addressing the findings and provide the CISO with a verbal assurance that the high-severity modules are inactive.',
+      'Disable the high-severity modules for this client using feature flags, document the flag state as evidence of inactivity, and proceed to go-live — addressing the underlying vulnerabilities in the next scheduled platform release.',
       'Remediate all 6 medium findings before go-live and accept the high-severity findings as acceptable risk given the module is not deployed.',
     ],
     correct: 0,
@@ -127,7 +127,7 @@ export const CASES_TECH5 = [
     principle: 'A CISO needs documentation, not reassurance. Write it down.',
     traps: [
       'Delaying go-live to fix vulnerabilities in undeployed code is a schedule impact that is difficult to justify commercially once the facts are on the table.',
-      'Verbal assurance of module inactivity is not audit-defensible — the CISO will ask for it in writing regardless.',
+      'Feature flag documentation satisfies deployment visibility but not security remediation — a CISO\'s audit trail requires evidence that the vulnerability is patched, not just toggled off, and an accidental flag re-enable in a future deployment reopens the attack surface.',
       'Proceeding with no formal response to a pen test gives the CISO no basis to close the finding in their own audit trail.',
     ],
   },
@@ -137,7 +137,7 @@ export const CASES_TECH5 = [
     difficulty: 1,
     scenario: 'During a routine quarterly access review, you discover that a former employee who transferred to a different branch 3 months ago still has active credentials to their original branch\'s system. Their user account was never deactivated because the HR offboarding checklist was not completed at the time of their internal transfer. No unauthorised access has occurred — the account shows no login activity since the transfer date.',
     options: [
-      'Leave the account active — the employee is still with the company, just at a different branch.',
+      'Reassign the account to the employee\'s new branch rather than deactivating it — the employee is still active in the organisation and may need system access in their new role.',
       'Notify the employee\'s new branch manager and ask them to confirm whether the access is still needed before deactivating.',
       'Deactivate the account immediately, document the finding and the corrective action taken, and initiate a review of the offboarding checklist to prevent recurrence.',
       'Deactivate the account and raise it as a security incident requiring a full investigation.',
@@ -148,7 +148,7 @@ export const CASES_TECH5 = [
     framework: 'Stale Access Remediation — any active credential for a user who has changed roles or locations and has had no access activity should be deactivated immediately. The access review is the control; remediation is the obligation.',
     principle: 'The absence of a breach does not make an access control gap acceptable. Fix it before it becomes one.',
     traps: [
-      'An employee who is still with the company at a different branch has no legitimate need for their previous branch\'s system access — internal transfer is not a reason to retain prior access.',
+      'Reassigning the account assumes the employee\'s new role requires the same access scope as their previous one — access provisioning must follow a formal request from the new branch manager, not an assumption made during an access review.',
       'Asking the new branch manager whether the access is needed introduces a delay and transfers accountability for a security decision to someone who may not understand the risk.',
       'Escalating a stale-account finding as a formal security incident without evidence of misuse wastes investigation resources and creates unnecessary alarm.',
     ],
@@ -159,7 +159,7 @@ export const CASES_TECH5 = [
     difficulty: 2,
     scenario: 'Your client\'s marketing team exported the customer contact database from your platform and used it to send a promotional campaign to 12,000 customers without obtaining customer consent for marketing communications. A customer complaint is raised with a regulatory body. Your Data Processing Agreement (DPA) designates the client as the data controller and grants them responsibility for all data processing decisions. The client\'s CEO is now publicly stating that your platform made it "too easy to export data" and that you share responsibility.',
     options: [
-      'Accept partial responsibility publicly to protect the relationship and offer to add export consent warnings as a goodwill gesture.',
+      'Proactively implement a consent-use confirmation gate in the bulk export workflow and communicate this platform improvement to the client as a demonstration that you are taking the incident seriously.',
       'Disable the bulk export feature immediately to demonstrate that you are taking the compliance risk seriously.',
       'Refer the matter to your legal team and make no statement to the client until legal has reviewed the DPA.',
       'Respond to the client in writing: confirm the DPA assigns data controller responsibility to them, provide documentation of the export event logs, and offer to review platform export controls together — while making clear that consent management is the controller\'s obligation.',
@@ -170,7 +170,7 @@ export const CASES_TECH5 = [
     framework: 'Data Controller vs Processor Accountability — under a DPA, the controller\'s decisions about data use are their responsibility. The processor\'s obligation is to operate within agreed parameters and provide accurate event records. Never accept controller-level accountability as a processor.',
     principle: 'Goodwill gestures that imply legal responsibility you do not have create the liability you are trying to avoid.',
     traps: [
-      'Accepting partial responsibility publicly without legal review is a statement that can be used against you in a regulatory proceeding.',
+      'Implementing a consent gate in response to the incident implicitly accepts that the absence of such a gate was a platform failure — a position the DPA does not support and which the client\'s CEO will use to argue shared processor liability in the regulatory proceeding.',
       'Disabling bulk export disrupts all legitimate platform users to manage the optics of one client\'s misuse — and does not address the underlying consent failure.',
       'No statement to the client during a live regulatory complaint leaves a vacuum that the client\'s CEO will fill with their own narrative.',
     ],

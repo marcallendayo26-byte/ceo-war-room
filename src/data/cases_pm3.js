@@ -351,9 +351,9 @@ export const CASES_PM3 = [
     scenario: "You are considering redesigning your core navigation — a change that touches 40% of your codebase. Data shows it would improve onboarding for new users, but qualitative research suggests some existing power users will resist the change. Engineering estimates four months if done all at once.",
     quote: "\"Touching 40% of the codebase for a navigation change feels very risky.\"",
     options: [
-      "Avoid the redesign entirely — 40% codebase impact is too high a risk for a navigation change.",
+      "Scope the redesign down to a single high-traffic navigation area — the main sidebar only — and validate impact before touching the remaining 35% of the codebase.",
       "Survey users to see if the NPS impact justifies the engineering investment.",
-      "Run an 18-month A/B test before committing to any change.",
+      "Run a moderated usability study with 20 power users to document their objections before committing to any architecture work.",
       "Evaluate whether this decision can be made reversible: use feature flags and a staged rollout to make the navigation change something you can roll back, then proceed with appropriate speed."
     ],
     correct: 3,
@@ -362,9 +362,9 @@ export const CASES_PM3 = [
     framework: "Type 1 / Type 2 Decisions (Bezos) + Feature Flag Reversibility — engineer reversibility into big changes",
     principle: "Make irreversible decisions slowly. Make reversible decisions fast. Most decisions are reversible if you engineer them to be.",
     traps: [
-      "Avoiding beneficial product improvements because of codebase scope is a permanent drag on product quality.",
-      "An 18-month A/B test for a navigation change will produce stale data and block the team for six quarters.",
-      "NPS surveys measure satisfaction with what exists, not willingness to adopt what you have not built yet."
+      "Scoping to the sidebar only avoids the cross-navigation inconsistency that was causing the onboarding drop-off — you deliver partial work and still need to revisit the rest.",
+      "NPS surveys measure satisfaction with what exists, not willingness to adopt what you have not built yet.",
+      "Usability studies surface objections to proposed designs, but they measure stated resistance, not actual behavioral change after rollout — power users often resist changes they later prefer."
     ]
   },
   {
@@ -400,7 +400,7 @@ export const CASES_PM3 = [
       "Approve the flexible architecture — you will need the configurability when you scale.",
       "Build the four-week version for the two current customers and revisit the architecture when you have five or more customers with clear usage patterns.",
       "Find a third-party solution instead of building either version.",
-      "Reject the feature entirely since it requires an architecture debate."
+      "Ask engineering to build a data-model prototype in one week to prove the four-week estimate is realistic before committing to either build."
     ],
     correct: 1,
     consequences: {"profitability":5,"executionRisk":-10,"teamMorale":5,"growth":5},
@@ -410,7 +410,7 @@ export const CASES_PM3 = [
     traps: [
       "Building configurable infrastructure for two unconfirmed use cases is four times more expensive and produces architecture that may be wrong.",
       "Third-party solutions for core workflow features you intend to own strategically create vendor lock-in at the wrong layer.",
-      "Rejecting a customer-needed feature because of an architecture disagreement is an extreme response to a solvable problem."
+      "A prototype week validates the estimate but does not deliver customer value — spending a week proving you can build the simple version delays the two customers who need it now."
     ]
   },
   {
@@ -423,7 +423,7 @@ export const CASES_PM3 = [
       "Trust the lead engineer — senior experience and architectural knowledge outweigh creative workaround proposals.",
       "Side with the two engineers — a four-week solution is always preferable to a three-month refactor.",
       "Ask each side to independently scope their approach with explicit trade-offs and risks documented, then make the decision based on both scopes.",
-      "Reject the feature if the team cannot reach consensus — disagreement signals too much technical risk."
+      "Escalate the disagreement to the engineering director and let them make the final architecture call based on the two proposals."
     ],
     correct: 2,
     consequences: {"executionRisk":-10,"teamMorale":10,"growth":5,"strategicPosition":5},
@@ -433,7 +433,7 @@ export const CASES_PM3 = [
     traps: [
       "Defaulting to seniority in technical debates suppresses valid engineering perspectives and is not the PM's call to make.",
       "Automatically preferring the shorter estimate ignores the legitimate risk flags on the workaround approach.",
-      "Rejecting a feature because engineers disagree on approach is an overreaction — engineering disagreement is normal and productive."
+      "Escalating to the engineering director makes this a political resolution rather than a technical one — the director will choose based on seniority bias, not on documented risk trade-offs."
     ]
   },
   {

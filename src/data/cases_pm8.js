@@ -74,7 +74,7 @@ export const CASES_PM8 = [
     difficulty: 2,
     scenario: 'Three enterprise clients — representing $680K in combined ARR — have asked for an AI assistant embedded in the DMS that can answer staff questions about how to use the system: "How do I process a trade-in?", "Where do I void an invoice?", "What is the steps for a warranty claim submission?" Your product team estimates building a purpose-trained ML assistant at 5–7 months and $180K in development cost. One engineer suggests fine-tuning an open-source LLM on your help documentation. The clients say their onboarding and support costs would drop significantly if staff could get instant answers inside the product. How do you evaluate and respond?',
     options: [
-      'Decline the feature for now — the $180K investment cannot be justified until more clients request it and the ROI is clearer.',
+      'Launch a structured 3-month co-design program with the three requesting clients: facilitated workshops to map every question type their staff asks, prototype testing on representative scenarios, and a product requirements document before any engineering begins — to ensure the assistant is built on validated need.',
       'Commit to the full purpose-trained ML assistant on a 6-month roadmap, funded by a feature co-development fee from the three requesting clients.',
       'Build a static searchable FAQ and guided workflow library inside the DMS — no AI, but high-quality structured help content that advisors can find in under 30 seconds.',
       'Build a contextual in-product help layer powered by a retrieval-augmented generation (RAG) approach over your existing help documentation — index the documentation, integrate a low-cost LLM API, and ship a working assistant in 6–8 weeks at under $15K in build cost.',
@@ -85,7 +85,7 @@ export const CASES_PM8 = [
     framework: 'AI Feature Scoping: before committing to a purpose-trained ML model, evaluate whether the use case can be served by retrieval over existing structured content. RAG is almost always faster to build, cheaper to operate, and more accurate on domain-specific procedural questions than a general-purpose trained model.',
     principle: 'If the answer already exists in your documentation, you do not need to train a model to learn it again.',
     traps: [
-      'Declining the feature because the ROI is "not yet clear" when three enterprise clients have explicitly described the support cost savings is ignoring a validated signal — the ROI is the reduction in onboarding and support cost that the clients themselves have quantified.',
+      'A 3-month co-design program delays delivery when the use case is already well-defined — staff questions about DMS procedures are a narrow, documented problem that does not require extensive discovery before building; the 3 months of workshop overhead produces a requirements document describing something a RAG-based assistant over your existing help documentation would already answer.',
       'A purpose-trained ML assistant built over 6 months at $180K is solving a harder, more expensive version of the problem — training a model to answer procedural questions it can answer by retrieval is an engineering choice, not a product requirement.',
       'A static FAQ and guided workflow library is a useful baseline but it requires the user to know what to search for and cannot answer questions phrased in natural language — it solves part of the need at the cost of the interaction model that makes the assistant valuable.',
     ],
@@ -123,7 +123,7 @@ export const CASES_PM8 = [
       'Build the full customer portal in-house on a 4–5 month timeline — this is a genuine product gap and the capability will benefit all clients once built.',
       'Partner with or white-label an existing customer engagement platform that already has service booking, status notifications, and history views — integrate it with your DMS via API and ship to this client in 6–8 weeks.',
       'Scope a minimal version of the portal — service booking only, no status updates or history — and ship it in 8 weeks as a foundation for the full capability.',
-      'Tell the client this is on the product roadmap and commit to delivery in Q3 — use the roadmap commitment to retain the deal without building anything yet.',
+      'Propose a concierge arrangement to the client: assign a dedicated operations coordinator who manually processes portal requests — service bookings, status updates, and history exports — via email and phone for 90 days while the in-house portal build is underway, framed as a "managed onboarding program."',
     ],
     correct: 1,
     consequences: { customerTrust: 8, growth: 7, strategicPosition: 6, executionRisk: -5 },
@@ -133,7 +133,7 @@ export const CASES_PM8 = [
     traps: [
       'Building the full portal in-house over 4–5 months is the right long-term architecture decision and the wrong answer to a deal that is at risk this quarter — by the time you ship, the client may have already switched.',
       'A service-booking-only MVP ships faster but immediately creates a capability gap for status and history that the competing vendors are not missing — you are delivering a partial answer to a complete question.',
-      'A roadmap commitment without an engineering plan behind it is a promise you cannot keep on the timeline the client needs — when Q3 arrives and the portal is not there, you will have lost both the trust and the deal.',
+      'A concierge arrangement proves the demand is real but it is not the capability the client is evaluating — competitors are offering self-service software, not managed email coordination; the 90-day window also creates a services commitment that is difficult to exit cleanly when the in-house build slips, turning a temporary fix into an indefinite staffing obligation.',
     ],
   },
 

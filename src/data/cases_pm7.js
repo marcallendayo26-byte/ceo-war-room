@@ -91,7 +91,7 @@ export const CASES_PM7 = [
       'Grant the auto-execute permission for this client as a configurable account-level setting, with a full audit log of every automated action and a kill switch the client can disable at any time.',
       'Decline the auto-execute request, enforce the human-confirmation design principle, and explain to the client that the confirmation step is a risk management control, not a UX decision.',
       'Build a tiered auto-execute feature: recommendations with confidence scores above 92% execute automatically; recommendations below 92% require human review — reduce manual overhead by approximately 70% while preserving the control for lower-confidence outputs.',
-      'Allow the client to implement their browser automation workaround without intervention — if they bypass the control themselves, the risk and liability are theirs, not yours.',
+      'Work with the client\'s team to productize their planned browser automation: build a lightweight webhook that logs every auto-confirmed action to the platform\'s audit trail, so the client gets the efficiency they want and the platform maintains an auditable record of every automated execution.',
     ],
     correct: 2,
     consequences: {
@@ -106,7 +106,7 @@ export const CASES_PM7 = [
     traps: [
       'Granting blanket auto-execute as an account-level setting removes the risk management layer entirely and creates a feature precedent that every other client will immediately request.',
       'Declining the request and citing design principles without offering a path to reduce the client\'s operational overhead is how you lose a $340K client over a solvable UX problem.',
-      'Allowing the browser automation workaround creates a liability situation where real pricing actions are being taken on your platform\'s recommendations with no record of who authorized them.',
+      'Co-opting the browser automation with a logging webhook removes the human-confirmation control entirely and simply records that the bypass happened — an audit trail of automated confirmations is not equivalent to a human review step, and formalizing the workaround signals to every large client that threatening to build their own bypass is a viable negotiating strategy.',
     ],
   },
 
