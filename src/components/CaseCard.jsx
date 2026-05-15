@@ -1,25 +1,49 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { CATEGORY_COLORS } from '../data/config'
 
 const DIFFICULTY_LABELS = { 1: 'Foundational', 2: 'Intermediate', 3: 'Executive' }
 const DIFFICULTY_COLORS = { 1: '#34d399', 2: '#fbbf24', 3: '#f87171' }
+
+// Visual atmosphere per difficulty level
+// Each tier should feel emotionally different — not just labelled
+const DIFFICULTY_ATMO = {
+  1: {
+    accent:  '#34d399',                                          // top bar color
+    wash:    'rgba(52,211,153,0.045)',                           // bg tint
+    border:  'rgba(255,255,255,0.08)',
+  },
+  2: {
+    accent:  '#fbbf24',
+    wash:    'rgba(251,191,36,0.065)',
+    border:  'rgba(255,255,255,0.08)',
+  },
+  3: {
+    accent:  '#f87171',
+    wash:    'rgba(248,113,113,0.08)',
+    border:  'rgba(248,113,113,0.22)',   // tinted border — feels live
+    pulse:   true,                       // animated breathing border
+  },
+}
+
 const KEY_MAP = { a: 0, b: 1, c: 2, d: 3 }
 
 export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false, keyboardActive = true }) {
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected]   = useState(null)
+  const [thinking, setThinking]   = useState(false)
 
   const handleSelect = (idx) => {
     if (selected !== null) return
     setSelected(idx)
-    setTimeout(() => onAnswer(idx), 200)
+    setThinking(true)
+    // 450 ms of suspense — enough to feel the weight of the decision
+    setTimeout(() => onAnswer(idx), 450)
   }
 
   // A/B/C/D keyboard shortcuts
   useEffect(() => {
     if (!keyboardActive || selected !== null) return
     const handler = (e) => {
-      // Don't fire inside text inputs or when a modifier is held
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return
       if (e.metaKey || e.ctrlKey || e.altKey) return
       const idx = KEY_MAP[e.key.toLowerCase()]
@@ -33,16 +57,42 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
   }, [keyboardActive, selected, caseData.options.length])
 
   const optionLabels = ['A', 'B', 'C', 'D']
+  const atm = DIFFICULTY_ATMO[caseData.difficulty] || DIFFICULTY_ATMO[1]
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-navy-800 border border-white/8 rounded-2xl overflow-hidden"
+      className="relative rounded-2xl overflow-hidden"
+      style={{
+        background: '#0d1b2e',
+        border: `1px solid ${atm.border}`,
+      }}
     >
-      {/* Case header */}
-      <div className="px-6 pt-5 pb-4 border-b border-white/6">
+      {/* ── Difficulty atmosphere — subtle colour wash ─────────────────── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse 80% 60% at 0% 0%, ${atm.wash} 0%, transparent 70%)`,
+        }}
+      />
+
+      {/* ── Executive-only: breathing border overlay ───────────────────── */}
+      {atm.pulse && (
+        <motion.div
+          className="absolute inset-0 rounded-2xl pointer-events-none"
+          style={{ border: '1px solid rgba(248,113,113,0.5)' }}
+          animate={{ opacity: [0.3, 0.8, 0.3] }}
+          transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      )}
+
+      {/* ── Difficulty accent line — top ────────────────────────────────── */}
+      <div style={{ height: 2, background: atm.accent, opacity: 0.75, flexShrink: 0 }} />
+
+      {/* ── Case header ─────────────────────────────────────────────────── */}
+      <div className="px-6 pt-5 pb-4 border-b border-white/6 relative">
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span
             className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
@@ -77,40 +127,78 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
         )}
       </div>
 
-      {/* Options */}
-      <div className="p-4 space-y-2.5">
+      {/* ── Options ─────────────────────────────────────────────────────── */}
+      <div className="p-4 space-y-2.5 relative">
         <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3">
           What do you recommend?
           {keyboardActive && selected === null && (
             <span className="ml-2 text-slate-700 normal-case font-normal">Press A · B · C · D</span>
           )}
         </p>
-        {caseData.options.map((option, idx) => (
-          <button
-            key={idx}
-            onClick={() => handleSelect(idx)}
-            disabled={selected !== null}
-            aria-label={`Option ${optionLabels[idx]}: ${option}`}
-            className={`w-full text-left rounded-xl px-4 py-3 flex items-start gap-3 transition-all duration-150 border
-              ${selected === null
-                ? 'border-white/8 bg-white/4 hover:bg-white/8 hover:border-brand-500/40 cursor-pointer focus:outline-none focus:border-brand-500/60 focus:bg-white/8'
-                : selected === idx
-                  ? 'border-brand-500/60 bg-brand-500/10 cursor-default'
-                  : 'border-white/4 bg-white/2 opacity-40 cursor-default'
-              }`}
-          >
-            <span
-              className="flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-[11px] font-black mt-0.5"
+
+        {caseData.options.map((option, idx) => {
+          const isSelected = selected === idx
+          const isDimmed   = selected !== null && !isSelected
+
+          return (
+            <motion.button
+              key={idx}
+              onClick={() => handleSelect(idx)}
+              disabled={selected !== null}
+              aria-label={`Option ${optionLabels[idx]}: ${option}`}
+              // Pulse ring on the chosen option while "thinking"
+              animate={isSelected && thinking ? {
+                boxShadow: [
+                  '0 0 0 0px rgba(0,102,204,0)',
+                  '0 0 0 4px rgba(0,102,204,0.38)',
+                  '0 0 0 2px rgba(0,102,204,0.22)',
+                  '0 0 0 4px rgba(0,102,204,0.38)',
+                  '0 0 0 0px rgba(0,102,204,0)',
+                ],
+              } : { boxShadow: '0 0 0 0px rgba(0,102,204,0)' }}
+              transition={{ duration: 0.46, ease: 'easeInOut' }}
+              className={`w-full text-left rounded-xl px-4 py-3 flex items-start gap-3 border
+                ${selected === null
+                  ? 'border-white/8 bg-white/4 hover:bg-white/8 hover:border-brand-500/40 cursor-pointer focus:outline-none focus:border-brand-500/60 focus:bg-white/8'
+                  : isSelected
+                    ? 'border-brand-500/60 bg-brand-500/10 cursor-default'
+                    : 'border-white/4 bg-white/2 cursor-default'
+                }`}
               style={{
-                background: selected === idx ? '#0066cc' : 'rgba(255,255,255,0.08)',
-                color: selected === idx ? '#fff' : '#64748b',
+                // Non-selected options bleed away during the thinking moment
+                opacity: isDimmed ? (thinking ? 0.16 : 0.4) : 1,
+                transition: 'opacity 0.22s ease, border-color 0.15s, background 0.15s',
               }}
             >
-              {optionLabels[idx]}
-            </span>
-            <span className="text-slate-300 text-sm leading-relaxed">{option}</span>
-          </button>
-        ))}
+              <span
+                className="flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center text-[11px] font-black mt-0.5"
+                style={{
+                  background: isSelected ? '#0066cc' : 'rgba(255,255,255,0.08)',
+                  color:      isSelected ? '#fff'    : '#64748b',
+                  transition: 'background 0.15s, color 0.15s',
+                }}
+              >
+                {optionLabels[idx]}
+              </span>
+              <span className="text-slate-300 text-sm leading-relaxed">{option}</span>
+            </motion.button>
+          )
+        })}
+
+        {/* Thinking indicator — appears while waiting for the verdict */}
+        <AnimatePresence>
+          {thinking && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className="text-center text-[10px] text-slate-600 uppercase tracking-widest pt-1 select-none"
+            >
+              Reviewing…
+            </motion.p>
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   )

@@ -3,20 +3,61 @@ import { CATEGORY_COLORS, HEALTH_LABELS } from '../data/config'
 
 export default function ResultPanel({ result, onNext, onRetry }) {
   const { caseData, chosen, isCorrect, xpDelta, streakBonus, newStreak, healthDelta, isDaily, isRetry } = result
-  const optionLabels = ['A', 'B', 'C', 'D']
-  const relevantDeltas = Object.entries(healthDelta).filter(([, v]) => v !== 0)
-  const categoryColor = CATEGORY_COLORS[caseData.category]
+  const optionLabels    = ['A', 'B', 'C', 'D']
+  const relevantDeltas  = Object.entries(healthDelta).filter(([, v]) => v !== 0)
+  const categoryColor   = CATEGORY_COLORS[caseData.category]
+
+  // Spring presets — correct bounces, wrong is firm
+  const verdictSpring = isCorrect
+    ? { type: 'spring', damping: 9, stiffness: 170, delay: 0.05 }
+    : { type: 'spring', damping: 20, stiffness: 280, delay: 0.05 }
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0.35 }}
       className="space-y-3"
     >
       {/* ── 1. Verdict banner ─────────────────────────────────────────────── */}
-      <div className={`rounded-2xl px-5 py-4 border ${isCorrect ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-red-500/10 border-red-500/30'}`}>
-        <div className="flex items-center justify-between flex-wrap gap-2">
+      {/* Note: no overflow-hidden here so the XP burst can escape upward     */}
+      <motion.div
+        initial={{ scale: 0.93, opacity: 0 }}
+        animate={{ scale: 1,    opacity: 1 }}
+        transition={verdictSpring}
+        className={`relative rounded-2xl px-5 py-4 border ${
+          isCorrect
+            ? 'bg-emerald-500/10 border-emerald-500/30'
+            : 'bg-red-500/10 border-red-500/30'
+        }`}
+      >
+        {/* Flash — bright glow that fades immediately on mount */}
+        <motion.div
+          className="absolute inset-0 rounded-2xl pointer-events-none"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 0 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          style={{
+            background: isCorrect
+              ? 'rgba(52,211,153,0.18)'
+              : 'rgba(239,68,68,0.14)',
+          }}
+        />
+
+        {/* XP burst — pops up and dissolves; one-shot on mount */}
+        {xpDelta > 0 && (
+          <motion.div
+            initial={{ opacity: 1, y: 0,   scale: 1.1 }}
+            animate={{ opacity: 0, y: -52, scale: 0.85 }}
+            transition={{ duration: 0.8, ease: [0.16, 0.8, 0.38, 1], delay: 0.08 }}
+            className="absolute right-5 top-2 pointer-events-none select-none font-black text-2xl"
+            style={{ color: '#3b9eff', zIndex: 20 }}
+          >
+            +{xpDelta}
+          </motion.div>
+        )}
+
+        <div className="flex items-center justify-between flex-wrap gap-2 relative">
           <div className="flex items-center gap-2 flex-wrap">
             <span className={`text-xl font-black ${isCorrect ? 'text-emerald-400' : 'text-red-400'}`}>
               {isCorrect ? '✓ Correct' : '✗ Wrong'}
@@ -37,6 +78,7 @@ export default function ResultPanel({ result, onNext, onRetry }) {
               </span>
             )}
           </div>
+
           <div className="flex items-center gap-2">
             {streakBonus > 0 && (
               <span className="text-gold-400 text-sm font-bold">+{streakBonus} bonus</span>
@@ -44,12 +86,18 @@ export default function ResultPanel({ result, onNext, onRetry }) {
             {isDaily && isCorrect && (
               <span className="text-gold-400 text-sm font-bold">3×</span>
             )}
-            <span className={`text-xl font-black ${xpDelta > 0 ? 'text-brand-400' : 'text-red-400'}`}>
+            {/* XP number — scales in from large */}
+            <motion.span
+              initial={{ scale: 1.55, opacity: 0 }}
+              animate={{ scale: 1,    opacity: 1 }}
+              transition={{ type: 'spring', damping: 11, stiffness: 190, delay: 0.1 }}
+              className={`text-xl font-black ${xpDelta > 0 ? 'text-brand-400' : 'text-red-400'}`}
+            >
               {xpDelta > 0 ? '+' : ''}{xpDelta} XP
-            </span>
+            </motion.span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* ── 2. Answer callout — wrong answers only ─────────────────────────── */}
       {!isCorrect && (
@@ -77,20 +125,27 @@ export default function ResultPanel({ result, onNext, onRetry }) {
           <div className="border-t border-white/6 pt-4">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Company impact</p>
             <div className="flex flex-wrap gap-2">
-              {relevantDeltas.map(([key, delta]) => (
-                <div
+              {relevantDeltas.map(([key, delta], i) => (
+                <motion.div
                   key={key}
-                  className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold ${delta > 0 ? 'bg-emerald-500/12 text-emerald-400' : 'bg-red-500/12 text-red-400'}`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.18 + i * 0.06, duration: 0.25 }}
+                  className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-semibold ${
+                    delta > 0
+                      ? 'bg-emerald-500/12 text-emerald-400'
+                      : 'bg-red-500/12 text-red-400'
+                  }`}
                 >
                   <span>{HEALTH_LABELS[key]}</span>
                   <span className="font-black">{delta > 0 ? '+' : ''}{delta}</span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         )}
 
-        {/* ── 5. Framework + Principle — compact combined ────────────────── */}
+        {/* ── 5. Framework + Principle ───────────────────────────────────── */}
         <div className="border-t border-white/6 pt-4 space-y-3">
           <div>
             <p
