@@ -1,3 +1,4 @@
+import { CONSEQUENCE_CASES, CONSEQUENCE_MAP } from '../data/consequences'
 import { CASES as CASES1 } from '../data/cases'
 import { CASES2 } from '../data/cases2'
 import { CASES3 } from '../data/cases3'
@@ -331,4 +332,153 @@ export function getWeakSpot(categoryStats) {
 
 export function getInitialHealth() {
   return { ...HEALTH_DEFAULTS }
+}
+
+// ─── Consequence case helpers ──────────────────────────────────────────────
+
+// Pick a consequence case triggered by a wrong answer in the given category.
+// Avoids recently-used consequence IDs to prevent repetition within a session.
+export function pickConsequenceCase(triggeredCategory, usedConsequenceIds = []) {
+  const usedSet = new Set(usedConsequenceIds)
+  let pool = CONSEQUENCE_CASES.filter(
+    c => c.triggerCategories.includes(triggeredCategory) && !usedSet.has(c.id)
+  )
+  // Fallback: if category has no unused matches, allow any unused consequence
+  if (pool.length === 0) {
+    pool = CONSEQUENCE_CASES.filter(c => !usedSet.has(c.id))
+  }
+  // Last resort: allow any consequence case
+  if (pool.length === 0) pool = CONSEQUENCE_CASES
+  return pool[Math.floor(Math.random() * pool.length)]
+}
+
+export function getConsequenceCaseById(id) {
+  return CONSEQUENCE_MAP.get(id) || null
+}
+
+// ─── Board Confidence helpers ──────────────────────────────────────────────
+
+// Returns the status label, color, and description for a given confidence value.
+export function getBoardStatus(confidence) {
+  if (confidence >= 80) return { label: 'Confident',  color: '#34d399', description: 'The board stands behind you' }
+  if (confidence >= 60) return { label: 'Stable',     color: '#0066cc', description: 'Board relationship is solid' }
+  if (confidence >= 40) return { label: 'Watching',   color: '#fbbf24', description: 'The board is monitoring closely' }
+  if (confidence >= 20) return { label: 'Concerned',  color: '#f97316', description: 'Board confidence is eroding fast' }
+  return                       { label: 'Hostile',    color: '#ef4444', description: 'A vote of no confidence is imminent' }
+}
+
+// How much board confidence changes per answer.
+// Correct: +difficulty*1.5 (rounded). Wrong: -difficulty*4. Consequence cases amplify by 1.5×.
+export function calcBoardDelta(isCorrect, difficulty, isConsequence = false, newStreak = 0) {
+  let delta = isCorrect
+    ? Math.ceil(difficulty * 1.5)
+    : -(difficulty * 4)
+  if (isConsequence) delta = Math.round(delta * 1.5)
+  if (isCorrect && newStreak >= 5) delta += 3
+  return delta
+}
+
+// ─── Health crisis helpers ─────────────────────────────────────────────────
+
+// Returns display names of health metrics currently in crisis (display value < 25).
+export function getCrisisMetrics(health) {
+  if (!health) return []
+  const crisis = []
+  const h = { ...HEALTH_DEFAULTS, ...health }
+  if (healthBarValue('cash',              h.cash)              < 25) crisis.push('cash reserves')
+  if (healthBarValue('teamMorale',        h.teamMorale)        < 25) crisis.push('team morale')
+  if (healthBarValue('customerTrust',     h.customerTrust)     < 25) crisis.push('client trust')
+  if (healthBarValue('strategicPosition', h.strategicPosition) < 25) crisis.push('strategic position')
+  if (healthBarValue('executionRisk',     h.executionRisk)     < 25) crisis.push('execution risk')
+  if (healthBarValue('growth',            h.growth)            < 25) crisis.push('growth')
+  if (healthBarValue('profitability',     h.profitability)     < 25) crisis.push('profitability')
+  return crisis
+}
+
+// Returns a one-line situational context string when health is in crisis,
+// injected above the case scenario to make the stakes feel connected.
+export function getHealthContextLine(health) {
+  const crisis = getCrisisMetrics(health)
+  if (crisis.length === 0) return null
+  if (crisis.length === 1)
+    return `With ${crisis[0]} in critical territory, every call is under the microscope:`
+  return `With ${crisis[0]} and ${crisis[1]} both in crisis, the board is watching every move:`
+}
+
+// ─── Company Chronicle ─────────────────────────────────────────────────────
+
+// Generates a short narrative paragraph from the profile's history and health.
+// Returns null if there is no meaningful history yet.
+export function generateChronicle(profile) {
+  const history      = profile.caseHistory || []
+  const health       = profile.health || getInitialHealth()
+  const stats        = profile.categoryStats || {}
+  const boardConf    = profile.boardConfidence ?? 60
+
+  if (history.length < 3) return null
+
+  const segments = []
+
+  // ── Tenure opener ─────────────────────────────────────────────
+  const total        = history.length
+  const totalCorrect = history.filter(h => h.isCorrect).length
+  const totalPct     = totalCorrect / total
+
+  const recent       = history.slice(-10)
+  const recentPct    = recent.filter(h => h.isCorrect).length / recent.length
+
+  if (total < 10) {
+    const tone = totalPct >= 0.7 ? 'promising early signals' : 'an uncertain start'
+    segments.push(`${total} decisions into your tenure — ${tone}. The board is forming its view.`)
+  } else {
+    const trend =
+      recentPct > totalPct + 0.12 ? 'your judgment is sharpening' :
+      recentPct < totalPct - 0.12 ? 'your recent decisions have been costly' :
+      'your pattern is consistent'
+    segments.push(`${total} decisions in. ${trend.charAt(0).toUpperCase() + trend.slice(1)}.`)
+  }
+
+  // ── Strength ──────────────────────────────────────────────────
+  const strong = Object.entries(stats)
+    .filter(([, s]) => s.total >= 3 && s.correct / s.total >= 0.75)
+    .sort((a, b) => (b[1].correct / b[1].total) - (a[1].correct / a[1].total))
+  if (strong.length > 0) {
+    segments.push(`Your ${strong[0][0]} instincts have been your sharpest weapon.`)
+  }
+
+  // ── Weakness ──────────────────────────────────────────────────
+  const weak = Object.entries(stats)
+    .filter(([, s]) => s.total >= 3 && s.correct / s.total < 0.5)
+    .sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total))
+  if (weak.length > 0) {
+    segments.push(`But ${weak[0][0]} has been your blind spot — and the company still carries those scars.`)
+  }
+
+  // ── Health narrative ──────────────────────────────────────────
+  const crisisItems = getCrisisMetrics(health)
+  if (crisisItems.length >= 2) {
+    segments.push(`${crisisItems[0].charAt(0).toUpperCase() + crisisItems[0].slice(1)} and ${crisisItems[1]} are both in crisis. The company is fragile.`)
+  } else if (crisisItems.length === 1) {
+    segments.push(`${crisisItems[0].charAt(0).toUpperCase() + crisisItems[0].slice(1)} has reached a critical low. One more wrong call here could break it.`)
+  } else {
+    const healthVals = Object.keys(health).map(k => healthBarValue(k, health[k]))
+    const avg = healthVals.reduce((s, v) => s + v, 0) / healthVals.length
+    if (avg > 65) {
+      segments.push('The company is in solid shape. But the board knows how fast that can change.')
+    } else if (avg > 45) {
+      segments.push('The company is holding — not thriving, not failing. The margin for error is thin.')
+    }
+  }
+
+  // ── Board narrative ───────────────────────────────────────────
+  const boardStatus = getBoardStatus(boardConf)
+  if (boardConf < 25) {
+    segments.push(`The board is ${boardStatus.label.toLowerCase()}. A vote of no confidence is within reach.`)
+  } else if (boardConf < 45) {
+    segments.push(`The board is watching every move. Their patience is not unlimited.`)
+  } else if (boardConf > 80) {
+    segments.push(`The board trusts your direction. Use that capital before the next crisis spends it.`)
+  }
+
+  return segments.join(' ')
 }

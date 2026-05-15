@@ -137,5 +137,9 @@ export function buildNewProfile(id, name, color, role = 'ceo') {
     sessionStats: { correct: 0, wrong: 0, xpEarned: 0 },
     reviewQueue: [],        // case IDs that need re-drilling (spaced repetition)
     packCompletions: {},    // { [packId]: { count, bestCorrect, bestTotal, lastPlayedAt } }
+    // GOT Arc System
+    boardConfidence: 60,    // 0-100; persists across sessions; drives VoNC
+    legacyMode: false,      // no retry button; permanent scars
+    consequencesTriggered: 0, // lifetime counter for achievements
   }
 }

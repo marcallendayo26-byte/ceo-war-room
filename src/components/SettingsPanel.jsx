@@ -5,7 +5,7 @@ import { exportData, importData } from '../lib/storage'
 import { downloadCasesPDF } from '../lib/generatePDF'
 import { FONT_SIZES, getFontSize, setFontSize } from '../lib/prefs'
 
-export default function SettingsPanel({ onClose }) {
+export default function SettingsPanel({ onClose, legacyMode = false, onToggleLegacy }) {
   const fileInputRef = useRef(null)
 
   const handleExport = () => exportData()
@@ -69,6 +69,34 @@ export default function SettingsPanel({ onClose }) {
             >
               <X size={16} />
             </button>
+          </div>
+
+          {/* ── Legacy Mode ─────────────────────────────────────────────── */}
+          <div className="mb-5 pb-5 border-b border-white/6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-white text-sm font-semibold">Legacy Mode</p>
+                <p className="text-slate-500 text-[11px] mt-0.5">No retry. Permanent scars. Every decision counts.</p>
+              </div>
+              <button
+                onClick={onToggleLegacy}
+                aria-label={legacyMode ? 'Disable Legacy Mode' : 'Enable Legacy Mode'}
+                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${
+                  legacyMode ? 'bg-red-500' : 'bg-white/12'
+                }`}
+              >
+                <span
+                  className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
+                    legacyMode ? 'translate-x-5' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+            </div>
+            {legacyMode && (
+              <p className="text-red-400/70 text-[10px] mt-2 font-medium">
+                ⚡ Active — wrong answers leave permanent scars. No retry available.
+              </p>
+            )}
           </div>
 
           {/* ── Font size ───────────────────────────────────────────────── */}

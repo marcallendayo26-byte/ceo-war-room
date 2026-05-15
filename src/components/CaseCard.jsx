@@ -29,7 +29,7 @@ const DIFFICULTY_ATMO = {
 
 const KEY_MAP = { a: 0, b: 1, c: 2, d: 3 }
 
-export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false, isReview = false, packContext = null, packActLabel = null, keyboardActive = true }) {
+export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false, isReview = false, isConsequence = false, sourceCategory = null, healthContext = null, packContext = null, packActLabel = null, keyboardActive = true }) {
   const [selected, setSelected]   = useState(null)
   const [thinking, setThinking]   = useState(false)
 
@@ -97,6 +97,34 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
       {/* ── Difficulty accent line — top ────────────────────────────────── */}
       <div style={{ height: 2, background: atm.accent, opacity: 0.75, flexShrink: 0 }} />
 
+      {/* ── Consequence (Ripple Event) banner ──────────────────────────────── */}
+      {isConsequence && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0  }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          className="px-5 pt-4 pb-0 relative"
+        >
+          <div className="rounded-xl border border-red-500/30 bg-red-500/8 px-3.5 py-2.5 mb-1">
+            <p className="text-[9px] font-black uppercase tracking-widest text-red-400/80 mb-1">
+              ⚡ Consequence — Ripple Event
+            </p>
+            <p className="text-slate-400 text-[11px] leading-relaxed">
+              This situation stems from a recent {sourceCategory || 'leadership'} decision that went wrong. The board is watching how you respond.
+            </p>
+          </div>
+        </motion.div>
+      )}
+
+      {/* ── Health crisis context strip ─────────────────────────────────────── */}
+      {!isConsequence && healthContext && (
+        <div className="px-5 pt-4 pb-0 relative">
+          <div className="rounded-xl border border-amber-500/20 bg-amber-500/6 px-3.5 py-2 mb-1">
+            <p className="text-amber-400/80 text-[11px] leading-relaxed font-medium">{healthContext}</p>
+          </div>
+        </div>
+      )}
+
       {/* ── Pack context strip ──────────────────────────────────────────── */}
       {packContext && (
         <div className="px-5 pt-4 pb-0 relative">
@@ -142,6 +170,11 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
           {isReview && (
             <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-400">
               📌 Review
+            </span>
+          )}
+          {isConsequence && (
+            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-red-500/15 text-red-400">
+              ⚡ Consequence
             </span>
           )}
         </div>

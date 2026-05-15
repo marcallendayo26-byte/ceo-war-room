@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { CATEGORY_COLORS, HEALTH_LABELS } from '../data/config'
 
-export default function ResultPanel({ result, onNext, onRetry, nextLabel = 'Next Case →' }) {
+export default function ResultPanel({ result, onNext, onRetry, nextLabel = 'Next Case →', legacyMode = false }) {
   const { caseData, chosen, isCorrect, xpDelta, streakBonus, newStreak, healthDelta, isDaily, isRetry, isReview, reviewCleared } = result
   const optionLabels    = ['A', 'B', 'C', 'D']
   const relevantDeltas  = Object.entries(healthDelta).filter(([, v]) => v !== 0)
@@ -189,7 +189,7 @@ export default function ResultPanel({ result, onNext, onRetry, nextLabel = 'Next
 
         {/* ── Actions ───────────────────────────────────────────────────────  */}
         <div className="flex gap-3">
-          {!isCorrect && !isRetry && (
+          {!isCorrect && !isRetry && !legacyMode && (
             <button
               onClick={onRetry}
               className="flex-1 py-4 rounded-2xl font-bold text-sm border border-white/12 text-slate-300 hover:border-white/25 hover:text-white transition-all"

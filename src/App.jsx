@@ -33,12 +33,17 @@ import {
 } from './lib/sounds'
 import {
   addToReviewQueue, removeFromReviewQueue, pickPackCase,
+  pickConsequenceCase, getConsequenceCaseById,
+  calcBoardDelta, getBoardStatus, getHealthContextLine, generateChronicle,
 } from './lib/engine'
-import SessionDebrief from './components/SessionDebrief'
-import PackSelect    from './components/PackSelect'
-import PackBriefing  from './components/PackBriefing'
-import PackBridge    from './components/PackBridge'
-import PackOutcome   from './components/PackOutcome'
+import SessionDebrief    from './components/SessionDebrief'
+import PackSelect        from './components/PackSelect'
+import PackBriefing      from './components/PackBriefing'
+import PackBridge        from './components/PackBridge'
+import PackOutcome       from './components/PackOutcome'
+import BoardMeter        from './components/BoardMeter'
+import CompanyChronicle  from './components/CompanyChronicle'
+import VoNCModal         from './components/VoNCModal'
 
 // ─── Game state helpers ────────────────────────────────────────────────────
 
@@ -61,6 +66,7 @@ function freshGameState(profile) {
     showSettings: false,
     showMissions: false,
     showDebrief: false,
+    showVoNC: false,
     caseStartTime: Date.now(),
     isDaily: false,
     rivalRefresh: 0,
@@ -73,6 +79,12 @@ function freshGameState(profile) {
     packHealth: null,
     packPhase: 'playing',   // 'briefing' | 'playing' | 'bridge' | 'outcome'
     packXpEarned: 0,
+    // GOT Arc state (session-only; boardConfidence persists in profile)
+    pendingConsequences: [],   // [{ consequenceCaseId, triggerAtCase, sourceCategory }]
+    usedConsequenceIds: [],    // prevents same consequence twice per session
+    isConsequence: false,      // whether the current case is a ripple event
+    sourceCategory: null,      // what past wrong triggered this consequence
+    prevBoardConfidence: null, // for delta display in BoardMeter
   }
 }
 
@@ -166,7 +178,10 @@ export default function App() {
       const newLevel = getLevelInfo(totalXP).current.level
       const leveledUp = !shouldPrestige && newLevel > prevLevel
 
-      const health = applyConsequences(p.health || getInitialHealth(), isCorrect ? c.consequences : {})
+      // Apply health consequences — correct answers use c.consequences, wrong answers
+      // use c.wrongConsequences (only set on consequence cases; normal cases have none).
+      const healthConsequences = isCorrect ? (c.consequences || {}) : (c.wrongConsequences || {})
+      const health = applyConsequences(p.health || getInitialHealth(), healthConsequences)
       const cooldownIds = isDaily ? p.cooldownIds : updateCooldown(p.cooldownIds || [], c.id)
       const categoryStats = updateCategoryStats(p.categoryStats || {}, c.category, isCorrect)
 
@@ -183,6 +198,30 @@ export default function App() {
         }
       }
       const reviewClaredCount = (p.reviewCleared || 0) + (reviewCleared ? 1 : 0)
+
+      // ── Board confidence ─────────────────────────────────────────────────
+      const isConsequenceCase = !!(c._isConsequence)
+      const boardDelta        = calcBoardDelta(isCorrect, c.difficulty, isConsequenceCase, newStreak)
+      const prevBoardConf     = p.boardConfidence ?? 60
+      const newBoardConfidence = Math.max(0, Math.min(100, prevBoardConf + boardDelta))
+      const shouldTriggerVoNC = newBoardConfidence < 20 && prevBoardConf >= 20
+
+      // ── Consequence injection ─────────────────────────────────────────────
+      // After a wrong answer in normal play, queue a ripple-event crisis case.
+      let newPendingConsequences = prev.pendingConsequences || []
+      let newUsedConsequenceIds  = prev.usedConsequenceIds  || []
+      if (!isCorrect && !isRetry && !isDaily && !prev.activePack) {
+        const picked = pickConsequenceCase(c.category, newUsedConsequenceIds)
+        if (picked) {
+          const triggerAtCase = (updatedProfile.casesAnswered || 0) + Math.floor(Math.random() * 5) + 3
+          newPendingConsequences = [...newPendingConsequences, {
+            consequenceCaseId: picked.id,
+            triggerAtCase,
+            sourceCategory: c.category,
+          }]
+          newUsedConsequenceIds = [...newUsedConsequenceIds, picked.id].slice(-20)
+        }
+      }
 
       // Daily challenge tracking
       let dailyChallenge = p.dailyChallenge
@@ -232,6 +271,8 @@ export default function App() {
         caseHistory,
         reviewQueue,
         reviewCleared: reviewClaredCount,
+        boardConfidence: newBoardConfidence,
+        consequencesTriggered: (p.consequencesTriggered || 0) + (isConsequenceCase ? 1 : 0),
         sessionStats: {
           correct: (p.sessionStats?.correct || 0) + (isCorrect ? 1 : 0),
           wrong: (p.sessionStats?.wrong || 0) + (isCorrect ? 0 : 1),
@@ -284,7 +325,7 @@ export default function App() {
           xpDelta,
           streakBonus,
           newStreak,
-          healthDelta: isCorrect ? c.consequences : {},
+          healthDelta: healthConsequences,
           isDaily,
           isRetry,
           isReview: wasInReview,
@@ -301,6 +342,11 @@ export default function App() {
         packResults,
         packXpEarned,
         showDebrief,
+        showVoNC: shouldTriggerVoNC,
+        pendingConsequences: newPendingConsequences,
+        usedConsequenceIds: newUsedConsequenceIds,
+        isConsequence: false,   // reset after processing; next case sets it in handleNext
+        prevBoardConfidence: prevBoardConf,
       }
     })
   }, [])
@@ -323,15 +369,46 @@ export default function App() {
   const handleNext = useCallback(() => {
     setGame(prev => {
       const level = getLevelInfo(prev.profile.totalXP).current.level
+
       // If in pack mode, transition to the bridge screen instead
       if (prev.activePack) {
         const isLastAct = prev.packActIndex >= prev.activePack.acts.length - 1
         return {
           ...prev,
-          phase: 'result',           // stay on result — bridge renders over it
+          phase: 'result',
           packPhase: isLastAct ? 'outcome' : 'bridge',
         }
       }
+
+      // ── Check pending consequence cases ──────────────────────────────────
+      const pending = prev.pendingConsequences || []
+      const casesAnswered = prev.profile.casesAnswered || 0
+      const dueConsequences = pending.filter(c => c.triggerAtCase <= casesAnswered)
+
+      if (dueConsequences.length > 0) {
+        const [first, ...remaining] = dueConsequences
+        const otherPending = pending.filter(c => c.triggerAtCase > casesAnswered)
+        const consequenceCase = getConsequenceCaseById(first.consequenceCaseId)
+        if (consequenceCase) {
+          return {
+            ...prev,
+            phase: 'playing',
+            currentCase: { ...consequenceCase, _isConsequence: true, _sourceCategory: first.sourceCategory },
+            pendingConsequences: [...otherPending, ...remaining],
+            isConsequence: true,
+            sourceCategory: first.sourceCategory,
+            lastResult: null,
+            leveledUpTo: null,
+            pendingAchievement: null,
+            weakSpotAlert: null,
+            isRetry: false,
+            isDaily: false,
+            caseStartTime: Date.now(),
+          }
+        }
+      }
+
+      // ── Normal next case ─────────────────────────────────────────────────
       return {
         ...prev,
         phase: 'playing',
@@ -349,6 +426,8 @@ export default function App() {
         weakSpotAlert: null,
         isRetry: false,
         isDaily: false,
+        isConsequence: false,
+        sourceCategory: null,
         caseStartTime: Date.now(),
       }
     })
@@ -509,6 +588,22 @@ export default function App() {
     })
   }, [])
 
+  // ─── Vote of No Confidence ───────────────────────────────────────────────
+
+  const handleAcknowledgeVoNC = useCallback(() => {
+    setGame(p => ({ ...p, showVoNC: false }))
+  }, [])
+
+  // ─── Legacy Mode toggle ───────────────────────────────────────────────────
+
+  const handleToggleLegacy = useCallback(() => {
+    setGame(prev => {
+      const updatedProfile = { ...prev.profile, legacyMode: !prev.profile.legacyMode }
+      saveProfile(updatedProfile)
+      return { ...prev, profile: updatedProfile }
+    })
+  }, [])
+
   // ─── Daily challenge ─────────────────────────────────────────────────────
 
   const handleDailyChallenge = useCallback(() => {
@@ -567,8 +662,9 @@ export default function App() {
 
   const { profile, currentCase, phase, lastResult, leveledUpTo, prestigedTo, pendingAchievement,
     weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
-    showSettings, showMissions, showDebrief, isDaily, isRetry,
-    activePack, packPhase, packActIndex, packResults, packHealth, packXpEarned, sessionCases } = game
+    showSettings, showMissions, showDebrief, showVoNC, isDaily, isRetry,
+    activePack, packPhase, packActIndex, packResults, packHealth, packXpEarned, sessionCases,
+    isConsequence, sourceCategory, prevBoardConfidence } = game
 
   const dailyAvailable    = !isDailyCompleted(profile)
   const activeCase        = phase === 'playing' ? currentCase : lastResult?.caseData
@@ -582,7 +678,12 @@ export default function App() {
     ? (packActIndex >= (activePack.acts.length - 1) ? 'See Mission Outcome →' : 'Continue Mission →')
     : 'Next Case →'
   // Modals that should suppress keyboard shortcuts in the game
-  const anyModalOpen = showLeaderboard || showAchievements || showHistory || showAnalytics || showSettings || showMissions || showDebrief
+  const anyModalOpen = showLeaderboard || showAchievements || showHistory || showAnalytics || showSettings || showMissions || showDebrief || showVoNC
+
+  // Health context — injected above crisis-state cases so every decision feels situated
+  const healthContextLine = phase === 'playing' && !isConsequence
+    ? getHealthContextLine(profile.health)
+    : null
 
   return (
     <div className="min-h-screen relative overflow-x-hidden" style={{ background: 'rgb(7 15 28)' }}>
@@ -724,6 +825,9 @@ export default function App() {
                   isDaily={isDaily}
                   isRetry={isRetry}
                   isReview={isCurrentReview}
+                  isConsequence={isConsequence}
+                  sourceCategory={sourceCategory}
+                  healthContext={healthContextLine}
                   packContext={packAct?.narrative || null}
                   packActLabel={packAct ? `Act ${packActIndex + 1} of ${activePack.acts.length} · ${packAct.category}` : null}
                   keyboardActive={!anyModalOpen}
@@ -738,6 +842,7 @@ export default function App() {
                   onNext={handleNext}
                   onRetry={handleRetry}
                   nextLabel={packNextLabel}
+                  legacyMode={!!(profile.legacyMode)}
                 />
               )}
             </AnimatePresence>
@@ -750,6 +855,13 @@ export default function App() {
             health={profile.health || getInitialHealth()}
             healthDelta={phase === 'result' && lastResult ? lastResult.healthDelta : null}
           />
+
+          {/* Board Confidence */}
+          <BoardMeter
+            confidence={profile.boardConfidence ?? 60}
+            prevConfidence={phase === 'result' ? prevBoardConfidence : null}
+          />
+
           <CategoryStats categoryStats={profile.categoryStats} role={profile.role || 'ceo'} />
 
           {/* Session stats */}
@@ -769,6 +881,9 @@ export default function App() {
               ))}
             </div>
           </div>
+
+          {/* Company Chronicle — narrative story */}
+          <CompanyChronicle profile={profile} />
         </div>
       </main>
 
@@ -812,8 +927,17 @@ export default function App() {
       )}
 
       {showSettings && (
-        <SettingsPanel onClose={() => setGame(p => ({ ...p, showSettings: false }))} />
+        <SettingsPanel
+          onClose={() => setGame(p => ({ ...p, showSettings: false }))}
+          legacyMode={!!(profile.legacyMode)}
+          onToggleLegacy={handleToggleLegacy}
+        />
       )}
+
+      {/* Vote of No Confidence — fires when board confidence first crosses below 20 */}
+      <AnimatePresence>
+        {showVoNC && <VoNCModal onAcknowledge={handleAcknowledgeVoNC} />}
+      </AnimatePresence>
 
       {/* Mission select modal */}
       <AnimatePresence>
