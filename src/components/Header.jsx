@@ -21,6 +21,7 @@ export default function Header({
   onDailyChallenge, dailyAvailable,
   onMissions,
   onSettings,
+  onProgression,
   sfxMuted, onToggleMute,
 }) {
   const { current, next, progress, xpIntoLevel, xpForLevel } = getLevelInfo(profile.totalXP)
@@ -115,7 +116,13 @@ export default function Header({
                 ✦{toRoman(profile.prestige)}
               </span>
             )}
-            <span className="text-[10px] font-bold text-brand-400 uppercase tracking-widest">Lv.{current.level}</span>
+            <button
+              onClick={onProgression}
+              className="text-[10px] font-bold text-brand-400 uppercase tracking-widest hover:text-brand-300 transition-colors focus:outline-none"
+              title="View rank progression"
+            >
+              Lv.{current.level}
+            </button>
           </div>
           <div className="flex-1">
             <div className="flex items-center justify-between mb-1">

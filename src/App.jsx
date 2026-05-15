@@ -37,6 +37,7 @@ import {
   calcBoardDelta, getBoardStatus, getHealthContextLine, generateChronicle,
 } from './lib/engine'
 import SessionDebrief    from './components/SessionDebrief'
+import ProgressionPanel  from './components/ProgressionPanel'
 import PackSelect        from './components/PackSelect'
 import PackBriefing      from './components/PackBriefing'
 import PackBridge        from './components/PackBridge'
@@ -64,6 +65,7 @@ function freshGameState(profile) {
     showHistory: false,
     showAnalytics: false,
     showSettings: false,
+    showProgression: false,
     showMissions: false,
     showDebrief: false,
     showVoNC: false,
@@ -650,7 +652,8 @@ export default function App() {
 
   // ─── Settings panel ──────────────────────────────────────────────────────
 
-  const handleOpenSettings = useCallback(() => setGame(p => ({ ...p, showSettings: true })), [])
+  const handleOpenSettings   = useCallback(() => setGame(p => ({ ...p, showSettings:   true })), [])
+  const handleOpenProgression = useCallback(() => setGame(p => ({ ...p, showProgression: true })), [])
 
   // ─── Render ──────────────────────────────────────────────────────────────
 
@@ -664,7 +667,7 @@ export default function App() {
 
   const { profile, currentCase, phase, lastResult, leveledUpTo, prestigedTo, pendingAchievement,
     weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
-    showSettings, showMissions, showDebrief, showVoNC, isDaily, isRetry,
+    showSettings, showProgression, showMissions, showDebrief, showVoNC, isDaily, isRetry,
     activePack, packPhase, packActIndex, packResults, packHealth, packXpEarned, sessionCases,
     isConsequence, sourceCategory, prevBoardConfidence } = game
 
@@ -726,6 +729,7 @@ export default function App() {
         dailyAvailable={dailyAvailable}
         onMissions={handleOpenMissions}
         onSettings={handleOpenSettings}
+        onProgression={handleOpenProgression}
         sfxMuted={sfxMuted}
         onToggleMute={handleToggleMute}
       />
@@ -933,6 +937,13 @@ export default function App() {
           onClose={() => setGame(p => ({ ...p, showSettings: false }))}
           legacyMode={!!(profile.legacyMode)}
           onToggleLegacy={handleToggleLegacy}
+        />
+      )}
+
+      {showProgression && (
+        <ProgressionPanel
+          profile={profile}
+          onClose={() => setGame(p => ({ ...p, showProgression: false }))}
         />
       )}
 
