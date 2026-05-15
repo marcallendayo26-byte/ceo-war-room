@@ -4,4 +4,13 @@ import { viteSingleFile } from 'vite-plugin-singlefile'
 
 export default defineConfig({
   plugins: [react(), viteSingleFile()],
+  build: {
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        inlineDynamicImports: true,
+        format: 'iife',
+      },
+    },
+  },
 })
