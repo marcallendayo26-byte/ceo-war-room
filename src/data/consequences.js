@@ -3,6 +3,10 @@
 // They represent direct fallout from past decisions — the GOT effect.
 // All are Executive difficulty (3), category 'Crisis'.
 //
+// triggerCategories: exact category names that can trigger this case.
+// triggerBuckets:    semantic buckets (people/execution/client/financial/strategic/
+//                   product/partnerships/governance) for cross-role matching.
+//                   Every role category maps to a bucket in engine.js.
 // wrongConsequences: applied to health when answered INCORRECTLY (compounds damage).
 // consequences:      applied to health when answered CORRECTLY (partial recovery).
 
@@ -13,6 +17,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-strategy-001',
     triggerCategories: ['Strategy', 'Finance', 'Leadership'],
+    triggerBuckets: ['strategic', 'people'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Six months after your company\'s major strategic pivot — which received significant internal pushback — two of your top three revenue-generating sales leads have resigned and joined a direct competitor. A LinkedIn post by one of them has gone viral: "Left because the strategy stopped making sense." The board has requested an emergency briefing. How do you respond?',
@@ -38,6 +43,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-strategy-002',
     triggerCategories: ['Strategy', 'Enterprise', 'Marketing'],
+    triggerBuckets: ['strategic'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A competitor has used your public statements about your strategic roadmap — made at a recent industry conference — to announce a direct competitive product, explicitly framed as "the alternative to [your company\'s] approach." Three top enterprise prospects have paused their buying decisions pending clarity. Your team is asking whether you telegraphed too much.',
@@ -62,6 +68,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-strategy-003',
     triggerCategories: ['Strategy', 'Finance', 'Ethics', 'Board & Governance'],
+    triggerBuckets: ['strategic', 'governance'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A prominent analyst has published a report arguing that your company\'s recent decisions show "a pattern of short-term optimization at the expense of sustainable competitive position." Three board members have forwarded you the report with no comment. One has scheduled a one-on-one with you for tomorrow. You suspect the report was informed by a disgruntled former executive.',
@@ -86,6 +93,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-strategy-004',
     triggerCategories: ['Strategy', 'Operations', 'Product', 'Sprint & Delivery'],
+    triggerBuckets: ['strategic', 'execution'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'The first milestone of a strategic initiative you championed has missed its target by 40%. The initiative was announced publicly with significant fanfare three months ago. Your team is divided — half believe the plan was too aggressive, half believe execution failed. You have an all-hands in two hours.',
@@ -112,6 +120,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-finance-001',
     triggerCategories: ['Finance', 'Cash & Runway', 'Unit Economics', 'Financial Planning'],
+    triggerBuckets: ['financial'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Revised financial modeling shows your runway is 4 months shorter than what you communicated to investors at your last board meeting. The discrepancy stems from a modeling assumption that changed after the meeting. Your lead investor is asking for an updated financial package before month-end.',
@@ -136,6 +145,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-finance-002',
     triggerCategories: ['Finance', 'Cost Structure', 'Capital Allocation', 'Operations'],
+    triggerBuckets: ['financial', 'client'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A decision to reduce customer success headcount as a cost-cutting measure six months ago has led your second-largest enterprise client — 12% of ARR — to issue a formal notice of dissatisfaction and request an executive escalation. Their account health scores have been declining for 90 days. The board is asking about churn risk.',
@@ -160,6 +170,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-finance-003',
     triggerCategories: ['Finance', 'M&A', 'Capital Allocation', 'Fundraising & Investors'],
+    triggerBuckets: ['financial', 'governance'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'During due diligence for an acquisition you are targeting, your CFO discovers a financial model error in materials you presented to the board 60 days ago — a revenue projection that overstated forward growth by 15% due to a formula error. Budget allocations were approved partially based on this number. The acquisition closes in 30 days.',
@@ -184,6 +195,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-finance-004',
     triggerCategories: ['Finance', 'Cash & Runway', 'Financial Planning'],
+    triggerBuckets: ['financial'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your company has missed revenue targets for the second consecutive quarter, triggering a financial covenant with your debt facility requiring a minimum revenue run rate. Your bank has called an emergency meeting. If covenant relief is denied, you must pay down 30% of the facility immediately — a cash position you cannot sustain.',
@@ -210,6 +222,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-hr-001',
     triggerCategories: ['Leadership', 'Operations', 'Hiring & Staffing', 'Talent Acquisition', 'IC Management', 'Organizational Design'],
+    triggerBuckets: ['people'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your VP of Engineering — a founding team member, day-one — has submitted her resignation citing a loss of faith in leadership direction following recent organizational changes. She has not gone public yet. She leads 22 engineers who are fiercely loyal to her. You have 24 hours before rumors start.',
@@ -234,6 +247,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-hr-002',
     triggerCategories: ['Leadership', 'Ethics', 'Culture & Engagement', 'Employee Relations', 'Team Culture'],
+    triggerBuckets: ['people', 'governance'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'An anonymous Glassdoor review — specific enough to identify the role and team — has gone viral on LinkedIn, alleging a toxic management style from a senior leader and citing specific incidents. Multiple candidates in your active hiring pipeline have messaged your recruiter asking about the post. Employer brand metrics dropped 18 points in a week.',
@@ -258,6 +272,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-hr-003',
     triggerCategories: ['Leadership', 'Operations', 'Organizational Design', 'Performance Management', 'Team & Resources'],
+    triggerBuckets: ['people', 'execution'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A reorganization 90 days ago — combining two teams under a single VP — has triggered near-open conflict. The VP is visibly struggling with the expanded scope. Five senior ICs have collectively written a letter requesting a reversal, citing a "leadership vacuum and loss of technical direction." Two have said they will resign if the situation doesn\'t change.',
@@ -282,6 +297,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-hr-004',
     triggerCategories: ['Leadership', 'Hiring & Staffing', 'Talent Acquisition', 'IC Management'],
+    triggerBuckets: ['people', 'client'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'The CRO you recruited externally 4 months ago has not closed a single strategic deal. Your head of sales — who was passed over for the role — has been back-channeling concerns to board members. Two enterprise deals that were pipeline-mature have stalled under the new CRO\'s leadership. The board is asking for an update next month.',
@@ -306,6 +322,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-hr-005',
     triggerCategories: ['Leadership', 'Culture & Engagement', 'HR Operations', 'Team Culture', 'Employee Relations'],
+    triggerBuckets: ['people'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your return-to-office mandate — 3 days per week — has triggered a coordinated response: 31 employees representing 40% of engineering and product have signed a petition requesting permanent remote flexibility. Two senior engineers have already accepted offers from fully-remote competitors. A journalist has reached out for comment.',
@@ -332,6 +349,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-ops-001',
     triggerCategories: ['Operations', 'Risk & Quality', 'Technical Decisions', 'Technical Debt', 'Sprint & Delivery', 'Incident Response'],
+    triggerBuckets: ['execution', 'client'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A critical system outage brought your platform down for 4 hours during peak usage. Post-incident analysis reveals the failure originated in infrastructure flagged for maintenance in three separate engineering reviews over the past year — each time the fix was deferred due to sprint priorities. Your two largest enterprise clients are demanding an executive call.',
@@ -356,6 +374,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-ops-002',
     triggerCategories: ['Operations', 'Project Delivery', 'Implementation', 'Sprint & Delivery', 'Execution'],
+    triggerBuckets: ['execution', 'client'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A critical deliverable for your largest client has slipped by 6 weeks — the third timeline revision in 8 months. The client\'s CTO has escalated directly to your board, bypassing your account team. Your board has forwarded the note to you with a single line: "This needs to be handled." What is your move?',
@@ -380,6 +399,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-ops-003',
     triggerCategories: ['Operations', 'Risk & Quality', 'Security & Compliance', 'Ethics', 'Data Migration'],
+    triggerBuckets: ['execution', 'governance'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your security team has discovered that a misconfigured data pipeline — introduced during a recent infrastructure migration — may have exposed a subset of client records for up to 72 hours. The exposure window is closed. No evidence of access or misuse has been found. Legal says you\'re in a "notification grey zone." Your Head of Security recommends voluntary notification; your General Counsel recommends waiting for more evidence.',
@@ -404,6 +424,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-ops-004',
     triggerCategories: ['Operations', 'Risk & Quality', 'Negotiation', 'Deal Structuring'],
+    triggerBuckets: ['execution'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A critical third-party vendor — whose platform underpins 30% of your product delivery capability — has sent a contract termination notice effective in 60 days, citing unpaid invoices that accumulated during your restructuring. Replacement options exist but require 90-120 days to implement. A payment plan proposal was rejected by their CFO.',
@@ -428,6 +449,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-ops-005',
     triggerCategories: ['Operations', 'Product', 'Risk & Quality', 'Feature Decisions', 'Product Innovation'],
+    triggerBuckets: ['execution', 'client', 'product'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A product calculation error — introduced 4 months ago in a major release — has been discovered across 8 enterprise accounts. Clients have been making business decisions based on inaccurate outputs. Two clients have independently noticed and are asking your account teams for an explanation. Your product team estimates 3 weeks to patch.',
@@ -454,6 +476,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-sales-001',
     triggerCategories: ['Sales', 'Pipeline Management', 'Negotiation', 'Deal Execution', 'Account Strategy', 'Renewals', 'Churn Prevention'],
+    triggerBuckets: ['client', 'financial'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your largest client — 18% of ARR — has issued an RFP to your top two competitors. Your account team says they\'ve been warning about declining executive sponsor engagement for 6 months. The renewal is in 5 months. Your competitor\'s sales director has been spotted at the client\'s HQ twice this month.',
@@ -478,6 +501,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-sales-002',
     triggerCategories: ['Sales', 'Pipeline Management', 'Competitive Selling', 'Negotiation', 'Brand & Positioning'],
+    triggerBuckets: ['client', 'strategic'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A major lost deal has surfaced as a competitor\'s win announcement on LinkedIn, with the client publicly praising the competitor\'s "partnership approach" versus "the previous vendor\'s transactional model." The post is circulating in your industry. Three prospects in active pipeline have sent it to their account managers asking for a response.',
@@ -502,6 +526,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-sales-003',
     triggerCategories: ['Sales', 'Quota & Forecasting', 'Pipeline Management', 'Demand Generation'],
+    triggerBuckets: ['client', 'financial'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your sales team has missed quota for the second consecutive quarter — Q2 was 22% below target. You\'re entering Q3 with the board expecting recovery. Your head of sales attributes the miss to "market headwinds and a tough ICP shift." Your top two reps have both privately told HR they are considering leaving. What is your assessment and action?',
@@ -528,6 +553,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-board-001',
     triggerCategories: ['Board & Governance', 'Ethics', 'Strategy', 'Finance', 'Leadership'],
+    triggerBuckets: ['governance', 'strategic'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'An independent board member — one who has been privately critical of recent decisions — has published an opinion piece in a prominent business publication that, while not naming your company, is clearly recognizable to anyone in your industry as a critique of your strategic direction. Other board members are asking whether this signals a broader governance breakdown.',
@@ -552,6 +578,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-board-002',
     triggerCategories: ['Ethics', 'Finance', 'Board & Governance', 'Security & Compliance'],
+    triggerBuckets: ['governance', 'financial'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'A regulatory body has opened a preliminary inquiry into business practices from the past 18 months. Your General Counsel believes it was triggered by a complaint from a former employee. No formal charges have been made. Resolution could take 6-18 months. You have an investor update scheduled for next week.',
@@ -576,6 +603,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-board-003',
     triggerCategories: ['Leadership', 'Board & Governance', 'Strategy', 'Ethics'],
+    triggerBuckets: ['governance', 'people'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your co-founder — who transitioned to a board observer role 18 months ago — has sent a formal letter to the full board expressing concern about the company\'s departure from its founding mission and questioning recent executive hires. The letter was shared with all board members without your knowledge. Three employees close to the co-founder already know about it.',
@@ -600,6 +628,7 @@ export const CONSEQUENCE_CASES = [
   {
     id: 'con-board-004',
     triggerCategories: ['Leadership', 'Ethics', 'Board & Governance', 'Culture & Engagement', 'Strategy'],
+    triggerBuckets: ['governance'],
     category: 'Crisis',
     difficulty: 3,
     scenario: 'Your board chair has informed you that an anonymous letter, signed by "Senior Leadership," has been received, alleging a pattern of decisions that prioritize short-term metrics over long-term company health and citing specific examples from the past two quarters. The board is convening a special session in 5 days. You have no direct evidence of who wrote it.',
@@ -618,6 +647,142 @@ export const CONSEQUENCE_CASES = [
     traps: [
       'Performance dashboards are macro arguments in response to specific accusations — the board will notice the pivot.',
       'Source investigation before board preparation signals your first concern was political, not operational.',
+    ],
+  },
+
+
+  // ── PRODUCT / PM FALLOUT ─────────────────────────────────────────────────
+
+  {
+    id: 'con-product-001',
+    triggerCategories: ['Product Management', 'Feature Decisions', 'Product Roadmap', 'Product Innovation', 'Release Planning', 'Product Strategy', 'Go-to-Market'],
+    triggerBuckets: ['product', 'client'],
+    category: 'Crisis',
+    difficulty: 3,
+    scenario: 'A feature your team shipped under competitive pressure — with known edge-case gaps — has caused data inconsistencies for 14% of your active users. Support tickets have tripled. A power user with 80K Twitter followers has posted a thread titled "How [Product] broke my workflow and why I\'m switching." The thread is gaining traction.',
+    options: [
+      'Acknowledge the bug publicly within the hour — factually, without spin. Ship a hotfix or rollback plan within 24 hours. Reach out personally to the Twitter user. Brief enterprise customers before they see the thread.',
+      'Have support close tickets with SLA commitments while engineering works the fix — do not address the tweet publicly, as responding elevates it.',
+      'Post a "We\'re aware and investigating" message and provide updates every 4 hours until resolution — the cadence signals control.',
+      'Issue a public statement that the feature is working as designed for the majority of users and that support is handling edge cases — manage the narrative before it hardens.',
+    ],
+    correct: 0,
+    explanation: 'A viral bug thread from a credible voice in your user community is a trust event, not a PR event. Speed, specificity, and direct engagement with the person who surfaced it are the signals that reverse the narrative. Vague "investigating" messages every 4 hours communicate bureaucracy, not urgency. "Working as designed" framing when users are experiencing real data loss is the fastest way to turn a thread into a movement.',
+    framework: 'Product incident response: radical transparency before the narrative hardens',
+    principle: '"Users who experience bugs become your fiercest advocates when you own the mistake faster than they can screenshot it."',
+    consequences: { customerTrust: 10, executionRisk: -8, growth: 4 },
+    wrongConsequences: { customerTrust: -14, growth: -8, executionRisk: 10 },
+    traps: [
+      '"Working as designed" is only true if 14% data inconsistency was in your acceptance criteria.',
+      'Not engaging the viral thread is a choice — users interpret silence as confirmation you don\'t care.',
+    ],
+  },
+
+  // ── CSM / CUSTOMER SUCCESS FALLOUT ───────────────────────────────────────
+
+  {
+    id: 'con-csm-001',
+    triggerCategories: ['Customer Success', 'Account Health', 'Churn Prevention', 'Renewals', 'Customer Onboarding', 'QBR & Reviews', 'Escalation Management'],
+    triggerBuckets: ['client', 'financial'],
+    category: 'Crisis',
+    difficulty: 3,
+    scenario: 'Your second-largest account — a 9% ARR logo — submitted a churn notice citing "lack of proactive support and zero strategic guidance over 14 months." The CSM assigned to the account logged only 3 touchpoints in that period. The client\'s success story was going to anchor your upcoming renewal marketing campaign. Their CRO has agreed to a 30-minute exit call.',
+    options: [
+      'Take the exit call yourself — not the CSM, not your VP of CS. Come with a structured listening agenda: what specifically failed, what success looked like to them, what would have changed their decision. Use the conversation to learn, then assess whether a recovery is even possible.',
+      'Have your VP of Customer Success take the call — this is an operational escalation within their function and should be owned at that level.',
+      'Offer a significant discount and dedicated CSM coverage to prevent the churn — show commercial commitment upfront before the call.',
+      'Request a delay to the churn notice — propose a 60-day "re-engagement sprint" with defined milestones before they finalize the decision.',
+    ],
+    correct: 0,
+    explanation: 'An exit call from a 9% ARR client who cited 14 months of neglect is not a CS operations problem — it\'s a leadership accountability moment. The CRO agreed to 30 minutes; that\'s a signal there is still emotional investment. CEO presence without a pitch — genuine listening — is the only signal that communicates the relationship\'s value was real. Discounts before the call confirm their belief that your relationship was always transactional.',
+    framework: 'Churn recovery: executive ownership of systematic neglect',
+    principle: '"A client who agrees to an exit call is offering you one more chance to prove you were worth having. Don\'t send a VP."',
+    consequences: { customerTrust: 12, cash: 6, growth: 5 },
+    wrongConsequences: { customerTrust: -14, cash: -10, growth: -6 },
+    traps: [
+      'Offering discounts before the call signals you know the relationship failed and are trying to buy out of the consequences.',
+      'A re-engagement sprint with milestones sounds structured — to a client who experienced 14 months of inaction, it sounds like another promise.',
+    ],
+  },
+
+  // ── ENGINEERING MANAGEMENT / EM FALLOUT ──────────────────────────────────
+
+  {
+    id: 'con-em-001',
+    triggerCategories: ['Engineering Management', 'Technical Decisions', 'Technical Debt', 'Architecture', 'System Design', 'Incident Response', 'Sprint & Delivery'],
+    triggerBuckets: ['execution', 'product'],
+    category: 'Crisis',
+    difficulty: 3,
+    scenario: 'A critical architectural decision made 8 months ago — dismissing a staff engineer\'s concerns about a monolithic service boundary — has created a production bottleneck that is now blocking 3 concurrent roadmap initiatives. Two senior engineers on the affected team have said openly in Slack: "We told you this would happen." The CPO wants a recovery timeline by end of week.',
+    options: [
+      'Hold a blameless post-mortem that explicitly acknowledges the architectural decision and the engineers who flagged it. Present the CPO with a realistic recovery timeline — not an optimistic one — that includes the staffing and sprint cost of the remediation.',
+      'Present the CPO with an accelerated timeline showing the issue can be resolved in 4 weeks through dedicated sprint focus — show you\'re moving with urgency.',
+      'Reframe the issue as a natural evolution of the architecture that needs phased migration — avoid framing it as a mistake to protect team morale.',
+      'Assign the staff engineer who raised the original concern to lead the remediation — it demonstrates trust and uses the best-qualified person.',
+    ],
+    correct: 0,
+    explanation: 'When engineers say "we told you this would happen" on a company-wide Slack channel, the architectural decision is already a leadership credibility issue — not just a technical one. A blameless post-mortem that explicitly validates the original concern is the only move that rebuilds psychological safety. Optimistic timelines given to leadership that then slip destroy trust twice. Reassigning the engineer without the post-mortem looks like damage control, not trust.',
+    framework: 'Engineering leadership: credibility recovery through honest acknowledgment',
+    principle: '"Teams that flag risks and are overruled watch closely to see if you learn. Acknowledge the lesson publicly or lose them quietly."',
+    consequences: { teamMorale: 10, executionRisk: -10 },
+    wrongConsequences: { teamMorale: -12, executionRisk: 12, strategicPosition: -5 },
+    traps: [
+      'Optimistic 4-week timelines for architectural debt remediation are almost never accurate — and engineering knows it.',
+      '"Natural evolution" framing when engineers publicly said otherwise reads as gaslighting to the people who were there.',
+    ],
+  },
+
+  // ── BUSINESS DEVELOPMENT / BD FALLOUT ────────────────────────────────────
+
+  {
+    id: 'con-bd-001',
+    triggerCategories: ['Business Development', 'Partnerships', 'Deal Execution', 'Channel Strategy', 'Strategic Alliances', 'Partner Ecosystem'],
+    triggerBuckets: ['partnerships', 'financial'],
+    category: 'Crisis',
+    difficulty: 3,
+    scenario: 'A flagship channel partnership — signed 7 months ago with significant engineering and marketing investment — has produced zero qualified opportunities. Your partner\'s sales team has not run a single joint demo. Internal analysis shows your partner\'s reps are positioning your product in deals where it doesn\'t fit, resulting in two documented misaligned sales that led to early churn. The board is asking about the partnership ROI.',
+    options: [
+      'Request an executive meeting with your partner\'s VP of Sales and VP of Alliances — bring specific data on the zero-pipeline reality, the misaligned sales, and a structured proposal: either a revised go-to-market with joint accountability metrics, or a mutual wind-down. Do not let the partnership limp.',
+      'Increase co-marketing investment — the pipeline problem is a market awareness issue and more top-of-funnel activity will eventually translate to sales motion.',
+      'Assign a dedicated partner success manager to ride-along with the partner\'s reps and build the relationship from the ground up.',
+      'Brief the board that the partnership needs another quarter — channel partnerships typically take 12-18 months to produce pipeline and you\'re within normal parameters.',
+    ],
+    correct: 0,
+    explanation: 'A 7-month partnership with zero qualified pipeline and documented misaligned sales is not a timing problem — it\'s a structural misalignment between your GTM and your partner\'s incentives. More co-marketing without fixing the sales motion compounds the investment in a broken system. "12-18 months is normal" is true for healthy partnerships — it is not a defense for one producing actively harmful outcomes. The partner executive conversation, with clear mutual accountability or a clean wind-down, is the only honest move.',
+    framework: 'Partnership performance: structured accountability over sunk cost rationalization',
+    principle: '"A partnership that produces bad sales is worse than no partnership. Misaligned revenue destroys trust on both sides."',
+    consequences: { strategicPosition: 6, cash: 5, growth: 4 },
+    wrongConsequences: { strategicPosition: -8, cash: -8, growth: -6 },
+    traps: [
+      'Co-marketing investment in a broken sales motion is sunk cost escalation — it delays the honest conversation while burning budget.',
+      '"12-18 months is normal" is only valid when the early signals are directionally positive — not when they\'re actively negative.',
+    ],
+  },
+
+  // ── MARKETING / CMO FALLOUT ───────────────────────────────────────────────
+
+  {
+    id: 'con-cmo-001',
+    triggerCategories: ['Marketing', 'Brand Strategy', 'Content & Social', 'Demand Generation', 'Campaign Management', 'Go-to-Market', 'PR & Communications'],
+    triggerBuckets: ['strategic', 'governance'],
+    category: 'Crisis',
+    difficulty: 3,
+    scenario: 'A bold brand campaign your team launched 10 days ago — a real-customer testimonial series that positioned your product as "the only tool that actually works" — has drawn a public response from a competitor CEO calling out factual inaccuracies in one testimonial. The competitor\'s post has 4,200 likes and is being shared by journalists. Three reporters have reached out for comment. Your legal team says the claims are defensible but borderline.',
+    options: [
+      'Issue a factual, non-combative clarification within 24 hours — correct any inaccuracy directly, thank customers for their honest feedback, and pivot the campaign messaging to verifiable outcomes. Do not respond to the competitor CEO directly.',
+      'Have Legal draft a cease-and-desist to the competitor for defamation — the claims in their post were misleading and you should establish a clear counter-record.',
+      'Respond to the competitor CEO directly on social media — match their energy, challenge the specific inaccuracy, and let the community decide who\'s right.',
+      'Brief your PR firm to reach out to the three reporters first with your full legal defense and evidence file — control the journalist narrative before the story is written.',
+    ],
+    correct: 0,
+    explanation: 'A competitor CEO calling out factual inaccuracies in your campaign is a credibility event, not a marketing battle. The market, journalists, and your own customers are watching your response posture — not the underlying technical accuracy. Correcting the record factually and pivoting to verifiable claims is the only move that ends the story. A cease-and-desist creates a legal news event. Responding to the competitor CEO directly is a gift — it elevates a single post into a sustained public debate. Briefing reporters with your legal file is how you get quoted saying things you didn\'t mean.',
+    framework: 'Brand crisis response: accurate correction over competitive escalation',
+    principle: '"When a competitor calls out your marketing, the market isn\'t judging who\'s right. They\'re judging who\'s professional."',
+    consequences: { strategicPosition: 5, customerTrust: 6, growth: 3 },
+    wrongConsequences: { strategicPosition: -10, customerTrust: -8, growth: -6 },
+    traps: [
+      'A cease-and-desist doesn\'t silence a competitor — it generates a press release they didn\'t have to write.',
+      'Social media counter-attacks from brand accounts are always losing moves — they validate the original criticism as worth fighting about.',
     ],
   },
 
