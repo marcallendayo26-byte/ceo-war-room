@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CATEGORY_COLORS } from '../data/config'
+import { CATEGORY_COLORS, XP_CORRECT, XP_WRONG } from '../data/config'
 import { playSelect, playDeal } from '../lib/sounds'
 
 const DIFFICULTY_LABELS = { 1: 'Foundational', 2: 'Intermediate', 3: 'Executive' }
@@ -156,6 +156,12 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
             style={{ background: `${DIFFICULTY_COLORS[caseData.difficulty]}18`, color: DIFFICULTY_COLORS[caseData.difficulty] }}
           >
             {DIFFICULTY_LABELS[caseData.difficulty]}
+          </span>
+          <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-white/6 text-slate-400">
+            <span className="text-emerald-400">+{XP_CORRECT[caseData.difficulty]}</span>
+            <span className="text-slate-600 mx-0.5">/</span>
+            <span className="text-red-400">−{Math.abs(XP_WRONG[caseData.difficulty])}</span>
+            <span className="ml-1">XP</span>
           </span>
           {isDaily && (
             <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-gold-500/15 text-gold-400">

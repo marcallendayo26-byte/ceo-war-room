@@ -38,6 +38,7 @@ import {
 } from './lib/engine'
 import SessionDebrief    from './components/SessionDebrief'
 import ProgressionPanel  from './components/ProgressionPanel'
+import CategoryFilter    from './components/CategoryFilter'
 import PackSelect        from './components/PackSelect'
 import PackBriefing      from './components/PackBriefing'
 import PackBridge        from './components/PackBridge'
@@ -66,6 +67,7 @@ function freshGameState(profile) {
     showAnalytics: false,
     showSettings: false,
     showProgression: false,
+    categoryFilter: null,
     showMissions: false,
     showDebrief: false,
     showVoNC: false,
@@ -421,7 +423,7 @@ export default function App() {
           level,
           prev.profile.role || 'ceo',
           null,
-          null,
+          prev.categoryFilter || null,
           prev.profile.reviewQueue || [],
         ),
         lastResult: null,
@@ -669,7 +671,7 @@ export default function App() {
     weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
     showSettings, showProgression, showMissions, showDebrief, showVoNC, isDaily, isRetry,
     activePack, packPhase, packActIndex, packResults, packHealth, packXpEarned, sessionCases,
-    isConsequence, sourceCategory, prevBoardConfidence } = game
+    isConsequence, sourceCategory, prevBoardConfidence, categoryFilter } = game
 
   const dailyAvailable    = !isDailyCompleted(profile)
   const activeCase        = phase === 'playing' ? currentCase : lastResult?.caseData
@@ -819,6 +821,35 @@ export default function App() {
                   packHealth={packHealth}
                   xpEarned={packXpEarned}
                   onDone={handlePackDone}
+                />
+              )}
+
+              {/* ── Category filter — hidden during pack / consequence / review */}
+              {!activePack && !isConsequence && (
+                <CategoryFilter
+                  role={profile.role || 'ceo'}
+                  activeCategory={categoryFilter}
+                  onSelect={cat => setGame(p => {
+                    const level = getLevelInfo(p.profile.totalXP).current.level
+                    return {
+                      ...p,
+                      categoryFilter: cat,
+                      phase: 'playing',
+                      currentCase: pickNextCase(
+                        p.profile.cooldownIds,
+                        level,
+                        p.profile.role || 'ceo',
+                        p.currentCase?.id || null,
+                        cat,
+                        p.profile.reviewQueue || [],
+                      ),
+                      lastResult: null,
+                      leveledUpTo: null,
+                      pendingAchievement: null,
+                      weakSpotAlert: null,
+                      isRetry: false,
+                    }
+                  })}
                 />
               )}
 
