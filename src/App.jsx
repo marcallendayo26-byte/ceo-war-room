@@ -26,7 +26,6 @@ import {
 } from './lib/storage'
 import { checkNewAchievements } from './data/achievements'
 import { applyFontSize, getFontSize } from './lib/prefs'
-import { startMusic, isMusicPlaying } from './lib/music'
 import { CATEGORY_COLORS } from './data/config'
 import {
   isMuted, toggleMuted,
@@ -107,20 +106,6 @@ export default function App() {
   // Restore font-size preference immediately on mount
   useEffect(() => { applyFontSize(getFontSize()) }, [])
 
-  // Auto-start background music on first user interaction
-  useEffect(() => {
-    const start = () => {
-      if (!isMusicPlaying()) startMusic()
-      window.removeEventListener('pointerdown', start)
-      window.removeEventListener('keydown',     start)
-    }
-    window.addEventListener('pointerdown', start, { once: true })
-    window.addEventListener('keydown',     start, { once: true })
-    return () => {
-      window.removeEventListener('pointerdown', start)
-      window.removeEventListener('keydown',     start)
-    }
-  }, [])
 
 
   // Load active profile on mount
@@ -230,7 +215,7 @@ export default function App() {
       if (!isCorrect && !isRetry && !isDaily && !prev.activePack) {
         const picked = pickConsequenceCase(c.category, newUsedConsequenceIds)
         if (picked) {
-          const triggerAtCase = (updatedProfile.casesAnswered || 0) + Math.floor(Math.random() * 5) + 3
+          const triggerAtCase = (p.casesAnswered + 1) + Math.floor(Math.random() * 5) + 3
           newPendingConsequences = [...newPendingConsequences, {
             consequenceCaseId: picked.id,
             triggerAtCase,
