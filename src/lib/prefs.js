@@ -36,20 +36,3 @@ export function applyFontSize(id) {
   document.documentElement.style.fontSize = entry.scale
 }
 
-// ─── Background music ───────────────────────────────────────────────────────
-
-export function getMusicEnabled() {
-  return load().musicEnabled ?? false   // default OFF — user opts in
-}
-
-export function setMusicEnabled(v) {
-  save({ ...load(), musicEnabled: v })
-}
-
-export function getMusicVolumePref() {
-  return load().musicVolume ?? 0.22
-}
-
-export function setMusicVolumePref(v) {
-  save({ ...load(), musicVolume: v })
-}

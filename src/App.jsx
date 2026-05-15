@@ -25,8 +25,7 @@ import {
   getProfile, saveProfile, getActiveProfileId, setActiveProfile, getAllProfiles,
 } from './lib/storage'
 import { checkNewAchievements } from './data/achievements'
-import { applyFontSize, getFontSize, getMusicEnabled, getMusicVolumePref } from './lib/prefs'
-import { startMusic, isMusicPlaying } from './lib/music'
+import { applyFontSize, getFontSize } from './lib/prefs'
 import { CATEGORY_COLORS } from './data/config'
 import {
   isMuted, toggleMuted,
@@ -107,21 +106,6 @@ export default function App() {
   // Restore font-size preference immediately on mount
   useEffect(() => { applyFontSize(getFontSize()) }, [])
 
-  // Start background music on first user interaction if pref is enabled
-  useEffect(() => {
-    if (!getMusicEnabled()) return
-    const startOnInteraction = () => {
-      if (!isMusicPlaying()) startMusic(getMusicVolumePref())
-      window.removeEventListener('pointerdown', startOnInteraction)
-      window.removeEventListener('keydown',     startOnInteraction)
-    }
-    window.addEventListener('pointerdown', startOnInteraction, { once: true })
-    window.addEventListener('keydown',     startOnInteraction, { once: true })
-    return () => {
-      window.removeEventListener('pointerdown', startOnInteraction)
-      window.removeEventListener('keydown',     startOnInteraction)
-    }
-  }, [])
 
   // Load active profile on mount
   useEffect(() => {

@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Download, Upload, X, FileText, Type, Music } from 'lucide-react'
+import { Download, Upload, X, FileText, Type } from 'lucide-react'
 import { exportData, importData } from '../lib/storage'
 import { downloadCasesPDF } from '../lib/generatePDF'
-import { FONT_SIZES, getFontSize, setFontSize, getMusicEnabled, setMusicEnabled, getMusicVolumePref, setMusicVolumePref } from '../lib/prefs'
-import { startMusic, stopMusic, setMusicVolume, isMusicPlaying } from '../lib/music'
+import { FONT_SIZES, getFontSize, setFontSize } from '../lib/prefs'
 
 export default function SettingsPanel({ onClose, legacyMode = false, onToggleLegacy }) {
   const fileInputRef = useRef(null)
@@ -34,29 +33,6 @@ export default function SettingsPanel({ onClose, legacyMode = false, onToggleLeg
     setCurrentSize(id)
   }
 
-  // ── Music state ────────────────────────────────────────────────────────────
-  const [musicOn, setMusicOn]   = useState(getMusicEnabled)
-  const [musicVol, setMusicVol] = useState(getMusicVolumePref)
-
-  const handleToggleMusic = () => {
-    const next = !musicOn
-    setMusicOn(next)
-    setMusicEnabled(next)
-    if (next) {
-      startMusic(musicVol)
-    } else {
-      stopMusic()
-    }
-  }
-
-  const handleVolumeChange = (e) => {
-    const v = parseFloat(e.target.value)
-    setMusicVol(v)
-    setMusicVolumePref(v)
-    setMusicVolume(v)
-    // If music isn't running yet but user adjusts volume, start it
-    if (!isMusicPlaying() && musicOn) startMusic(v)
-  }
 
   return (
     <AnimatePresence>
@@ -121,57 +97,6 @@ export default function SettingsPanel({ onClose, legacyMode = false, onToggleLeg
               <p className="text-red-400/70 text-[10px] mt-2 font-medium">
                 ⚡ Active — wrong answers leave permanent scars. No retry available.
               </p>
-            )}
-          </div>
-
-          {/* ── Background Music ────────────────────────────────────────── */}
-          <div className="mb-5 pb-5 border-b border-white/6">
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <Music size={12} className="text-slate-500" />
-                <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Background Music</p>
-              </div>
-              <button
-                onClick={handleToggleMusic}
-                aria-label={musicOn ? 'Disable background music' : 'Enable background music'}
-                className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${
-                  musicOn ? 'bg-brand-500' : 'bg-white/12'
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
-                    musicOn ? 'translate-x-5' : 'translate-x-0'
-                  }`}
-                />
-              </button>
-            </div>
-
-            {musicOn && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.2 }}
-                className="space-y-2"
-              >
-                <div className="flex items-center justify-between">
-                  <p className="text-slate-500 text-[11px]">Volume</p>
-                  <p className="text-slate-400 text-[11px] font-semibold tabular-nums">{Math.round(musicVol * 100)}%</p>
-                </div>
-                <input
-                  type="range"
-                  min="0.04"
-                  max="0.55"
-                  step="0.01"
-                  value={musicVol}
-                  onChange={handleVolumeChange}
-                  className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
-                  style={{
-                    background: `linear-gradient(to right, #3b9eff ${(musicVol / 0.55) * 100}%, rgba(255,255,255,0.1) ${(musicVol / 0.55) * 100}%)`,
-                  }}
-                />
-                <p className="text-slate-600 text-[10px]">♪ Ambient drone — Am minor key, no loops</p>
-              </motion.div>
             )}
           </div>
 

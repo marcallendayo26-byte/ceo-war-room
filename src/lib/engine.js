@@ -336,19 +336,85 @@ export function getInitialHealth() {
 
 // ─── Consequence case helpers ──────────────────────────────────────────────
 
+// Maps every role category to a semantic "bucket" so consequence cases fire
+// correctly for all 10 roles — not just CEO.
+const CATEGORY_TO_BUCKET = {
+  // people — all HR, leadership, team management
+  'Leadership': 'people', 'Hiring & Staffing': 'people', 'Talent Acquisition': 'people',
+  'IC Management': 'people', 'Team Culture': 'people', 'Culture & Engagement': 'people',
+  'Employee Relations': 'people', 'Organizational Design': 'people',
+  'Performance Management': 'people', 'Compensation & Benefits': 'people',
+  'Learning & Development': 'people', 'HR Operations': 'people',
+  'Team & Resources': 'people', 'Cross-functional': 'people',
+  'Negotiating Up & Across': 'people', 'Engineering Org Design': 'people',
+  // execution — delivery, operations, technical
+  'Operations': 'execution', 'Sprint & Delivery': 'execution', 'Project Delivery': 'execution',
+  'Implementation': 'execution', 'Incident Response': 'execution', 'Risk & Quality': 'execution',
+  'Technical Debt': 'execution', 'Architecture Decisions': 'execution',
+  'Technical Decisions': 'execution', 'Hypercare': 'execution', 'AMS': 'execution',
+  'AMS & Support Operations': 'execution', 'Data Migration': 'execution',
+  'Security & Compliance': 'execution', 'Delivery Innovation': 'execution',
+  // client — all customer-facing
+  'Sales': 'client', 'Client Management': 'client', 'Churn Prevention': 'client',
+  'Renewals': 'client', 'Escalation Management': 'client', 'QBR & Executive Engagement': 'client',
+  'Expansion Revenue': 'client', 'CS Operations': 'client', 'Account Strategy': 'client',
+  'Onboarding': 'client', 'Product Adoption': 'client', 'AMS Innovation': 'client',
+  'Deal Execution': 'client', 'Discovery': 'client', 'Objection Handling': 'client',
+  // financial — finance, revenue, cost
+  'Finance': 'financial', 'Cash & Runway': 'financial', 'Unit Economics': 'financial',
+  'Capital Allocation': 'financial', 'Financial Planning': 'financial',
+  'Cost Structure': 'financial', 'Fundraising & Investors': 'financial',
+  'M&A': 'financial', 'Pricing Strategy': 'financial', 'Commercial Costing': 'financial',
+  'Pipeline Management': 'financial', 'Quota & Forecasting': 'financial',
+  'Commercial Innovation': 'financial',
+  // strategic — strategy, market, competitive
+  'Strategy': 'strategic', 'Enterprise': 'strategic', 'Marketing': 'strategic',
+  'Brand & Positioning': 'strategic', 'Demand Generation': 'strategic',
+  'Market Expansion': 'strategic', 'Competitive Selling': 'strategic',
+  'Go-to-Market': 'strategic', 'Campaign Strategy': 'strategic',
+  'Product Marketing': 'strategic', 'Innovation Strategy': 'strategic',
+  'Marketing-Sales Alignment': 'strategic', 'Analytics & Attribution': 'strategic',
+  'Content & SEO': 'strategic', 'PR & Communications': 'strategic',
+  // product — product, roadmap, technical product decisions
+  'Product': 'product', 'Feature Decisions': 'product', 'Discovery & Research': 'product',
+  'Metrics & Analytics': 'product', 'Roadmap & Prioritization': 'product',
+  'AI & Emerging Tech': 'product', 'Product Innovation': 'product',
+  'Product vs Implementation': 'product', 'Stakeholder Management': 'product',
+  'Influencing Without Authority': 'product', 'Growth & Monetization': 'product',
+  'Team & Process': 'product',
+  // partnerships — BD, alliances, ecosystem
+  'Partnership Strategy': 'partnerships', 'Channel Management': 'partnerships',
+  'Alliance & Co-Sell': 'partnerships', 'Ecosystem & Marketplace': 'partnerships',
+  'Partner Relations': 'partnerships', 'Corporate Development': 'partnerships',
+  'Strategic Partner & Equity': 'partnerships', 'Deal Structuring': 'partnerships',
+  'Ecosystem Innovation': 'partnerships',
+  // governance — ethics, board, compliance
+  'Ethics': 'governance', 'Board & Governance': 'governance',
+  'Contracting & Legal Risk': 'governance', 'Crisis': 'governance',
+}
+
 // Pick a consequence case triggered by a wrong answer in the given category.
-// Avoids recently-used consequence IDs to prevent repetition within a session.
+// Matches on exact triggerCategories first, then on shared semantic bucket,
+// then falls back to any unused case — so every role gets relevant consequences.
 export function pickConsequenceCase(triggeredCategory, usedConsequenceIds = []) {
   const usedSet = new Set(usedConsequenceIds)
+  const bucket  = CATEGORY_TO_BUCKET[triggeredCategory]
+
+  // 1. Exact category match (highest relevance)
   let pool = CONSEQUENCE_CASES.filter(
     c => c.triggerCategories.includes(triggeredCategory) && !usedSet.has(c.id)
   )
-  // Fallback: if category has no unused matches, allow any unused consequence
-  if (pool.length === 0) {
-    pool = CONSEQUENCE_CASES.filter(c => !usedSet.has(c.id))
+  // 2. Bucket match — semantically related consequences for non-CEO roles
+  if (pool.length === 0 && bucket) {
+    pool = CONSEQUENCE_CASES.filter(
+      c => c.triggerBuckets?.includes(bucket) && !usedSet.has(c.id)
+    )
   }
-  // Last resort: allow any consequence case
+  // 3. Any unused consequence
+  if (pool.length === 0) pool = CONSEQUENCE_CASES.filter(c => !usedSet.has(c.id))
+  // 4. Absolute last resort
   if (pool.length === 0) pool = CONSEQUENCE_CASES
+
   return pool[Math.floor(Math.random() * pool.length)]
 }
 
