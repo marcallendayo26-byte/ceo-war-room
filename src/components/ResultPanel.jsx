@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { CATEGORY_COLORS, HEALTH_LABELS } from '../data/config'
 
-export default function ResultPanel({ result, onNext, onRetry }) {
-  const { caseData, chosen, isCorrect, xpDelta, streakBonus, newStreak, healthDelta, isDaily, isRetry } = result
+export default function ResultPanel({ result, onNext, onRetry, nextLabel = 'Next Case →' }) {
+  const { caseData, chosen, isCorrect, xpDelta, streakBonus, newStreak, healthDelta, isDaily, isRetry, isReview, reviewCleared } = result
   const optionLabels    = ['A', 'B', 'C', 'D']
   const relevantDeltas  = Object.entries(healthDelta).filter(([, v]) => v !== 0)
   const categoryColor   = CATEGORY_COLORS[caseData.category]
@@ -71,6 +71,16 @@ export default function ResultPanel({ result, onNext, onRetry }) {
             {isRetry && (
               <span className="bg-white/8 text-slate-400 text-xs font-semibold px-2.5 py-1 rounded-full">
                 ↩ Retry
+              </span>
+            )}
+            {isReview && isCorrect && reviewCleared && (
+              <span className="bg-amber-500/15 text-amber-400 text-xs font-bold px-2.5 py-1 rounded-full border border-amber-500/25">
+                📌 Review cleared
+              </span>
+            )}
+            {isReview && !isCorrect && (
+              <span className="bg-amber-500/10 text-amber-500/70 text-xs font-semibold px-2.5 py-1 rounded-full">
+                📌 Still reviewing
               </span>
             )}
           </div>
@@ -191,7 +201,7 @@ export default function ResultPanel({ result, onNext, onRetry }) {
             onClick={onNext}
             className="flex-1 py-4 rounded-2xl font-bold text-sm bg-brand-500 hover:bg-brand-600 text-white transition-all active:scale-[0.98]"
           >
-            Next Case →
+            {nextLabel}
           </button>
         </div>
       </motion.div>

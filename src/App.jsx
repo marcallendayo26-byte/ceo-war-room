@@ -31,6 +31,14 @@ import {
   isMuted, toggleMuted,
   playCorrect, playXP, playWrong, playStreak,
 } from './lib/sounds'
+import {
+  addToReviewQueue, removeFromReviewQueue, pickPackCase,
+} from './lib/engine'
+import SessionDebrief from './components/SessionDebrief'
+import PackSelect    from './components/PackSelect'
+import PackBriefing  from './components/PackBriefing'
+import PackBridge    from './components/PackBridge'
+import PackOutcome   from './components/PackOutcome'
 
 // ─── Game state helpers ────────────────────────────────────────────────────
 
@@ -39,7 +47,7 @@ function freshGameState(profile) {
   const role = profile.role || 'ceo'
   return {
     profile: { ...profile, health: profile.health || getInitialHealth() },
-    currentCase: pickNextCase(profile.cooldownIds || [], level, role),
+    currentCase: pickNextCase(profile.cooldownIds || [], level, role, null, null, profile.reviewQueue || []),
     phase: 'playing',
     lastResult: null,
     leveledUpTo: null,
@@ -51,9 +59,20 @@ function freshGameState(profile) {
     showHistory: false,
     showAnalytics: false,
     showSettings: false,
+    showMissions: false,
+    showDebrief: false,
     caseStartTime: Date.now(),
     isDaily: false,
     rivalRefresh: 0,
+    // Session tracking (in-memory, not persisted)
+    sessionCases: [],
+    // Scenario pack state
+    activePack: null,
+    packActIndex: 0,
+    packResults: [],
+    packHealth: null,
+    packPhase: 'playing',   // 'briefing' | 'playing' | 'bridge' | 'outcome'
+    packXpEarned: 0,
   }
 }
 
@@ -151,6 +170,20 @@ export default function App() {
       const cooldownIds = isDaily ? p.cooldownIds : updateCooldown(p.cooldownIds || [], c.id)
       const categoryStats = updateCategoryStats(p.categoryStats || {}, c.category, isCorrect)
 
+      // ── Spaced repetition queue ──────────────────────────────────────────
+      const wasInReview = (p.reviewQueue || []).includes(c.id)
+      let reviewQueue = p.reviewQueue || []
+      let reviewCleared = false
+      if (!isRetry && !isDaily) {
+        if (isCorrect && wasInReview) {
+          reviewQueue = removeFromReviewQueue(reviewQueue, c.id)
+          reviewCleared = true
+        } else if (!isCorrect && !wasInReview) {
+          reviewQueue = addToReviewQueue(reviewQueue, c.id)
+        }
+      }
+      const reviewClaredCount = (p.reviewCleared || 0) + (reviewCleared ? 1 : 0)
+
       // Daily challenge tracking
       let dailyChallenge = p.dailyChallenge
       let dailyChallengesCompleted = p.dailyChallengesCompleted || 0
@@ -197,6 +230,8 @@ export default function App() {
         categoryStats,
         dailyChallenge,
         caseHistory,
+        reviewQueue,
+        reviewCleared: reviewClaredCount,
         sessionStats: {
           correct: (p.sessionStats?.correct || 0) + (isCorrect ? 1 : 0),
           wrong: (p.sessionStats?.wrong || 0) + (isCorrect ? 0 : 1),
@@ -219,6 +254,25 @@ export default function App() {
         weakSpotAlert = getWeakSpot(updatedProfile.categoryStats)
       }
 
+      // ── Session case log (in-memory) ────────────────────────────────────
+      const newSessionCases = [
+        ...prev.sessionCases,
+        { caseId: c.id, category: c.category, difficulty: c.difficulty, isCorrect, xpDelta },
+      ]
+
+      // ── Pack state update ────────────────────────────────────────────────
+      const inPack = !!prev.activePack
+      const packHealth = inPack
+        ? applyConsequences(prev.packHealth || getInitialHealth(), isCorrect ? c.consequences : {})
+        : prev.packHealth
+      const packResults = inPack
+        ? [...prev.packResults, { actIndex: prev.packActIndex, caseId: c.id, category: c.category, isCorrect, xpDelta }]
+        : prev.packResults
+      const packXpEarned = inPack ? (prev.packXpEarned || 0) + Math.max(0, xpDelta) : prev.packXpEarned
+
+      // Trigger debrief after every 10 non-pack cases
+      const showDebrief = !inPack && newSessionCases.length >= 10 && newSessionCases.length % 10 === 0
+
       return {
         ...prev,
         profile: updatedProfile,
@@ -233,13 +287,20 @@ export default function App() {
           healthDelta: isCorrect ? c.consequences : {},
           isDaily,
           isRetry,
-          soundTs: Date.now(),   // used by sound/shake effects
+          isReview: wasInReview,
+          reviewCleared,
+          soundTs: Date.now(),
         },
         leveledUpTo: leveledUp ? getLevelInfo(totalXP).current : null,
         prestigedTo: shouldPrestige ? newPrestige : null,
         pendingAchievement: newAchievements[0] || null,
         weakSpotAlert,
         isDaily: false,
+        sessionCases: newSessionCases,
+        packHealth,
+        packResults,
+        packXpEarned,
+        showDebrief,
       }
     })
   }, [])
@@ -262,10 +323,26 @@ export default function App() {
   const handleNext = useCallback(() => {
     setGame(prev => {
       const level = getLevelInfo(prev.profile.totalXP).current.level
+      // If in pack mode, transition to the bridge screen instead
+      if (prev.activePack) {
+        const isLastAct = prev.packActIndex >= prev.activePack.acts.length - 1
+        return {
+          ...prev,
+          phase: 'result',           // stay on result — bridge renders over it
+          packPhase: isLastAct ? 'outcome' : 'bridge',
+        }
+      }
       return {
         ...prev,
         phase: 'playing',
-        currentCase: pickNextCase(prev.profile.cooldownIds, level, prev.profile.role || 'ceo'),
+        currentCase: pickNextCase(
+          prev.profile.cooldownIds,
+          level,
+          prev.profile.role || 'ceo',
+          null,
+          null,
+          prev.profile.reviewQueue || [],
+        ),
         lastResult: null,
         leveledUpTo: null,
         pendingAchievement: null,
@@ -273,6 +350,161 @@ export default function App() {
         isRetry: false,
         isDaily: false,
         caseStartTime: Date.now(),
+      }
+    })
+  }, [])
+
+  // ─── Pack handlers ───────────────────────────────────────────────────────
+
+  const handleOpenMissions  = useCallback(() => setGame(p => ({ ...p, showMissions: true })), [])
+  const handleCloseMissions = useCallback(() => setGame(p => ({ ...p, showMissions: false })), [])
+
+  const handleStartPack = useCallback((pack) => {
+    setGame(prev => ({
+      ...prev,
+      showMissions: false,
+      activePack: pack,
+      packActIndex: 0,
+      packResults: [],
+      packHealth: getInitialHealth(),
+      packXpEarned: 0,
+      packPhase: 'briefing',
+      phase: 'playing',
+      lastResult: null,
+    }))
+  }, [])
+
+  const handlePackBegin = useCallback(() => {
+    setGame(prev => {
+      const act  = prev.activePack.acts[0]
+      const used = prev.packResults.map(r => r.caseId)
+      const nextCase = pickPackCase(act, used, prev.profile.cooldownIds, prev.profile.role || 'ceo')
+      return {
+        ...prev,
+        packPhase: 'playing',
+        currentCase: nextCase,
+        phase: 'playing',
+        lastResult: null,
+        caseStartTime: Date.now(),
+      }
+    })
+  }, [])
+
+  const handlePackNextAct = useCallback(() => {
+    setGame(prev => {
+      const newActIndex = prev.packActIndex + 1
+      const act  = prev.activePack.acts[newActIndex]
+      const used = prev.packResults.map(r => r.caseId)
+      const nextCase = pickPackCase(act, used, prev.profile.cooldownIds, prev.profile.role || 'ceo')
+      return {
+        ...prev,
+        packActIndex: newActIndex,
+        packPhase: 'playing',
+        currentCase: nextCase,
+        phase: 'playing',
+        lastResult: null,
+        caseStartTime: Date.now(),
+      }
+    })
+  }, [])
+
+  const handlePackDone = useCallback(() => {
+    // Save pack completion to profile
+    setGame(prev => {
+      const pack = prev.activePack
+      const correct = prev.packResults.filter(r => r.isCorrect).length
+      const total   = prev.packResults.length
+      const existing = prev.profile.packCompletions?.[pack.id] || { count: 0, bestCorrect: 0, bestTotal: 0 }
+      const isBetter = !existing.bestTotal || (correct / total) > (existing.bestCorrect / existing.bestTotal)
+      const updatedCompletions = {
+        ...(prev.profile.packCompletions || {}),
+        [pack.id]: {
+          count: existing.count + 1,
+          bestCorrect: isBetter ? correct : existing.bestCorrect,
+          bestTotal:   isBetter ? total   : existing.bestTotal,
+          lastPlayedAt: Date.now(),
+        },
+      }
+      const updatedProfile = { ...prev.profile, packCompletions: updatedCompletions }
+      saveProfile(updatedProfile)
+      const level = getLevelInfo(updatedProfile.totalXP).current.level
+      return {
+        ...prev,
+        profile: updatedProfile,
+        activePack: null,
+        packActIndex: 0,
+        packResults: [],
+        packHealth: null,
+        packXpEarned: 0,
+        packPhase: 'playing',
+        phase: 'playing',
+        currentCase: pickNextCase(
+          updatedProfile.cooldownIds,
+          level,
+          updatedProfile.role || 'ceo',
+          null,
+          null,
+          updatedProfile.reviewQueue || [],
+        ),
+        lastResult: null,
+        sessionCases: [],   // fresh session after pack
+      }
+    })
+  }, [])
+
+  const handlePackCancel = useCallback(() => {
+    setGame(prev => {
+      const level = getLevelInfo(prev.profile.totalXP).current.level
+      return {
+        ...prev,
+        activePack: null,
+        packActIndex: 0,
+        packResults: [],
+        packHealth: null,
+        packXpEarned: 0,
+        packPhase: 'playing',
+        phase: 'playing',
+        currentCase: pickNextCase(
+          prev.profile.cooldownIds,
+          level,
+          prev.profile.role || 'ceo',
+          null,
+          null,
+          prev.profile.reviewQueue || [],
+        ),
+        lastResult: null,
+      }
+    })
+  }, [])
+
+  // ─── Session debrief ─────────────────────────────────────────────────────
+
+  const handleDismissDebrief = useCallback(() => setGame(p => ({ ...p, showDebrief: false })), [])
+
+  const handleEndSession = useCallback(() => {
+    setGame(prev => {
+      const level = getLevelInfo(prev.profile.totalXP).current.level
+      // Reset session stats on the profile and return to play
+      const updatedProfile = {
+        ...prev.profile,
+        sessionStats: { correct: 0, wrong: 0, xpEarned: 0 },
+      }
+      saveProfile(updatedProfile)
+      return {
+        ...prev,
+        profile: updatedProfile,
+        showDebrief: false,
+        sessionCases: [],
+        phase: 'playing',
+        currentCase: pickNextCase(
+          updatedProfile.cooldownIds,
+          level,
+          updatedProfile.role || 'ceo',
+          null,
+          null,
+          updatedProfile.reviewQueue || [],
+        ),
+        lastResult: null,
       }
     })
   }, [])
@@ -335,11 +567,22 @@ export default function App() {
 
   const { profile, currentCase, phase, lastResult, leveledUpTo, prestigedTo, pendingAchievement,
     weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
-    showSettings, isDaily, isRetry } = game
+    showSettings, showMissions, showDebrief, isDaily, isRetry,
+    activePack, packPhase, packActIndex, packResults, packHealth, packXpEarned, sessionCases } = game
 
   const dailyAvailable    = !isDailyCompleted(profile)
   const activeCase        = phase === 'playing' ? currentCase : lastResult?.caseData
   const activeCategoryColor = CATEGORY_COLORS[activeCase?.category] || '#0066cc'
+
+  // Pack-mode derived values
+  const inPackPlay      = !!activePack && packPhase === 'playing'
+  const packAct         = inPackPlay ? activePack?.acts[packActIndex] : null
+  const isCurrentReview = !inPackPlay && !!(currentCase && (profile.reviewQueue || []).includes(currentCase.id))
+  const packNextLabel   = activePack
+    ? (packActIndex >= (activePack.acts.length - 1) ? 'See Mission Outcome →' : 'Continue Mission →')
+    : 'Next Case →'
+  // Modals that should suppress keyboard shortcuts in the game
+  const anyModalOpen = showLeaderboard || showAchievements || showHistory || showAnalytics || showSettings || showMissions || showDebrief
 
   return (
     <div className="min-h-screen relative overflow-x-hidden" style={{ background: 'rgb(7 15 28)' }}>
@@ -378,6 +621,7 @@ export default function App() {
         onAnalytics={() => setGame(p => ({ ...p, showAnalytics: true }))}
         onDailyChallenge={handleDailyChallenge}
         dailyAvailable={dailyAvailable}
+        onMissions={handleOpenMissions}
         onSettings={handleOpenSettings}
         sfxMuted={sfxMuted}
         onToggleMute={handleToggleMute}
@@ -386,8 +630,8 @@ export default function App() {
       <main className="max-w-4xl mx-auto px-4 py-6 grid lg:grid-cols-[1fr_220px] gap-6 items-start">
         {/* Main play area */}
         <div className="min-w-0 space-y-3">
-          {/* Daily challenge banner */}
-          {dailyAvailable && phase === 'playing' && !isDaily && (
+          {/* Daily challenge banner — hidden during pack missions */}
+          {dailyAvailable && phase === 'playing' && !isDaily && !activePack && (
             <div
               className="rounded-2xl border border-gold-500/25 bg-gold-500/6 px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-gold-500/10 transition-colors"
               onClick={handleDailyChallenge}
@@ -437,22 +681,63 @@ export default function App() {
             }
           >
             <AnimatePresence mode="wait">
-              {phase === 'playing' && currentCase && (
+              {/* ── Pack: Mission Briefing ──────────────────────────────── */}
+              {activePack && packPhase === 'briefing' && (
+                <PackBriefing
+                  key="pack-briefing"
+                  pack={activePack}
+                  onBegin={handlePackBegin}
+                  onCancel={handlePackCancel}
+                />
+              )}
+
+              {/* ── Pack: Between-act Bridge ────────────────────────────── */}
+              {activePack && packPhase === 'bridge' && (
+                <PackBridge
+                  key="pack-bridge"
+                  pack={activePack}
+                  actIndex={packActIndex}
+                  lastResult={lastResult}
+                  packHealth={packHealth}
+                  onNext={handlePackNextAct}
+                />
+              )}
+
+              {/* ── Pack: Mission Outcome ───────────────────────────────── */}
+              {activePack && packPhase === 'outcome' && (
+                <PackOutcome
+                  key="pack-outcome"
+                  pack={activePack}
+                  packResults={packResults}
+                  packHealth={packHealth}
+                  xpEarned={packXpEarned}
+                  onDone={handlePackDone}
+                />
+              )}
+
+              {/* ── Normal / Pack-playing: Case card ───────────────────── */}
+              {(!activePack || packPhase === 'playing') && phase === 'playing' && currentCase && (
                 <CaseCard
                   key={currentCase.id + (isRetry ? '-retry' : '') + (isDaily ? '-daily' : '')}
                   caseData={currentCase}
                   onAnswer={isDaily ? handleDailyAnswer : handleAnswer}
                   isDaily={isDaily}
                   isRetry={isRetry}
-                  keyboardActive={!showLeaderboard && !showAchievements && !showHistory && !showAnalytics && !showSettings}
+                  isReview={isCurrentReview}
+                  packContext={packAct?.narrative || null}
+                  packActLabel={packAct ? `Act ${packActIndex + 1} of ${activePack.acts.length} · ${packAct.category}` : null}
+                  keyboardActive={!anyModalOpen}
                 />
               )}
-              {phase === 'result' && lastResult && (
+
+              {/* ── Normal / Pack-playing: Result panel ────────────────── */}
+              {(!activePack || packPhase === 'playing') && phase === 'result' && lastResult && (
                 <ResultPanel
                   key="result"
                   result={lastResult}
                   onNext={handleNext}
                   onRetry={handleRetry}
+                  nextLabel={packNextLabel}
                 />
               )}
             </AnimatePresence>
@@ -529,6 +814,30 @@ export default function App() {
       {showSettings && (
         <SettingsPanel onClose={() => setGame(p => ({ ...p, showSettings: false }))} />
       )}
+
+      {/* Mission select modal */}
+      <AnimatePresence>
+        {showMissions && (
+          <PackSelect
+            profile={profile}
+            onStart={handleStartPack}
+            onClose={handleCloseMissions}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Session debrief modal — fires every 10 cases */}
+      <AnimatePresence>
+        {showDebrief && (
+          <SessionDebrief
+            sessionCases={sessionCases}
+            profile={profile}
+            onContinue={handleDismissDebrief}
+            onEnd={handleEndSession}
+          />
+        )}
+      </AnimatePresence>
+
       </div>{/* end content-above-glow wrapper */}
     </div>
   )

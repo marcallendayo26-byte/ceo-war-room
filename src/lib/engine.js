@@ -161,7 +161,7 @@ export function calcXP(isCorrect, difficulty, streak, isRetry = false, isDaily =
 
 // ─── Weighted random case selection ────────────────────────────────────────
 
-export function pickNextCase(cooldownIds, currentLevel, role = 'ceo', excludeId = null, categoryFilter = null) {
+export function pickNextCase(cooldownIds, currentLevel, role = 'ceo', excludeId = null, categoryFilter = null, reviewQueue = []) {
   const CASES = getCasePool(role)
   let pool = excludeId ? CASES.filter(c => c.id !== excludeId) : CASES
   if (categoryFilter) {
@@ -169,9 +169,17 @@ export function pickNextCase(cooldownIds, currentLevel, role = 'ceo', excludeId 
     if (narrowed.length > 0) pool = narrowed   // fall back to full pool if category has no cases
   }
 
+  // ── Spaced repetition: 35 % chance to surface a review case ─────────────
+  // Only applies when not drilling a specific category.
+  if (!categoryFilter && reviewQueue.length > 0 && Math.random() < 0.35) {
+    const caseMap = new Map(CASES.map(c => [c.id, c]))
+    const reviewable = reviewQueue.map(id => caseMap.get(id)).filter(Boolean)
+    if (reviewable.length > 0) {
+      return reviewable[Math.floor(Math.random() * reviewable.length)]
+    }
+  }
+
   // Dynamic cooldown: suppress the most-recently-seen 60% of the pool.
-  // This guarantees a user must work through ~40% of cases before seeing
-  // any given case again — much better than a fixed window of 15.
   const effectiveCooldownSize = Math.floor(pool.length * 0.6)
   const activeCooldown = new Set((cooldownIds || []).slice(0, effectiveCooldownSize))
 
@@ -187,6 +195,52 @@ export function pickNextCase(cooldownIds, currentLevel, role = 'ceo', excludeId 
   })
 
   const total = weights.reduce((sum, { w }) => sum + w, 0)
+  let rand = Math.random() * total
+  for (const { c, w } of weights) {
+    rand -= w
+    if (rand <= 0) return c
+  }
+  return weights[weights.length - 1].c
+}
+
+// ─── Review queue helpers ──────────────────────────────────────────────────
+
+// Add a case to the review queue (wrong answers land here).
+// Capped at 20; prevents duplicates; most-recent first.
+export function addToReviewQueue(queue, caseId) {
+  return [caseId, ...(queue || []).filter(id => id !== caseId)].slice(0, 20)
+}
+
+// Remove a case from the review queue (answered correctly).
+export function removeFromReviewQueue(queue, caseId) {
+  return (queue || []).filter(id => id !== caseId)
+}
+
+// ─── Pack case picker ──────────────────────────────────────────────────────
+
+// Pick a case for a specific pack act, avoiding already-played cases.
+export function pickPackCase(act, usedCaseIds, cooldownIds, role) {
+  const CASES = getCasePool(role)
+  const usedSet = new Set(usedCaseIds || [])
+
+  let pool = CASES.filter(c => c.category === act.category && !usedSet.has(c.id))
+  if (act.difficulty) pool = pool.filter(c => c.difficulty === act.difficulty)
+
+  // Graceful fallback: relax difficulty, then category
+  if (pool.length === 0) {
+    pool = CASES.filter(c => c.category === act.category && !usedSet.has(c.id))
+  }
+  if (pool.length === 0) {
+    pool = CASES.filter(c => c.category === act.category)
+  }
+  if (pool.length === 0) {
+    pool = CASES  // last resort
+  }
+
+  // Prefer non-cooldown cases
+  const cooldownSet = new Set(cooldownIds || [])
+  const weights = pool.map(c => ({ c, w: cooldownSet.has(c.id) ? 0.1 : 1.0 }))
+  const total = weights.reduce((s, { w }) => s + w, 0)
   let rand = Math.random() * total
   for (const { c, w } of weights) {
     rand -= w

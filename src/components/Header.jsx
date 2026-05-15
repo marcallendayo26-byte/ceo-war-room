@@ -1,4 +1,4 @@
-import { BarChart2, ClipboardList, Award, Trophy, CalendarDays, Settings, Volume2, VolumeX } from 'lucide-react'
+import { BarChart2, ClipboardList, Award, Trophy, CalendarDays, Settings, Volume2, VolumeX, Swords } from 'lucide-react'
 import { getLevelInfo } from '../lib/engine'
 import { getProfile as loadProfile } from '../lib/storage'
 
@@ -19,6 +19,7 @@ export default function Header({
   profile, onSwitchProfile,
   onLeaderboard, onAchievements, onHistory, onAnalytics,
   onDailyChallenge, dailyAvailable,
+  onMissions,
   onSettings,
   sfxMuted, onToggleMute,
 }) {
@@ -87,6 +88,7 @@ export default function Header({
               </button>
             )}
 
+            <button onClick={onMissions}     {...iconBtn('Mission Mode')}><Swords      size={15} /></button>
             <button onClick={onAnalytics}    {...iconBtn('Analytics')}><BarChart2    size={15} /></button>
             <button onClick={onHistory}      {...iconBtn('Case History')}><ClipboardList size={15} /></button>
             <button onClick={onAchievements} {...iconBtn('Achievements')}><Award        size={15} /></button>

@@ -29,7 +29,7 @@ const DIFFICULTY_ATMO = {
 
 const KEY_MAP = { a: 0, b: 1, c: 2, d: 3 }
 
-export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false, keyboardActive = true }) {
+export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry = false, isReview = false, packContext = null, packActLabel = null, keyboardActive = true }) {
   const [selected, setSelected]   = useState(null)
   const [thinking, setThinking]   = useState(false)
 
@@ -97,6 +97,23 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
       {/* ── Difficulty accent line — top ────────────────────────────────── */}
       <div style={{ height: 2, background: atm.accent, opacity: 0.75, flexShrink: 0 }} />
 
+      {/* ── Pack context strip ──────────────────────────────────────────── */}
+      {packContext && (
+        <div className="px-5 pt-4 pb-0 relative">
+          <div
+            className="rounded-xl border px-3.5 py-2.5 mb-1"
+            style={{ borderColor: `${atm.accent}25`, background: `${atm.accent}06` }}
+          >
+            {packActLabel && (
+              <p className="text-[9px] font-bold uppercase tracking-widest mb-1" style={{ color: atm.accent }}>
+                {packActLabel}
+              </p>
+            )}
+            <p className="text-slate-400 text-[11px] leading-relaxed">{packContext}</p>
+          </div>
+        </div>
+      )}
+
       {/* ── Case header ─────────────────────────────────────────────────── */}
       <div className="px-6 pt-5 pb-4 border-b border-white/6 relative">
         <div className="flex items-center gap-2 mb-3 flex-wrap">
@@ -120,6 +137,11 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
           {isRetry && (
             <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/8 text-slate-400">
               ↩ Retry · ½ XP
+            </span>
+          )}
+          {isReview && (
+            <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-400">
+              📌 Review
             </span>
           )}
         </div>

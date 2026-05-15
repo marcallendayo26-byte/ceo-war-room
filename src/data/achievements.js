@@ -404,6 +404,38 @@ export const ACHIEVEMENTS = [
     check: p => (p.categoryStats?.['Ecosystem Innovation']?.correct || 0) >= 5,
   },
 
+  // ── Scenario Packs ────────────────────────────────────────────────────────
+  {
+    id: 'pack_complete',
+    title: 'Mission Complete',
+    desc: 'Finish any scenario pack.',
+    icon: '🎖️',
+    check: p => Object.keys(p.packCompletions || {}).length >= 1,
+  },
+  {
+    id: 'pack_ace',
+    title: 'Mission Aced',
+    desc: 'Finish a scenario pack with 85%+ accuracy.',
+    icon: '⭐',
+    check: p => Object.values(p.packCompletions || {}).some(
+      c => c.bestTotal >= 5 && c.bestCorrect / c.bestTotal >= 0.85
+    ),
+  },
+  {
+    id: 'pack_all_three',
+    title: 'War Room Veteran',
+    desc: 'Complete all three scenario packs.',
+    icon: '🏅',
+    check: p => Object.keys(p.packCompletions || {}).length >= 3,
+  },
+  {
+    id: 'review_cleared',
+    title: 'Pattern Broken',
+    desc: 'Correct a wrong answer via spaced repetition review.',
+    icon: '🔄',
+    check: p => (p.reviewCleared || 0) >= 1,
+  },
+
   // ── Prestige ───────────────────────────────────────────────────────────────
   {
     id: 'prestige_1',

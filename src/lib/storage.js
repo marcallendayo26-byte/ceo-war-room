@@ -133,7 +133,9 @@ export function buildNewProfile(id, name, color, role = 'ceo') {
     categoryStats: {},      // { [category]: { correct, total } }
     dailyChallenge: null,   // { date, caseId, completed, correct }
     rivalId: null,
-    caseHistory: [],        // last 50 entries, oldest first
+    caseHistory: [],        // last 200 entries, oldest first
     sessionStats: { correct: 0, wrong: 0, xpEarned: 0 },
+    reviewQueue: [],        // case IDs that need re-drilling (spaced repetition)
+    packCompletions: {},    // { [packId]: { count, bestCorrect, bestTotal, lastPlayedAt } }
   }
 }
