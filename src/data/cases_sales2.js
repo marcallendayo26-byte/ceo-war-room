@@ -75,7 +75,7 @@ export const CASES_SALES2 = [
     scenario: "A prospect says: 'Your competitor is offering the same thing for 30% less.' You know your product is differentiated but the rep hasn't verified this claim. What's your immediate response?",
     quote: "Unverified competitive claims are leverage attempts, not facts — treat them as such.",
     options: [
-      "Match the competitor's price immediately — you can't afford to lose on price.",
+      "Offer to match the competitor's price if the prospect can provide their formal quote in writing within 48 hours.",
       "Offer to do a feature-by-feature comparison document to prove your value.",
       "Dismiss the claim: 'Our solution is in a different category — that comparison isn't fair to either vendor.'",
       "Ask for clarification: 'I'd want to make sure we're comparing apples to apples — what specifically are they including for that price?'"
@@ -86,7 +86,7 @@ export const CASES_SALES2 = [
     framework: "Competitive Handling: validate before conceding — most price claims don't survive scrutiny.",
     principle: "A number without context is a negotiation tactic, not a fact.",
     traps: [
-      "Immediate price match — you accepted their framing without question",
+      "Demanding the written quote signals you'll match any claimed price, inviting competitors to coach the prospect on what to claim — and even a verified quote may exclude implementation or support costs that reframe the comparison",
       "Dismissing the comparison as unfair — sounds defensive, not confident",
       "Comparison document as a reflex — useful eventually but doesn't answer the question of what's actually included"
     ]
@@ -147,7 +147,7 @@ export const CASES_SALES2 = [
       "Submit your most aggressive possible discount to win on price.",
       "Submit your current offer unchanged — if they want you, they'll choose you.",
       "Ask for a final conversation to understand their evaluation criteria before submitting your best offer.",
-      "Tell them you don't participate in competitive bidding situations."
+      "Submit your current pricing unchanged but add a detailed implementation timeline and named CSM commitment that the competitor cannot easily replicate."
     ],
     correct: 2,
     consequences: {"profitability":7,"growth":6,"customerTrust":5},
@@ -157,7 +157,7 @@ export const CASES_SALES2 = [
     traps: [
       "Maximum discount as default best-and-final — assumes price is the decision and often it isn't",
       "Holding firm without any differentiation — risks looking inflexible when competitors have moved",
-      "Refusing to participate in competitive process — almost always the losing position"
+      "Adding implementation specifics without first asking what criteria will decide the winner means you may be elaborating on dimensions that matter less than price or a feature you haven't addressed"
     ]
   },
   {
@@ -215,7 +215,7 @@ export const CASES_SALES2 = [
     options: [
       "Offer a stripped-down version of the product that fits the $150K budget.",
       "Propose a phased deal: $150K for core modules this year with a contractually committed expansion to $210K in the next fiscal year.",
-      "Tell them to come back next fiscal year when they have a bigger budget.",
+      "Propose starting with the highest-ROI module only at $150K, with an optional expansion add-on at next fiscal year — no contractual commitment on the second year.",
       "Offer a $60K discount to fit within their budget and capture the deal this year."
     ],
     correct: 1,
@@ -225,7 +225,7 @@ export const CASES_SALES2 = [
     principle: "When the budget doesn't fit, restructure the deal, not the product.",
     traps: [
       "Reduced scope deal — underdelivers and reduces reference value",
-      "Deferring to next year — the competitor will be in that gap",
+      "No contractual expansion commitment means the prospect restarts a full vendor evaluation next year — you've lost renewal leverage and the competitor enters the gap at budget reset",
       "Discount as a workaround for a cash flow problem — solves the wrong problem, destroys margin"
     ]
   },
@@ -261,7 +261,7 @@ export const CASES_SALES2 = [
     options: [
       "Offer your lowest-tier package to lower the barrier immediately.",
       "Launch into your ROI pitch to demonstrate the solution will pay for itself.",
-      "Tell them you understand and schedule a follow-up for next quarter when budget may be available.",
+      "Immediately transition to a ROI-focused slide deck to demonstrate that the solution will pay back within one quarter and effectively self-funds.",
       "Acknowledge it and ask: 'Is that because budget is genuinely frozen, or is it that we haven't yet made the case for why this should be a priority?'"
     ],
     correct: 3,
@@ -272,7 +272,7 @@ export const CASES_SALES2 = [
     traps: [
       "Treating it as a real budget constraint without testing that assumption",
       "Next-quarter follow-up without understanding why they're even in the meeting",
-      "Immediate ROI pitch before establishing any rapport or understanding of their situation"
+      "ROI slide before diagnosing what the objection actually means — if it's a priority signal, financials don't resolve it; you've pitched to someone who wasn't ready to receive it"
     ]
   },
   {
@@ -328,7 +328,7 @@ export const CASES_SALES2 = [
     scenario: "A prospect says: 'Your solution is interesting but we're not ready to make a decision right now. Let's reconnect in 6 months.' It's a gentle brush-off. What do you do?",
     quote: "'Not now' with no context is 'no' with a polite delay attached.",
     options: [
-      "Thank them and add a calendar reminder for 6 months out.",
+      "Ask if you can send a monthly digest of relevant industry benchmarks and product updates to keep the conversation warm until they're ready.",
       "Push back: 'Six months is a long time — what's holding you back today?'",
       "Ask what would need to be true in 6 months for a decision to be possible.",
       "Offer to stay in touch monthly with relevant content until they're ready."
@@ -339,7 +339,7 @@ export const CASES_SALES2 = [
     framework: "Timeline Objection: every deferral should have a named reason, or it isn't a timeline.",
     principle: "'Not now' without a reason is 'not ever' said slowly.",
     traps: [
-      "Calendar + forget — passive and turns the deal cold",
+      "Content nurture without qualifying the 6-month reason keeps the deal artificially warm — you spend time sending digests to a prospect who has no real intention to revisit, while the actual blocker goes undiagnosed",
       "Pushback framed as a challenge — creates pressure and resistance rather than dialogue",
       "Monthly content without a qualified follow-up plan — nurture without purpose"
     ]
@@ -351,7 +351,7 @@ export const CASES_SALES2 = [
     scenario: "A prospect who was very engaged through discovery and demo suddenly goes silent after you send the initial pricing email. Two follow-up emails and a voicemail have gone unanswered over 10 days. What's most likely happening and what do you do?",
     quote: "Silence after a pricing email is a message — it just isn't in words yet.",
     options: [
-      "Stop all outreach for two weeks, then re-engage with new product content to rebuild interest.",
+      "Send a revised summary email recapping the key value points from the demo, with a note that you're following up on the pricing conversation and want to make sure the numbers were clear.",
       "Call their cell phone repeatedly until you get a response — silence after engagement demands escalation.",
       "Send a revised pricing email with a discount, assuming price was the trigger for the silence.",
       "Reach out with a low-pressure, honest message: 'If something in the pricing didn't land right, or if priorities have shifted internally, I'd genuinely rather know than guess.'"
@@ -362,7 +362,7 @@ export const CASES_SALES2 = [
     framework: "Post-Pricing Silence: diagnose before you react — silence has a reason.",
     principle: "Give prospects permission to say the hard thing. Most of them want to.",
     traps: [
-      "Two-week pause — turns an recoverable silence into a cold deal",
+      "A value recap email is still the same channel that isn't working — it assumes they went quiet because they forgot your pitch, when the actual trigger was the price itself or an internal shift",
       "Aggressive follow-up — creates resentment when what they need is an easy exit or an honest conversation",
       "Discount into silence — may solve the wrong problem entirely and signals panic"
     ]
@@ -377,7 +377,7 @@ export const CASES_SALES2 = [
       "Ask what their current solution covers and where they're most satisfied with it before saying anything else.",
       "Immediately share your three key differentiators against the most likely competitors in this space.",
       "Ask who the vendor is so you can explain precisely why you're a stronger solution.",
-      "Thank them for their time and end the call — competing with entrenched vendors rarely succeeds."
+      "Ask what they value most about their current vendor and use that answer to frame which of your features directly exceed that area."
     ],
     correct: 0,
     consequences: {"customerTrust":7,"growth":5,"executionRisk":-3},
@@ -387,7 +387,7 @@ export const CASES_SALES2 = [
     traps: [
       "Immediate differentiation — you're competing with a shadow, not the actual solution they use",
       "Naming the competitor and rebutting — puts the prospect in a defensive posture for their vendor",
-      "Ending the call — an incumbent vendor and a happy customer are two different things"
+      "Asking what they value most and immediately pivoting to your features positions you as a vendor pitching against their current solution before you understand what that solution actually covers — you risk competing on dimensions that aren't relevant to their real gaps"
     ]
   },
   {
@@ -420,7 +420,7 @@ export const CASES_SALES2 = [
     scenario: "Near the end of a discovery call, a prospect says: 'This sounds interesting, but I'm not really the decision-maker — you should probably talk to my VP.' What's your response?",
     quote: "Every stakeholder in a complex deal shapes the outcome — even the ones who say they don't.",
     options: [
-      "Thank them and ask for the VP's email directly so you can redirect your primary efforts.",
+      "Set up a separate discovery call with the VP directly, using the information from this conversation as context for your outreach.",
       "Continue the discovery with them fully — they've shown clear interest and may have more influence than they're admitting.",
       "Ask about their role in the evaluation and what would help you most before you connect with the VP.",
       "Ask them to set up a three-way call with the VP immediately so you can brief both stakeholders at once."
@@ -431,7 +431,7 @@ export const CASES_SALES2 = [
     framework: "Multi-Stakeholder Navigation: every stakeholder tells you something about the deal.",
     principle: "The person who tells you they're not the decision-maker is almost always still important.",
     traps: [
-      "Immediate VP redirect — you've just sidelined someone who was trying to help you",
+      "Going directly to the VP without your internal contact's knowledge signals that you see them as a gatekeeper rather than a partner — they're unlikely to advocate for you or facilitate access to the resources you'll need during the evaluation",
       "Continuing with them as if nothing changed — you need to understand the org and they've given you a signal",
       "Immediate three-way call request — premature before you understand who this person is and what the VP needs to hear"
     ]
@@ -444,7 +444,7 @@ export const CASES_SALES2 = [
     quote: "A price objection built on the wrong information isn't a real objection.",
     options: [
       "Offer a discount on the enterprise package to make it more accessible for their size.",
-      "Agree that the enterprise solution may be more than they need and suggest they revisit when they've grown.",
+      "Offer to schedule a detailed pricing walkthrough call with their finance team to break down the enterprise package line by line and identify which components they'd actually use.",
       "Ask for their actual budget range before sharing any additional pricing information.",
       "Acknowledge the concern and introduce the tiered pricing options that actually apply to a company their size — they've been working from the wrong sheet."
     ],
@@ -455,7 +455,7 @@ export const CASES_SALES2 = [
     principle: "Fix the information before you negotiate the price.",
     traps: [
       "Enterprise discount — you've just reduced margin on a product they don't need instead of showing them the right one",
-      "Deferring to future growth — loses the deal and offends the prospect",
+      "Scheduling a finance walkthrough on the wrong pricing tier adds a meeting and delays the obvious fix — the prospect now has more time to disengage and the objection sits unresolved for another week",
       "Budget question before correction — adds friction when the solution is simply showing the right price tier"
     ]
   },

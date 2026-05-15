@@ -7,7 +7,7 @@ export const CASES_CSM2 = [
     quote: "A health score that drops silently is a churn signal that's asking to be heard.",
     options: [
       "Call your primary contact immediately and ask directly: 'I've noticed some changes in your engagement — is everything okay with the project?'",
-      "Send a check-in email and see if they respond before taking further action.",
+      "Send a detailed check-in email summarizing the health signals you've observed and asking them to schedule a call to discuss — give them a week to respond before following up.",
       "Escalate to your VP and have them call the economic buyer to check in.",
       "Resolve the support ticket first, then reach out — fix the visible problem before the call."
     ],
@@ -17,7 +17,7 @@ export const CASES_CSM2 = [
     framework: "At-Risk Account Response: multi-signal health drops require phone calls, not emails.",
     principle: "The conversation you avoid with an at-risk account is the conversation you'll have at renewal — when it's too late.",
     traps: [
-      "Email check-in — already tried that (they ignored 3 QBR invites); email gets ignored too",
+      "Detailed health-signal email — you're surfacing the alarming data in writing before having a conversation, which gives a disengaged contact a chance to go further dark or craft a defensive response rather than having an honest exchange",
       "Executive escalation before your own outreach — skips your ownership of the relationship",
       "Support ticket first — fix it in parallel, but the relationship conversation can't wait"
     ]
@@ -32,7 +32,7 @@ export const CASES_CSM2 = [
       "Immediately offer a discount to pre-empt the competitive evaluation.",
       "Ask what's driving the desire to evaluate — and listen deeply before proposing any action.",
       "Propose a formal executive business review to reinforce value delivered since the start.",
-      "Accept it as their right and support a fair evaluation process on your merits."
+      "Prepare a detailed competitive battlecard comparing your platform against likely alternatives and share it proactively so the customer is evaluating on accurate information."
     ],
     correct: 1,
     consequences: {"customerTrust":9,"executionRisk":-8,"growth":4},
@@ -42,7 +42,7 @@ export const CASES_CSM2 = [
     traps: [
       "Immediate discount — rewards stated intent to shop around, signals you were overpriced",
       "EBR as the first move — leading with value demonstration before understanding the concern misses the root cause",
-      "Pure acceptance — not engaging proactively on a clear retention risk signal"
+      "Competitive battlecard before discovery — you're assuming price and features are the decision criteria when the real driver may be a relationship gap or a product fit issue that no battlecard addresses"
     ]
   },
   {
@@ -53,7 +53,7 @@ export const CASES_CSM2 = [
     quote: "A gap between what was promised and what was delivered is a company problem — own it fully.",
     options: [
       "Explain the miscommunication to the customer and point to the sales process as the cause.",
-      "Wait for the product update meeting before talking to the customer — you may have news.",
+      "Contact the customer today to acknowledge the escalation and let them know you're actively investigating — then wait for the product update meeting before sharing details so you have something concrete to offer.",
       "Acknowledge the gap fully to the customer, apologize on behalf of the company, share what you can commit to, and escalate internally to prevent it from happening again.",
       "Offer a credit or discount as compensation for the missing feature."
     ],
@@ -64,7 +64,7 @@ export const CASES_CSM2 = [
     principle: "Who created the problem is internal. Who owns solving it is always you.",
     traps: [
       "Pointing to sales as the cause — the customer doesn't care about your org chart",
-      "Waiting for product news — the relationship conversation can't wait for product timelines",
+      "Acknowledge-then-wait approach — the customer interprets 'I'm investigating, more soon' as the beginning of a delay pattern; without the acknowledgment of the root cause and an apology, you've bought time but not trust",
       "Discount as the first response — skips the acknowledgment that's actually what rebuilds trust"
     ]
   },
@@ -77,7 +77,7 @@ export const CASES_CSM2 = [
     options: [
       "Spend equal time on all 7 — every at-risk account deserves equal attention.",
       "Address the ones with the most visible complaints first — squeaky wheel gets the grease.",
-      "Ask your manager for additional CSM support before taking any action.",
+      "Request a team meeting with your manager to review all 7 accounts together, document the risk factors for each, and build a joint prioritization framework before committing to any outreach.",
       "Prioritize by ARR and strategic value — focus deep work on the highest-value accounts first."
     ],
     correct: 3,
@@ -87,7 +87,7 @@ export const CASES_CSM2 = [
     principle: "Not all churn is equal. Prevent the churn that matters most, most deeply.",
     traps: [
       "Equal effort across 7 — diluted attention helps nobody enough to actually turn",
-      "Requesting more resources before triaging — you need to know where the resources would go before asking",
+      "Planning meeting before outreach — a 90-minute framework discussion while 7 accounts drift further at-risk is prioritizing process over urgency; you can triage and begin outreach today, then align with your manager",
       "Squeaky wheel prioritization — rewards the loudest, not the most strategically important"
     ]
   },
@@ -99,9 +99,9 @@ export const CASES_CSM2 = [
     quote: "When your champion leaves, your account relationship leaves with them unless you act immediately.",
     options: [
       "Ask your departing champion for an introduction to the new contact and any handover context before they leave.",
-      "Send a welcome email to the new contact and wait for them to respond.",
+      "Send the new contact a detailed welcome email with a summary of the account history, key milestones, and a proposed agenda for your first call — give them 3 business days to respond before following up.",
       "Escalate to the economic buyer directly — don't wait for the new contact to settle in.",
-      "Focus on the renewal process mechanically — new contacts will engage when there are contracts to review."
+      "Forward the renewal documents to the new contact with a cover note explaining the timeline and key terms — let the contract review process create the natural first touchpoint for the relationship."
     ],
     correct: 0,
     consequences: {"customerTrust":9,"executionRisk":-9,"strategicPosition":6},
@@ -109,9 +109,9 @@ export const CASES_CSM2 = [
     framework: "Champion Transition: leverage the departing relationship to build the new one.",
     principle: "Your best advocate's last gift to you is their introduction.",
     traps: [
-      "Cold welcome email — the new contact has no context, no relationship, and no reason to prioritize you",
+      "Detailed welcome email without warm intro — you're asking a stranger to self-onboard into a complex account history with no advocate; without the departing champion's endorsement, the email reads as vendor outreach and gets deprioritized",
       "Direct executive outreach before warm intro attempt — potentially impolitic if the executive wasn't in the previous relationship",
-      "Process-only renewal approach — contract review with no relationship means price is the only conversation"
+      "Contract-as-first-contact — the new contact's first meaningful interaction with you is a document that requires their signature, which positions the relationship as transactional before it's personal"
     ]
   },
   {
@@ -121,7 +121,7 @@ export const CASES_CSM2 = [
     scenario: "Your company's product roadmap just shifted and a feature your customer was counting on for Q3 has been pushed to Q1 next year. The customer has built workflows around the assumption this feature would be available. Their renewal is in Q4. How do you deliver this news?",
     quote: "Bad product news delivered with a plan is survivable. Bad product news delivered late is not.",
     options: [
-      "Wait for the customer to ask about the feature — maybe they won't notice until after renewal.",
+      "Proactively reach out to brief the customer but frame the roadmap shift as a temporary re-sequencing — emphasize that the feature is still committed and ask them to document their specific use case so the product team can prioritize the Q1 build accordingly.",
       "Deliver the news proactively, explain the business impact as you understand it, and present workaround options or interim solutions.",
       "Have your product manager explain the roadmap change directly — it's their decision.",
       "Offer a discount at renewal to offset the roadmap miss."
@@ -132,7 +132,7 @@ export const CASES_CSM2 = [
     framework: "Proactive Delivery: every piece of bad product news has a window where it can be constructively managed.",
     principle: "The news you delay is always worse when it arrives on its own.",
     traps: [
-      "Waiting for them to find out — Q3 discovery + Q4 renewal is the worst possible sequence",
+      "Re-sequencing spin without workaround plan — framing the delay as a 'temporary re-sequencing' without addressing the Q3 workflow impact the customer has already built is transparent minimization; the customer knows they've already committed to this feature and needs a bridge solution, not a messaging reframe",
       "Product manager routing — customer deserves their CSM to own the conversation",
       "Discount-led response — compensation without acknowledgment feels dismissive"
     ]
@@ -193,7 +193,7 @@ export const CASES_CSM2 = [
       "Ask for a 15-minute exit interview to understand the specific dissatisfaction.",
       "Send a brief acknowledgment and ask if there's anything you could have done differently.",
       "Offer a significant discount to try to save the renewal.",
-      "Don't respond — the revenue doesn't justify the time."
+      "Reply to the cancellation email with a brief explanation of pricing rationale and a summary of the value delivered — if the customer doesn't see the ROI, more information may change their mind."
     ],
     correct: 0,
     consequences: {"customerTrust":7,"strategicPosition":5,"growth":3},
@@ -203,7 +203,7 @@ export const CASES_CSM2 = [
     traps: [
       "No response — the customer leaves with an impression that you didn't care, which they'll share",
       "Brief acknowledgment only — respectful but misses the learning opportunity",
-      "Discount offer — likely too small to matter commercially and doesn't address the stated 'not worth the price' concern"
+      "Pricing rationale reply — a customer who has already decided to leave doesn't need to be persuaded they were wrong; unsolicited ROI justification reads as defensive and makes the exit more contentious"
     ]
   },
   {
@@ -213,7 +213,7 @@ export const CASES_CSM2 = [
     scenario: "Your company just had a significant service outage that affected 40% of your customers for 6 hours. Three of your largest accounts are demanding compensation. One is threatening to invoke the SLA breach clause. Your CEO is asking all CSMs to handle this personally. What's your communication approach?",
     quote: "How you respond in a crisis defines the relationship longer than the crisis itself.",
     options: [
-      "Wait for your company's official post-mortem before contacting customers.",
+      "Send a personalized email to each of your affected accounts within the hour acknowledging the outage and promising a follow-up call once the post-mortem is complete — this buys time while keeping communication open.",
       "Call each affected account immediately: acknowledge the outage, explain what happened (with what you know), state what's being done, and offer a specific make-good.",
       "Send a mass email apology from the CEO — centralized communication ensures consistency.",
       "Contact only the three accounts threatening compensation — they're the active risk."
@@ -224,7 +224,7 @@ export const CASES_CSM2 = [
     framework: "Crisis Communication: immediate, personal, honest outreach — then follow up with the full post-mortem.",
     principle: "In a crisis, the speed and sincerity of your communication matters more than the completeness of your information.",
     traps: [
-      "Post-mortem first — customers experience the silence as indifference",
+      "Email-then-call sequencing — an email promising a future call still leaves the customer without a specific make-good for their business impact; enterprise accounts with SLA breach exposure need a direct conversation where you can hear their specific situation and respond to it, not a templated message",
       "Mass email — impersonal and insufficient for enterprise accounts with specific business impact",
       "Active-threat-only outreach — all affected customers deserve proactive contact"
     ]
@@ -236,7 +236,7 @@ export const CASES_CSM2 = [
     scenario: "A customer's CTO sends an angry email to your CEO, CC'ing your VP and you, saying the product is 'fundamentally broken' and they've 'lost confidence in your ability to deliver.' This is the first you're hearing of this level of frustration — your contact hadn't flagged any major issues. What do you do in the first hour?",
     quote: "An executive escalation that bypasses you means your relationship failed before the email was sent.",
     options: [
-      "Let your CEO and VP respond — this is above your level now.",
+      "Draft a detailed briefing document for your CEO and VP summarizing the account history, known issues, and what you're aware of regarding the CTO's concerns — then give your leadership 30 minutes to review before they respond to the thread.",
       "Call your primary contact urgently to understand what prompted the CTO's email before responding.",
       "Immediately reply to the thread: acknowledge the concern, commit to understanding the specifics, and propose a call within 24 hours.",
       "Prepare a comprehensive issue log to demonstrate you've been tracking everything."
@@ -247,7 +247,7 @@ export const CASES_CSM2 = [
     framework: "Escalation Response Protocol: CSM owns the acknowledgment, then the investigation, then the resolution.",
     principle: "Executive escalations don't remove your ownership — they reveal it.",
     traps: [
-      "Waiting for VP/CEO to respond — signals you can't own your own account relationship",
+      "Briefing-first, leadership-response approach — while you're preparing the document the CTO is watching the thread go unanswered; every minute of silence on a CC'd escalation signals that the company isn't taking it seriously, and the CTO sees exactly who is and isn't responding",
       "Calling your contact first without acknowledging the thread — leaves the CTO waiting for a response",
       "Issue log as first action — defensive posture; the customer needs empathy and commitment, not documentation"
     ]
@@ -260,7 +260,7 @@ export const CASES_CSM2 = [
     quote: "Shared responsibility presented honestly is more credible than sole blame assigned strategically.",
     options: [
       "Take full responsibility — it looks better and prevents a difficult attribution conversation.",
-      "Let your VP lead the attribution discussion — this is too sensitive for CSM level.",
+      "Present the attribution as primarily a product bug issue — since the migration warning was technical in nature, the customer's team reasonably may not have understood its urgency, which makes the company more accountable than a shared-fault framing would suggest.",
       "Focus only on what your company will do differently — customers don't respond well to hearing they contributed.",
       "Present the full picture accurately: what your company should have done differently, and what the customer's team could have done differently, with equal candor."
     ],
@@ -272,7 +272,7 @@ export const CASES_CSM2 = [
     traps: [
       "Full unilateral blame — dishonest, sets precedent for similar dynamics, eventually surfaces as false",
       "Sole forward-focus — feels like deflection when the root cause is unacknowledged",
-      "VP-led attribution — you own the account; you need to be capable of leading this conversation"
+      "Tilted-toward-company attribution — absolving the customer of their role in the incident creates a false precedent: they didn't follow a critical migration warning, and a relationship that can't acknowledge that can't have an honest conversation about what each party needs to do differently"
     ]
   },
   {
@@ -283,7 +283,7 @@ export const CASES_CSM2 = [
     quote: "Silence during an escalation is never neutral — it always reads as indifference.",
     options: [
       "Respond within the 2-hour window with what you know, a clear timeline for the full update, and the concrete actions being taken right now.",
-      "Wait for engineering to have the root cause before responding — incomplete information will create more questions.",
+      "Respond to the customer within the 2-hour window with a detailed list of the diagnostic steps your engineering team is currently running — showing the work in progress demonstrates urgency without overpromising a timeline.",
       "Escalate the engineering priority to get a response within 2 hours to meet their demand.",
       "Tell them the 2-hour demand is unrealistic for a proper investigation and ask for 8 hours."
     ],
@@ -293,7 +293,7 @@ export const CASES_CSM2 = [
     framework: "Escalation Communication Cadence: partial updates on schedule beat full answers late.",
     principle: "In an escalation, the most dangerous thing you can do is nothing.",
     traps: [
-      "Waiting for complete information — leaves a 2-hour void that the customer fills with worst-case assumptions",
+      "Diagnostic-steps-only update — listing what engineering is doing without committing to a next-update time or acknowledging the business impact of the delay reads as a technical briefing, not a relationship response; the customer starts their SLA clock regardless of how thorough your process summary is",
       "Engineering escalation as substitute for communication — they need both in parallel",
       "Timeline negotiation before any update — compounds the frustration instead of addressing it"
     ]
@@ -305,7 +305,7 @@ export const CASES_CSM2 = [
     scenario: "Your customer has escalated an issue and it's now resolved to their technical team's satisfaction. But the customer's VP still seems cold in communications. The technical issue is fixed but the relationship seems damaged. What's your follow-up strategy?",
     quote: "Technical resolution is the floor, not the ceiling, of escalation recovery.",
     options: [
-      "The issue is resolved — move on and the relationship will normalize over time.",
+      "Share a detailed written post-mortem with the VP documenting the root cause, every step taken to resolve it, and the process changes implemented — give them the full picture so they can decide whether a call is needed.",
       "Schedule a brief check-in with the VP specifically to acknowledge the disruption, share what you've put in place to prevent recurrence, and ask if there's anything else they need.",
       "Send a detailed post-mortem document to the VP showing all the steps taken.",
       "Have your VP send a personal apology note to restore the executive relationship."
@@ -317,7 +317,7 @@ export const CASES_CSM2 = [
     principle: "Fix the system. Then fix the trust.",
     traps: [
       "Passive normalization — waiting for time to heal the relationship when a 20-minute call would do it now",
-      "Post-mortem document to an executive — the VP doesn't want to read 8 pages; they want to feel heard",
+      "Detailed post-mortem as the primary recovery gesture — a VP who is cold after a technical resolution needs to feel heard, not informed; sending a document puts the emotional labor of interpreting it on them, and 'let me know if you need a call' lets a disengaged executive stay disengaged",
       "VP escalation for relationship repair — appropriate for executive relationship issues, but this one you can own"
     ]
   },
@@ -443,7 +443,7 @@ export const CASES_CSM2 = [
     scenario: "Two months after a significant escalation, the account appears recovered — usage is up, your champion is positive. But you've quietly noticed that the economic buyer has declined the last two QBR invites and stopped attending executive check-ins. What does this signal and what do you do?",
     quote: "The executive who goes quiet after a crisis is more dangerous than the one who stays angry.",
     options: [
-      "Assume everything is fine — usage is up and your champion's positive sentiment is a reliable indicator.",
+      "Brief your champion on the executive's disengagement pattern and ask them to include the economic buyer in the next internal status update — use the champion's proximity to rebuild the executive's involvement organically.",
       "Flag the executive disengagement in your internal health score system and monitor for another 30 days.",
       "Ask your champion to help re-engage the economic buyer and get them back to the QBR.",
       "Send a personal note directly to the economic buyer — not another meeting invite: 'I noticed we haven't connected in a while — I'd value 20 minutes to hear how things are feeling from your perspective and make sure we're aligned on what comes next.'"
@@ -456,7 +456,7 @@ export const CASES_CSM2 = [
     traps: [
       "Champion sentiment as the only signal — champions normalize problems; the executive's behavior is the more important data point",
       "30-day monitoring — the executive may have already made a decision by the time you act",
-      "Champion-facilitated re-engagement — this relationship needs direct repair, not routing through a middle layer"
+      "Champion-proxy re-engagement — asking your champion to maneuver the economic buyer back into a meeting they've already declined twice signals you're unwilling to reach out directly, which makes the eventual outreach feel managed rather than genuine"
     ]
   },
 ]

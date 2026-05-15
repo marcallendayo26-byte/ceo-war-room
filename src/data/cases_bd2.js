@@ -9,7 +9,7 @@ export const CASES_BD2 = [
       "Implement a deal registration system immediately; resolve this specific conflict by having one internal conversation with both parties and assigning a single owner based on actual customer relationship depth.",
       "Award the deal to the direct rep — they have the most recent activity and the reseller should have registered the deal sooner.",
       "Award the deal to the reseller — first introduction takes precedence and they have seniority in the relationship.",
-      "Let both reps compete — market competition produces the best outcome for the customer."
+      "Escalate to the CEO to make the ownership decision — since the complaint reached them directly, they should resolve it."
     ],
     correct: 0,
     consequences: {"customerTrust":15,"teamMorale":5,"executionRisk":-15,"growth":5},
@@ -19,7 +19,7 @@ export const CASES_BD2 = [
     traps: [
       "First-introduction rules without a registration system are unenforceable and resellers will claim every deal they touched.",
       "Siding with direct without investigating relationship depth rewards recency over actual pipeline development.",
-      "Letting both reps compete for the same customer is the single worst outcome — the customer has already told you it damages their trust."
+      "Escalating channel conflict to the CEO sets a precedent that every ownership dispute reaches the top of the org — and still leaves both reps on the account until the CEO rules, which may take days the prospect will notice."
     ]
   },
   {
@@ -32,7 +32,7 @@ export const CASES_BD2 = [
       "Base tiers entirely on trailing 12-month revenue — simple, objective, and directly tied to business outcomes.",
       "Base tiers on a weighted scorecard: revenue (50%), certifications (25%), and customer satisfaction scores from joint accounts (25%).",
       "Base tiers on revenue plus certification completion — this ensures partners who earn Gold are both commercially active and technically competent.",
-      "Let partners self-select their tier with revenue validation — self-selection creates higher engagement."
+      "Base tiers on revenue plus a minimum number of certified deals closed — this ensures Gold partners are both high-revenue and have demonstrated they can close and implement successfully."
     ],
     correct: 1,
     consequences: {"growth":10,"customerTrust":10,"strategicPosition":10,"teamMorale":5},
@@ -42,7 +42,7 @@ export const CASES_BD2 = [
     traps: [
       "Revenue-only tiers create Gold partners who are high-revenue but potentially low-quality — a risk to your brand at the accounts that matter most.",
       "Revenue plus certification is better than revenue alone but misses the customer satisfaction dimension that is most visible post-sale.",
-      "Self-selection creates gaming — partners will claim the highest tier that requires the least incremental work."
+      "Counting certified deals closed rewards volume through the right process but not the quality of the outcome — a partner who closes ten certified deals with poor customer satisfaction scores earns Gold regardless of what their customers experience."
     ]
   },
   {
@@ -55,7 +55,7 @@ export const CASES_BD2 = [
       "Demote immediately to Silver — tier status should reflect current performance, not historical relationship.",
       "Grant the 90-day PIP: two-year track record plus a clear structural cause (team turnover) justifies temporary underperformance.",
       "Grant the 90-day PIP with specific milestones — minimum pipeline generated, new sales hire onboarded, and one deal closed — with monthly check-ins and automatic review at 90 days.",
-      "Suspend the partner agreement entirely and restart fresh after their team is rebuilt."
+      "Grant the 90-day PIP and temporarily waive Gold tier requirements to give the new sales leader time to ramp — tier status should reflect the team they will have, not the team they lost."
     ],
     correct: 2,
     consequences: {"growth":5,"customerTrust":5,"teamMorale":10,"executionRisk":-5},
@@ -65,7 +65,7 @@ export const CASES_BD2 = [
     traps: [
       "Immediate demotion of a two-year Gold partner experiencing a documented structural disruption signals that loyalty is worthless — damaging to your broader partner ecosystem message.",
       "A PIP without milestones gives the partner flexibility but gives you no mechanism to evaluate progress or make a clean decision at 90 days.",
-      "Suspending the agreement entirely when the cause is team turnover, not partner intent, destroys a two-year commercial relationship over a recoverable situation."
+      "Waiving tier requirements during the PIP removes the performance pressure that motivates recovery — a Gold partner who retains Gold status without meeting Gold-level milestones has less incentive to rebuild than one who knows demotion is a real outcome."
     ]
   },
   {
@@ -77,7 +77,7 @@ export const CASES_BD2 = [
     options: [
       "Hire dedicated partner enablement staff — if partners cannot demo, it is a headcount problem.",
       "Have your direct sales team co-present all partner demos until partners are confident — then transition.",
-      "Limit selling to partners who can already demo competently and pause onboarding new resellers.",
+      "Have your CS team deliver a live group training session for all three partners simultaneously — addressing the gap in one session minimizes the time investment while solving the immediate problem.",
       "Build a self-serve partner certification program: recorded demos, scenario-based training modules, and a certification assessment that partners complete on their own schedule."
     ],
     correct: 3,
@@ -87,7 +87,7 @@ export const CASES_BD2 = [
     principle: "Partner enablement that requires your time every time cannot scale. Build the program once, let it run forever.",
     traps: [
       "Dedicated enablement headcount solves the immediate problem but creates a linear scaling dependency between partner count and headcount.",
-      "Pausing partner onboarding over an enablement gap that is solvable with infrastructure is a disproportionate response.",
+      "A group training session solves the immediate gap for three partners but does not produce a scalable baseline for future partners — the fourth reseller who joins next quarter faces the same problem from scratch.",
       "Direct team co-presenting all partner demos undermines the partner's credibility with their own customers and creates dependency rather than capability."
     ]
   },
@@ -101,7 +101,7 @@ export const CASES_BD2 = [
       "Propose a co-engagement: bring both parties together on the account and negotiate a commercial split that acknowledges the partner's exclusivity while protecting the direct team's four months of relationship development.",
       "Defend the direct team's position — four months of documented activity constitutes prior pursuit that predates the partner's registration.",
       "Honor the partner's exclusivity claim — they have a signed contract and you must respect it.",
-      "Escalate to legal and pause all account activity until the exclusivity ambiguity is resolved."
+      "Have the direct rep close the deal as quickly as possible before the partner can formally assert their claim — a signed customer contract establishes the commercial reality that any subsequent dispute must work around."
     ],
     correct: 0,
     consequences: {"customerTrust":10,"growth":5,"executionRisk":-10,"strategicPosition":5},
@@ -111,7 +111,7 @@ export const CASES_BD2 = [
     traps: [
       "Honoring the partner's claim without acknowledging the four months of direct work destroys trust with your own sales team and may lose the deal entirely.",
       "Defending the direct position without exploring a co-engagement invites litigation over a clause that a judge may read either way.",
-      "Pausing all account activity during a legal review hands the competitor a four-week uncontested window."
+      "Closing before the partner can formally assert their claim wins the deal but triggers an exclusivity breach claim that arrives as a legal dispute instead of a commercial negotiation — and you have no co-engagement split to offer as resolution."
     ]
   },
   {
@@ -144,7 +144,7 @@ export const CASES_BD2 = [
     scenario: "You currently require no certification before a partner can resell your product. Three partners have sold implementations that resulted in poor customer experiences and escalations to your support team. Your head of partnerships wants mandatory certification before any reselling. Your head of sales worries certification requirements will reduce partner recruitment.",
     quote: "\"Certification will shrink the channel. But so will bad implementations.\"",
     options: [
-      "Maintain no certification requirement — the market will self-select competent resellers over time.",
+      "Require certification only for the three partners who caused the escalations — they have demonstrated the gap; imposing requirements on all partners punishes those who have not had issues.",
       "Require full certification before any reselling activity — quality over volume is the right long-term position.",
       "Implement a tiered access model: basic selling access requires light certification; implementation authority requires full certification. Partners can sell before they can implement.",
       "Require certification only for partners who want Gold tier status — leave Bronze and Silver open."
@@ -155,7 +155,7 @@ export const CASES_BD2 = [
     framework: "Tiered certification — gate the high-risk activity, not the low-risk one",
     principle: "Certification requirements should protect what matters most. Selling is low risk. Implementing is where quality failures happen.",
     traps: [
-      "No certification means the market will self-select, but only after damaged customers, escalations, and brand harm.",
+      "Retroactive certification requirements for the three offending partners addresses past failures but allows every other partner to implement without qualification — the fourth poor implementation comes from a partner you did not require to certify.",
       "Full certification before any selling creates a barrier that will measurably reduce partner recruitment and delay time-to-first-deal for every new partner.",
       "Tier-based certification exemptions for lower tiers still allow uncertified partners to implement your product for real customers."
     ]
@@ -168,7 +168,7 @@ export const CASES_BD2 = [
     quote: "\"Our best partner is becoming our competitor's distribution arm.\"",
     options: [
       "Terminate the partnership agreement immediately — a competitor-owned partner represents an unacceptable commercial and data risk.",
-      "Continue the partnership unchanged until contracts naturally expire — contractual obligations must be honored.",
+      "Notify the partner that their acquisition by a competitor triggers the change-of-control clause and begin renegotiating the agreement under new terms that restrict data access and limit their ability to co-sell your product.",
       "Negotiate a wind-down arrangement with the acquiring competitor — professional transitions protect mutual customers.",
       "Notify the partner immediately that the agreement will not be renewed post-acquisition; begin direct outreach to joint customers now, before the acquisition closes, to transition them to a direct or alternative partner relationship."
     ],
@@ -179,7 +179,7 @@ export const CASES_BD2 = [
     principle: "When your partner becomes your competitor's asset, your customers become at-risk accounts. Reach out before the acquisition closes.",
     traps: [
       "Immediate termination may violate the existing agreement and creates legal risk during a sensitive commercial period.",
-      "Doing nothing until contracts expire allows the competitor four months to transition customers before your first renewal conversation.",
+      "Renegotiating the agreement restricts future behavior but does not protect the four months of customer access that begins immediately after the acquisition closes — the competitor's new asset can influence customers through existing relationships long before any renegotiated terms take effect.",
       "Negotiating a wind-down with the acquiring competitor is unlikely to produce terms that protect your customer relationships over their new parent's commercial interests."
     ]
   },
@@ -191,8 +191,8 @@ export const CASES_BD2 = [
     quote: "\"We have eighteen partners on paper and five partners in reality.\"",
     options: [
       "Run a re-engagement campaign with a 60-day deadline: inactive partners who do not register a deal or complete a certification checkpoint within 60 days are moved to a lighter-touch program tier or offboarded.",
-      "Terminate all 13 inactive partnerships immediately to clean up the program.",
-      "Do nothing — passive partners may reactivate when they find the right opportunity.",
+      "Downgrade all 13 inactive partners to a no-benefit Bronze tier immediately — they remain on the roster but receive no partner support, co-marketing access, or product discounts until they generate activity.",
+      "Survey all 13 inactive partners to understand why they went quiet — the root cause may be a product, pricing, or enablement gap that is costing you activity across all segments.",
       "Assign each inactive partner to a partner success manager for personal outreach and reactivation."
     ],
     correct: 0,
@@ -201,8 +201,8 @@ export const CASES_BD2 = [
     framework: "Partner program hygiene — re-engagement deadline with threshold creates a self-selecting roster",
     principle: "A partner who does not engage is not a partner — they are overhead. Create a process that surfaces the real ones.",
     traps: [
-      "Passive partners who never reactivate create indefinite overhead and inflate your partner count without adding value.",
-      "Mass termination of all inactive partners creates significant negative reaction in your partner ecosystem and may offboard some who have valid deals in development.",
+      "Downgrading without a reactivation path removes the incentive that motivates partners to engage — partners who face no consequence for inactivity and no pathway back to benefits have no reason to change behavior.",
+      "A survey identifies systemic barriers but does not create a deadline — partners who complete the survey but do not register deals continue consuming overhead, now with documented reasons instead of actionable commitments.",
       "Personal outreach for 13 inactive partners consumes significant partner success bandwidth on the lowest-ROI segment of your program."
     ]
   },
@@ -237,7 +237,7 @@ export const CASES_BD2 = [
     quote: "\"We have a co-sell agreement. We do not have a co-sell motion.\"",
     options: [
       "Escalate to the platform partner's alliance manager — low rep adoption is their responsibility to solve.",
-      "Accept the low adoption rate — co-sell programs take 12-18 months to build momentum in large sales organizations.",
+      "Launch a co-sell incentive campaign targeting all 400 reps — offer a $500 SPiFF per co-sell registration to generate initial activity and identify which reps are most responsive.",
       "Identify the two reps who are co-selling, understand why they engaged, and build an internal champion program that replicates their motivation across a targeted set of 20-30 reps in your best-fit regions.",
       "Increase co-sell incentives across all 400 reps with a higher credit structure."
     ],
@@ -248,7 +248,7 @@ export const CASES_BD2 = [
     principle: "Co-sell programs activate rep by rep, not org by org. Find the two who are doing it and scale their reason.",
     traps: [
       "Escalating to the alliance manager creates process activity but does not change the individual rep motivation that drives actual co-sell volume.",
-      "Accepting 12-18 month timelines as inevitable without working to accelerate through the rep champion approach leaves significant pipeline development on the table.",
+      "A broad SPiFF generates registrations but optimizes for volume not quality — reps who register deals for the incentive rather than genuine fit produce pipeline that does not convert, and you learn nothing about why the two successful reps engaged.",
       "Increasing credits to all 400 reps diffuses investment across the vast majority who will never co-sell your product regardless of incentive level."
     ]
   },
@@ -284,8 +284,8 @@ export const CASES_BD2 = [
     options: [
       "Maintain and deepen the platform relationship while actively investing in diversifying your acquisition mix — target the concentration to below 25% over 18 months without reducing absolute volume from the platform partner.",
       "Immediately reduce dependence by cutting investment in the platform partner and diversifying to other channels.",
-      "Celebrate the concentration — it proves the partnership is working and partners who produce should be rewarded with more investment.",
-      "Disclose the concentration to investors as a risk factor and let them decide the appropriate response."
+      "Double down on the platform partner by building deeper integrations and co-marketing campaigns that increase platform-sourced ARR — concentration at 42% means you are underpenetrated; maximize the channel before diversifying.",
+      "Immediately begin reducing platform-sourced leads by capping deal registrations from the partner channel and shifting those accounts to direct — faster diversification reduces the dependency more quickly than building parallel channels."
     ],
     correct: 0,
     consequences: {"strategicPosition":15,"growth":10,"executionRisk":-15,"cash":5},
@@ -293,8 +293,8 @@ export const CASES_BD2 = [
     framework: "Channel concentration management — diversify the mix, not the source that is working",
     principle: "Concentration risk is not solved by reducing the source that is working. It is solved by building sources that are not working yet.",
     traps: [
-      "Celebrating concentration without addressing dependency risk leaves you one partner decision away from a significant pipeline disruption.",
-      "Cutting investment in a performing partner to reduce concentration reduces your total revenue without solving the underlying diversification problem.",
+      "Deepening the platform investment increases absolute volume but also increases concentration — if the partner reprices or restricts access at 55% or 60% dependency, the impact is worse than at 42%.",
+      "Capping registrations from a performing partner channel voluntarily reduces revenue without creating the alternative sources that would replace it — concentration decreases but so does growth.",
       "Disclosing without a plan is a risk acknowledgment, not a risk mitigation — it satisfies the board communication requirement but does not protect the business."
     ]
   },
@@ -307,7 +307,7 @@ export const CASES_BD2 = [
     options: [
       "Agree to the joint solution — deep integration creates genuine market differentiation and competitive barriers.",
       "Run a structured discovery phase before committing: validate the customer demand for the joint solution with ten customer interviews before engineering investment begins.",
-      "Decline — joint solutions create technical dependency and complicate your product roadmap indefinitely.",
+      "Agree to the joint solution but negotiate to own the integration layer — if you control the architecture, you retain the ability to redirect it toward other partners if this relationship deteriorates.",
       "Accept but limit integration depth — build an API-based connection rather than a deeply embedded joint product."
     ],
     correct: 1,
@@ -317,7 +317,7 @@ export const CASES_BD2 = [
     principle: "The most expensive joint solution is the one built without customer validation. Interview ten customers before writing one line of code.",
     traps: [
       "Committing to four months of joint engineering on partner enthusiasm without customer demand validation is one of the most common and most expensive BD mistakes.",
-      "Declining all deep integration opportunities to protect roadmap flexibility misses the category of partnerships that create the most durable competitive advantage.",
+      "Owning the integration layer solves the ownership concern but not the validation problem — controlling the architecture of a solution no customer asked for does not make it a good investment.",
       "An API connection does not deliver the joint solution the partner proposed — if the customer need is real, the integration depth matters."
     ]
   },
@@ -331,7 +331,7 @@ export const CASES_BD2 = [
       "Build the integration first — it proves commitment and opens the co-sell conversation.",
       "Build the integration in parallel with co-sell negotiations — do not let sequencing slow a significant opportunity.",
       "Negotiate co-sell commercial terms before starting any integration work — the technical investment should follow commercial alignment.",
-      "Decline until they offer co-sell terms upfront — a partner who asks for technical work before commercial commitment is not a serious co-sell partner."
+      "Sign a non-binding letter of intent outlining co-sell intent, then begin the integration in parallel — the LOI signals mutual commitment while allowing both tracks to proceed without one blocking the other."
     ],
     correct: 2,
     consequences: {"strategicPosition":10,"executionRisk":-10,"growth":5,"cash":5},
@@ -341,7 +341,7 @@ export const CASES_BD2 = [
     traps: [
       "Building first demonstrates commitment but reduces leverage — you have invested before securing any commercial commitment.",
       "Parallel negotiation while building is workable for small integrations, but for a six-week engineering dependency, you risk completing the build with no commercial agreement.",
-      "Declining a major platform partner entirely because of standard sequencing practices will close many real partnership opportunities."
+      "A non-binding LOI signals intent but does not protect you if co-sell terms are never formalized — completing the six-week integration with only an LOI in hand leaves you in the same position as having no agreement, with leverage lost."
     ]
   },
   {
@@ -375,8 +375,8 @@ export const CASES_BD2 = [
     quote: "\"Twenty-five percent is steep. But two million buyers is real.\"",
     options: [
       "Model the decision: compare 20-25% transaction fee against your $4,200 direct CAC on a per-deal basis, and list if the marketplace fee is lower than your direct acquisition cost for deals of that size.",
-      "Decline — 20-25% transaction fees permanently impair your unit economics on marketplace-sourced deals.",
-      "List on the marketplace — 2 million buyers justifies any transaction fee.",
+      "List on the marketplace but only offer your entry-level product tier — limit transaction fee exposure on small deals and use the marketplace as a top-of-funnel for upsell to higher tiers sold direct.",
+      "List on the marketplace and model which deal sizes work at 20-25%, then disable marketplace checkout for deals above a certain ACV threshold where direct sales is more cost-effective.",
       "Negotiate the transaction fee below 15% before agreeing to list."
     ],
     correct: 0,
@@ -385,8 +385,8 @@ export const CASES_BD2 = [
     framework: "Marketplace CAC comparison — transaction fee vs. direct acquisition cost determines the decision",
     principle: "A marketplace fee is only expensive relative to what you would have spent to acquire the same customer yourself. Do the math first.",
     traps: [
-      "Listing because the audience is large without modeling unit economics can produce marketplace-sourced deals that are more expensive than your direct motion.",
-      "Declining without doing the CAC comparison may be leaving a lower-cost acquisition channel on the table.",
+      "Limiting to entry-level tiers on the marketplace assumes upsell happens naturally — but buyers who close on the marketplace often anchor to that buying channel, and disabling higher-tier checkout breaks the conversion path at the moment of intent.",
+      "Disabling marketplace checkout above an ACV threshold creates a disjointed buyer experience — prospects who discover you through 2 million active buyers are directed away from the marketplace at the point of purchase on your most valuable deals.",
       "Negotiating to 15% before modeling the economics means you may be negotiating below your actual break-even point unnecessarily."
     ]
   },
@@ -399,7 +399,7 @@ export const CASES_BD2 = [
     options: [
       "Accept the joint investment — an SI practice built around your product creates significant long-term distribution.",
       "Structure it as a milestone-based commitment: release MDF tranches against practice-building milestones — first hire, first certification cohort, first joint customer win — rather than committing $500K upfront.",
-      "Decline — $500K MDF investment in an unproven SI practice is too high a single partnership risk.",
+      "Accept the joint investment but require the SI to provide quarterly practice-building reports — transparency creates accountability without restructuring the financial commitment.",
       "Offer $250K MDF if they match with $750K — your investment should be proportionally lower given their larger organization."
     ],
     correct: 1,
@@ -409,7 +409,7 @@ export const CASES_BD2 = [
     principle: "Large partnership investments should be structured like venture: tranches against milestones, not checks against promises.",
     traps: [
       "Committing $500K upfront gives you no mechanism to course-correct if practice development stalls after the SI has banked the funding.",
-      "Declining a genuine SI practice opportunity over investment size misses a potentially significant distribution play.",
+      "Quarterly reports create an audit trail of progress but do not withhold funding if milestones are missed — you still release the full $500K on schedule regardless of what the reports show.",
       "Negotiating to a lower upfront commitment does not solve the milestone accountability problem — you are still releasing funds without performance evidence."
     ]
   },
@@ -420,7 +420,7 @@ export const CASES_BD2 = [
     scenario: "A well-funded competitor in an adjacent space — they solve a different problem for the same buyers — approaches you about a bidirectional technology integration. Their product and yours are complementary, their customer base overlaps 40% with yours, and a joint integration would genuinely benefit shared customers. They also compete with you for a small number of deals where buyers consider both approaches.",
     quote: "\"We're mostly complementary but occasionally we're on the same shortlist.\"",
     options: [
-      "Decline — any company that competes for the same deals, even occasionally, is a competitor and should not be a technology partner.",
+      "Accept the integration and formalize a co-sell arrangement — the 40% customer overlap means joint go-to-market activity will accelerate deals for both companies and offset any competitive friction.",
       "Accept the integration — 40% customer overlap and genuine complementarity creates significant customer value.",
       "Accept the integration, but define data-sharing guardrails: integrate at the product level for customer benefit, do not share commercial intelligence, pipeline data, or customer lists.",
       "Accept the integration but limit it to a one-way connection that benefits your customers without giving the adjacent competitor access to your product data."
@@ -431,7 +431,7 @@ export const CASES_BD2 = [
     framework: "Adjacent co-opetition — product integration with commercial intelligence firewall",
     principle: "You can integrate with a partial competitor. Just make sure the integration shares product value, not commercial intelligence.",
     traps: [
-      "Declining all integration with occasional competitors eliminates a significant category of high-value ecosystem partnerships.",
+      "A co-sell arrangement with a partial competitor creates shared pipeline visibility — your deal data, customer contacts, and sales cycle timing become accessible to a company that is on your shortlist on a subset of deals.",
       "Accepting without guardrails creates a pathway for a partial competitor to accumulate commercial intelligence about your shared customer base.",
       "One-way integration that only benefits your customers creates an asymmetric arrangement the partner will not accept — and misses the genuine mutual value available."
     ]
@@ -445,7 +445,7 @@ export const CASES_BD2 = [
     options: [
       "Absorb the cost increase and adjust your pricing tiers in the next annual cycle — disrupting customers now is worse than margin compression.",
       "Immediately raise prices across all affected tiers to pass the cost through to customers.",
-      "Terminate the platform partnership and migrate all customers off the affected API feature immediately.",
+      "Negotiate directly with the platform partner for a 12-month price freeze in exchange for a multi-year API commitment — locking in volume at current pricing buys time to build a migration path without immediately alerting customers to the problem.",
       "Execute on three parallel tracks: negotiate directly with the platform partner for a volume discount or transition period, begin engineering a migration path to reduce API dependency, and communicate transparently with customers about the situation and timeline."
     ],
     correct: 3,
@@ -456,7 +456,7 @@ export const CASES_BD2 = [
     traps: [
       "Absorbing the increase defers the structural problem and guarantees margin compression on your most popular tier.",
       "Immediate price increases passed to customers without communication or context will produce significant churn in the affected tier.",
-      "Immediate migration from a feature used by 65% of customers is an engineering and customer experience crisis that could take 12-18 months and cannot be executed in 90 days."
+      "A multi-year commitment at current pricing delays the cost increase but deepens the API dependency you are trying to reduce — when the freeze ends, you are further from migration readiness and the partner has less incentive to negotiate again."
     ]
   },
 ]

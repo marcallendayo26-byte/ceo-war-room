@@ -60,7 +60,7 @@ export const CASES_CHRO = [
       'Support Candidate B — interview performance and culture fit predict on-the-job behavior better than reference softness, which is often noise.',
       'Push for Candidate A — references from two CPOs carry more signal than a single exceptional interview, and strategic depth is the core requirement for a Head of Product.',
       'Conduct a structured work sample exercise — give both candidates a real product strategy problem to evaluate actual strategic thinking before making a final call.',
-      'Defer entirely to the CPO\'s preference — the hiring manager will manage this person daily and their conviction matters more than CHRO reservations.',
+      'Convene a final-round debrief with the full interview panel, weight each evaluator\'s signal by their proximity to the job function, and let the aggregate panel view break the tie — structured consensus removes the CPO vs. CHRO impasse.',
     ],
     correct: 2,
     consequences: {
@@ -73,8 +73,8 @@ export const CASES_CHRO = [
     principle: 'When two finalists each have a critical signal gap, add a third data point rather than letting the loudest advocate win.',
     traps: [
       'Assuming interview performance is the dominant predictor ignores the specific reliability of executive references from CPOs who have managed these people.',
-      'Deferring to the hiring manager removes CHRO accountability without improving the decision quality — it is risk transfer, not risk resolution.',
       'Choosing based on years of experience treats tenure as a proxy for readiness, which systematically undervalues high-trajectory candidates.',
+      'Panel consensus weighting sounds rigorous but doesn\'t generate new information — the conflict is between types of signal (references vs. interview), not between evaluators. A vote of the existing panel recycles the same data through a different decision mechanism rather than adding the independent data point the situation requires.',
     ],
   },
   {
@@ -112,7 +112,7 @@ export const CASES_CHRO = [
       'Hire the internal candidate — they know the product, they cost less, and international assignments develop talent you already trust.',
       'Hire the local candidate and approve the $40K budget exception — local market relationships are the primary success driver for a new market entry, and the revenue upside justifies the cost.',
       'Negotiate with the local candidate — offer $160K plus an aggressive performance bonus tied to Year 1 bookings, closing the base gap with upside.',
-      'Delay the hire by 30 days to search for a third candidate who meets both the market experience and budget criteria.',
+      'Reject both candidates and re-scope the role to a Country Director level — hire at a lower comp band, then plan to upgrade to a full Country Manager in 12 months once initial revenue is established.',
     ],
     correct: 2,
     consequences: {
@@ -127,7 +127,7 @@ export const CASES_CHRO = [
     traps: [
       'Internal candidates are cheaper and more controllable, but in a greenfield market entry, product knowledge without local relationships produces slower revenue results — the company bears the cost of the learning curve.',
       'A full $40K budget exception without performance linkage pays for the candidate\'s market access regardless of whether they activate it.',
-      'Delaying the search in a competitive market entry window has an opportunity cost that frequently exceeds the salary gap being avoided.',
+      'Downscoping the role to manage budget in a greenfield market entry removes the seniority and network depth that drive early revenue — a Country Director without senior-level market relationships produces slower ramp results at a lower salary that may not justify the opportunity cost of the delayed bookings.',
     ],
   },
   {
@@ -246,7 +246,7 @@ export const CASES_CHRO = [
       'Direct the CEO to decline to engage and route the candidate to your HR complaint process — do not discuss specifics with an unverified LinkedIn message.',
       'Respond via HR directly to the candidate, acknowledge the concern, and offer a formal conversation — this defuses escalation risk before a formal complaint is filed.',
       'Investigate immediately: pull all notes, interview the interviewer, and assess whether a legal exposure exists — then decide how to respond based on what you find.',
-      'Offer the candidate a second-stage interview for the next available senior PM role as a goodwill gesture — this resolves the complaint risk without admitting fault.',
+      'Have the CEO\'s EA send a brief, warm acknowledgment that the message was received and that HR will be in touch — this signals responsiveness and preserves the CEO\'s relationship with the candidate without committing to a specific action.',
     ],
     correct: 2,
     consequences: {
@@ -258,9 +258,9 @@ export const CASES_CHRO = [
     framework: 'Employment Law Triage — when a potential discrimination claim surfaces, the first priority is internal fact-finding, not external response. Establish the actual facts, assess legal exposure with counsel, and only then decide whether to respond, settle, or defend.',
     principle: 'Never design your response to a potential employment claim before you understand your actual exposure — the investigation informs the strategy.',
     traps: [
-      'Responding warmly and quickly to defuse escalation feels proactive but can create admissions or obligations before legal exposure is assessed.',
-      'Offering a second interview appears generous but has no precedent in HR best practice — it implicitly acknowledges a problem without understanding what the problem is.',
-      'Treating the LinkedIn message as low-credibility because no formal complaint has been filed misses that the interviewer note is independently problematic regardless of whether the candidate escalates.',
+      'Routing the candidate to the HR complaint process before investigating is correct procedurally but gets the sequence wrong — the CHRO needs to understand the company\'s own exposure before deciding how to handle the incoming complaint, not after.',
+      'Reaching out to acknowledge the concern and offer a formal conversation before completing an internal investigation creates an implied obligation to engage — if HR subsequently finds a legally significant interviewer note, the earlier outreach has already signaled responsiveness in a way that may be construed as an admission.',
+      'Routing the acknowledgment through the CEO\'s office, even informally, draws the CEO into a potential discrimination matter before the company has assessed its own exposure — any communication from the CEO\'s office creates a discoverable record if the candidate escalates to a formal complaint.',
     ],
   },
 ]

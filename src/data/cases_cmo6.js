@@ -34,7 +34,7 @@ export const CASES_CMO6 = [
       "Send a cease-and-desist letter through legal counsel immediately — even if the legal process is slow, the letter may prompt the competitor to update the page voluntarily.",
       "Publish your own comparison page with current, accurate pricing data and a direct response to the competitor's claims. Optimize it for the same search terms and share it proactively with your audience.",
       "Contact LinkedIn directly to have the shares removed as misleading content, and file a complaint with Google about the search result.",
-      "Do not respond publicly — responding to a competitor comparison page elevates their content and directs attention to a pricing comparison that you would rather avoid."
+      "Brief your conference booth team on the pricing discrepancy and prepare a one-pager with current pricing for distribution at the conference — addressing the misinformation at the one venue where both companies are present and where prospects are actively evaluating."
     ],
     "correct": 1,
     "consequences": {
@@ -48,7 +48,7 @@ export const CASES_CMO6 = [
     "traps": [
       "A cease-and-desist letter may be useful in parallel but should not be the primary response — it takes weeks to have effect while the comparison page continues circulating.",
       "Attempting to have LinkedIn shares removed treats the symptom (distribution) while the source content remains live and ranking — removing 200 shares does not remove the comparison page.",
-      "Not responding to an actively spreading piece of misinformation during the week before a major industry conference is a sales risk — prospects researching your pricing will encounter the competitor's claim with no counter-narrative available."
+      "Conference-only counter-messaging leaves the 200 already-shared LinkedIn posts and the Google-ranking comparison page untouched for every prospect who does not attend the conference — which is most of your ICP."
     ]
   },
   {
@@ -60,7 +60,7 @@ export const CASES_CMO6 = [
       "Flag the review to G2 as potentially fraudulent or inaccurate and request its removal — you believe the factual claims are demonstrably incorrect.",
       "Respond publicly on G2 with a factual rebuttal: note that implementation timelines depend on client-side IT availability and that the data issue was a pre-existing legacy problem, without identifying the client.",
       "Respond publicly on G2 acknowledging the experience, expressing genuine concern, and inviting the reviewer to contact your customer success team directly — without disputing the specifics of the claim.",
-      "Do not respond to the review — responding to a negative review draws more attention to it, and anonymous reviews are given less weight by sophisticated buyers."
+      "Reach out proactively to five high-satisfaction customers asking them to post G2 reviews this week, so the 3-star review is diluted by fresh higher ratings before it accumulates more views — improving your overall G2 score without engaging the reviewer directly."
     ],
     "correct": 2,
     "consequences": {
@@ -72,9 +72,9 @@ export const CASES_CMO6 = [
     "framework": "Review Response Framework — public review responses are marketing content read by future prospects, not private conversations with the reviewer. Every response should signal: (1) you take feedback seriously, (2) you have a real CS team, and (3) you are willing to resolve issues. Accuracy matters less than tone.",
     "principle": "A measured, empathetic response to a negative review is more persuasive to a neutral prospect than the review itself.",
     "traps": [
-      "A factual rebuttal, even if accurate, reads as defensive to a neutral reader and signals that you prioritize being right over the customer experience — which is the exact impression you want to avoid on a public review platform.",
       "Requesting removal is only appropriate for clearly fraudulent reviews from non-customers — using it to remove legitimate (if contextually incomplete) negative reviews from real clients is a terms-of-service violation and reputational risk.",
-      "Not responding allows the review to sit unaddressed indefinitely — on G2, no response is read as either indifference or tacit admission, both of which are worse for conversion than a neutral acknowledgment."
+      "A factual rebuttal, even if accurate, reads as defensive to a neutral reader and signals that you prioritize being right over the customer experience — which is the exact impression you want to avoid on a public review platform.",
+      "Review-solicitation campaigns timed to a specific negative review are flagged by G2's algorithms as manipulation and can result in removal of the solicited reviews or platform penalties; they also leave the original negative review unaddressed and visible to prospects reading recent reviews in chronological order."
     ]
   },
   {
@@ -84,7 +84,7 @@ export const CASES_CMO6 = [
     "scenario": "Your product team has built a significant workflow automation feature that reduces manual data entry for dealership service advisors by an estimated 60%. It is a genuinely strong capability. Your PR agency advises that the feature alone is not \"newsworthy enough\" for a standalone press release and recommends bundling it with two smaller features into a quarterly product update release. Your VP of Product wants maximum individual visibility for the feature and is pushing for a dedicated press release. How do you decide?",
     "options": [
       "Follow the PR agency's recommendation: bundle the feature into a quarterly product update press release to maximize the likelihood of editorial pickup.",
-      "Issue a standalone press release for the automation feature, regardless of the agency's newsworthiness assessment — the product team deserves the recognition and customers need to know.",
+      "Issue a standalone press release with a data-led angle — quantify the 60% admin time reduction as the headline claim and pair it with a customer beta quote, giving journalists a specific metric hook rather than a feature description.",
       "Skip the press release entirely for this feature and invest the PR bandwidth in a customer success story using an early adopter of the automation feature instead.",
       "Test the newsworthiness: pitch one or two target journalists with a brief story angle before committing to a press release format — use their response to inform the final decision."
     ],
@@ -99,7 +99,7 @@ export const CASES_CMO6 = [
     "principle": "PR is fundamentally a pitching discipline. Test the pitch before committing to the release format.",
     "traps": [
       "Defaulting to the quarterly bundle without testing the standalone angle means the product team waits weeks or months for coverage that might have been available immediately — it is the agency's safe default, not necessarily the best strategic choice.",
-      "A standalone press release over the agency's objection risks a low-pickup cycle that wastes PR budget and editorial goodwill without demonstrating the feature's value to any meaningful audience.",
+      "A data-led standalone press release is a better pitch than a feature description, but distributing it over the agency's explicit newsworthiness objection commits PR bandwidth and editorial goodwill to a format assessed as unlikely to generate pickup — if journalists pass on the release, you have also missed the quarterly bundle window.",
       "A customer success story is a strong long-term asset but is the wrong instrument for a product launch moment — it serves sales enablement, not news distribution."
     ]
   },
@@ -111,7 +111,7 @@ export const CASES_CMO6 = [
     "options": [
       "Notify the 40 affected customers directly and proactively within 24 hours — even without legal obligation, the trust cost of customers discovering this independently is higher than the cost of proactive disclosure.",
       "Do not notify affected customers — there is no legal obligation, no evidence of misuse, and the bug was patched within 2 hours. Notification would create disproportionate alarm about a low-impact event.",
-      "Notify customers only if they ask — create an internal log of the incident and prepare a response statement, but do not proactively reach out.",
+      "Notify the 40 affected customers, but frame the communication as a routine security maintenance update rather than a data incident — minimizing alarm while still ensuring customers are informed of the patch so as not to create disproportionate concern over a low-severity event.",
       "Notify all customers (not just the 40 affected) via a security bulletin — transparency at scale demonstrates platform maturity and prevents a story from breaking through a single affected customer."
     ],
     "correct": 0,
@@ -125,7 +125,7 @@ export const CASES_CMO6 = [
     "principle": "Your customers should hear about any incident involving their data from you first, not from anyone else.",
     "traps": [
       "Not notifying because there is no legal obligation treats customer trust as a compliance exercise — enterprise customers who discover an unreported incident will always ask why they were not told, and \"we weren't legally required to\" is not an acceptable answer.",
-      "Notifying only if asked requires affected customers to know to ask, which means they must discover the incident through a channel other than you — the worst possible disclosure scenario.",
+      "Framing a data exposure as a routine maintenance update is a misleading characterization that undermines the trust transparency is meant to build — enterprise customers who later compare notes and realize the notification was deliberately downplayed will trust the company less than if they had received a clear, factual incident disclosure.",
       "Notifying all customers creates unnecessary concern among unaffected accounts and signals poor incident scoping — a data incident notification should be precisely targeted to affected parties."
     ]
   },
@@ -164,7 +164,7 @@ export const CASES_CMO6 = [
       "Advise the CEO to respond to the critical comments publicly — defending a well-reasoned position demonstrates conviction and thought leadership.",
       "Advise the CEO not to respond to any comments publicly. Route the two enterprise prospect comments to the sales team for private outreach instead.",
       "Advise the CEO to post a single follow-up comment acknowledging the breadth of perspectives and inviting continued discussion, without directly responding to or naming any individual commenter.",
-      "Advise the CEO to delete the post — the enterprise prospect criticism creates sales risk that outweighs the thought leadership benefit."
+      "Advise the CEO to respond individually and directly to the two enterprise prospect comments, thanking them for the substantive pushback and inviting them to a private conversation to explore where they see the evidence differently — turning the public thread into a relationship-building moment."
     ],
     "correct": 2,
     "consequences": {
@@ -178,7 +178,7 @@ export const CASES_CMO6 = [
     "traps": [
       "Responding directly to enterprise prospect criticism in a public comment thread creates a public negotiation of professional opinion where the selling party always loses social points, regardless of the factual merits.",
       "Not responding at all to 80 critical comments on a post with 3,400 likes is a missed opportunity to demonstrate that the CEO engages seriously with the conversation they started.",
-      "Deleting the post will be noticed by the many people who already liked and shared it, and will generate its own negative narrative — particularly among the people who agreed with the critics."
+      "Responding directly to the two enterprise prospects by name in a public comment thread singles out their companies and criticisms in front of the post's 3,400-like audience — which can embarrass the prospects and escalate the public debate at exactly the moment you want to move it to a private channel."
     ]
   },
   {
@@ -215,7 +215,7 @@ export const CASES_CMO6 = [
     "scenario": "Your company has never invested in thought leadership PR. A B2B PR agency proposes a 6-month retainer at $4,500/month ($27,000 total) to build executive profiles, pitch industry publications, and target 3-4 feature articles. They say results take 90 days to materialize and success is measured by article placements and share of voice, not pipeline attribution. Your VP of Marketing supports the investment. You have no historical PR ROI benchmarks for your category. How do you evaluate the proposal?",
     "options": [
       "Ask the agency to work on a placement-fee basis (pay per article placed) rather than a retainer — this aligns incentives and removes the risk of paying for effort without results.",
-      "Decline the proposal — PR ROI is not measurable, the results timeline is 90+ days, and $27,000 is better allocated to performance marketing with measurable attribution.",
+      "Approve the 6-month retainer but restructure it as a content-and-PR hybrid: have the agency produce 4 long-form bylined articles for your owned channels alongside the editorial pitching program, so that even if placements are limited, you have owned content assets to show for the investment.",
       "Approve a shorter 3-month pilot at $4,500/month and evaluate based on placement results before committing to 6 months.",
       "Approve the 6-month retainer at $4,500/month with a clear success framework: minimum 3 placements in named target publications within 6 months, monthly reporting on pitches sent and journalist engagement, and a 30-day exit clause if milestones are missed at the 90-day review."
     ],
@@ -229,9 +229,9 @@ export const CASES_CMO6 = [
     "framework": "PR Agency Evaluation Framework — the right accountability structure for a PR retainer is: (1) defined target publication list, (2) minimum placement benchmarks by month, (3) a mid-program review at 90 days with a clear exit clause, and (4) monthly pitch activity reporting so you can distinguish lack of results from lack of effort.",
     "principle": "PR investment without an accountability framework is a donation. PR investment with clear placement benchmarks and an exit clause is a measured bet.",
     "traps": [
-      "A 3-month pilot that terminates exactly when results are supposed to materialize gives you one data point at the edge of the result window — not enough information to make a continuation decision.",
-      "Declining because PR attribution is difficult treats attribution difficulty as a disqualifying factor for all marketing investment — by the same logic, you would never invest in SEO, events, or brand advertising.",
-      "A placement-fee model sounds like aligned incentives but produces misaligned behavior: agencies will pursue volume over quality and optimize for easy placements in weak publications rather than hard-won positions in target editorial outlets."
+      "A placement-fee model sounds like aligned incentives but produces misaligned behavior: agencies will pursue volume over quality and optimize for easy placements in weak publications rather than hard-won positions in target editorial outlets.",
+      "Adding content production to an earned-media retainer splits the agency's capacity between pitching and writing at the same cost — editorial relationships that drive placement quality are built through pitch volume and journalist follow-up, not content production, so a hybrid structure underdelivers on the one activity the retainer is designed to optimize.",
+      "A 3-month pilot that terminates exactly when results are supposed to materialize gives you one data point at the edge of the result window — not enough information to make a continuation decision."
     ]
   },
   {

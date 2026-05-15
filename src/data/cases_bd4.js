@@ -29,7 +29,7 @@ export const CASES_BD4 = [
     scenario: "A partner who has been in your program for 11 months has generated zero revenue, attended zero training sessions, and not responded to three outreach attempts in the last two months. Your partner agreement requires 30-day written notice of termination. Your head of partnerships wants to terminate. A junior team member argues you should try one more time.",
     quote: "\"Zero revenue, zero engagement, eleven months. What are we waiting for?\"",
     options: [
-      "Try one more outreach — perhaps they have had internal changes that explain the silence.",
+      "Reach out to the partner's CEO directly — the silence may reflect a specific contact change rather than company-level disengagement, and a senior-level touch may surface whether there is a genuine reason to continue.",
       "Send a final notice: \"We are preparing to close your partner account in 30 days unless we receive a response and a meeting scheduled by [specific date].\" Then terminate if there is no response.",
       "Issue the 30-day termination notice immediately — the data makes the decision clear.",
       "Downgrade to an inactive partner tier rather than terminating — preserve the relationship in case they re-engage."
@@ -40,7 +40,7 @@ export const CASES_BD4 = [
     framework: "Partner termination process — final notice with explicit deadline before executing termination",
     principle: "Always send one formal notice before terminating. Not to give them another chance — to document that they had one.",
     traps: [
-      "An informal fourth outreach repeats the pattern that has already failed three times without adding any accountability structure.",
+      "A CEO-level escalation after three failed outreach attempts adds a personal touch but still follows the same informal pattern — without a formal consequence attached, it is a fourth attempt at a conversation that has already failed three times.",
       "Immediate termination without a final formal notice skips a procedural step that protects you legally and professionally.",
       "An inactive tier for a partner who has generated zero value and zero engagement maintains overhead without any realistic path to activation."
     ]
@@ -52,7 +52,7 @@ export const CASES_BD4 = [
     scenario: "Your partner's lead salesperson — the individual who personally sourced all four of the deals they have closed — has resigned. The partner's company says they are recruiting a replacement but the new hire will take 60-90 days to ramp. Your pipeline review shows three active opportunities that were being managed by the departing salesperson.",
     quote: "\"The person who made this partnership work just left. What do we do with the three open deals?\"",
     options: [
-      "Trust the partner to manage the transition — personnel changes are their responsibility.",
+      "Request a transition briefing from the departing salesperson before their last day — have them document the status, key contacts, and next steps for each of the three opportunities so that knowledge is captured regardless of who manages them forward.",
       "Take over the three opportunities directly — a partner in transition cannot manage enterprise deals.",
       "Offer to co-sell the three active opportunities directly with the partner's management while they ramp the new hire.",
       "Pause all three deals until the new hire is ramped to avoid confusing the customer with multiple contacts."
@@ -63,7 +63,7 @@ export const CASES_BD4 = [
     framework: "Partner transition support — co-sell during personnel gaps to protect mutual pipeline",
     principle: "The deals at risk during a partner personnel transition are not their problem to solve alone. They are your problem to solve together.",
     traps: [
-      "Leaving the partner to manage a three-deal transition without support while ramping a new hire risks all three opportunities going cold.",
+      "A transition briefing captures knowledge but does not move the deals forward — documenting status for an unclear owner still leaves three active opportunities without active management for 60-90 days.",
       "Taking over the deals directly displaces the partner from their own customer relationships and signals you will sideline them when it is convenient.",
       "Pausing active enterprise deals for 60-90 days while a new hire ramps is not a competitive response — other vendors will continue selling."
     ]
@@ -123,7 +123,7 @@ export const CASES_BD4 = [
     options: [
       "Focus on maintaining the relationship with the departing Practice Director — follow them to the competitor and explore a new partnership there.",
       "Immediately contact the SI's leadership to introduce yourself, understand who the successor will be, and begin a transition relationship before the Practice Director's last day.",
-      "Pause all partnership activities until the successor is identified and assess whether the partnership is worth restarting from scratch.",
+      "Ask the departing Practice Director directly to facilitate an introduction to the SI's leadership and the likely successor as part of a professional handoff before their last day.",
       "Use the transition as an opportunity to renegotiate better terms with the SI's new leadership."
     ],
     correct: 1,
@@ -133,7 +133,7 @@ export const CASES_BD4 = [
     principle: "A single-threaded partnership is not a partnership — it is a relationship with one person. The day they leave is the day you must build the second thread.",
     traps: [
       "Following the champion to a competitor creates a new relationship while abandoning the institutional partnership you invested 18 months building.",
-      "Pausing all activities while waiting for the successor creates a months-long gap where the SI will build alternative relationships.",
+      "Asking the departing director to facilitate the introduction is the right tactic within the correct strategy — but waiting for them to initiate it rather than proactively contacting SI leadership yourself gives you less control over the timing and framing of the transition.",
       "Renegotiating terms during a transition exploits a moment of vulnerability and is a reputation-damaging move in the partner ecosystem."
     ]
   },
@@ -168,7 +168,7 @@ export const CASES_BD4 = [
     quote: "\"Two years of strong partnership, six months of silence. Something changed.\"",
     options: [
       "Send a formal partnership review notice — if they do not respond, begin the termination process.",
-      "Accept that the partnership has run its natural course and focus resources on newer, more active partners.",
+      "Reach out to a different contact at the partner firm at a higher seniority level — if your day-to-day contact has gone quiet, a leadership-level inquiry may surface whether the silence is a contact issue or a company-level strategy change.",
       "Invest in a new co-marketing initiative to re-energize the partnership with fresh activity.",
       "Request an executive-level meeting specifically to understand what changed — not to salvage the relationship, but to learn the honest reason for the silence."
     ],
@@ -179,8 +179,8 @@ export const CASES_BD4 = [
     principle: "A silent partnership has a reason. Find the reason before you invest resources to fix it or write it off.",
     traps: [
       "A formal review notice when the relationship has already deteriorated is more likely to trigger a formal termination than a renewal of engagement.",
-      "Co-marketing investment in a cold partnership without understanding why it went cold applies resources to an undiagnosed problem.",
-      "Accepting silence without diagnosis misses the learning opportunity — you do not know if this pattern is isolated or systemic."
+      "Reaching out to a more senior contact surfaces whether the silence is individual or organizational, but it still does not answer the question of what changed — you learn who to talk to, not what the problem is.",
+      "Co-marketing investment in a cold partnership without understanding why it went cold applies resources to an undiagnosed problem."
     ]
   },
   {
@@ -193,7 +193,7 @@ export const CASES_BD4 = [
       "Allocate PSM time proportional to partner revenue and growth trajectory — high-performing and high-potential partners get disproportionate attention.",
       "Assign one PSM exclusively to the six highest-revenue partners and two PSMs to the remaining eighteen.",
       "Distribute PSM time equally across all 24 partners — fairness prevents resentment.",
-      "Let partners self-select for PSM engagement level based on their own needs."
+      "Segment by engagement tier: assign one PSM to the six active partners with weekly cadences, one PSM to the eight highest-potential developing partners with bi-weekly cadences, and a shared digital-first program for the remaining ten low-engagement partners."
     ],
     correct: 0,
     consequences: {"growth":15,"profitability":10,"teamMorale":5,"executionRisk":-5},
@@ -203,7 +203,7 @@ export const CASES_BD4 = [
     traps: [
       "Equal time across all partners means your highest-value partners get the same attention as partners who have generated nothing — a poor return on partner success investment.",
       "A dedicated PSM for six partners and two PSMs for eighteen creates a disparity that high-performing partners will notice and resent if they feel underserved relative to the attention their revenue deserves.",
-      "Self-selection for engagement often means your most demanding low-revenue partners consume the most PSM time, inverting the optimal allocation."
+      "Segmenting into three named tiers with prescriptive cadences is more granular than proportional allocation — it locks PSMs into fixed coverage ratios that cannot flex as partner performance shifts quarter to quarter."
     ]
   },
   {
@@ -216,7 +216,7 @@ export const CASES_BD4 = [
       "Immediately terminate the partnership — recruiting from your team is a direct violation of the relationship.",
       "Have a direct executive-level conversation with the partner: acknowledge what you have learned, state clearly that recruiting from your team is incompatible with a healthy partnership, and give them the opportunity to respond.",
       "Add a non-solicitation clause to your partner agreement prospectively and address the current situation informally.",
-      "Do nothing about the recruitment but focus on retaining the at-risk employees through compensation and development opportunities."
+      "Escalate the recruitment approaches to your HR and legal teams and simultaneously accelerate retention conversations with the two at-risk PSMs before addressing the partner directly."
     ],
     correct: 1,
     consequences: {"teamMorale":10,"strategicPosition":10,"executionRisk":-10,"customerTrust":5},
@@ -226,7 +226,7 @@ export const CASES_BD4 = [
     traps: [
       "Immediate termination of a Gold-tier partnership over recruitment approaches that may be unauthorized by the partner's leadership is a disproportionate first response.",
       "A prospective non-solicitation clause does not address the current situation and the informal approach lacks the seriousness the violation deserves.",
-      "Addressing only retention without confronting the partner allows the behavior to continue and signals that poaching your team carries no consequences."
+      "Prioritizing HR and legal escalation and employee retention before addressing the partner directly treats the symptom before confronting the source — you may retain the PSMs but the partner continues the behavior unchecked."
     ]
   },
   {
@@ -260,7 +260,7 @@ export const CASES_BD4 = [
     quote: "\"The company is failing. But the team knows our product better than almost anyone.\"",
     options: [
       "Acquire the full company including all assets and technology for a price reflecting their distressed state.",
-      "Decline the acquisition — buying a struggling company introduces financial and operational risk.",
+      "Commission a rapid due diligence sprint — two weeks, focused on IP ownership, customer contracts, and outstanding liabilities — to determine whether a full acquisition or an acqui-hire is the cleaner path before committing to either.",
       "Provide a bridge loan to extend their runway and revisit acquisition at a healthier price in six months.",
       "Explore an acqui-hire structure: hire the key engineering talent directly, license or acquire the specific technology asset you use, and wind down the commercial entity."
     ],
@@ -271,7 +271,7 @@ export const CASES_BD4 = [
     principle: "When the value is the team and the technology, buy the team and the technology. Do not buy the company they happen to work for.",
     traps: [
       "A full distressed acquisition at a low price still inherits all unknown liabilities, customer obligations, and legal exposure of the struggling entity.",
-      "Declining entirely when the specific assets you need are available at a favorable price misses a strategic opportunity with a known team.",
+      "A two-week due diligence sprint is a useful step before any acquisition — but running diligence before deciding between full acquisition and acqui-hire adds two weeks to a four-month runway clock when the acqui-hire structure already addresses the known liabilities concern.",
       "A bridge loan extends the timeline and their runway but does not resolve the acquisition question — in six months you are in the same decision with more time spent."
     ]
   },
@@ -328,7 +328,7 @@ export const CASES_BD4 = [
     scenario: "You have operated a successful OEM agreement for 18 months — your core technology is embedded in a larger platform's product under their brand. The OEM generates $420K in annual royalties with minimal sales effort. The platform partner has just announced a product consolidation that will retire the module powered by your technology in 12 months. Your revenue stream ends at their product retirement.",
     quote: "\"Eighteen months of reliable royalties. Twelve months until it disappears.\"",
     options: [
-      "Accept the retirement gracefully — OEM revenue streams have natural end dates and $420K over 18 months was a positive outcome.",
+      "Request a transition meeting with the platform partner's product leadership to understand exactly which customer segments will be affected by the module retirement and what alternative they plan to offer those customers.",
       "Immediately begin identifying replacement OEM opportunities to backfill the revenue before it expires.",
       "Negotiate a wind-down arrangement: a 12-month extended royalty at the same rate as a transition payment, and an introduction to their customers who rely on the retiring module.",
       "Pursue an acquisition of the retiring module's customer base — if their product is being retired, those customers will need an alternative."
@@ -339,7 +339,7 @@ export const CASES_BD4 = [
     framework: "OEM wind-down negotiation — extended royalties plus customer introduction converts exit into growth",
     principle: "When an OEM partner retires your module, their customers need somewhere to go. Position yourself as that destination.",
     traps: [
-      "Accepting the retirement without negotiating leaves extended royalty payments and customer introductions on the table.",
+      "A transition meeting to understand the affected customer segments is useful reconnaissance but delays the negotiation — the revenue and customer access you need requires a commercial conversation, not just a product briefing.",
       "Backfilling with replacement OEM opportunities is a parallel track that should run alongside the wind-down negotiation, not instead of it.",
       "Attempting to acquire the retiring module's customer base without the partner's cooperation creates an adversarial dynamic that will produce less customer conversion than a collaborative introduction."
     ]
@@ -353,7 +353,7 @@ export const CASES_BD4 = [
     options: [
       "Recommend the Series C — independent growth at $12M ARR preserves optionality and maximizes eventual outcome.",
       "Recommend a structured sale process immediately — recent comparable acquisitions suggest premium pricing will compress as the strategic buyers satisfy their needs.",
-      "Defer the recommendation — this is a board decision that should not be driven by BD leadership.",
+      "Recommend commissioning a strategic options analysis from an M&A advisor before presenting to the board — the advisor can map current acquirer appetite, comparable deal multiples, and Series C market conditions to give the board a data-grounded recommendation rather than a directional one.",
       "Recommend running both tracks simultaneously: begin Series C conversations and reach out to strategic buyers, using each track to create leverage in the other."
     ],
     correct: 3,
@@ -364,7 +364,7 @@ export const CASES_BD4 = [
     traps: [
       "Series C without any strategic exploration may miss a premium acquisition window that narrows as comparable acquisitions are completed.",
       "A structured sale process without Series C leverage gives acquirers the full negotiating advantage — they know there is no competing capital path.",
-      "Deferring a strategic recommendation to \"the board alone\" when you have the deepest partnership and market intelligence abdicates your most valuable contribution to the decision."
+      "Commissioning an M&A advisor analysis before presenting to the board adds 4-6 weeks when acquirer appetite is time-sensitive — the BD leader's existing partnership intelligence is sufficient to present the dual-track recommendation now."
     ]
   },
   {

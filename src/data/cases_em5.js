@@ -59,7 +59,7 @@ export const CASES_EM5 = [
     difficulty: 2,
     scenario: 'Your team has accumulated significant technical debt over two years of rapid growth. Incident rate is up 40%, deploy times have doubled, and senior engineers are signaling burnout. Product has consistently rejected requests for debt-reduction time, citing roadmap pressure. You need to get dedicated capacity allocated.',
     options: [
-      'Continue fixing debt opportunistically whenever there\'s slack between features — avoid the political battle with product.',
+      'Instrument the codebase to measure the actual time cost of debt: track incident response hours, deploy failure rates, and developer context-switching overhead, then present the data to product leadership as justification for dedicated remediation time.',
       'Tell engineers to pause feature work unilaterally whenever debt causes a critical incident.',
       'Propose a formal "debt sprint" to product leadership: one sprint per quarter, bounded in time, with a written business case showing how the current debt is inflating incident costs and slowing future delivery.',
       'Document all outstanding debt items and present the full list to the CTO as an operational risk.',
@@ -74,7 +74,7 @@ export const CASES_EM5 = [
     framework: 'Bounded ask with ROI framing: convert the abstract debt problem into a specific, quantified investment request. "One sprint to reduce incidents by 30% and shorten deploys by 50%" is a proposal; "we have a lot of tech debt" is a complaint.',
     principle: 'Package the ask so a non-engineer can say yes without fear.',
     traps: [
-      'Presenting debt as an engineering problem — product leadership will always deprioritize what they can\'t connect to revenue or risk.',
+      'Presenting instrumentation data without a bounded ask just extends the debate — product leadership will acknowledge the numbers and still defer until the request is specific enough to approve.',
       'Asking for open-ended time instead of a bounded sprint — the vaguer the ask, the easier it is to defer indefinitely.',
       'Waiting until a major incident forces the conversation — by then you\'re negotiating from crisis, not strategy.',
     ],
@@ -87,8 +87,8 @@ export const CASES_EM5 = [
     scenario: 'Your strongest senior engineer — who owns two critical systems and is deeply embedded in client delivery — has quietly told you they have an offer 30% above their current salary. HR\'s standard band tops out 15% below the offer. You have six weeks before they\'re likely gone. The CPO doesn\'t know this engineer is at risk.',
     options: [
       'Go to HR immediately and request a compensation adjustment based on the market offer.',
-      'Offer the engineer a principal title bump and promise to "work on compensation" over the next review cycle.',
-      'Ask the engineer to counter the offer themselves and buy time while you escalate.',
+      'Restructure the engineer\'s role to include a formal tech lead designation with a 10% spot bonus for the active client deliveries — creating an immediate financial signal without requiring HR band approval.',
+      'Propose an accelerated equity refresh — vesting the engineer\'s next two-year cliff grant immediately — to close the gap between their current total compensation and the competing offer.',
       'Build a joint business case with the CPO and HR: replacement cost (recruiting, onboarding, and knowledge transfer), institutional knowledge risk for active client deliveries, and a specific retention comp proposal that closes the gap.',
     ],
     correct: 3,
@@ -103,8 +103,8 @@ export const CASES_EM5 = [
     principle: 'Executive exceptions require executive sponsorship. Build the coalition before the conversation.',
     traps: [
       'Going directly to HR without CPO involvement — comp exceptions require cross-functional sign-off that HR cannot provide unilaterally.',
-      'Assuming the engineer will wait while you "work on it" — top performers with competing offers operate on weeks, not quarters.',
-      'Underquantifying the replacement cost — without hard numbers, leadership will default to "policy is policy."',
+      'A spot bonus and title restructure close neither the base salary gap nor the seniority recognition the competing offer signals — the engineer evaluates total compensation and career trajectory, not a single variable.',
+      'Accelerating equity vesting closes the gap on paper but creates an inconsistency in the vesting schedule that HR must approve as an exception — without CPO and HR joint sign-off, the same policy wall applies.',
     ],
   },
 
@@ -116,7 +116,7 @@ export const CASES_EM5 = [
     options: [
       'Send a direct message to the design lead and copy the product manager: specs are needed by Monday 9am to avoid a full sprint delay; if that\'s not possible, you need to discuss scope adjustments now.',
       'Have engineers start building based on last week\'s wireframes and reconcile with final specs later.',
-      'Absorb the sprint loss and shift the missed work into next sprint without making it visible to leadership.',
+      'Pull the blocked feature out of Monday\'s sprint plan and reallocate the engineers to backlog hardening and outstanding P2 bugs — using the unblocked capacity productively while avoiding the conversation.',
       'Escalate immediately to the CPO that design is blocking engineering delivery.',
     ],
     correct: 0,
@@ -130,7 +130,7 @@ export const CASES_EM5 = [
     principle: 'Surface blockers with deadlines, not after the damage is done.',
     traps: [
       'Waiting until Monday to find out specs aren\'t ready — by then the sprint is already burning and options are gone.',
-      'Framing it as "just checking in" instead of stating the business impact — vague nudges don\'t create urgency with busy teams.',
+      'Reallocating engineers to backlog work without surfacing the dependency gap hides a cross-team process failure that will recur next sprint when design is again the bottleneck.',
       'Going to CPO before the design lead has a chance to respond — escalating too early damages the cross-team relationship for future sprints.',
     ],
   },
@@ -169,7 +169,7 @@ export const CASES_EM5 = [
     scenario: 'The infrastructure platform team has mandated that all engineering teams migrate to their new Kubernetes-based deployment system by end of Q3. Your team\'s Q3 is fully committed to a client-facing feature representing $2M ARR. The migration will consume three weeks of engineering capacity. You cannot do both without breaking a client commitment.',
     options: [
       'Accept the migration mandate and absorb it into the current sprint plan — find a way to compress both workstreams.',
-      'Push back informally to the platform team manager and hope the deadline gets extended.',
+      'Begin the Kubernetes migration in parallel with the client feature work by assigning your two most junior engineers to the migration track while senior engineers carry the client delivery.',
       'Request a formal 30-day extension from the platform team, backed by a written post-feature migration commitment co-signed by your manager and theirs — make it a contract, not a verbal promise.',
       'Escalate directly to the CTO that the platform mandate is creating a conflict with a revenue-critical client commitment.',
     ],
@@ -184,7 +184,7 @@ export const CASES_EM5 = [
     principle: 'Written commitments create accountability that verbal promises never do.',
     traps: [
       'Treating the mandate as immovable before testing whether a documented exception is available — most mandates have extension paths for legitimate conflicts.',
-      'Making a verbal promise to migrate after Q3 — without co-signatures, it becomes your problem alone when the platform team follows up.',
+      'Splitting engineers across a migration and a revenue-critical delivery simultaneously degrades both workstreams — junior engineers executing a complex Kubernetes migration without senior support is a high risk path to a failed migration and a slipped client commitment.',
       'Going to CTO before attempting a structured peer negotiation — senior escalation is a last resort, not a first move.',
     ],
   },
@@ -197,7 +197,7 @@ export const CASES_EM5 = [
     options: [
       'Rotate more engineers into the on-call pool to spread the alert load across a larger group.',
       'Reduce the scope of what triggers a PagerDuty alert to decrease overnight interrupt frequency.',
-      'Ask the infrastructure team to improve system reliability before addressing on-call policy.',
+      'Implement an incident severity triage layer so the on-call engineer can defer non-critical overnight alerts to the next business day, reducing 3am interruptions without changing the structural on-call rotation.',
       'Formalize the on-call policy with HR and CPO: documented rotation schedule, mandatory recovery time after overnight incidents, alert escalation thresholds, and a quarterly review — make it a company policy, not a team workaround.',
     ],
     correct: 3,
@@ -212,7 +212,7 @@ export const CASES_EM5 = [
     traps: [
       'Treating on-call burnout as a team-level morale issue rather than an organizational risk — HR and CPO need to see this in writing to protect against attrition.',
       'Assuming more engineers on rotation is the solution when the real problem is the lack of formal recovery and escalation policy.',
-      'Fixing it quietly and hoping leadership notices — invisible problems don\'t get sustained resources or structural protection.',
+      'A severity triage layer reduces the symptom — overnight interrupt frequency — but leaves the structural policy gaps intact: no documented rotation, no formal recovery time, no escalation thresholds that leadership has committed to uphold.',
     ],
   },
 
@@ -224,7 +224,7 @@ export const CASES_EM5 = [
     options: [
       'Return to the CTO with concrete evidence of the current problem: P95 data staleness metrics for your top accounts, two documented client escalations caused by delayed data, and a cost projection showing streaming infrastructure is cheaper above your current data volume.',
       'Send a revised RFC with more technical detail on the streaming architecture and request a follow-up review session.',
-      'Rally the engineering team to pressure the CTO through a joint technical review meeting.',
+      'Engage two senior engineers to co-author a revised RFC that incorporates a side-by-side architecture comparison — showing current batch limitations against the proposed streaming design — and request a CTO review session.',
       'Pilot the streaming approach on a low-risk internal dataset without formal approval, then present the results.',
     ],
     correct: 0,
@@ -238,7 +238,7 @@ export const CASES_EM5 = [
     principle: 'The CTO approved the current system. You need to prove it\'s no longer serving the business, not that your replacement is technically superior.',
     traps: [
       'Resubmitting a more detailed version of the same proposal — more RFC pages don\'t address the "is the current approach actually broken?" concern.',
-      'Making the case as an engineering preference ("streaming is the modern approach") rather than a business problem ("we\'re losing client trust because of stale data").',
+      'A more detailed architecture comparison still doesn\'t answer the CTO\'s underlying question — "is the current approach actually hurting the business?" — and brings more engineers into a debate without shifting the evidence base.',
       'Running an unauthorized pilot — even successful results create a precedent that your team proceeds without approval.',
     ],
   },
@@ -251,7 +251,7 @@ export const CASES_EM5 = [
     options: [
       'Commit to all 12 action items and build a tracking dashboard to show leadership weekly progress.',
       'Deliver a prioritized plan to leadership: the top 3 root causes addressed this sprint with committed owners and timelines, the remaining 3 staged across Q3 with quarterly checkpoints — and explicitly state what is being deferred and why.',
-      'Ask leadership for two more weeks before committing to any plan — you need more investigation time before promising anything.',
+      'Immediately spin up a dedicated incident response squad — pulling four engineers off the current sprint — to work through all 12 corrective action items before the next sprint review.',
       'Assign individual owners to all 12 items with a monthly review cadence and present this to leadership as the recovery plan.',
     ],
     correct: 1,
@@ -265,7 +265,7 @@ export const CASES_EM5 = [
     principle: 'A credible plan that delivers less is worth more than a comprehensive plan you can\'t execute.',
     traps: [
       'Committing to all action items to satisfy immediate leadership pressure — the next sprint review will expose which items were quietly deprioritized.',
-      'Framing the staged plan as "we can\'t do everything" instead of "here\'s how we\'ve prioritized by impact" — the former sounds weak, the latter sounds strategic.',
+      'Pulling four engineers off an active sprint to work through all 12 items simultaneously depletes the capacity needed for the items requiring the most careful attention — a dispersed squad working at speed is likely to close tickets without resolving root causes, repeating the same pattern.',
       'Treating all 12 items as equal priority — conflating symptom fixes with root cause remediations reduces the credibility of your recovery plan.',
     ],
   },

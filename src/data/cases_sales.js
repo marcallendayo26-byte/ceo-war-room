@@ -77,7 +77,7 @@ export const CASES_SALES = [
     options: [
       "Confront him directly with the data and put him on a performance improvement plan.",
       "Change the commission structure to reward pipeline accuracy, not just closed revenue.",
-      "Accept it — a 94% commit accuracy is actually a good thing for planning.",
+      "Set a new team-wide rule: any deal above 80% probability must be manually reviewed by you before it counts as commit.",
       "Analyze his pipeline patterns, have a coaching conversation around the data, and set mutual expectations on forecast accuracy."
     ],
     correct: 3,
@@ -87,7 +87,7 @@ export const CASES_SALES = [
     principle: "Diagnose before you prescribe — sandbagging is a symptom, not the disease.",
     traps: [
       "Treating it as a performance issue before understanding the cause",
-      "Accepting high commit accuracy as good without questioning what's missing",
+      "Solving the symptom with a review layer instead of the root cause — sandbagging behavior continues and simply shifts to an earlier stage",
       "Changing comp structure without addressing the underlying trust issue first"
     ]
   },
@@ -168,7 +168,7 @@ export const CASES_SALES = [
     quote: "More pipeline isn't better pipeline — focus is what converts.",
     options: [
       "Keep all 12 — dropping deals feels like giving up potential revenue.",
-      "Work longer hours temporarily until some deals close naturally and reduce the load.",
+      "Triage your 12 deals into three tiers and allocate time proportionally — 60% to top-tier, 30% to mid-tier, 10% to early-stage.",
       "Ask for SDR support to manage the earlier-stage deals on your behalf.",
       "Qualify out the weakest 2-4 deals based on fit, urgency, and buyer engagement, and focus on the remainder."
     ],
@@ -180,7 +180,7 @@ export const CASES_SALES = [
     traps: [
       "Hoarding pipeline out of psychological attachment to volume",
       "Using SDRs to substitute for your own deal management",
-      "Working harder as a substitute for working smarter on fewer deals"
+      "Time-boxing across all 12 deals still spreads attention — you've organized the dilution rather than resolved it"
     ]
   },
   {
@@ -192,7 +192,7 @@ export const CASES_SALES = [
     options: [
       "Add it with an accurate projected close date and manage expectations with your VP about its impact on current-quarter performance.",
       "Add it to pipeline as requested — large deals are always worth pursuing regardless of timeline.",
-      "Decline the opportunity — if it won't close in the quarter, it's a distraction.",
+      "Add it to pipeline now and set a quarterly check-in with the prospect to validate timeline and maintain top-of-mind presence.",
       "Add it to pipeline but mark it as low priority until Q3 so it doesn't distort your near-term forecast."
     ],
     correct: 0,
@@ -202,7 +202,7 @@ export const CASES_SALES = [
     principle: "Big deals deserve investment — just don't let them crowd out the quarter you're in.",
     traps: [
       "Treating it as current-quarter coverage when it clearly isn't",
-      "Declining it entirely because the timeline is long",
+      "Check-ins without close-date accuracy in CRM — the deal is now logged ambiguously and will distort both near-term and long-term forecast reads",
       "Hiding the timeline mismatch to avoid a hard conversation with your VP"
     ]
   },
@@ -216,7 +216,7 @@ export const CASES_SALES = [
       "Take the discounted deal immediately — hitting quota is the top priority.",
       "Evaluate the real cost of the discount vs. the strategic value of quota attainment, then decide with full information.",
       "Push hard on the legal deal to accelerate the timeline — avoid the discount entirely.",
-      "Ask your manager which deal to prioritize and let them own the decision."
+      "Pursue both simultaneously — push legal hard for a 10-day turnaround while leaving the discounted deal open as a backup."
     ],
     correct: 1,
     consequences: {"profitability":4,"executionRisk":-5,"strategicPosition":6},
@@ -226,7 +226,7 @@ export const CASES_SALES = [
     traps: [
       "Reflexively taking the discounted deal because quota pressure feels urgent",
       "Refusing the discount on principle without understanding what it actually costs vs. earns",
-      "Delegating the decision entirely to avoid ownership"
+      "Running both tracks at once without forcing a decision — if legal slips to day 11, you lose the discounted deal's committed buyer and end up with neither"
     ]
   },
   {
@@ -308,7 +308,7 @@ export const CASES_SALES = [
       "Push through your standard discovery script — you need the information regardless.",
       "Acknowledge the dynamic directly: 'I appreciate you being upfront. Can I ask what the other vendors are offering that's resonating, and whether there's anything they're not covering that brought you to us?'",
       "End the call — if they've already decided, your time is better spent elsewhere.",
-      "Immediately offer your most competitive pricing to change the dynamic."
+      "Ask whether any of the other vendors being evaluated have a gap in post-implementation support, and position your onboarding model as a differentiator."
     ],
     correct: 1,
     consequences: {"customerTrust":8,"growth":5,"executionRisk":-4},
@@ -318,7 +318,7 @@ export const CASES_SALES = [
     traps: [
       "Ignoring the signal and pushing through your pitch script",
       "Exiting too quickly — what looks like a closed decision often has cracks",
-      "Competing on price before understanding the real evaluation criteria"
+      "Positioning on support quality when the evaluation is already decided on criteria you haven't uncovered — you differentiate on the wrong dimension and miss the actual gap"
     ]
   },
   {
@@ -331,7 +331,7 @@ export const CASES_SALES = [
       "Focus your discovery on the adjacent areas where you're stronger and deprioritize the core use case.",
       "Continue to position your product as a fit for all their needs — every product has gaps.",
       "Be transparent: share where you're strong and where you have gaps, and let the prospect decide with full information.",
-      "Disqualify the deal immediately and refer them to the competitor."
+      "Propose a phased implementation: deploy your core modules first to address the adjacent strengths, with a review milestone at 6 months before expanding to the area where fit is weaker."
     ],
     correct: 2,
     consequences: {"customerTrust":10,"strategicPosition":6,"growth":3},
@@ -341,7 +341,7 @@ export const CASES_SALES = [
     traps: [
       "Cherry-picking which problems to 'discover' based on where you're strongest",
       "Pitching your adjacencies so hard you obscure the core fit gap",
-      "Immediate disqualification before exploring whether the adjacent strengths might outweigh the gap"
+      "Phased deployment avoids the transparency conversation entirely — the prospect commits to a vendor without knowing the full fit picture, discovers the core gap at month 7, and churns with a public complaint"
     ]
   },
   {
@@ -397,7 +397,7 @@ export const CASES_SALES = [
     scenario: "You're in a discovery call and the prospect keeps deflecting your questions with vague answers: 'We're just exploring our options,' 'Still early stages,' 'Not sure yet.' After 20 minutes you have very little useful information. What's your move?",
     quote: "Vague prospects aren't uninterested — they're untrusting.",
     options: [
-      "Keep asking questions — eventually they'll open up.",
+      "Switch from open-ended questions to a structured needs-assessment framework — ask them to rate pain areas on a 1-5 scale to get quantifiable answers without requiring them to elaborate.",
       "Name the dynamic: 'I get the sense you're being cautious about sharing details — can I ask what would make this conversation more useful for you?'",
       "Shift to pitching your solution since discovery isn't working.",
       "End the call and follow up with a more structured questionnaire they can fill out asynchronously."
@@ -408,7 +408,7 @@ export const CASES_SALES = [
     framework: "Trust-Based Discovery: when discovery stalls, address the relationship, not just the questions.",
     principle: "When the conversation stops flowing, ask about the conversation.",
     traps: [
-      "Persistence without adaptation — asking more questions in the same way",
+      "Structured scoring feels clinical when trust is the problem — you get numbers but no insight into what's actually blocking the prospect from engaging, and the call ends with a rating sheet and no relationship",
       "Pivoting to pitch when discovery fails — the worst signal you can send",
       "Async questionnaire as avoidance of the real issue: trust hasn't been established"
     ]

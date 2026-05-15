@@ -9,7 +9,7 @@ export const CASES_BD = [
       "Accept the partnership — marketplace listing and co-sell access are distribution you cannot buy directly.",
       "Build the integration independently and skip the partnership — you get the same technical outcome without giving away co-sell economics.",
       "Negotiate a partnership-lite arrangement: list in the marketplace without the full co-sell program commitments.",
-      "Delay the integration to Q4 until you can negotiate better partnership terms."
+      "Sign a partnership agreement now, then renegotiate revenue share terms once your marketplace traction proves your leverage."
     ],
     correct: 0,
     consequences: {"growth":15,"strategicPosition":10,"cash":5,"customerTrust":5},
@@ -19,7 +19,7 @@ export const CASES_BD = [
     traps: [
       "Building independently gets you the feature but not the discovery — you are invisible in a 200K-customer marketplace.",
       "Partnership-lite without co-sell eliminates the highest-value component of the partnership structure.",
-      "Delaying to negotiate better terms is a mistake when the terms are already reasonable for the distribution upside on offer."
+      "Signing now with the intent to renegotiate once you have traction misreads the dynamic — your leverage is highest before you commit, not after you are dependent on their marketplace for growth."
     ]
   },
   {
@@ -31,7 +31,7 @@ export const CASES_BD = [
     options: [
       "Grant full exclusivity — they have already proven performance and need the incentive to go deeper.",
       "Offer performance-conditioned exclusivity: they retain exclusivity in the vertical as long as they hit quarterly revenue milestones. Underperformance triggers a 60-day cure period before exclusivity lapses.",
-      "Decline all exclusivity — exclusivity limits your market access and creates dangerous dependency.",
+      "Offer exclusivity tied to a single anchor deal commitment — if they close one qualifying deal within 90 days, exclusivity activates for 18 months.",
       "Counter with 6-month exclusivity and reassess based on results."
     ],
     correct: 1,
@@ -41,7 +41,7 @@ export const CASES_BD = [
     principle: "Never give away market access unconditionally. Exclusivity should be earned every quarter, not locked in at signing.",
     traps: [
       "Unconditional exclusivity hands over market protection with no recourse if the partner underperforms or goes quiet.",
-      "Rejecting all exclusivity for a partner who has already delivered results removes their incentive to invest further.",
+      "A single-deal activation threshold rewards a quick close rather than sustained market development — one deal in 90 days does not validate 18 months of exclusive commitment.",
       "Six months is too short for a partner to build a genuine pipeline and validate the investment — it rewards short sprints, not market development."
     ]
   },
@@ -53,7 +53,7 @@ export const CASES_BD = [
     quote: "\"Their platform reaches every customer we want. But 20% revenue share is steep.\"",
     options: [
       "Join as a full ISV partner — distribution access to 50K target customers justifies the economics.",
-      "Decline — 20% revenue share permanently reduces your margin on a growing revenue stream.",
+      "Join at the ISV tier but route your highest-ACV deals through direct sales to avoid paying the 20% share on your most profitable contracts.",
       "Model the math first: calculate what CAC currently costs you for a comparable enterprise deal, compare it to 20% revenue share on expected platform-sourced ACV, and decide based on whether 20% is cheaper than your current acquisition cost.",
       "Negotiate the revenue share down to 10-12% before committing to any certification investment."
     ],
@@ -64,7 +64,7 @@ export const CASES_BD = [
     principle: "Revenue share is only expensive if it costs more than what you would spend to acquire the same customer yourself.",
     traps: [
       "Committing without modeling the unit economics risks entering a partnership where distribution is profitable but margin is permanently impaired.",
-      "Declining distribution to 50K target customers over a revenue share percentage without doing the math is an intuition-based decision that could cost significant growth.",
+      "Routing high-ACV deals around the marketplace violates the ISV agreement and risks delisting — and the platform will see when their sourced leads convert outside the channel.",
       "Negotiating before modeling your own numbers means you do not know whether 10% or 20% is the right threshold."
     ]
   },
@@ -99,7 +99,7 @@ export const CASES_BD = [
     quote: "\"They will bring us into deals. But they will also bring our competitors.\"",
     options: [
       "Accept, but invest heavily in SI enablement to make your product the easiest and most profitable for their consultants to implement — create a pull motion from within the SI organization.",
-      "Decline — a partner who actively implements competitors will never be a true advocate for your product.",
+      "Accept the partnership but require the SI to create a dedicated practice exclusively for your product before you provide implementation credentials and training.",
       "Accept the SI partnership — access to global enterprise deals outweighs the neutrality concern.",
       "Negotiate for preferred partner status before signing any agreement."
     ],
@@ -110,7 +110,7 @@ export const CASES_BD = [
     principle: "You cannot contract your way to partner preference. You earn it by making your product the most valuable for their consultants to recommend.",
     traps: [
       "Accepting without an enablement strategy produces a passive listing relationship with no active recommendation.",
-      "Declining global SI distribution because of multi-vendor neutrality is a significant strategic error — nearly all major SIs are multi-vendor.",
+      "Demanding an exclusive practice before training forces the SI to choose you over their existing revenue streams — they will simply move on to a competitor who provides credentials without conditions.",
       "Preferred partner status in a multi-vendor SI is largely cosmetic — the real preference happens at the consultant level, not in the contract."
     ]
   },
@@ -123,7 +123,7 @@ export const CASES_BD = [
     options: [
       "Immediately accelerate and attempt to close a signed partnership before the acquisition completes.",
       "Have a direct conversation with their BD team: understand whether a partnership signed pre-acquisition would survive the transaction, and decide based on what you learn.",
-      "Pause all discussions and wait to see if the acquisition closes before investing more time.",
+      "Shift focus to the acquirer directly — if your competitor is buying this partner, negotiate a separate co-sell arrangement with the acquirer before the deal closes.",
       "Abandon the partnership and immediately pursue their two closest competitors as an alternative."
     ],
     correct: 1,
@@ -133,7 +133,7 @@ export const CASES_BD = [
     principle: "Never race to sign a contract whose value you have not confirmed survives the event that threatens it.",
     traps: [
       "Racing to sign before the acquisition closes may produce a signed agreement that the acquirer voids on day one.",
-      "Pausing entirely may allow the acquisition to close and the opportunity to disappear while you wait.",
+      "Approaching your competitor directly to negotiate a co-sell deal signals that you are willing to legitimize their acquisition before it closes — and they have no incentive to partner with a company they are about to compete against through their new asset.",
       "Abandoning without first understanding survivability discards a potentially valuable pre-acquisition window."
     ]
   },
@@ -144,7 +144,7 @@ export const CASES_BD = [
     scenario: "One of your happiest customers — a 200-person professional services firm — approaches you about becoming a reseller of your product to their own clients. They have 40 active client relationships in your exact ICP. They want a 20% referral fee and your standard reseller agreement. Your direct sales team is nervous about channel conflict.",
     quote: "\"Our best customer wants to sell us. Is that a good thing?\"",
     options: [
-      "Decline — customers who become resellers create pricing complexity and channel conflict.",
+      "Accept but require them to become a certified implementation partner before reselling — product fluency should be validated before they represent the product to their clients.",
       "Accept but cap their territory to only the clients they currently serve to prevent direct channel conflict.",
       "Accept — a motivated reseller with 40 ICP clients in active relationships is a high-conversion partner.",
       "Offer a referral agreement instead of a full reseller arrangement — they get commission, you retain the sales relationship."
@@ -155,7 +155,7 @@ export const CASES_BD = [
     framework: "Customer-to-partner conversion — self-use plus warm relationships creates highest-conversion partner profile",
     principle: "Your most credible resellers are the ones who use your product themselves. Manage the conflict, do not avoid the opportunity.",
     traps: [
-      "Declining a motivated, credible reseller with direct ICP access over a manageable concern is a significant missed opportunity.",
+      "This firm already uses the product daily and advocates for it in client conversations — requiring formal certification before they can resell delays the partnership by months and may cause them to lose momentum or approach a competitor.",
       "Capping to current clients limits the partnership to zero net-new distribution and removes the primary value of the arrangement.",
       "A referral-only structure removes their incentive to invest in active pipeline development — they will only pass warm leads, not develop territory."
     ]
@@ -167,7 +167,7 @@ export const CASES_BD = [
     scenario: "You have operated a successful three-year technology alliance with a complementary SaaS vendor. Their new CEO has pivoted their product upmarket into enterprise, which now partially overlaps with your target segment. The overlap is approximately 25% of deals. Your joint customers are asking whether the two products still work well together.",
     quote: "\"We were partners. Their new direction makes us partial competitors.\"",
     options: [
-      "Immediately terminate the alliance — a partner who competes with you in any deals is no longer a viable partner.",
+      "Accelerate joint customer adoption in the overlapping segment before the partner's upmarket positioning consolidates — if joint customers are deeply embedded in both products, the partner will be reluctant to compete directly.",
       "Continue the alliance unchanged — 25% overlap is manageable and the 75% complementary value remains.",
       "Accelerate your own upmarket push to reclaim the overlapping segment before they establish it.",
       "Negotiate a co-existence agreement: define the deal scenarios where you collaborate versus compete, formalize mutual referral for non-overlapping deals, and establish customer communication protocols."
@@ -178,7 +178,7 @@ export const CASES_BD = [
     framework: "Co-opetition management — define the boundary, preserve the alliance, protect the customers",
     principle: "Partial competition does not require total separation. Define where you compete and where you collaborate, then enforce the boundary.",
     traps: [
-      "Terminating a valuable alliance over 25% overlap destroys significant mutual value and likely damages joint customer relationships.",
+      "Accelerating joint customer adoption in the contested segment removes your negotiating leverage to define a co-existence boundary — the partner has less incentive to agree to limits once those customers are entrenched in their upmarket offering too.",
       "Continuing unchanged without addressing the overlap creates ambiguity that erodes trust with both joint customers and the partner.",
       "Accelerating your upmarket push in response to an ally's pivot is reactivity dressed as strategy."
     ]
@@ -192,7 +192,7 @@ export const CASES_BD = [
     options: [
       "Build a full unit economics model: partner-sourced ACV against total partner program cost (headcount, commissions, MDF, enablement), compared to your direct CAC for equivalent deals.",
       "Track pipeline generated per partner and compare to direct sales pipeline cost — revenue attribution is sufficient.",
-      "Use partner NPS and engagement scores as proxies for ROI — financial metrics miss the strategic value.",
+      "Build a partner attribution model that assigns fractional revenue credit to each partner touchpoint across the deal cycle — this captures pipeline influence more accurately than closed-deal attribution alone.",
       "Report deals closed through partner channel versus direct as the primary ROI metric."
     ],
     correct: 0,
@@ -202,7 +202,7 @@ export const CASES_BD = [
     principle: "Partnership ROI is only meaningful when measured against what you would have spent to acquire the same customer directly.",
     traps: [
       "Pipeline attribution without program cost produces a revenue number, not a return calculation.",
-      "Partner NPS and engagement scores are relationship health signals, not ROI — they do not answer the CFO's question.",
+      "Fractional attribution inflates the apparent contribution of every partner who sent one email on a deal — the CFO wants cost-normalized return, not a weighted influence scorecard that avoids the question of what you spent to generate it.",
       "Deals closed without a cost denominator is the most common and least useful partnership metric reported to CFOs."
     ]
   },
@@ -260,7 +260,7 @@ export const CASES_BD = [
     quote: "\"We handle everything. You just take 35 cents on every dollar we collect.\"",
     options: [
       "Accept — 35% of their retail price at 80,000 SMBs represents massive scale even at lower margin.",
-      "Decline — white-labeling at 35% destroys your brand and significantly impairs your margin structure.",
+      "Accept 35% wholesale but negotiate a co-branding clause — your product name appears alongside theirs in all customer-facing materials, preserving brand visibility at scale.",
       "Counter with 55% wholesale to bring the economics closer to your direct margin.",
       "Model the cannibalization risk and floor economics first: what is the minimum wholesale price that keeps you profitable given your infrastructure cost, and does white-labeling at scale undercut your direct SMB pricing power?"
     ],
@@ -271,7 +271,7 @@ export const CASES_BD = [
     principle: "White-label deals look like scale. They can also permanently impair your pricing power in a segment. Model both before signing.",
     traps: [
       "Accepting without modeling creates a permanent wholesale commitment that may undercut your direct pricing or fail to cover infrastructure cost at higher usage.",
-      "Declining 80,000 SMBs without even modeling the economics is scale aversion over an unanswered financial question.",
+      "Co-branding solves the visibility concern but does not address the two questions that actually matter — whether the wholesale margin covers your costs and whether the partner's end-user price undercuts your direct SMB market.",
       "Countering with 55% before knowing your floor is anchoring to a number that may still be wrong in either direction."
     ]
   },
@@ -331,7 +331,7 @@ export const CASES_BD = [
       "Accept both terms — 500 enterprise deployments in year one justifies significant commercial concessions.",
       "Accept the SLA with penalties but decline the three-year price lock — inflation and infrastructure cost changes make it untenable.",
       "Negotiate both: accept a three-year price lock indexed to CPI for inflation protection, and accept the SLA but negotiate the penalty structure so it applies only to extended outages, not brief incidents.",
-      "Decline both — bundle arrangements with carriers always favor the carrier and create more risk than reward."
+      "Accept the SLA and price lock as written, then protect your margin by building in a volume-based pricing tier that only the carrier can access — as their deployment grows, unit costs fall to maintain profitability."
     ],
     correct: 2,
     consequences: {"cash":5,"growth":15,"executionRisk":-10,"strategicPosition":10},
@@ -341,7 +341,7 @@ export const CASES_BD = [
     traps: [
       "Accepting a flat three-year price lock means every year of cost inflation directly compresses your margin on a growing revenue stream.",
       "Accepting SLA penalties without tiering them means a five-minute incident during low-traffic hours could trigger the same financial consequence as a four-hour outage.",
-      "Declining 500 enterprise deployments because the commercial terms need negotiation is the wrong starting position."
+      "Volume-based unit cost reductions protect margin during growth but not during inflation — a three-year price lock paired with rising infrastructure costs will compress your economics even if cost-per-unit declines, because the lock prevents any revenue adjustment regardless of your cost structure."
     ]
   },
   {
@@ -353,7 +353,7 @@ export const CASES_BD = [
     options: [
       "One-time referral fee — simpler to administer and aligns with the partner's effort, which is heaviest at deal close.",
       "Recurring commission for life of customer — maximizes partner motivation to refer high-quality, long-retention customers.",
-      "Let the consulting firm choose the structure that best fits their business model.",
+      "Pay a one-time referral fee at contract signature plus a renewal bonus equal to 5% of ACV if the customer renews at 12 months — this aligns the closing incentive with one key retention checkpoint.",
       "Hybrid structure — balances closing incentive with retention-aligned motivation without indefinite commission obligations."
     ],
     correct: 3,
@@ -364,7 +364,7 @@ export const CASES_BD = [
     traps: [
       "One-time fees create partners who are motivated to close but indifferent to whether the customer succeeds post-sale.",
       "Lifetime recurring creates a permanent cost that may far exceed the value the partner delivered after year two.",
-      "Letting the partner choose their structure means every partner agreement is different and your commission book becomes unmanageable at scale."
+      "A single renewal bonus at month 12 creates one checkpoint but no ongoing motivation — a partner who earns nothing between signing and month 12 has no incentive to support the customer during the period when churn risk is highest."
     ]
   },
   {
@@ -377,7 +377,7 @@ export const CASES_BD = [
       "Accept the co-marketing and referral reciprocity, but define clear success metrics and a 90-day review to assess whether each party is contributing equally before formalizing long-term terms.",
       "Require financial referral fees on both sides — equity arrangements always break down when contribution becomes unequal.",
       "Accept the reciprocal arrangement — simplicity and equality build stronger long-term partnerships.",
-      "Decline non-financial arrangements at your stage — you need a financial incentive structure to hold partners accountable."
+      "Accept the reciprocal arrangement but add a clause requiring 30 days' notice before either party can exit — this creates commitment without metrics, ensuring neither side walks away impulsively."
     ],
     correct: 0,
     consequences: {"growth":5,"strategicPosition":10,"teamMorale":5,"executionRisk":-10},
@@ -387,7 +387,7 @@ export const CASES_BD = [
     traps: [
       "Accepting pure reciprocity without metrics gives you no mechanism to address contribution imbalance before it damages the relationship.",
       "Mandating financial fees on a reciprocal arrangement between peers introduces transaction complexity that may deter the partnership entirely.",
-      "Declining a well-aligned startup partner because the structure is non-financial is commercially rigid — some of the strongest partnerships operate on equity, not fees."
+      "A notice period prevents impulsive exits but does not surface contribution imbalance — 30 days' notice of an unequal partnership is just a polite countdown, not a corrective mechanism."
     ]
   },
   {

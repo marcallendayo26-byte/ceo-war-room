@@ -112,7 +112,7 @@ export const CASES_CHRO4 = [
     "options": [
       "Implement Option A — the internal program develops all 12 HiPos at $1,000 per person and builds cross-functional relationships across the cohort.",
       "Implement Option B within budget — select the 2 highest-potential HiPos for the external program ($16,000), and use the remaining $4,000 for internal stretch assignments for the other 10.",
-      "Implement Option C — trust managers to develop their HiPo direct reports through natural opportunities. Formal programs add overhead without meaningfully improving outcomes.",
+      "Designate each of the 12 HiPos as eligible for one cross-functional stretch assignment in the next two quarters — work with their managers to identify project or committee seats, and track progress in quarterly talent reviews without a formal curriculum or dedicated budget.",
       "Implement Option A ($12,000) and use the remaining $8,000 to fund external program spots for 1 employee who is at highest flight risk — combine both approaches within budget."
     ],
     "correct": 3,
@@ -126,9 +126,9 @@ export const CASES_CHRO4 = [
     "framework": "HiPo Development Portfolio — HiPo programs are most effective when they combine breadth (all identified HiPos receive a development signal) with targeted depth (highest-risk HiPos receive accelerated investment). Budget allocation should serve the broadest population first, then deploy surplus on highest-leverage individuals.",
     "principle": "Flagging HiPo status without a program accelerates attrition — employees who are told they are high-potential and then given nothing tangible read the gap as a credibility signal about whether the company will ever act on the promise.",
     "traps": [
+      "Avoiding the external program entirely to save cost ignores that external experiences (peer networks, external perspective, cohort learning) produce outcomes the internal program cannot replicate for the highest-potential employees.",
       "Concentrating both external program spots on 2 of 12 HiPos leaves 10 people identified as high-potential with no development investment — the implicit message is that HiPo status is recognition, not a development commitment.",
-      "The \"trust natural development\" option is the most budget-friendly but produces the worst outcome for cross-functional development, consistent HiPo treatment, and retention.",
-      "Avoiding the external program entirely to save cost ignores that external experiences (peer networks, external perspective, cohort learning) produce outcomes the internal program cannot replicate for the highest-potential employees."
+      "Stretch assignment programs without dedicated facilitation, peer cohort, or coaching support rely entirely on manager initiative and project availability — in practice, stretch assignments are deprioritized under delivery pressure, and HiPos receive inconsistent access based on which manager is most proactive rather than which employee has the highest potential."
     ]
   },
   {
@@ -165,7 +165,7 @@ export const CASES_CHRO4 = [
     "options": [
       "Run the existing 3-day program in two parallel groups of 7–8 — double the delivery without changing the content, and hire a temporary HR coordinator to manage logistics.",
       "Hire an onboarding consultant to run the 15-person cohort — outsource the facilitation while you redesign the internal program for future cohorts.",
-      "Delay onboarding for 2 weeks to redesign the program — a poor onboarding experience for 15 people simultaneously creates a negative signal at the exact moment these employees are forming their opinion of the company.",
+      "Divide the 15 new hires by function and route them into function-specific 1-week onboarding tracks run by each department head — decentralized onboarding reduces the single-cohort scaling problem and gives new hires more relevant, role-specific content from day one.",
       "Redesign the onboarding program before running the cohort: compress the informational slide content into a pre-boarding LMS track (completed before Day 1) and use the 3 in-person days entirely for structured peer integration, role simulation, and Q&A with senior leaders."
     ],
     "correct": 3,
@@ -179,8 +179,8 @@ export const CASES_CHRO4 = [
     "principle": "Scaling onboarding for large cohorts means removing the bottleneck, not multiplying it — move information delivery to async pre-boarding so that in-person time serves the purposes that only in-person can serve.",
     "traps": [
       "Doubling the delivery of a poor program doubles the poor experience — if the program does not transfer knowledge effectively at 3 people, it will not do so at 8.",
-      "Delaying for a program redesign is operationally tempting but leaves new hires in a structural vacuum during their highest-engagement window.",
-      "Outsourcing facilitation buys time but perpetuates the content architecture problem — a consultant running the same slide-heavy program produces the same low-transfer outcome at higher cost."
+      "Outsourcing facilitation buys time but perpetuates the content architecture problem — a consultant running the same slide-heavy program produces the same low-transfer outcome at higher cost.",
+      "Decentralized function-led onboarding solves the logistics problem but loses the cross-functional relationship-building that cohort onboarding uniquely provides — new hires who onboard within their own function arrive without peer relationships across engineering, product, and customer success, which slows cross-team collaboration in their first 6–12 months."
     ]
   },
   {
@@ -189,7 +189,7 @@ export const CASES_CHRO4 = [
     "difficulty": 3,
     "scenario": "A senior engineer with 4 years at your company and high performance ratings wants to transition into product management. There is no open PM role on your team of 6 PMs. Their engineering manager does not want to lose them and has hinted they may quietly discourage the transition. The employee has explicitly told you: \"If I can't start moving toward PM within 6 months, I'm going to look elsewhere.\" You are the CHRO. The Head of Product is open to the idea but says \"we don't have room right now.\"",
     "options": [
-      "Tell the employee that career transitions require an open role and that you will flag them for the next PM opening — there is nothing else the company can do without a vacancy.",
+      "Arrange a direct conversation between the employee and the Head of Product — let the HoP assess their PM readiness informally and either sponsor a transition or define what competencies need to be demonstrated before a formal transition can happen.",
       "Create a formal internal transition plan: assign the engineer a part-time PM project for the next 6 months (scoped with the Head of Product), define specific PM competencies to demonstrate, and commit to a formal role review at the 6-month mark.",
       "Facilitate a transfer conversation between the engineer, their manager, and the Head of Product — the CHRO's role is to surface the conversation, not design the outcome.",
       "Offer the engineer a lateral move to a technical PM or solutions architect role — a bridge role that uses their engineering skills while exposing them to product thinking without requiring a full PM slot."
@@ -205,7 +205,7 @@ export const CASES_CHRO4 = [
     "framework": "Internal Career Transition Design — when a high-performer names a transition timeline, the retention risk is real and time-bound. A structured transition plan with a defined review checkpoint converts an existential \"will you ever let me do this\" into a concrete \"here is your path to prove you can.\"",
     "principle": "When a high-performer gives you a 6-month ultimatum on a career transition, a structured plan with a defined outcome review is the only response that has a chance of keeping them — a facilitated conversation is not a plan.",
     "traps": [
-      "Waiting for a vacancy treats the engineering talent pool as infinitely patient — it does not account for the fact that the employee will leave before a PM vacancy appears if there is no visible progress.",
+      "An informal readiness conversation with the Head of Product without a structured plan or timeline puts the outcome entirely in the HoP's hands — if the HoP is lukewarm or simply overloaded, the conversation produces no commitment, and the employee reaches the 6-month mark with no visible progress and no plan, at which point the departure is certain.",
       "A three-way facilitation conversation without a structured outcome depends on the engineering manager's cooperation, which the scenario has already flagged as unreliable.",
       "Bridge roles are appropriate for employees who are uncertain about the transition — for an employee who is certain and has a deadline, offering a consolation path is likely to accelerate the departure."
     ]

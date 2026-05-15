@@ -168,7 +168,7 @@ export const CASES_CFO4 = [
     options: [
       'Create two separate pricing pages and sales motions — one optimized for self-serve SMB conversion, one for enterprise with a custom quote model.',
       'Create a three-tier pricing model (Starter, Professional, Enterprise) that serves both segments on the same page.',
-      'Focus pricing and go-to-market exclusively on enterprise and stop marketing to SMBs, which have lower ACV and higher support cost per dollar of revenue.',
+      'Restructure the existing three-tier model so that enterprise-only features — SSO, audit logging, and dedicated CSM — are locked behind the top tier, forcing enterprise customers to self-identify by selecting upmarket, while SMB customers remain on the lower tiers.',
       'Keep the current model but create a dedicated enterprise landing page that routes enterprise prospects to a demo request form while SMB customers self-serve through the standard flow.',
     ],
     correct: 0,
@@ -183,7 +183,7 @@ export const CASES_CFO4 = [
     principle: 'Pricing architecture is go-to-market architecture. When your segments need different sales motions, they need different pricing models.',
     traps: [
       'A three-tier model on a single page forces you to design the "Professional" tier to serve two audiences simultaneously, which means it will optimize for neither — enterprise buyers will feel the tier is too rigid, and SMB buyers will find the page too complex.',
-      'Exiting SMB entirely is a dramatic response to a pricing architecture problem — the issue is not that SMB customers are unprofitable, it is that the pricing model is not optimized for SMB unit economics, which is solvable without abandoning the segment.',
+      'Locking enterprise features into a top tier resolves the feature boundary but does not resolve the buying motion problem — an enterprise committee evaluating a 500-person procurement still cannot get a custom quote, still encounters SMB self-serve messaging on the page, and still faces a tier that was not designed for enterprise deal structure, so the sales motion confusion persists even after the feature gates are in place.',
       'Routing enterprise to a demo form while keeping the same product pricing page creates a tactical fix that does not resolve the underlying confusion for the sales team, the product team, or the customer who lands on the page and cannot figure out which tier is for them.',
     ],
   },

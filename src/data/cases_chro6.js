@@ -185,7 +185,7 @@ export const CASES_CHRO6 = [
     "difficulty": 3,
     "scenario": "Your 90-person company has no documented HR policies in four high-risk areas: workplace harassment, employee data handling, social media conduct, and conflict of interest. A new VP joins and asks for the policy handbook. When you escalate to the CEO, they say: \"We don't need bureaucracy — we're a startup.\" How do you make the case and prioritize what gets built?",
     "options": [
-      "Accept the CEO's position for now and document the absence of policies in your risk register. When a specific incident arises that requires a policy, use that as the entry point to draft the relevant policy.",
+      "Draft a brief risk summary for the CEO that outlines the four policy gaps and the potential exposure in each, and recommend starting with the two lowest-resistance policies (social media and conflict of interest) to build executive comfort with the policy development process before introducing the more sensitive areas.",
       "Reframe the policy case for the CEO in risk terms rather than compliance terms: one harassment complaint without a written policy and process can result in a DOLE complaint, litigation, and management distraction that costs far more than a policy development exercise. Prioritize the two highest-risk policies (harassment and data handling) and present a 30-day delivery plan.",
       "Draft all four policies independently using standard templates, have legal review them, and present them to the CEO as a complete handbook — making the ask to approve rather than asking permission to start.",
       "Propose a policy development process that involves a cross-functional working group of team leads — this distributes the authorship, reduces the \"bureaucracy\" perception by making policies employee-generated, and accelerates adoption."
@@ -200,7 +200,7 @@ export const CASES_CHRO6 = [
     "framework": "Policy Sequencing by Risk Exposure — not all missing policies carry equal legal and financial risk. Harassment and data handling generate the most costly organizational incidents without policy coverage. Start there, build the case with risk math, and sequence the rest.",
     "principle": "The CEO will approve the policies they refused to build once they understand the price tag of not having them. Present the cost of absence, not the content of compliance.",
     "traps": [
-      "Accepting the CEO's position and waiting for an incident guarantees the policy gets written in the worst circumstances — during an active complaint with legal, regulator, and employee pressure.",
+      "Starting with the lowest-resistance policies defers the highest-risk ones and may exhaust the CEO's appetite for policy work before you reach harassment and data handling — sequencing by political ease rather than legal risk is the wrong prioritization.",
       "Presenting a complete handbook as a fait accompli may work once but signals that HR circumvents rather than influences leadership, which damages your credibility for future initiatives.",
       "A working group is well-suited for values documents and culture work, but harassment and data handling policies require legal precision that group authorship may dilute."
     ]

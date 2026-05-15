@@ -7,7 +7,7 @@ export const CASES_CSM4 = [
     quote: "Proactive expansion conversations feel like partnership. Reactive ones feel like a bill.",
     options: [
       "Proactively share the usage data: 'I noticed you're at 87% of your seat capacity — let's talk about what you'd want to do before you hit the ceiling.'",
-      "Wait for them to hit the limit and then respond to the upgrade request reactively.",
+      "Send the usage data to the account admin in a usage report email and note they should consider upgrading before hitting the ceiling.",
       "Automatically upgrade their plan when they hit 90% and send a notification.",
       "Email the account admin with the usage data and a link to upgrade options."
     ],
@@ -17,7 +17,7 @@ export const CASES_CSM4 = [
     framework: "Usage-Led Expansion: surface constraint signals before they become friction.",
     principle: "The best expansion conversation happens before the customer needs to have it.",
     traps: [
-      "Reactive limit response — feels like being ambushed with an upsell at a moment of frustration",
+      "Admin report email — routes an expansion conversation through an ops channel to someone who may lack budget authority; you lose the relationship dimension that makes a proactive conversation feel like partnership rather than a notification",
       "Auto-upgrade — charging without consent is a trust violation",
       "Admin email with links — impersonal and transactional; misses relationship value"
     ]
@@ -32,7 +32,7 @@ export const CASES_CSM4 = [
       "Push the champion to expedite the budget process — the AE's pressure is valid.",
       "Be transparent with the AE: share what you've learned about the budget timeline and jointly plan a realistic expansion path.",
       "Pursue the expansion in a smaller department first to get a foothold this quarter.",
-      "Tell the AE it's not possible this quarter and move on."
+      "Propose to the AE that you fast-track a pilot of the expansion with a small user group this quarter, deferring the full contract to next quarter."
     ],
     correct: 1,
     consequences: {"executionRisk":-6,"growth":6,"teamMorale":5},
@@ -41,7 +41,7 @@ export const CASES_CSM4 = [
     principle: "Tell the AE what's real. Find the path that serves both.",
     traps: [
       "Champion pressure to expedite — may damage a trusted relationship for a quarter-end number",
-      "Hard no to AE without alternatives — unhelpful when there may be creative paths worth exploring",
+      "Unscoped pilot this quarter — a rushed pilot without champion buy-in adds implementation complexity mid-cycle and can create the impression of instability, making the full-contract close harder when the budget actually opens",
       "Department foothold without considering impact on the larger opportunity — might box out the bigger deal"
     ]
   },
@@ -52,7 +52,7 @@ export const CASES_CSM4 = [
     scenario: "A customer says during a QBR: 'We'd love to expand to our APAC team, but honestly we'd need to see better support response times in our current region first.' This is both a complaint and an expansion opportunity. How do you handle it?",
     quote: "Customers who tell you what they need to expand are the best partners you have.",
     options: [
-      "Log the expansion opportunity and discuss it in the renewal conversation.",
+      "Acknowledge both the support concern and the APAC interest in the QBR, then schedule a separate expansion discovery call for the following week before committing to a support improvement timeline.",
       "Pitch the APAC expansion immediately — a larger contract might prioritize their support tier.",
       "Take the support concern seriously first: commit to a specific improvement timeline, then revisit the APAC expansion as a subsequent conversation.",
       "Escalate the support concern to your VP to get it resolved faster."
@@ -63,7 +63,7 @@ export const CASES_CSM4 = [
     framework: "Conditional Expansion: customers signal their expansion conditions — meet them before pursuing the opportunity.",
     principle: "Earn the right to expand before you earn the revenue from it.",
     traps: [
-      "Deferring to renewal — this is a now conversation about both service and expansion",
+      "Expansion call before the support commitment — the customer explicitly sequenced support first; booking the expansion call before demonstrating improvement signals you prioritized the commercial outcome over their stated condition, which is exactly what erodes the trust you need for the APAC conversation",
       "Immediate APAC pitch — rewards your urgency, not their condition; they told you what they need first",
       "VP escalation as substitute — useful for urgency but doesn't change the customer's stated sequence"
     ]
@@ -76,7 +76,7 @@ export const CASES_CSM4 = [
     quote: "The CSM who learns to sell expansion is the CSM who becomes indispensable.",
     options: [
       "Resist the change — expansion selling is the AE's job and mixing roles creates confusion.",
-      "Ask to be transferred to an AE role if expansion is now expected.",
+      "Request a 90-day exemption from expansion targets while completing formal training, with a plan to phase in the responsibility gradually after.",
       "Focus exclusively on retention — expansion is a bonus if it happens.",
       "Embrace it with support: ask for training on expansion sales skills, establish clear rules of engagement with AEs, and start with the customers where you have the strongest trust."
     ],
@@ -88,7 +88,7 @@ export const CASES_CSM4 = [
     traps: [
       "Role resistance — puts you on the wrong side of a real business evolution",
       "Retention-only focus when expansion is now a defined KPI — treats a responsibility as optional",
-      "Transfer request — premature and signals inflexibility before you've tried to grow into the new scope"
+      "90-day exemption request — delays adoption of a defined KPI and signals limited willingness to grow, which managers note when making staffing decisions in a role that's actively evolving"
     ]
   },
   {
@@ -215,7 +215,7 @@ export const CASES_CSM4 = [
     options: [
       "Pitch all 5 — hitting the adoption target helps the company and it's ultimately the customer's choice.",
       "Pitch the 3 you believe are ready; flag your reasoning to your manager about the other 2 and propose a timeline for when they'd be ready.",
-      "Don't pitch any of them until you're confident the time is right for all 5.",
+      "Pitch all 5 with a 'this may not be the right fit for everyone right now, but wanted you to be aware' qualifier to reduce pressure on the accounts that aren't ready.",
       "Pitch all 5 but frame it as 'just so you know this exists' rather than a sell."
     ],
     correct: 1,
@@ -225,7 +225,7 @@ export const CASES_CSM4 = [
     principle: "The best pitch is a pitch to a customer who's ready for it.",
     traps: [
       "Pitch all 5 blindly — drives adoption target at expense of 2 customer relationships and long-term trust",
-      "Pitch none of them — unhelpful and doesn't serve the 3 who are genuinely ready",
+      "Hedged pitch to all 5 — the qualifier that protects you with the 2 unready accounts undermines conviction with the 3 ready ones; low-confidence introductions convert poorly even when the fit is real",
       "Soft 'just FYI' pitch — no conviction, poor conversion, and confuses customers about your intent"
     ]
   },
@@ -375,7 +375,7 @@ export const CASES_CSM4 = [
     quote: "Context loss in a CSM platform isn't a data problem — it's a customer experience problem.",
     options: [
       "Immediately flag the missing historical data to your manager: explain the service continuity risk and ask for a data migration plan before full cutover.",
-      "Start using the new system immediately and adapt as you go — historical data can be reconstructed from memory.",
+      "Begin using the new system for all new interactions while maintaining a personal spreadsheet to reconstruct key historical notes over the next month.",
       "Keep using the old system until the data migration is complete, even if that's against the rollout plan.",
       "Reach out to each customer to have them brief you on the relationship history — it builds rapport while reconstructing context."
     ],
@@ -385,7 +385,7 @@ export const CASES_CSM4 = [
     framework: "Platform Migration Risk: context continuity is a customer experience requirement, not a nice-to-have.",
     principle: "A CSM who doesn't know their customer's history doesn't have a customer relationship — they have a customer list.",
     traps: [
-      "Immediate adoption without flagging — you'll lose context and discover the cost account by account",
+      "Personal spreadsheet reconstruction — incomplete, not searchable by teammates, and doesn't solve the platform-level gap; if you hand off an account or go on leave, the next CSM still has no access to the history",
       "Old system continued use against rollout plan — creates a two-system problem and delays the migration further",
       "Customer-briefed context reconstruction — burdens customers with compensating for your operational gap"
     ]

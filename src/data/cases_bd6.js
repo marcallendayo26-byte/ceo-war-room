@@ -8,7 +8,7 @@ export const CASES_BD6 = [
       'Build a standardized OEM integration library — reusable, versioned connectors for each brand — and make this a formal product asset that any implementation can draw from.',
       'Hire two dedicated integration engineers to build custom integrations faster and reduce the current 3–6 week timeline to 2–3 weeks per client.',
       'Partner with each OEM directly to request API access and position InnoFac as their preferred integration partner before standardizing anything internally.',
-      'Document the 14 existing integrations first, then let the product team decide over the next two quarters whether to standardize or keep the custom approach.',
+      'Prioritize building reusable connectors for the two or three OEM brands that appear most frequently in your active prospect pipeline — Toyota and Honda first — and treat those as the foundation of an emergent integration library that expands with each new client win.',
     ],
     correct: 0,
     consequences: { strategicPosition: 9, executionRisk: -7, growth: 7, profitability: 6 },
@@ -18,7 +18,7 @@ export const CASES_BD6 = [
     traps: [
       'Hiring faster builders accelerates the wrong workflow — custom builds scaled up still produce 14 isolated scripts for 14 clients, only faster. The structural problem remains.',
       'Pursuing OEM partnerships before internal standardization creates external commitments your team cannot reliably fulfill — the partnership surfaces the weakness rather than solving it.',
-      'Documentation without a standardization decision delays the fix by two quarters while the backlog continues to grow — it confuses mapping the problem with resolving it.',
+      'Prioritizing by pipeline frequency builds pipeline-optimized connectors but defers the architectural decision — without a versioning and governance standard, the Toyota and Honda connectors will be built to different design assumptions and will require refactoring when the third OEM is added.',
     ],
   },
   {
@@ -52,7 +52,7 @@ export const CASES_BD6 = [
       'Accept the OEM deal as structured — 180 mandated dealers eliminates sales cost and guarantees scale faster than any other channel could deliver.',
       'Counter: accept the co-branding and pricing concession with a 20% reduction instead of 40%, but reject the 36-month exclusivity clause outright as incompatible with a multi-OEM strategy.',
       'Evaluate the deal against a three-part test: revenue sustainability at the discounted ACV, implementation capacity for a 180-dealer rollout, and the strategic cost of the exclusivity clause — then counter only if all three pass.',
-      'Decline the deal until the exclusivity clause is removed — OEM exclusivity in a market where you need to be multi-brand is a structural trap regardless of how large the initial opportunity looks.',
+      'Accept the deal including the 36-month exclusivity clause, but negotiate a carve-out list of OEM brands already in InnoFac\'s active sales pipeline at signing — protecting existing pipeline while capturing the 180-dealer mandate.',
     ],
     correct: 2,
     consequences: { strategicPosition: 10, growth: 8, profitability: 6, executionRisk: -8 },
@@ -62,7 +62,7 @@ export const CASES_BD6 = [
     traps: [
       'Accepting as structured assumes the discounted ACV is viable and the team can deliver 180 rollouts — neither of which has been validated before signing.',
       'Countering on price and rejecting exclusivity without evaluating delivery capacity commits to a large-scale rollout your team may not be able to execute without degrading existing clients.',
-      'Declining until exclusivity is removed forfeits negotiating leverage on all the other terms — including price — before you\'ve tested whether a modified exclusivity scope is achievable.',
+      'A pipeline carve-out protects existing deals but does not address whether the discounted ACV is sustainable or whether the implementation team can absorb 180 rollouts — signing with carve-outs still commits InnoFac to a deal that may be loss-making at scale and operationally undeliverable.',
     ],
   },
   {
@@ -72,7 +72,7 @@ export const CASES_BD6 = [
     scenario: 'Three independent software vendors — a fleet management platform, a digital marketing attribution tool, and a dealership insurance product — have each approached InnoFac separately about integrating with the DMS. Each wants to sell to your existing dealer clients. Each wants data access: the fleet vendor wants vehicle inventory feeds, the marketing vendor wants transaction and lead data, and the insurance vendor wants service history and claims data. InnoFac has no partner API, no data sharing policy, and no partner agreement template. How do you design this?',
     options: [
       'Sign bilateral data-sharing agreements with each vendor separately, scoped to what each one specifically needs — this is faster than building a formal program and keeps each relationship negotiable.',
-      'Decline to share data with any third party until InnoFac has a certified data governance framework reviewed by legal and approved by the board — the liability exposure is too high to move before that process is complete.',
+      'Select the most technically capable of the three vendors as an anchor integration partner, co-build the API standard with them over 60 days, then publish that standard as InnoFac\'s partner integration specification and require the remaining two vendors to adopt it.',
       'Invite the three vendors to co-design the integration standard together — whoever is most engaged becomes your anchor partner and helps define the ecosystem terms.',
       'Build a formal partner API with standardized authentication, scoped data endpoints, and a partner agreement template that defines data usage rights, revenue share, and IP ownership — then onboard all three through the same structure.',
     ],
@@ -83,8 +83,8 @@ export const CASES_BD6 = [
     principle: 'The first three partner requests are not three separate deals — they are your opportunity to build the ecosystem on your terms. Design the architecture once and let every partner enter through it.',
     traps: [
       'Bilateral agreements negotiated separately create three inconsistent data-sharing arrangements with no API standardization, different liability terms, and no architecture that a fourth or fifth partner can enter without another round of negotiation.',
+      'Co-building the API standard with the anchor partner produces a standard optimized for that vendor\'s data access needs — the fleet management platform\'s inventory feed requirements will be the template that the marketing and insurance vendors must adapt to, introducing structural friction and a partner whose terms are embedded in the architecture before InnoFac has set its own commercial rules.',
       'Co-designing the standard with partners transfers the architecture decision to the people who benefit from it — partners will optimize the terms for their access, not for InnoFac\'s control and commercial model.',
-      'Delaying until board approval of a full governance framework takes 6–12 weeks and lets all three vendors find alternative integrations — you lose the ecosystem moment entirely.',
     ],
   },
   {
@@ -138,7 +138,7 @@ export const CASES_BD6 = [
     scenario: 'A major hyperscaler\'s regional team proposes co-selling InnoFac\'s DMS through their industry cloud marketplace, bundled with their infrastructure stack. Access to their 2,000+ enterprise client touchpoints in SEA is significant. Their terms require 24-month exclusivity on cloud distribution (InnoFac cannot list on any other cloud marketplace), deep integration with their proprietary data and AI services, and a 20% marketplace fee on all co-sold revenue. InnoFac currently has no cloud marketplace presence and generates no revenue through that channel.',
     options: [
       'Accept the deal — InnoFac has zero cloud marketplace revenue today, so the exclusivity cost is minimal and the distribution upside is real.',
-      'Reject exclusivity and marketplace fee terms outright — a hyperscaler with strong distribution leverage will extract too much value over 24 months for the arrangement to be commercially rational.',
+      'Accept the 24-month exclusivity and 20% marketplace fee, but negotiate a most-favored-nation clause: if the hyperscaler offers better fee or exclusivity terms to any other ISV in the automotive or DMS category, InnoFac\'s terms automatically adjust to match — protecting against being disadvantaged relative to future entrants.',
       'Negotiate the exclusivity down to 12 months and the marketplace fee to 12%, then accept — a modified version of the deal captures the distribution benefit at a lower structural cost.',
       'Evaluate the deal on three dimensions: what the 24-month exclusivity actually forecloses (other cloud channels, direct sales motions, or specific deal sizes), what deep integration into their proprietary stack costs in technical lock-in, and whether the 20% fee is recoverable through co-sell pricing. Counter on the terms that fail the test.',
     ],
@@ -149,7 +149,7 @@ export const CASES_BD6 = [
     principle: 'A hyperscaler\'s distribution leverage is real — but so is the lock-in. Evaluate all three structural dimensions before responding to any term, and counter only on what fails the test.',
     traps: [
       'Accepting because InnoFac has zero cloud marketplace revenue today confuses the current baseline with the cost of exclusivity — the deal forecloses future options, not just current revenue, and the 24-month window covers InnoFac\'s highest-growth period.',
-      'Rejecting outright forfeits a genuinely material distribution channel — the leverage dynamic is unfavorable but the deal may still clear on modified terms, and a clean rejection leaves no room to find out.',
+      'An MFN clause on marketplace fees addresses competitive parity but does not evaluate what the 24-month exclusivity actually forecloses in InnoFac\'s direct sales motion or what the technical lock-in into proprietary AI services costs at exit — accepting without that analysis signs away strategic optionality for protection that only activates if a competitor gets a better deal, not if the deal itself is structurally bad for InnoFac.',
       'Negotiating to 12 months and 12% without first evaluating what the exclusivity actually forecloses and what the technical lock-in costs is counter-offering on price while leaving the structurally consequential terms unexamined.',
     ],
   },

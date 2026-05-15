@@ -61,7 +61,7 @@ export const CASES_CFO = [
     quote: 'A product line with negative contribution margin is not a loss leader — it is a cash drain.',
     options: [
       'Sunset Professional Services immediately — negative contribution margin means every dollar of revenue destroys more than a dollar of value.',
-      'Continue Professional Services unchanged — the land-and-expand thesis needs more time to prove out.',
+      'Ring-fence Professional Services losses by capping total annual spend at $800K and letting the product prove itself within that budget constraint.',
       'Restructure Professional Services: raise prices to target positive contribution margin within two quarters, and track whether customers served convert to higher Core ARR at measurable rates.',
       'Convert Professional Services to a partner-delivered model to eliminate internal cost burden while preserving the land-and-expand motion.',
     ],
@@ -76,7 +76,7 @@ export const CASES_CFO = [
     principle: 'A negative-contribution-margin product that you cannot restructure into profitability within a defined timeline is a liability, not a strategy.',
     traps: [
       'Framing negative contribution margin as a short-term investment misunderstands the mechanic — you lose money on every unit regardless of scale.',
-      'Continuing without a measurement framework for the land-and-expand thesis turns a hypothesis into an open-ended subsidy.',
+      'Capping spend without fixing the pricing creates a slow-bleed scenario — you constrain the losses but every dollar of revenue still destroys more than a dollar of variable cost, so the margin problem compounds until the budget runs out.',
       'Jumping to a partner delivery model before fixing the margin avoids the pricing discipline the business needs to develop.',
     ],
   },
@@ -89,7 +89,7 @@ export const CASES_CFO = [
     options: [
       'Double paid search budget immediately — $800 CAC against $7,200 LTV is a 9:1 ratio and you should maximize that channel.',
       'Shift 20% of the field sales budget to paid search, and simultaneously instrument retention by acquisition channel to validate the sales team\'s retention claim before making further changes.',
-      'Maintain the current channel mix — changing allocation without channel-level LTV data risks optimizing for the wrong metric.',
+      'Reduce field sales headcount by 40% to bring the channel\'s average CAC down toward the 3:1 threshold before making a channel elimination decision.',
       'Eliminate field sales as an acquisition channel — $3,600 CAC against $7,200 LTV is a marginal 2:1 ratio that barely clears the threshold.',
     ],
     correct: 3,
@@ -105,7 +105,7 @@ export const CASES_CFO = [
     traps: [
       'Accepting field sales based on an unverified retention claim lets an emotionally defended channel continue destroying value while the claim is being studied.',
       'Doubling paid search without a saturation analysis ignores the marginal CAC inflation that typically occurs when a single channel absorbs outsized budget.',
-      'Treating channel mix optimization as requiring perfect data before acting allows an objectively sub-threshold channel to run indefinitely.',
+      'Cutting headcount to lower channel CAC assumes the inefficiency is in rep productivity rather than in the structural cost of field sales — you may reduce headcount and still find the remaining reps operate above the 3:1 threshold because field sales inherently carries higher base costs than digital channels.',
     ],
   },
   {
@@ -117,7 +117,7 @@ export const CASES_CFO = [
     options: [
       'Prioritize enterprise growth — the combination of higher gross margin and dramatically lower churn produces substantially more LTV per dollar of revenue.',
       'Prioritize SMB growth — faster sales cycles mean faster revenue recognition and easier pipeline predictability.',
-      'Invest equally in both segments — diversification reduces segment concentration risk.',
+      'Invest equally in both segments for two quarters to generate comparable cohort data before committing resources to a segment priority.',
       'Prioritize SMB but raise SMB pricing to improve gross margin before scaling.',
     ],
     correct: 0,
@@ -131,7 +131,7 @@ export const CASES_CFO = [
     principle: 'Fast deals that churn quickly are not growth — they are deferred churn.',
     traps: [
       'Faster sales cycles feel more productive but disguise the fact that high-churn SMB revenue requires constant replacement just to stay flat.',
-      'Equal investment between segments ignores a 33-point gross margin difference and a 23-point churn difference that compound dramatically over time.',
+      'Waiting two quarters for comparable cohort data delays an investment decision that the existing unit economics data already answers — a 33-point gross margin gap and a 23-point churn gap do not require additional cohorts to compare; they require allocation.',
       'Repricing SMB is a margin improvement tactic, not a strategy — it does not address the fundamentally superior unit economics of enterprise.',
     ],
   },
@@ -144,7 +144,7 @@ export const CASES_CFO = [
     options: [
       'Recalculate LTV using the current cohort churn rate of 2.8% and treat that as the operative planning assumption until the trend reverses.',
       'Average the two churn rates — use 2.15% as the planning assumption to reflect both historical and recent performance.',
-      'Maintain the 1.5% assumption — newer cohorts have less data and the stabilization argument has merit.',
+      'Build a weighted-average churn assumption that gives 70% weight to the 18-month historical rate and 30% weight to the recent-cohort rate, reflecting greater confidence in the larger historical sample.',
       'Suspend LTV-based decisions entirely until you have 12 months of data on newer cohorts.',
     ],
     correct: 1,
@@ -158,7 +158,7 @@ export const CASES_CFO = [
     principle: 'Model the churn rate you have, not the one you hope you will return to.',
     traps: [
       'Giving newer cohorts the benefit of the doubt on stabilization is wishful thinking — a trend in your most recent cohorts is more predictive than historical averages.',
-      'Averaging a historical rate with a current rate treats a directional trend as noise, which systematically understates the deterioration.',
+      'A 70/30 weighted average anchored to historical sample size is a statistical argument applied to the wrong problem — when a churn trend is directional and recent, recency is more predictive than sample size, so the weighting scheme systematically buries the deterioration signal.',
       'Suspending LTV-based planning creates a decision vacuum that is more dangerous than operating with an imperfect but directionally correct assumption.',
     ],
   },
@@ -171,8 +171,8 @@ export const CASES_CFO = [
     options: [
       'Negative gross margin in a marketplace is acceptable if GMV growth is strong and the path to margin improvement through scale is credible and time-bounded.',
       'Negative gross margin is never acceptable — raise the take rate immediately to reach breakeven.',
-      'Negative gross margin is acceptable indefinitely as long as GMV is growing — unit economics are a later-stage concern.',
-      'Shut down trust-and-safety operations to eliminate the cost — these are overhead, not core to the marketplace.',
+      'Negative gross margin is acceptable as long as the Series B closes within 12 months — investors in this stage expect to fund the margin gap and the GMV growth trajectory is the primary valuation driver.',
+      'Outsource trust-and-safety to a third-party vendor at a fixed per-transaction fee to convert the variable cost structure and reach gross margin breakeven within two quarters.',
     ],
     correct: 0,
     consequences: {
@@ -185,8 +185,8 @@ export const CASES_CFO = [
     principle: 'Negative gross margin in a marketplace is a bet on scale, not a business model — it requires a credible and time-bounded path to positive unit economics.',
     traps: [
       'Raising take rates to solve negative margin ignores that take rate is the primary lever of marketplace liquidity — premature increases can collapse supplier supply or buyer demand.',
-      'Accepting negative margin indefinitely without a path conflates patience with the absence of financial discipline.',
-      'Framing trust-and-safety as overhead misunderstands marketplace mechanics — it is the cost of the product integrity that drives enterprise retention.',
+      'Linking margin tolerance to the fundraising timeline conflates investor willingness to fund losses with business model validity — if the Series B slips by two quarters, the same negative margin that was "acceptable" becomes a death spiral, and investors can read that vulnerability in the cap table.',
+      'A fixed per-transaction fee for outsourced trust-and-safety converts a variable cost that scales with GMV into a predictable line item, but it also removes institutional knowledge of fraud patterns and dispute resolution from the company — third-party vendors optimize for their own throughput, not for the quality signals that enterprise buyers use to evaluate marketplace integrity.',
     ],
   },
   {
@@ -198,7 +198,7 @@ export const CASES_CFO = [
     options: [
       'Decline the paid search budget increase and redirect that investment into owned-media and referral channels to reduce structural CAC dependency on a single inflating channel.',
       'Approve the budget increase — despite CAC inflation, a $1,440 CAC against $5,400 LTV is still a 3.75:1 ratio, which clears the threshold.',
-      'Cut paid search entirely — 60% CAC inflation makes the channel structurally unsound.',
+      'Decline the budget increase and instead negotiate volume-based CPCs directly with Google and Bing to reduce keyword costs and restore CAC to the $900 baseline before adding spend.',
       'Approve the increase but set a hard CAC ceiling of $1,800 — if CPCs push CAC above that level, pause spend automatically.',
     ],
     correct: 3,
@@ -214,7 +214,7 @@ export const CASES_CFO = [
     traps: [
       'Refusing all investment in a still-profitable channel because of a trend conflates a deteriorating channel with a broken one.',
       'Approving the increase without a ceiling trusts trend reversal that market dynamics make unlikely — competition-driven CAC inflation does not self-correct.',
-      'Cutting the channel entirely while unproven alternatives are not ready creates an acquisition gap that compounds into a revenue gap.',
+      'Volume-based CPC negotiation is a buyer\'s market tactic that works in commodity ad inventory — competitive keyword markets are auction-driven and Google does not offer volume discounts that override real-time bidding dynamics, so this approach buys goodwill but not the $540 CAC reduction it assumes.',
     ],
   },
   {
@@ -226,7 +226,7 @@ export const CASES_CFO = [
     options: [
       'The NRR divergence is operationally driven — invest in expanding onboarding support coverage in the new geographic market before drawing structural conclusions.',
       'The NRR decline is structural — suspend new geographic market acquisition and focus on shoring up retention in existing cohorts.',
-      'Average the NRR across cohorts and report the blended figure to the board — cohort-level variance is normal and should not drive decisions.',
+      'Commission a third-party customer success audit across both cohort groups to determine whether the NRR divergence reflects onboarding quality, product-market fit, or competitive displacement before committing to a fix.',
       'Attribute the divergence to product-market fit degradation and initiate a full product strategy review.',
     ],
     correct: 0,
@@ -240,7 +240,7 @@ export const CASES_CFO = [
     principle: 'Do not declare a structural problem when an operational fix has not yet been attempted.',
     traps: [
       'Suspending market expansion based on a cohort problem that has a known operational explanation wastes a market opportunity and avoids accountability for the operational gap.',
-      'Blending divergent cohorts into an average hides the signal the data is providing and deprives leadership of actionable information.',
+      'A third-party audit adds 60-90 days and external cost to diagnose a root cause that the company\'s own post-mortem has already identified — you have the hypothesis, the data, and the operational variable; commissioning an external study is a governance delay dressed as rigor.',
       'Jumping to a product strategy review when the cohort divergence lines up neatly with an onboarding quality gap adds organizational noise to an operational problem.',
     ],
   },

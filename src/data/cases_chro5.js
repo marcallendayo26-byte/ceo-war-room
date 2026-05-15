@@ -57,7 +57,7 @@ export const CASES_CHRO5 = [
     "difficulty": 2,
     "scenario": "Your company moved to full remote work 6 months ago. Engagement scores have dropped 12 points and collaboration scores are at an all-time low. The CEO wants to mandate 3 days in office per week. However, approximately 40% of your team was explicitly hired as \"remote-first\" and several employees relocated to other cities — including two employees in Cebu and one in Davao — based on that promise. How do you advise the CEO?",
     "options": [
-      "Support the mandate — engagement and collaboration data are objective and the business need outweighs the original hiring promise.",
+      "Recommend a full return-to-office mandate for all employees with 30 days notice and a transition support package — relocation allowances for those who moved remotely — arguing that the business need for collaboration justifies the policy change and that financial support mitigates the personal impact.",
       "Address the collaboration and engagement gaps directly through structured virtual rituals, team working agreements, and remote-first tooling improvements rather than changing the location policy.",
       "Propose a 60-day hybrid pilot for Manila-based employees only — measure its impact on collaboration and engagement scores before expanding or formalizing a broader policy.",
       "Recommend a differentiated policy: employees hired as remote-first retain their remote status; employees hired before the remote policy are invited (not mandated) to return to office 2-3 days per week with team-level flexibility."
@@ -72,7 +72,7 @@ export const CASES_CHRO5 = [
     "framework": "Employment Promise vs. Business Need — when a policy change conflicts with an explicit employment representation, the legal and ethical obligation to honor that representation must be weighed against the operational benefit of uniformity. A segmented policy is often the right resolution.",
     "principle": "Policy changes that break explicit hiring promises create more attrition and legal risk than the collaboration benefit they recover.",
     "traps": [
-      "Treating all employees as equivalent regardless of their hiring terms exposes the company to constructive dismissal claims and signals that employment agreements are not honored.",
+      "A transition support package does not cure the employment contract breach — employees hired as remote-first have a reliance claim that financial mitigation does not extinguish, and the severance exposure on forced returns can exceed the collaboration benefit recovered.",
       "A pilot that excludes remote-first employees produces collaboration data with a survivorship bias — the most flexible employees are not representative of your full workforce.",
       "Investing only in remote tooling without addressing the social connection deficit may improve process scores but will not recover the relationship-quality dimension of collaboration."
     ]

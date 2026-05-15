@@ -8,7 +8,7 @@ export const CASES_EM2 = [
     options: [
       "Hire Candidate B — learning velocity and collaborative behavior predict long-term team health better than current skill match.",
       "Hire Candidate A — deep expertise and stack fit are hard to find and critical to your current roadmap.",
-      "Hire neither — continue searching for someone with both technical depth and collaborative behavior.",
+      "Extend the search 4 weeks while bringing Candidate B back for a second panel focused specifically on technical depth in your exact stack.",
       "Hire Candidate A with a clear performance expectation around collaboration from day one."
     ],
     correct: 0,
@@ -19,7 +19,7 @@ export const CASES_EM2 = [
     traps: [
       "Expertise-first hire — stack fit depreciates as tech evolves; behavior doesn't self-correct",
       "Performance expectation workaround — managing collaborative behavior after hire almost never works at the senior level",
-      "Continue searching — reasonable but don't frame it as 'wait for perfect' when B is genuinely strong"
+      "Extended search with re-panel — a second technical panel is unlikely to change your stack assessment of B in 4 weeks, and the delay risks losing them to another offer while you search for an implausible combination"
     ]
   },
   {
@@ -31,7 +31,7 @@ export const CASES_EM2 = [
     options: [
       "Hire contractors immediately — the team needs capacity now and ramp can be managed.",
       "Evaluate the nature of the work: use contractors for well-defined, isolated tasks; continue recruiting for roles requiring deep context.",
-      "Decline contractors — wait for the right full-time hires even if it takes longer.",
+      "Hire one contractor per open role to cover all three Q1 gaps immediately, with explicit conversion plans once the full-time recruiting pipeline catches up.",
       "Hire one contractor to test the ramp experience before committing to more."
     ],
     correct: 1,
@@ -41,7 +41,7 @@ export const CASES_EM2 = [
     principle: "Contractors add headcount. Only the right contractor adds velocity.",
     traps: [
       "Full contractor adoption — ramp on complex work can create net-negative velocity for weeks",
-      "Flat refusal — ignores that contractors can genuinely accelerate the right categories of work",
+      "Full contractor slate — three simultaneous ramps on context-heavy work compounds the velocity drag, and conversion plans rarely happen on schedule, leaving you with a de facto contractor team with no long-term ownership mindset",
       "Single-contractor test — useful but doesn't help with the Q1 deadline if results take time to assess"
     ]
   },
@@ -77,7 +77,7 @@ export const CASES_EM2 = [
     options: [
       "Follow the engineer's advice — promoting from within is better for morale.",
       "Hire the 2 seniors as planned — you need proven capability now, not potential.",
-      "Let the team vote on the approach — it affects them most.",
+      "Propose a hybrid: use one headcount slot for a senior external hire and the other for an internal promotion to tech lead, balancing immediate capability with team development.",
       "Evaluate what the headcount is meant to solve: if it's speed and immediate capability, hire seniors; if it's team development and cost, the proposed alternative has merit."
     ],
     correct: 3,
@@ -88,7 +88,7 @@ export const CASES_EM2 = [
     traps: [
       "Default promote-from-within — morale rationale doesn't answer the capability question",
       "Default senior hire — doesn't evaluate whether the alternative actually addresses the same needs",
-      "Team vote — headcount is an EM decision with team input, not a democratic one"
+      "Hybrid without strategic analysis — splitting the headcount satisfies neither need fully without first determining whether immediate capability or team development is the actual priority"
     ]
   },
   {
@@ -123,7 +123,7 @@ export const CASES_EM2 = [
     options: [
       "Evaluate candidates more favorably who bring different backgrounds — weight diversity in final decisions.",
       "Audit your sourcing: expand to bootcamps, HBCUs, Hispanic-serving institutions, non-traditional programs, and referral sources that reach different networks.",
-      "Post the job description in more places — broader distribution reaches more candidates.",
+      "Rewrite the job description to remove implicit credential filters — eliminate 'top university' signals and years-of-experience requirements in favor of demonstrated skill criteria.",
       "Partner with a diversity-focused recruiting firm to source candidates."
     ],
     correct: 1,
@@ -133,7 +133,7 @@ export const CASES_EM2 = [
     principle: "You can't hire a diverse team from a homogeneous pool.",
     traps: [
       "Decision-stage weighting — inconsistent, legally fraught, and doesn't scale",
-      "Broader posting distribution — doesn't change which networks are reached",
+      "JD rewrite only — improves conversion for candidates already finding the role but doesn't fix the sourcing network; the same homogeneous pool reads a better-written description",
       "Diversity firm only — useful supplement but doesn't address your own sourcing network"
     ]
   },
@@ -145,7 +145,7 @@ export const CASES_EM2 = [
     quote: "Top performers who dictate hiring standards become the ceiling of your team, not just its floor.",
     options: [
       "Include her more in the hiring process to address her concerns.",
-      "Tell her the hiring decisions are yours to make and her job is to help new hires succeed.",
+      "Schedule a structured debrief where she walks through specific output observations on the new hires, then use that session to calibrate whether the bar has slipped or the ramp expectations are misaligned.",
       "Take her concern seriously but investigate before acting: review performance data on recent hires and have a direct conversation about what specific behaviors are driving her perception.",
       "Raise the hiring bar to align with her expectations — top performers' instincts on quality are usually right."
     ],
@@ -156,7 +156,7 @@ export const CASES_EM2 = [
     principle: "Top performers' instincts about team quality deserve data-validation, not automatic deference.",
     traps: [
       "Include in hiring without investigation — gives veto power before you've validated the concern",
-      "Dismissal — potentially valid concern; top performers see things managers miss",
+      "Debrief without independent data first — letting her frame the observations before you've reviewed performance data means she sets the diagnostic agenda, which can validate a misaligned standard as readily as a real one",
       "Raise the bar reflexively — may be right, but acting without investigating could misdiagnose the problem"
     ]
   },
@@ -169,7 +169,7 @@ export const CASES_EM2 = [
     options: [
       "Redistribute immediately and start the external search in parallel.",
       "Bring in a contractor immediately to fill the gap while you search for a full-time hire.",
-      "Ask each engineer to absorb 15% more work — they can handle it temporarily.",
+      "Compress the roadmap immediately: drop the lowest-priority project from the current sprint and redistribute only the departed engineer's most critical tasks across the team.",
       "Pause some non-critical projects to absorb the loss without overloading the team, and fast-track the hire."
     ],
     correct: 3,
@@ -179,7 +179,7 @@ export const CASES_EM2 = [
     principle: "The right response to losing one engineer is not spreading that engineer's work across everyone who remains.",
     traps: [
       "Redistribution without scope reduction — sustained overload risks losing 2-3 more engineers",
-      "15% overload ask — underestimates the actual load and normalizes overwork",
+      "Sprint-only scope reduction — dropping one project for one sprint doesn't solve the overload across the 8-12 week search timeline; the redistributed tasks accumulate sprint after sprint on a team still at capacity",
       "Contractor first — valid option if the work is suited, but shouldn't delay evaluating scope reduction"
     ]
   },
@@ -236,7 +236,7 @@ export const CASES_EM2 = [
     scenario: "A strong mid-level engineer on your team has been consistently hitting their deliverables but is visibly disengaged — shorter standup updates, fewer Slack interactions, declining optional team events. They haven't flagged anything in 1:1s. What do you do?",
     quote: "Disengagement is quiet — it doesn't announce itself before it turns into a resignation.",
     options: [
-      "Wait for them to raise it — if they haven't said anything, it's not your place to pry.",
+      "Review their recent task assignments for scope creep or under-stimulating work that could explain the withdrawal, then propose a more challenging project at your next 1:1.",
       "Assign them a high-visibility project to re-energize them.",
       "Name what you're observing in your next 1:1: 'I've noticed you seem less engaged lately — is everything okay, both professionally and personally?'",
       "Check in with their teammates to understand if something happened."
@@ -247,7 +247,7 @@ export const CASES_EM2 = [
     framework: "Engagement Monitoring: name observable changes early in 1:1s — before they become exits.",
     principle: "You can't fix disengagement you pretend not to notice.",
     traps: [
-      "Wait and see — passive management on a signal that often precedes departure",
+      "Task-review diagnosis — assumes the cause before asking; disengagement from compensation, personal circumstances, or team dynamics won't resolve when you offer a more interesting ticket",
       "Project assignment — guessing at a solution before understanding the cause",
       "Peer intel gathering — bypasses the relationship and creates gossip dynamics"
     ]
@@ -331,7 +331,7 @@ export const CASES_EM2 = [
       "Document the behavior and let HR handle it when it crosses a policy line.",
       "Give them more technically complex work to channel their energy productively.",
       "Have a direct private conversation: name the specific behaviors, explain their impact, and set clear expectations with a follow-up timeline.",
-      "Let the team handle it — peer pressure is often more effective than manager feedback."
+      "Use the next retrospective to raise team norms around idea feedback — address the pattern indirectly without naming the engineer in a group setting."
     ],
     correct: 2,
     consequences: {"teamMorale":9,"executionRisk":-5,"growth":4},
@@ -341,7 +341,7 @@ export const CASES_EM2 = [
     traps: [
       "HR escalation without direct conversation — premature and signals you're avoiding the conversation",
       "More technical work — doesn't address the interpersonal behavior",
-      "Peer pressure delegation — EMs who outsource difficult conversations to peer dynamics undermine their own authority"
+      "Indirect retro approach — signals the behavior is a group norm failure rather than individual accountability; the engineer recognizes the reference, becomes defensive, and the team learns that direct behavioral feedback isn't practiced"
     ]
   },
   {
@@ -352,7 +352,7 @@ export const CASES_EM2 = [
     quote: "Compensation conversations delayed by discomfort are compensation conversations that become exit interviews.",
     options: [
       "Tell them compensation is reviewed annually and you'll raise it at the next cycle.",
-      "Give them an immediate reassurance that they're valued without committing to anything specific.",
+      "Validate their market research immediately and walk them through the company's compensation band for their level — show them where they sit and what criteria move them up.",
       "Ask them to provide documentation of the market data and you'll share it with HR.",
       "Take it seriously: acknowledge the conversation, commit to investigating their data, and provide a timeline for when you'll come back with a substantive response."
     ],
@@ -363,8 +363,8 @@ export const CASES_EM2 = [
     principle: "Engineers who raise compensation concerns are giving you the chance to keep them. Don't waste it.",
     traps: [
       "Annual cycle deferral — a real concern dismissed by process; often leads to departure before the next cycle",
-      "Documentation request — bureaucratic deflection; you should do the investigation, not ask them to prove it",
-      "Empty reassurance — the least effective response to a substantive concern"
+      "Band explanation without advocacy — if the band itself is below market, showing where they sit answers the wrong question; the engineer leaves knowing you explained the constraint but didn't commit to challenging it",
+      "Documentation request — bureaucratic deflection; the EM should do the investigation, not ask the engineer to prove their own underpayment before anyone acts"
     ]
   },
   {
@@ -399,7 +399,7 @@ export const CASES_EM2 = [
     options: [
       "Promote them — losing them to a competitor who gives them the title is a worse outcome.",
       "Give a clear, specific, time-bound gap description: what would 'senior' look like for them, what they're missing, and a concrete timeline for reassessment.",
-      "Tell them the decision is final for this cycle and encourage patience.",
+      "Connect them with senior engineers at peer companies to calibrate whether your bar is reasonable — external perspective can reset expectations on both sides.",
       "Ask HR to review the criteria — maybe the bar is too high for your context."
     ],
     correct: 1,
@@ -409,7 +409,7 @@ export const CASES_EM2 = [
     principle: "Vague feedback is a career stall. Specific feedback is a career map.",
     traps: [
       "Premature promotion — protecting a title without the performance creates calibration problems and rarely retains",
-      "Patience without specifics — the third cycle of the same answer is the resignation letter",
+      "External bar calibration — doesn't give the engineer actionable feedback on their own gaps, and if peers confirm they're underleveled at your company, you've built their case for leaving rather than a path to promotion",
       "HR criteria review — avoidance mechanism; the specific feedback should come from you"
     ]
   },

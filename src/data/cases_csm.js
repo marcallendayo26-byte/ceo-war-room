@@ -7,8 +7,8 @@ export const CASES_CSM = [
     quote: "An onboarding without stakeholders is a deployment with no one to succeed.",
     options: [
       "Reschedule the kickoff and work with the customer to identify replacement stakeholders or a revised timeline that ensures the right people are involved.",
-      "Proceed with the reduced team and document that the delay risk is on their side.",
-      "Begin onboarding with whoever is available and loop in the missing stakeholders later.",
+      "Proceed with the reduced team and use the first two weeks to build momentum — the missing stakeholders can review recorded sessions when they return.",
+      "Identify which of the five stakeholders is most critical and request an urgent meeting with just that person to determine how to proceed.",
       "Escalate immediately to the economic buyer — this is a risk to the project's success."
     ],
     correct: 0,
@@ -17,8 +17,8 @@ export const CASES_CSM = [
     framework: "Onboarding Readiness: stakeholder availability is a prerequisite, not a nice-to-have.",
     principle: "A delayed start you planned beats a failed start you pushed through.",
     traps: [
-      "Documenting blame preemptively — when implementation fails, that note helps no one",
-      "Starting with partial team — missing stakeholders means missing requirements, missed adoption, and rework",
+      "Momentum-first approach — recorded session reviews don't substitute for live decision-making with the right stakeholders; requirements get locked before the people who own them have weighed in",
+      "Single-stakeholder pivot — reducing a five-person governance structure to one person concentrates too much dependency and leaves the other four departments without voice during scoping",
       "Immediate executive escalation before working with the project lead — bypasses the right channel"
     ]
   },
@@ -29,7 +29,7 @@ export const CASES_CSM = [
     scenario: "You're onboarding a mid-market customer and discover midway through implementation that the data they've migrated is significantly dirtier than expected — missing fields, duplicate records, inconsistent formats. This will add 3-4 weeks to the timeline. How do you handle this?",
     quote: "Data quality problems discovered in implementation were always pre-existing — own the conversation, not the cause.",
     options: [
-      "Absorb the delay and don't tell the customer — you don't want to start the relationship with bad news.",
+      "Quietly extend the timeline by 3-4 weeks in the project plan and begin data cleanup work in parallel — share the updated schedule at the next check-in once you have a clearer picture.",
       "Proactively brief the customer: share what you found, the timeline impact, and a specific remediation plan.",
       "Pause the implementation and send a formal change order for the additional work.",
       "Try to work around the data issues and deliver on the original timeline, noting quality limitations in the deployment."
@@ -40,7 +40,7 @@ export const CASES_CSM = [
     framework: "Proactive Communication: surprises in implementation require immediate transparency, not damage control later.",
     principle: "Customers can handle bad news. They can't handle bad news delivered late.",
     traps: [
-      "Silence and absorption — project lands late with no warning, destroying credibility",
+      "Unilateral delay absorption — the customer discovers the extension at the next check-in having had no opportunity to weigh in on the remediation approach, and assumes the delay was hidden rather than managed",
       "Immediate change order — adversarial framing before a collaborative conversation",
       "Workaround delivery — you ship a broken deployment and the customer blames the product"
     ]
@@ -52,7 +52,7 @@ export const CASES_CSM = [
     scenario: "Your new customer's internal champion is highly engaged and technically capable, but you're noticing that end users aren't attending training sessions — attendance has been around 20%. The champion keeps saying 'they'll come around.' You're 4 weeks into a 6-week onboarding. What's your concern and response?",
     quote: "Adoption starts with attendance. You can't train people who aren't in the room.",
     options: [
-      "Trust the champion — they know their organization better than you do.",
+      "Schedule additional voluntary training sessions in the remaining two weeks and make attendance optional so engaged users can reinforce their knowledge without pressuring others.",
       "Extend the onboarding timeline to give users more time to engage.",
       "Flag the adoption risk to the champion with specific data and jointly develop a plan to increase attendance, including executive reinforcement if needed.",
       "Move ahead with the users who are engaged — 20% adoption in the core users is a foundation to build on."
@@ -63,7 +63,7 @@ export const CASES_CSM = [
     framework: "Adoption Risk Management: identify leading indicators of churn during onboarding.",
     principle: "Low training attendance is not a training problem — it's a change management problem.",
     traps: [
-      "Champion deference — your experience with hundreds of implementations outweighs their optimism",
+      "Optional voluntary sessions — reinforces the existing dynamic where non-attendees self-select out; the 80% who haven't come to training won't start now because a new optional session appeared on the calendar",
       "Timeline extension without fixing root cause — you're extending a failing dynamic, not solving it",
       "Accepting 20% as a foundation — 80% non-adoption at launch rarely improves post-go-live without intervention"
     ]
@@ -121,10 +121,10 @@ export const CASES_CSM = [
     scenario: "Three weeks into onboarding, your main contact at the customer goes on parental leave for 3 months. The backup they designated is new to the company and unfamiliar with the project context. What's your onboarding strategy adjustment?",
     quote: "Single-threaded customer relationships are fragile by design.",
     options: [
-      "Slow the onboarding until the primary contact returns.",
+      "Reprioritize the remaining onboarding milestones around tasks that don't require deep customer context, and defer the complex configuration decisions until the primary contact returns in 3 months.",
       "Invest extra time in the backup: share full project context, document everything already completed, and build the relationship proactively.",
       "Ask the customer to assign a more senior backup who has existing context.",
-      "Continue at normal pace and accept that some context loss is inevitable."
+      "Continue at normal pace, document decisions as you go, and schedule a structured handback session with the primary contact when they return to re-orient them on what happened."
     ],
     correct: 1,
     consequences: {"customerTrust":8,"executionRisk":-7,"growth":4},
@@ -132,9 +132,9 @@ export const CASES_CSM = [
     framework: "Multi-threading: single-threaded relationships fail at the most inconvenient times.",
     principle: "Your customer contact's absence is your documentation quality's audition.",
     traps: [
-      "Waiting for primary to return — 3 months of paused onboarding is 3 months of delayed value",
+      "Milestone deferral for 3 months — the complex decisions you're deferring are often sequentially upstream of everything else; the delay compounds across the whole onboarding",
       "Demanding a senior backup — punishes the customer for normal human events",
-      "Normal pace without context investment — the backup will feel overwhelmed and the project suffers"
+      "Documentation-then-handback approach — the backup still spends the next 3 months making decisions without understanding why earlier choices were made, leading to configuration drift and rework"
     ]
   },
   {
@@ -213,7 +213,7 @@ export const CASES_CSM = [
     scenario: "Six weeks into onboarding, the customer's executive sponsor is replaced by a new one who was not involved in the purchase decision and is skeptical about the initiative. The original sponsor's priorities have been deprioritized. What's your immediate strategy?",
     quote: "Executive sponsor changes are the single largest predictor of post-onboarding churn.",
     options: [
-      "Continue working through your existing champion — the executive transition is above your level to manage.",
+      "Continue working through your existing champion — they have the institutional context and day-to-day relationships that a new executive sponsor will lack for months.",
       "Request an introductory meeting with the new sponsor as soon as possible to establish the relationship and context.",
       "Ask your VP or exec to reach out to the new sponsor at the C-level.",
       "Accelerate the onboarding to create facts on the ground before the new sponsor can derail it."
@@ -224,7 +224,7 @@ export const CASES_CSM = [
     framework: "Sponsor Transition Management: new executives require new relationship investment.",
     principle: "An executive who didn't buy the deal needs to be re-sold the value — immediately.",
     traps: [
-      "Champion-only strategy when executive authority has shifted — your champion no longer controls the outcome",
+      "Champion-proxy strategy — your champion's institutional context doesn't transfer authority; the new executive can overrule everything the champion is advocating for without ever having spoken to you",
       "Your executive escalation before your own introduction — skips a step that's yours to own",
       "Accelerated fait accompli — creates resentment in a new executive who didn't choose the project"
     ]
@@ -236,7 +236,7 @@ export const CASES_CSM = [
     scenario: "Usage data shows that a key feature your customer was sold on has 8% adoption among their users 90 days post-launch. The feature is core to the value proposition that justified the purchase. The customer hasn't mentioned it. What do you do?",
     quote: "Low adoption is a fact. Ignoring it is a choice that always costs more later.",
     options: [
-      "Wait for the customer to bring it up — you don't want to create problems they haven't noticed.",
+      "Add the feature adoption data to the agenda for the next scheduled QBR in 6 weeks, where you'll have more context and time to address it properly.",
       "Arrange additional training sessions for the underused feature.",
       "Proactively bring the data to the customer: share the 8% stat, explain why the feature matters for their goals, and jointly diagnose the barrier.",
       "Alert your product team to investigate if the feature has usability issues."
@@ -247,7 +247,7 @@ export const CASES_CSM = [
     framework: "Adoption Analytics: usage data is your early warning system — act on it proactively.",
     principle: "Every day of low adoption is a day your renewal is being decided without you.",
     traps: [
-      "Waiting for the customer to notice — by then it's a retention conversation, not an adoption one",
+      "QBR deferral — six more weeks of 8% adoption at 90 days post-launch means the customer's mental ROI calculation has been running without the feature's contribution; by the QBR, they've already formed the 'we're not sure this is worth it' opinion",
       "Reflexive training — training solves an awareness problem; it doesn't solve a workflow or usability problem",
       "Product alert only — product may need to know, but the customer conversation can't wait for a product investigation"
     ]
@@ -260,7 +260,7 @@ export const CASES_CSM = [
     quote: "Customers who work around your product are telling you what your product should be.",
     options: [
       "Educate them on the 'right way' to use the product — they're missing out on key value.",
-      "Accept their usage pattern — if they're getting value, the method doesn't matter.",
+      "Document the workarounds in your CRM as customer-validated workflows and incorporate them into the account's onboarding guide as an alternative usage model for their industry.",
       "Document their workarounds and escalate to product as a feature request.",
       "Ask them to walk you through their workflow: understand why they built the workarounds before suggesting alternatives."
     ],
@@ -272,7 +272,7 @@ export const CASES_CSM = [
     traps: [
       "Immediate 'right way' education — you haven't earned the right to prescribe before you understand",
       "Product escalation only — the customer conversation has to happen regardless of what product does",
-      "Accepting workarounds without inquiry — you miss the product intelligence and the adoption opportunity"
+      "Workaround codification without understanding — you're cementing a suboptimal workflow into your documentation without knowing whether it reflects a genuine product gap or a habit that a better explanation would resolve"
     ]
   },
   {
@@ -285,7 +285,7 @@ export const CASES_CSM = [
       "Identify why Finance is the outlier: schedule a specific conversation with the Finance lead to understand their barriers.",
       "Focus on improving the 65% average — that's the headline metric.",
       "Ask your champion to drive Finance adoption internally — that's an internal change management issue.",
-      "Report the 65% adoption and note the Finance outlier — if the customer is satisfied overall, it's acceptable."
+      "Report the 65% overall adoption rate with Finance as a noted outlier, and recommend the customer assign an internal Finance champion to drive adoption within that department over the next quarter."
     ],
     correct: 0,
     consequences: {"customerTrust":8,"executionRisk":-6,"growth":5},
@@ -295,7 +295,7 @@ export const CASES_CSM = [
     traps: [
       "Average-focused reporting — misses the outlier that's going to be the renewal conversation",
       "Champion-routed fix — champions rarely have adoption influence across departments they don't own",
-      "Accepting 65% with a noted outlier — documents the problem without solving it"
+      "Internal champion delegation with no discovery — you're outsourcing the fix to someone internal without understanding whether the barrier is workflow fit, competing tools, or a failed onboarding; they can't solve what you haven't diagnosed"
     ]
   },
   {
@@ -329,7 +329,7 @@ export const CASES_CSM = [
     quote: "Power user love is a sales asset. Broad adoption is a renewal asset.",
     options: [
       "Lead with the power user advocacy — their enthusiasm demonstrates product value.",
-      "Focus renewal conversations on the power users' use cases and avoid the broader adoption discussion.",
+      "Structure the renewal conversation around the power users' documented outcomes and position the broader user base as 'in progress' — the strong ROI from active users makes the per-seat economics defensible.",
       "Be transparent with the customer: share both the power user engagement and the broad adoption data, and collaboratively address what's driving the gap.",
       "Attribute the low broad adoption to change management challenges on the customer's side."
     ],
@@ -340,7 +340,7 @@ export const CASES_CSM = [
     principle: "A customer who renews without knowing their adoption gap will churn with it.",
     traps: [
       "Leading with power user advocacy only — selective framing that backfires when the customer eventually sees the full picture",
-      "Avoiding the broad adoption topic entirely — the conversation you avoid in year 1 becomes the reason they don't renew in year 2",
+      "Per-seat ROI framing with broad adoption hidden — the customer's finance team will independently calculate cost-per-active-user before renewal and arrive at the same conclusion you were hoping to avoid; now they're surprised and you look like you were managing the narrative",
       "Blaming change management — accurate but blame never helps; joint ownership does"
     ]
   },
@@ -351,7 +351,7 @@ export const CASES_CSM = [
     scenario: "A newly onboarded customer shows strong login adoption — 85% of users are logging in weekly — but usage data reveals zero engagement with your analytics and reporting features, which are the highest-value and highest-ROI components of the platform. They're using it as a data entry tool. What's your concern and approach?",
     quote: "High login rates with low feature depth is a renewal waiting to be questioned.",
     options: [
-      "Be satisfied — 85% login adoption is strong; customers adopt advanced features at their own pace.",
+      "Highlight the 85% login rate in your next QBR as a health indicator and add analytics adoption to your 6-month roadmap conversation as the logical next maturity step.",
       "Run an analytics and reporting training session immediately to drive feature awareness.",
       "Escalate to your product team that the analytics features may have a UX problem affecting adoption.",
       "Bring the gap to your champion: 'Your team is actively using the platform, which is great — but the analytics layer, where most customers see the biggest ROI, hasn't been touched yet. Can we look at what it would take to get your team using it?'"
@@ -362,7 +362,7 @@ export const CASES_CSM = [
     framework: "Depth vs. Breadth Adoption: high breadth + low depth is not a healthy adoption profile.",
     principle: "A customer who logs in but doesn't use the value engine will ask at renewal why they paid for it.",
     traps: [
-      "Satisfaction with login rate — logins without value usage are a churn setup, not a success story",
+      "QBR roadmap deferral — you're scheduling the analytics conversation for the same meeting where the customer is evaluating whether the platform justifies its cost; by then, they've already formed the 'we paid for a data entry tool' opinion",
       "Immediate training — without the 'why this matters for your business' framing, training on features they haven't asked about doesn't convert",
       "Product escalation — likely not a product problem; most analytics adoption gaps are change management"
     ]
@@ -377,7 +377,7 @@ export const CASES_CSM = [
       "Request a session specifically with the finance team lead — not your champion — to understand their workflow, what they're using instead of your product, and where it isn't fitting.",
       "Send targeted training content to finance users to improve their awareness of relevant features.",
       "Flag the finance adoption gap to your product team as potential evidence of an unsupported workflow.",
-      "Include the finance adoption gap in the next QBR agenda and let the customer's team address it internally."
+      "Include the finance adoption gap in the next QBR agenda, where you'll present it alongside overall adoption numbers and give the champion the floor to address it with their leadership team present."
     ],
     correct: 0,
     consequences: {"customerTrust":8,"executionRisk":-6,"growth":5},
@@ -387,7 +387,7 @@ export const CASES_CSM = [
     traps: [
       "Targeted training without discovery — treats an unknown root cause with a known remedy",
       "Product escalation before discovery — you don't yet know if this is a product problem or a change management one",
-      "QBR delegation — puts an internal adoption problem in your champion's hands when they may lack the context or authority to fix it"
+      "QBR public forum without prior discovery — putting a 12% adoption gap on the screen in front of Finance leadership without knowing the cause first means the Finance lead learns about their team's underperformance publicly and gets defensive rather than collaborative"
     ]
   },
   {

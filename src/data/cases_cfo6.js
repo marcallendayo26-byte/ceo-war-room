@@ -6,9 +6,9 @@ export const CASES_CFO6 = [
     scenario: 'You are in Series A negotiations. Your financial model supports a $22M pre-money valuation based on 5x forward ARR of $4.4M. The lead investor has submitted a term sheet at $15.4M pre-money — 30% below your ask — citing "current market comps" without providing specifics. Your ARR is growing at 34% YoY, gross margin is 71%, and NRR is 108%. You have two other investor conversations at early stages but no competing term sheets.',
     options: [
       'Counter at your $22M ask with a data-backed defense: present comparable transactions at your growth and margin profile and anchor the conversation in your specific metrics.',
-      'Accept the $15.4M valuation to close quickly — a bird in hand is worth more than negotiation friction at this stage.',
-      'Tell the investor you have competing interest and cannot accept their valuation, without quantifying your counter.',
-      'Request a 30-day extension to generate a competing term sheet before responding.',
+      'Accept the $15.4M valuation but negotiate for a lower dilution percentage by reducing the share count issued at that price, preserving founder ownership while closing quickly.',
+      'Counter at $19M — split the difference between the investor\'s $15.4M offer and your $22M ask — to signal flexibility while preserving some valuation upside.',
+      'Counter at $22M but offer the investor additional protective provisions — a 1x participating liquidation preference or pro-rata rights in the next round — to compensate for the higher valuation.',
     ],
     correct: 0,
     consequences: {
@@ -20,9 +20,9 @@ export const CASES_CFO6 = [
     framework: 'Anchoring in Valuation Negotiation — the party who anchors with specifics controls the frame of the negotiation. A data-backed anchor forces the counterparty to respond to your numbers, not their own.',
     principle: 'Never concede a valuation point without a counter — every unchallenged concession becomes the new starting line.',
     traps: [
-      'Accepting quickly to avoid friction sets a precedent of capitulation that will recur in term sheet negotiations, board dynamics, and future funding rounds.',
-      'Vague claims of competing interest without a term sheet are easily tested by an experienced investor and immediately erode your credibility.',
-      'A 30-day delay to generate a competing term sheet risks losing the current term sheet while the competing process may not produce a better offer.',
+      'Negotiating dilution percentage at a fixed-price valuation gives away economic value through a different mechanism — a lower share count at $15.4M still anchors the company\'s valuation 30% below what your metrics justify, and future rounds will use this number as a reference point.',
+      'A split-the-difference counter at $19M abandons $3M in valuation by conceding ground before presenting the data-backed case — it signals you believe your own ask is inflated rather than justified by your metrics.',
+      'Offering protective provisions to close a valuation gap trades a recoverable negotiating point (price) for structural terms (liquidation preference or pro-rata rights) that persist across the entire investment lifecycle and compound at exit.',
     ],
   },
   {
@@ -34,7 +34,7 @@ export const CASES_CFO6 = [
       'Accept the term sheet as written — the valuation is strong and the terms are unlikely to matter unless a downside scenario occurs.',
       'Push back on both terms: request a 1x non-participating liquidation preference and narrow-based weighted-average anti-dilution, and present market data to support the ask.',
       'Counter only on the liquidation preference (request 1x non-participating) and accept the anti-dilution clause to close faster.',
-      'Stall for two weeks to give the second investor time to submit a competing term sheet before responding.',
+      'Accept the term sheet as written but negotiate a side letter with the lead investor committing to reset the anti-dilution provision to narrow-based if the Series C values the company above a specified threshold.',
     ],
     correct: 1,
     consequences: {
@@ -48,7 +48,7 @@ export const CASES_CFO6 = [
     traps: [
       'Accepting because the valuation is strong conflates headline valuation with actual economics — preference stacks and participation rights determine what founders actually receive at exit.',
       'Countering only on liquidation preference while accepting the anti-dilution clause removes the worst single term but leaves a compounding structural exposure in any future down-round scenario.',
-      'Stalling for two weeks without substantive engagement risks the lead investor withdrawing the term sheet for non-responsiveness while the competing process remains uncertain.',
+      'A side letter tied to a future valuation threshold creates enforcement complexity at Series C — lead investors routinely resist honoring contingent restructuring commitments made in side letters when the actual down-round scenario arrives and their interests diverge from founders\'.',
     ],
   },
   {
@@ -57,7 +57,7 @@ export const CASES_CFO6 = [
     difficulty: 2,
     scenario: 'Your company raised a Series B at a $120M valuation 18 months ago. Since then, a market correction and slowing growth have pushed your ARR to $9.8M — below the $12M projected at raise. You need $7M to reach profitability. Three investors have indicated interest, all at valuations between $72M and $85M. Your Series B investors hold a 1x non-participating liquidation preference. Key employees have options struck at $120M valuation. The board is split between taking the money now and waiting for conditions to improve.',
     options: [
-      'Delay the raise by 6 months and cut costs aggressively to extend runway — avoid the valuation reset at all costs.',
+      'Delay the raise by 6 months, reduce burn to extend runway, and use the time to rebuild ARR to the original $12M plan before approaching investors — a stronger trajectory will reset the valuation narrative.',
       'Take the down round at the best available valuation — address the option pool problem separately with a repricing or refresh grant.',
       'Raise at the lower valuation but require existing investors to fully exercise their pro-rata rights to signal confidence.',
       'Pursue a convertible note or SAFE bridge to defer the valuation conversation until growth recovers.',
@@ -245,7 +245,7 @@ export const CASES_CFO6 = [
       'File at current metrics if growth holds at 27% — public market investors will pay for growth, and your NRR of 118% is a differentiating signal.',
       'Prioritize reaching EBITDA breakeven before filing, even if it means reducing S&M investment and slowing growth to 18-20%.',
       'Accelerate to $100M ARR before filing — scale the top line to match the second threshold the banker identified.',
-      'Hire a new investment bank for a second opinion before committing to any specific pre-IPO financial target.',
+      'Execute a dual-track strategy: pursue a pre-IPO private round at a $450M+ valuation to extend runway by 18 months while the team works toward breakeven, then file when profitability is achieved.',
     ],
     correct: 1,
     consequences: {
@@ -260,7 +260,7 @@ export const CASES_CFO6 = [
     traps: [
       'Filing at -12% EBITDA on the premise that growth overrides profitability concerns reflects a pre-2022 market view that no longer holds for sub-$100M ARR IPO candidates.',
       'Accelerating to $100M ARR in 18 months from $62M requires growth of 61% — more than double the current rate — which would require incremental burn that defeats the IPO readiness argument.',
-      'A second banker opinion adds process delay and signals indecision to the board without providing new information if the current banker\'s market read is directionally correct.',
+      'A pre-IPO private round at $450M+ prices the company above public market comparables at current metrics — investors in the private round will negotiate a ratchet or discount that effectively recreates the public market pricing problem while adding a new liquidation preference layer on top of the cap table.',
     ],
   },
 ]

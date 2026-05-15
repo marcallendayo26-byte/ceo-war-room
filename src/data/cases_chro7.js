@@ -87,7 +87,7 @@ export const CASES_CHRO7 = [
       "Apply a two-layer model: standardize the infrastructure (payroll, compliance, benefits baseline, performance ratings calibration) and let offices own the experience layer (onboarding tone, team rituals, office culture, manager 1-on-1 formats).",
       "Standardize everything HR-related — one employee handbook, one onboarding process, one performance review format — and allow teams to adapt communication style and team rituals locally.",
       "Create an \"Office Culture Charter\" for each location that documents their local norms, and use an annual cross-office sync to identify and harmonize the biggest inconsistencies.",
-      "Let each office operate independently for now and build a standardization project once the Singapore hub has been running for 12 months and you have a clearer picture of where friction is occurring."
+      "Assign a Manila-based HR generalist as the single point of contact for all four offices, responsible for identifying and flagging inconsistencies as they surface and coordinating a quarterly standardization review across locations."
     ],
     "correct": 0,
     "consequences": {
@@ -101,7 +101,7 @@ export const CASES_CHRO7 = [
     "traps": [
       "Full standardization of the experience layer treats cultural variation as a problem to be solved rather than an asset to be managed — Manila teams and Singapore teams do not need identical onboarding ceremonies.",
       "Culture charters document the current state without a mechanism for resolving compliance-risk variations — they preserve the problem in writing.",
-      "Delaying infrastructure standardization allows each office to entrench inconsistent practices that will be more costly to change 12 months later."
+      "A single generalist managing compliance coordination across four offices and multiple markets will be overwhelmed by volume — inconsistencies that should be resolved by structural design get queued behind one person's bandwidth, which is the same fragility the current informal setup already has."
     ]
   },
   {
@@ -110,7 +110,7 @@ export const CASES_CHRO7 = [
     "difficulty": 3,
     "scenario": "The CEO wants to move to a \"flat organization\" model — eliminating most manager titles and replacing them with \"area leads\" who have no formal authority. The inspiration is a well-known tech company's organizational model. Your company currently has 90 employees with active performance management challenges, unclear career ladders, and accountability gaps. How do you advise the CEO?",
     "options": [
-      "Support the flat model — it aligns with modern organizational thinking, reduces hierarchy-driven bureaucracy, and will attract talent that prefers autonomous cultures.",
+      "Endorse the move to a flat model but propose a 90-day change management plan: a company-wide communication campaign explaining the philosophy, manager coaching sessions on autonomous team facilitation, and a leadership reading list on self-management frameworks — presenting the cultural shift as an education-first rollout.",
       "Recommend piloting the flat model in one team (Engineering or Product) for 6 months before company-wide rollout, with specific metrics to evaluate impact on delivery speed, accountability, and employee experience.",
       "Advise against the flat model in its current context: the accountability and performance management challenges the company already has are structural symptoms that flat structures amplify, not resolve. Recommend solving the underlying accountability design before changing the authority structure.",
       "Accept the flat model as a cultural direction but propose retaining formal performance management authority with HR (rather than area leads) to preserve accountability mechanisms."
@@ -125,7 +125,7 @@ export const CASES_CHRO7 = [
     "framework": "Organizational Model Prerequisite Analysis — flat structures require high organizational maturity as a prerequisite. Removing formal authority in an environment with existing accountability failures accelerates those failures rather than transforming the culture.",
     "principle": "Flat organizational models are the output of high organizational trust and maturity, not the input. You cannot reorganize your way to accountability.",
     "traps": [
-      "Supporting the flat model because it sounds modern conflates organizational philosophy with organizational readiness — the model that works at a 500-person mature company does not port directly to a 90-person company with active accountability problems.",
+      "A change management campaign installs the vocabulary of self-management without the underlying accountability infrastructure — employees learn the language of the model before experiencing the conditions that make it work, which produces confusion rather than autonomy in a company that already has accountability gaps.",
       "A pilot in the strongest team produces data that is not representative of the company — you are measuring the model in conditions most likely to make it succeed.",
       "Centralizing performance authority in HR solves the authority vacuum with an unscalable workaround that positions HR as the bad cop and removes managers from their most important responsibility."
     ]
@@ -137,7 +137,7 @@ export const CASES_CHRO7 = [
     "scenario": "Your company acquires a 25-person startup. The acquired team has a different title structure, a higher compensation philosophy for senior roles, and a very autonomous working style. Integration is required within 6 months. The acquired CEO becomes a VP in the new structure. Three acquired employees have already declined to accept your company's adjusted compensation bands. How do you lead the integration?",
     "options": [
       "Enforce the company's standard compensation bands for all acquired employees — exceptions create inequity and will become known, creating resentment among the existing team.",
-      "Let the 3 who declined resign and proceed with integrating the remaining 22 — the 3 who would not accept standard terms may be misaligned with the company's culture more broadly.",
+      "Treat the three declines as early indicators of a broader cultural misalignment, and recommend the CEO hold a direct conversation with the new VP to establish clear compensation expectations for their team — placing accountability for comp acceptance on the VP as part of their integration commitment.",
       "Offer retention packages (cash bonuses paid over 18 months) to the 3 employees who declined rather than adjusting their base compensation, preserving band integrity while securing their tenure.",
       "Apply a structured integration approach: keep the acquired team on their existing comp for 12 months under a \"legacy band\" designation while harmonizing titles, roles, and reporting. Use the 12 months to review whether the broader comp philosophy needs updating, and grandfather adjustments for the 3 who declined."
     ],
@@ -153,7 +153,7 @@ export const CASES_CHRO7 = [
     "principle": "Acquisition comp harmonization done too fast destroys the value you just acquired. The 12-month legacy band is not a concession — it is a retention investment.",
     "traps": [
       "Enforcing standard bands immediately ignores the reality that the acquisition price you paid already reflected the acquired team's market comp — refusing to honor that in employment is a breach of the implicit deal.",
-      "Retention bonuses defer the structural problem by 18 months and will recur — they are a short-term fix for what may be a medium-term comp philosophy gap.",
+      "Framing three compensation declines as a VP management problem rather than a structural comp gap misattributes the cause — if the acquired team's market rate is genuinely higher, the VP cannot resolve it through persuasion, and placing that accountability on them puts the VP in an untenable position with their own team.",
       "Treating three early declines as a culture signal rather than a comp signal misreads the data and rationalizes losing talent the company paid a premium to acquire."
     ]
   },

@@ -7,9 +7,9 @@ export const CASES_EM = [
     quote: "Technical debt is a tax on every future decision. The longer you pay it, the more it compounds.",
     options: [
       "Quantify the debt's cost in engineering velocity terms and bring a proposal to product: reserve 20% of capacity per sprint for debt reduction with defined outcomes.",
-      "Absorb the debt work within sprint capacity and don't escalate — the team should handle it.",
+      "Create a dedicated 'debt hours' block within each sprint — reserve Friday afternoons for debt work so it can't be displaced by feature requests.",
       "Pause all feature work for one sprint to do a full debt paydown.",
-      "Rewrite the authentication module over a weekend with a small volunteer team."
+      "Propose a strangler fig pattern: build a new auth module in parallel and gradually route traffic until the legacy one can be retired."
     ],
     correct: 0,
     consequences: {"executionRisk":-8,"teamMorale":7,"growth":5},
@@ -17,9 +17,9 @@ export const CASES_EM = [
     framework: "Debt Visibility: translate technical cost into business cost before proposing a solution.",
     principle: "Technical debt you can't quantify is debt you can't budget.",
     traps: [
-      "Silent absorption — removes incentive to ever fix the root problem",
+      "Informal debt blocks — unprotected time gets reclaimed under deadline pressure and never builds the business case product needs to see",
       "Full sprint pause — creates a product gap that's hard to justify without prior data",
-      "Weekend rewrite — produces untested code, burns team morale, and signals poor planning"
+      "Strangler fig without product buy-in — the pattern is sound but still requires quantified cost data and capacity allocation before leadership will fund it"
     ]
   },
   {
@@ -32,7 +32,7 @@ export const CASES_EM = [
       "Fix the deprecated API integration — a known hard deadline is more actionable than open-ended risks.",
       "Fix the security vulnerability first — security issues are always top priority.",
       "Improve test coverage — without it, you can't safely fix the other two without creating new problems.",
-      "Do all three in parallel with dedicated sub-teams."
+      "Fix the security vulnerability and deprecated API concurrently — split the team so neither the live risk nor the hard deadline is missed."
     ],
     correct: 1,
     consequences: {"executionRisk":-10,"customerTrust":7,"strategicPosition":5},
@@ -42,7 +42,7 @@ export const CASES_EM = [
     traps: [
       "Deprecated API because it has a deadline — deadlines matter but don't override active security exposure",
       "Test coverage first — philosophical appeal but wrong order when a security gap is live",
-      "Parallel sub-teams — dilutes focus when you have limited capacity, and complex fixes benefit from focus"
+      "Concurrent fix attempt — splitting limited capacity doesn't eliminate the trade-off; complex security work done under divided attention increases the risk of an incomplete or buggy fix"
     ]
   },
   {
@@ -75,7 +75,7 @@ export const CASES_EM = [
     scenario: "Your team consistently takes shortcuts under deadline pressure — hardcoded values, skipped tests, undocumented functions. Each individual shortcut seems small. Over 18 months it's become significant. Product management says deadlines won't change. What's your systemic response?",
     quote: "Individual shortcuts are local decisions. Accumulated shortcuts are a systemic failure.",
     options: [
-      "Accept it — deadline pressure is a business reality and the team is doing their best.",
+      "Negotiate a 'quality budget' with product each sprint — a fixed block of engineering hours reserved for tests and documentation alongside feature work.",
       "Enforce no-shortcut policies — if features can't be built properly, they should be delayed.",
       "Add a post-sprint debt review where engineers are accountable for what they cut.",
       "Implement a technical debt register: every shortcut taken in a sprint is logged, estimated, and added to the backlog with a planned repayment timeline."
@@ -86,7 +86,7 @@ export const CASES_EM = [
     framework: "Technical Debt Register: make debt visible at the moment it's incurred.",
     principle: "Debt you can't see is debt you can never pay.",
     traps: [
-      "Acceptance as a reality — normalizes an accumulating problem without any mechanism for repayment",
+      "Quality budget without a register — reserves time for quality work but still leaves accumulated shortcuts invisible to product and leadership",
       "Accountability reviews — retroactive blame without a system for tracking and repayment",
       "Zero-shortcut enforcement — either misses deadlines or forces engineers to over-estimate to create buffer"
     ]
@@ -99,7 +99,7 @@ export const CASES_EM = [
     quote: "Bypassing quality for one customer creates a quality debt paid by all customers.",
     options: [
       "Ship with reduced testing but ensure the bypass is documented, the debt is logged, and a hardening sprint is scheduled immediately after.",
-      "Comply — when the CTO and a major customer align, that's sufficient authority.",
+      "Scope down the delivery: ship only the integration hooks and configuration layer in 3 weeks, then complete the full feature with proper QA in the following sprint.",
       "Refuse — bypassing standards sets a precedent that will cost more than the customer is worth.",
       "Negotiate the scope: what subset of the feature can be built in 3 weeks without bypassing quality standards?"
     ],
@@ -109,7 +109,7 @@ export const CASES_EM = [
     framework: "Managed Exception: when you can't prevent a shortcut, control and document it.",
     principle: "The difference between a managed exception and a standard erosion is documentation and follow-through.",
     traps: [
-      "Blind compliance without debt documentation — the exception becomes the new normal",
+      "Unilateral scope reduction without customer alignment — delivering partial functionality without agreement risks damaging the customer relationship the entire bypass was meant to protect",
       "Flat refusal against aligned CTO and customer — correct in principle but escalation without leverage",
       "Scope negotiation ignoring time reality — worth trying but don't let it become delay tactic"
     ]
@@ -124,7 +124,7 @@ export const CASES_EM = [
       "Ask the departing engineer to document everything before they leave.",
       "Conduct structured knowledge transfer sessions: pair the departing engineer with team members on every critical system they own, document in real-time, and prioritize by blast radius.",
       "Use the departure as a catalyst: dedicate a sprint to documentation before the engineer leaves.",
-      "Hire a replacement quickly — knowledge transfer can happen again with the right new hire."
+      "Commission a system audit before they leave: have the departing engineer write an architecture decision record (ADR) for every critical component they own."
     ],
     correct: 1,
     consequences: {"executionRisk":-9,"teamMorale":6,"growth":4},
@@ -134,7 +134,7 @@ export const CASES_EM = [
     traps: [
       "'Document everything' directive — produces a document nobody verifies and everyone ignores",
       "Full-sprint documentation — better than nothing but less effective than paired transfer",
-      "Hire for replacement — the knowledge gap exists now; a new hire doesn't help"
+      "ADR documentation only — captures architectural intent but misses the operational edge cases, unwritten rules, and failure modes that only surface during paired working sessions"
     ]
   },
   {
@@ -147,7 +147,7 @@ export const CASES_EM = [
       "Approve it — staying current with framework versions is table stakes.",
       "Decline for now — 2 sprints with no feature output is too expensive.",
       "Require a structured proposal: specific performance gains, security risk of staying behind, and a phased upgrade plan that allows incremental progress rather than a 2-sprint block.",
-      "Schedule it for a slow quarter when product pressure is lower."
+      "Approve a phased upgrade: start with non-critical services to validate the refactoring scope and surface hidden dependencies before committing the full codebase."
     ],
     correct: 2,
     consequences: {"executionRisk":-6,"teamMorale":5,"strategicPosition":5},
@@ -157,7 +157,7 @@ export const CASES_EM = [
     traps: [
       "Automatic approval — treats currency as sufficient justification without ROI analysis",
       "Automatic decline — treats feature output as the only valid use of engineering time",
-      "Slow quarter deferral — often means never, and the gap keeps widening"
+      "Phased approval without structured proposal — committing to any upgrade path without quantifying the security risk and performance gain still asks product to accept a feature freeze on faith"
     ]
   },
   {
@@ -169,7 +169,7 @@ export const CASES_EM = [
     options: [
       "Approve it — the engineering community has vetted it and it solves the problem cleanly.",
       "Ask the engineer to implement a thin abstraction layer so the library can be swapped out easily if needed.",
-      "Decline — only libraries with enterprise support are acceptable for production use.",
+      "Approve it with a required abstraction layer — if the library is cleanly encapsulated and swappable, the abandonment risk is manageable regardless of its maturity.",
       "Run a time-boxed evaluation: review the library's issue tracker, check production adoption signals, and consider the risk of it being abandoned."
     ],
     correct: 3,
@@ -179,8 +179,8 @@ export const CASES_EM = [
     principle: "The elegance of a solution doesn't reduce the risk of its dependency.",
     traps: [
       "Community approval as sufficient — popularity doesn't equal production readiness",
-      "Enterprise-support-only policy — too rigid; many great production libraries lack enterprise backing",
-      "Abstraction layer as the primary mitigation — good practice but doesn't address adoption and abandonment risk"
+      "Abstraction layer as the primary mitigation — good practice but doesn't address adoption and abandonment risk",
+      "Abstraction-as-sufficient-mitigation — reduces swap cost but doesn't protect against a live critical bug in an unvetted library currently running in production"
     ]
   },
   {
@@ -191,7 +191,7 @@ export const CASES_EM = [
     quote: "Inconsistency at scale produces bugs that no individual owner can see.",
     options: [
       "Create a shared library for the transformation, then migrate each service one at a time with thorough testing at each step.",
-      "Leave it — all three work and coordinated refactoring is high-risk.",
+      "Standardize forward: require all new transformation code to use a common utility module and let the legacy divergence decay naturally as each service is touched.",
       "Pick the best implementation and standardize all 3 services to it in a single sprint.",
       "Assign ownership of all 3 services to one team so consistency is their responsibility."
     ],
@@ -201,7 +201,7 @@ export const CASES_EM = [
     framework: "Shared Library Extraction: canonical implementation → sequential migration with tests.",
     principle: "Consistency problems require structural solutions, not ownership changes.",
     traps: [
-      "Leave it — bugs from inconsistency will compound as usage grows",
+      "Forward-only standardization — the three inconsistent implementations remain live and bug-producing for years; you've slowed the divergence but not fixed the existing one",
       "Single-sprint standardization — too much blast radius; mistakes in coordinated refactoring create multi-service outages",
       "Ownership consolidation — doesn't fix the technical divergence, just assigns blame for future bugs"
     ]
@@ -284,7 +284,7 @@ export const CASES_EM = [
     options: [
       "Call a structured technical review with the full team: 30-minute presentations from each side, criteria defined upfront, team vote.",
       "Make the decision yourself after reviewing both proposals, with clear reasoning documented.",
-      "Let the engineers keep debating until they reach consensus — you shouldn't override technical experts.",
+      "Give both engineers one week to produce a joint written comparison against shared criteria, with your decision as the tiebreaker if they can't align.",
       "Ask your CTO to make the call — it's an architectural decision above your level."
     ],
     correct: 0,
@@ -293,8 +293,8 @@ export const CASES_EM = [
     framework: "Technical Decision Framework: define criteria first, then evaluate options, then decide.",
     principle: "When experts disagree, the decision needs structure — not more time.",
     traps: [
-      "Indefinite debate — rewards persistence over merit and blocks delivery",
       "Unilateral EM decision — correct if necessary but misses the opportunity to build team alignment",
+      "Joint document from disagreeing engineers — two people in active conflict tend to produce a document that preserves the argument, not resolves it, adding a week without the structured criteria that make the team review effective",
       "CTO escalation — appropriate for cross-team or company-wide architectural decisions, not a single service database choice"
     ]
   },
@@ -307,7 +307,7 @@ export const CASES_EM = [
     options: [
       "Build quickly with minimal changes — get the feature out and address the fragility later.",
       "Be transparent with product about the trade-off: explain the risk of building on the fragile code and propose a 2-option choice — fast-and-risky vs. 4-week-and-stable.",
-      "Refactor the fragile area first without telling product why the timeline is longer.",
+      "Time-box the refactoring: allocate the first 5 days of the sprint to stabilize the fragile area, then build the feature on top of whatever state it's in at day 5.",
       "Build a thin wrapper around the fragile code as a compromise — isolate it without full refactoring."
     ],
     correct: 1,
@@ -317,7 +317,7 @@ export const CASES_EM = [
     principle: "Engineering trade-offs that aren't surfaced to product become engineering problems that get blamed on product.",
     traps: [
       "Default to fast — removes product's ability to make an informed decision",
-      "Refactor silently — product feels misled when they find out; destroys trust",
+      "Arbitrary time-box refactoring — touching a fragile area without completing the stabilization can make it more unstable than before, and the feature still ships on a partially-refactored foundation",
       "Wrapper only — not surfacing the full trade-off and may still leave the fragility intact"
     ]
   },

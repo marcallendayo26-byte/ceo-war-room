@@ -53,7 +53,7 @@ export const CASES_BD3 = [
     quote: "\"They know the buyers but they have never resold software. Can they actually execute?\"",
     options: [
       "Decline — a partner without software reselling experience will require too much hand-holding to justify the investment.",
-      "Accept the partnership with standard terms and provide minimal onboarding — see if they can figure it out.",
+      "Run a structured 90-day pilot: assign them one qualified opportunity with your team in co-sell, and evaluate their ability to advance the deal before extending full reseller rights.",
       "Accept and invest in structured onboarding: sales process training, demo certification, commercial term guidance, and a co-sell arrangement for the first three deals where your team presents alongside them.",
       "Offer a referral-only arrangement rather than full reselling rights until they prove they can close a deal."
     ],
@@ -64,7 +64,7 @@ export const CASES_BD3 = [
     principle: "A partner who knows your buyer deeply is worth training on how to sell. A partner who knows how to sell but not your buyer is not.",
     traps: [
       "Declining a partner with direct CFO access in your target vertical because they lack software sales experience is trading domain for process.",
-      "Minimal onboarding for an inexperienced reseller with high-value domain relationships will produce poor first deals that damage both the relationship and the accounts.",
+      "A single-deal pilot before committing to the full onboarding investment sets a low bar — one deal does not reveal whether they can build a repeatable pipeline across their 15-client base.",
       "Referral-only removes their incentive to actively develop pipeline and keeps you from leveraging their customer relationships for actual revenue."
     ]
   },
@@ -100,7 +100,7 @@ export const CASES_BD3 = [
     options: [
       "Validate the requirements with three direct customer discovery calls before investing in any of them — partner-stated requirements sometimes overstate what buyers actually need.",
       "Invest in all three requirements before launching — the partner knows the market and their requirements are non-negotiable.",
-      "Launch in Germany immediately and handle compliance requirements as customers request them.",
+      "Prioritize data residency first since it has a clear regulatory basis, and propose a 90-day pilot with two enterprise prospects using English-language product and EU billing to test whether the remaining requirements are hard gates before investing in them.",
       "Find a different German partner who is willing to work with your current product and build the customer demand first."
     ],
     correct: 0,
@@ -109,8 +109,8 @@ export const CASES_BD3 = [
     framework: "Market entry requirement validation — confirm compliance must-haves before investing in them",
     principle: "Local partners know the market. They do not always distinguish between \"must-have\" and \"nice-to-have.\" Three customer calls will.",
     traps: [
-      "Launching without data residency in Germany risks immediate non-compliance notifications from prospects and permanent reputation damage in a compliance-driven market.",
       "Building all three before validating which ones are actual gates could produce a 6-month investment in a German language interface that buyers would have waived for a superior product.",
+      "Prioritizing data residency alone is directionally correct but still skips the validation step — spending 90-day pilot capacity on a two-prospect test delays the broader discovery that three customer calls would produce in two weeks.",
       "Finding a partner willing to work around compliance requirements does not solve the underlying compliance problem — the requirements are about the market, not the partner."
     ]
   },
@@ -123,7 +123,7 @@ export const CASES_BD3 = [
     options: [
       "Invest in HIPAA compliance and enter healthcare through the SI partner.",
       "Negotiate a shared investment: the SI partner funds a portion of the compliance cost in exchange for preferred partner status in the vertical for two years.",
-      "Decline — $180K and 16 weeks of compliance work for an unproven vertical is too high an entry cost.",
+      "Scope the HIPAA work precisely before committing — get an independent technical assessment of whether 16 weeks and $180K is accurate, since internal engineering estimates for compliance work frequently underestimate scope.",
       "Build a small healthcare pilot with two hospital clients first — validate that your core product solves the vertical's problem before investing in full compliance."
     ],
     correct: 1,
@@ -133,7 +133,7 @@ export const CASES_BD3 = [
     principle: "A partner who asks you to invest in market entry but will not invest themselves is not as committed as they claim.",
     traps: [
       "Fully funding the compliance investment gives the SI a competitive advantage they did not pay for — they can take your compliant product to any competitor.",
-      "Declining a warm introduction to 30 hospital system clients because of a quantifiable compliance investment is risk aversion over a clear business case.",
+      "Getting an independent scope assessment is a useful risk-management step but delays the SI negotiation — if the estimate is off by 30%, the cost-sharing structure still resolves it better than absorbing the full cost alone.",
       "A small pilot before compliance work may expose you to HIPAA liability at the pilot stage — in healthcare, compliance precedes customer access, not the other way around."
     ]
   },
@@ -145,7 +145,7 @@ export const CASES_BD3 = [
     quote: "\"We need to exit cleanly. But the contract makes it complicated.\"",
     options: [
       "Trigger the six-month notice period immediately and comply fully with the non-solicitation clause.",
-      "Continue the partnership until the natural renewal date rather than triggering the formal termination process.",
+      "Engage a local Brazilian counsel to advise on whether the non-solicitation clause is enforceable under Brazilian law before triggering any notice — enforceability varies significantly by jurisdiction.",
       "Negotiate an early termination with the partner — offer a one-time exit payment to release both parties from the full six-month notice and non-solicitation period.",
       "Immediately transition the key account to direct sales and deal with the contractual consequences afterward."
     ],
@@ -156,7 +156,7 @@ export const CASES_BD3 = [
     principle: "Partnership exits that go through the legal process take twice as long and cost three times as much as ones that go through a negotiated settlement.",
     traps: [
       "Full contractual compliance gives you the legal protection but may produce six months of adversarial partnership that damages the key account relationship you need to transition.",
-      "Waiting for the natural renewal date is the most expensive inaction — you lose 12 more months of market development while the relationship continues to deteriorate.",
+      "Engaging local counsel on enforceability is a useful parallel step but delays the exit negotiation — the partner's willingness to settle is independent of whether the clause is ultimately enforceable, and waiting on legal opinion gives the partner more time in a deteriorating situation.",
       "Transitioning the key account before resolving the contractual terms creates an immediate breach of the non-solicitation clause and significant legal exposure."
     ]
   },
@@ -237,7 +237,7 @@ export const CASES_BD3 = [
     quote: "\"Three customers want an API. Does that make us a platform?\"",
     options: [
       "Build the public API immediately — platform businesses command premium valuations and strategic positioning.",
-      "Decline to build an API — B2B SaaS companies do not need to be platforms to succeed.",
+      "Scope a private API for the three requesting customers, priced as a premium add-on, and treat their usage data and integration patterns as the business case for a future public developer program.",
       "Build a private API for the three requesting customers first and evaluate platform investment based on actual usage and demand signals.",
       "Partner with an iPaaS provider to offer API-like connectivity without building native API infrastructure."
     ],
@@ -248,7 +248,7 @@ export const CASES_BD3 = [
     principle: "A platform is not declared — it is earned. Build a private API first. Build the platform when the usage data demands it.",
     traps: [
       "A public API without proven demand creates documentation, support, and versioning obligations that consume significant ongoing engineering capacity.",
-      "Declining API access to enterprise customers who have specifically requested it leaves a real customer need unmet and creates churn risk.",
+      "Pricing the private API as a premium add-on optimizes near-term monetization but signals to enterprise customers that integration access is a revenue item rather than a platform capability — potentially delaying the broader adoption that makes the public API viable.",
       "iPaaS connectivity serves integration use cases but does not enable customers to build custom applications — a different and often more valuable use case."
     ]
   },
@@ -285,7 +285,7 @@ export const CASES_BD3 = [
       "Offer both tiers: subscription listing for early-stage or smaller partners, transaction fee for established partners with proven volume. Match the model to the partner stage.",
       "Subscription listing only — predictable revenue and lower barrier to entry for smaller partners.",
       "Transaction fee only — you earn more as partners succeed, creating perfect economic alignment.",
-      "No monetization — keep the marketplace free to maximize partner participation and ecosystem network effects."
+      "Launch with subscription listing only for the first 12 months to build partner density, then introduce a transaction fee tier once you have enough volume data to set a rate that does not deter high-value partners."
     ],
     correct: 0,
     consequences: {"growth":10,"profitability":10,"strategicPosition":10,"executionRisk":-5},
@@ -295,7 +295,7 @@ export const CASES_BD3 = [
     traps: [
       "Transaction-only creates friction for high-value partners who do large deals — they will avoid your marketplace if 15% comes off every enterprise contract.",
       "Subscription-only creates a flat barrier that disproportionately burdens early-stage partners who have uncertain volume.",
-      "Free marketplaces attract quantity over quality and create an unsustainable economic model when support and infrastructure costs scale with usage."
+      "Deferring the transaction fee tier for 12 months delays a meaningful revenue stream and gives high-volume partners 12 months of underpriced access that creates a renegotiation fight when you finally introduce the model."
     ]
   },
   {
@@ -307,7 +307,7 @@ export const CASES_BD3 = [
     options: [
       "Demand immediate revenue sharing — they are monetizing access to your customer base.",
       "Update your marketplace terms to require all future commercial add-ons to route through your monetization layer, and open a negotiation with the existing developer about a revenue sharing arrangement going forward.",
-      "Accept the situation — your license agreement did not prohibit direct monetization and you cannot retroactively impose terms.",
+      "Approach the developer with a co-marketing proposal: offer to feature their add-on prominently in your marketplace in exchange for a voluntary 10% revenue share — making the arrangement beneficial rather than adversarial.",
       "Remove their integration from the marketplace — a developer who monetizes outside your platform violates the ecosystem's commercial integrity."
     ],
     correct: 1,
@@ -317,7 +317,7 @@ export const CASES_BD3 = [
     principle: "You cannot enforce a rule that did not exist. Update your terms for the future and negotiate a fair arrangement for the present.",
     traps: [
       "Demanding retroactive revenue sharing for activity that was not prohibited creates a developer relations crisis and immediate legal exposure.",
-      "Accepting indefinitely without updating terms means every future developer will take the same approach — you cannot build a sustainable marketplace economics on this precedent.",
+      "A co-marketing offer in exchange for voluntary revenue share is a softer approach but still applies commercial pressure retroactively — the developer agreed to nothing, and the \"voluntary\" framing will read as coercive to a developer who was acting within existing terms.",
       "Removing a popular integration used by 2,000 customers to make a commercial point damages customer experience and signals to all developers that success on your platform can be punished."
     ]
   },
@@ -376,7 +376,7 @@ export const CASES_BD3 = [
     options: [
       "Launch a curated beta in three months with five to eight hand-picked partner integrations, a basic customer directory, and manual partner onboarding — then build the self-serve infrastructure while the market is warm.",
       "Announce the marketplace now and set expectations for an eight-month launch — managing expectations early is better than surprising customers.",
-      "Launch the full marketplace in eight months — an incomplete marketplace launch damages the brand promise.",
+      "Scope a minimum-viable marketplace: build only the customer-facing directory and partner listing in three months, defer the certification workflow and transaction processing to a six-month phase, and recruit partners under manual agreements in the interim.",
       "Partner with a third-party marketplace platform rather than building native infrastructure to hit the three-month window."
     ],
     correct: 0,
@@ -387,7 +387,7 @@ export const CASES_BD3 = [
     traps: [
       "Waiting eight months for the full build misses the market window and leaves 800 customers asking about a launch that keeps getting pushed.",
       "Announcing eight months in advance without a near-term delivery creates eight months of expectation management that will consume more BD time than building the beta.",
-      "Third-party marketplace platforms solve speed but create long-term dependency on another company's infrastructure, fees, and roadmap priorities."
+      "Scoping a directory-only MVP in three months with no certification or transaction capability means early partners cannot transact through the marketplace — you launch a listing page that generates no revenue and no partner commitment."
     ]
   },
   {
@@ -444,7 +444,7 @@ export const CASES_BD3 = [
     quote: "\"They violated our terms. But 18% of marketplace traffic depends on them.\"",
     options: [
       "Give them a warning and 30 days to fix the violation — customer disruption from removal is too high.",
-      "Immediately remove the integration from the marketplace — terms violations cannot be tolerated regardless of usage.",
+      "Suspend new installations immediately, notify the partner of the specific violation, and give them 48 hours to confirm they have stopped the scraping behavior — then set a 14-day remediation window with required technical documentation before reinstatement.",
       "Quietly resolve the data scraping issue bilaterally without public notification — customer concern is not worth the PR risk.",
       "Suspend new installations immediately, notify the partner formally of the specific violation, give them 14 days to remediate with documentation, and notify affected customers of the situation and timeline."
     ],
@@ -455,7 +455,7 @@ export const CASES_BD3 = [
     principle: "Data violations require immediate action on new exposure and transparent customer communication. There is no quiet resolution for a data trust issue.",
     traps: [
       "A 30-day warning continues the violation for 30 more days across all new installations — you are knowingly extending the exposure.",
-      "Immediate removal with no remediation window disrupts 18% of marketplace traffic and customers who rely on a daily integration, without giving a legitimate partner a path to fix the problem.",
+      "A 48-hour stop-confirmation window before beginning formal remediation adds an intermediate checkpoint that delays the structured process — if the partner has not stopped scraping by the time you issue the formal notice, the 14-day remediation clock is the appropriate accountability mechanism.",
       "Quiet bilateral resolution of a data scraping violation violates your legal notification obligations and creates significantly higher liability if discovered later."
     ]
   },

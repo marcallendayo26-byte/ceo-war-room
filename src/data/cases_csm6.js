@@ -8,7 +8,7 @@ export const CASES_CSM6 = [
       'Build a client-facing self-service knowledge base for the top 5 issues and configure auto-suggest on ticket submission so clients can resolve them before a ticket is even logged.',
       'Hire an additional AMS analyst to absorb the ticket volume — the team is clearly understaffed given the workload.',
       'Automate the ticket resolution workflow using scripting tools — if the fix is documented, the system should apply it without human involvement.',
-      'Accept the volume as steady-state and focus team energy on the 60% of tickets that are non-routine.',
+      'Create a dedicated L1 rapid-response queue staffed by rotating analysts on 90-minute shifts — separating the repetitive known-issue volume from complex work so each analyst type optimizes for their category.',
     ],
     correct: 0,
     consequences: { customerTrust: 8, executionRisk: -5, teamMorale: 7, profitability: 6 },
@@ -18,7 +18,7 @@ export const CASES_CSM6 = [
     traps: [
       'Adding headcount to handle predictable, repetitive volume is a cost response to a process gap — it scales cost with volume rather than reducing volume.',
       'Automating resolution before clients have a self-service path skips the simplest intervention and introduces execution risk for a problem that does not require scripted automation.',
-      'Accepting recurring known-issue volume as steady-state means the team perpetually consumes AMS hours on avoidable tickets — a poor use of technical capacity and a poor client experience.',
+      'A dedicated rapid-response queue improves analyst workflow but does not reduce the volume — the 40% of known-issue tickets still arrive, still consume hours, and still represent a client experience where users wait for a manual fix to a problem they could have resolved themselves.',
     ],
   },
   {
@@ -30,7 +30,7 @@ export const CASES_CSM6 = [
       'Purchase a customer success platform (e.g. Gainsight or ChurnZero) and configure it for your AMS portfolio — purpose-built tooling is the correct solution for client health visibility.',
       'Design a lightweight client health scorecard using existing data signals — ticket volume trend, SLA compliance rate, QBR sentiment, last executive contact date — reviewed weekly by CSMs and flagged when a client crosses a threshold.',
       'Assign each CSM a target to proactively call every client once per month — relationship touchpoints will surface health issues before they escalate.',
-      'Wait until you have enough churn data to build a statistically valid predictive model — acting on incomplete signals risks false positives and unnecessary client conversations.',
+      'Increase QBR frequency for the top 20% of clients by ARR to monthly touchpoints — higher-value clients get more executive contact, which surfaces health issues earlier without requiring a formal scoring system.',
     ],
     correct: 1,
     consequences: { customerTrust: 10, executionRisk: -7, strategicPosition: 8, growth: 5 },
@@ -40,7 +40,7 @@ export const CASES_CSM6 = [
     traps: [
       'Purchasing a customer success platform before establishing a health scoring process installs tooling on top of a missing practice — the platform will not be configured meaningfully without a defined model.',
       'Monthly calls without a scoring framework produce inconsistent CSM behaviour and miss the compounding signals that a structured scorecard would catch.',
-      'Waiting for statistical validity before acting on health signals means your first data point for a churn model is a churned client — the model will always be reactive by design.',
+      'Increasing QBR frequency for top ARR clients improves coverage for the segment least likely to churn, while mid-tier clients — where early churn signals are most common — remain on the same cadence with no structured health trigger.',
     ],
   },
   {
@@ -49,10 +49,10 @@ export const CASES_CSM6 = [
     difficulty: 2,
     scenario: 'A large enterprise AMS client — 12 dealership branches, 80 system users — wants their internal IT team to log and track support requests directly in your ticketing system rather than sending emails to the AMS team. They want to see ticket status, assignee, and resolution notes in real time. Your current process requires all tickets to be submitted through the AMS team, who log them on the client\'s behalf. The AMS team is concerned that direct client access will create noise, duplicate tickets, and bypass triage.',
     options: [
-      'Decline the request — direct client access to the ticketing system bypasses the AMS team\'s triage process and will produce low-quality, duplicate, or misprioritised tickets.',
+      'Implement a read-only reporting dashboard for the client\'s IT lead, updating every four hours with ticket status, SLA compliance rate, and open incident count — giving leadership-level visibility without any write access to the ticketing system.',
       'Grant the client\'s IT team a full agent-level access profile in the ticketing system — if they want visibility, give them the same view your team has.',
       'Design a structured client portal access model: the client can log tickets directly using a guided intake form, view status on their own tickets, and access a shared dashboard — while the AMS team retains triage, prioritisation, and assignment control.',
-      'Agree to the request in principle but delay implementation until you have built a formal client portal product — ad hoc access configurations create technical debt.',
+      'Provide the client\'s IT team with a shared Slack channel connected to the ticketing system via webhook — ticket submissions, status updates, and resolution notes post automatically, giving real-time visibility without modifying the ticketing system\'s access model.',
     ],
     correct: 2,
     consequences: { customerTrust: 9, executionRisk: -6, strategicPosition: 7, teamMorale: 5 },
@@ -60,9 +60,9 @@ export const CASES_CSM6 = [
     framework: 'Client portal access — guided intake form + status visibility + AMS triage control delivers transparency without noise',
     principle: 'Clients who want visibility into their support tickets are telling you your current model is opaque. Design access that serves them without bypassing your process.',
     traps: [
-      'Declining direct access dismisses a legitimate operational need and treats the AMS intake model as a constraint the client must work around rather than a process that can be designed to serve them.',
+      'A read-only reporting dashboard addresses management visibility but does not solve the IT team\'s operational need to log and track their own tickets directly — the client still submits through email and waits for the AMS team to log on their behalf.',
       'Full agent-level access gives the client the ability to reassign, reprioritise, and comment on tickets in ways that undermine the AMS team\'s operational control.',
-      'Delaying for a formal portal product is the right long-term goal but the wrong short-term response — a structured access configuration in the existing system is available now and serves the client immediately.',
+      'A Slack webhook gives real-time status visibility but does not solve the IT team\'s intake problem — tickets still enter through email, still require AMS logging, and the IT team has no structured submission path that improves ticket quality.',
     ],
   },
   {
@@ -137,9 +137,9 @@ export const CASES_CSM6 = [
     difficulty: 2,
     scenario: 'Your AMS portfolio analysis shows that a specific DMS configuration issue — incorrect default settings in the vehicle inventory sync module — is generating 15–20 tickets per month across six different clients. Each ticket is resolved individually by the AMS team, often by the same analyst applying the same fix. There is no cross-client pattern review in place. No client knows that other clients share the same issue.',
     options: [
-      'Raise the pattern in the next product review cycle and log it as a known issue — product should fix the root cause in the next release rather than the AMS team applying workarounds indefinitely.',
+      'Create a client-specific resolution macro for each of the six affected accounts — a one-click fix script the AMS analyst runs at ticket intake — reducing the resolution time per ticket from the current average to under five minutes while product works on the underlying default.',
       'Design a cross-client remediation sprint: identify all affected clients, apply the configuration fix across all six in a coordinated deployment, publish a client advisory explaining the root cause and the fix, and alert the product team to consider a configuration default change.',
-      'Continue resolving tickets individually — cross-client coordination introduces change management risk and clients may be concerned to learn that others are experiencing the same issue.',
+      'Apply the configuration fix proactively to all six clients in a single coordinated deployment but do not issue a client advisory — resolving the issue silently avoids the need to explain why the default was incorrect in the first place.',
       'Build an automated remediation script that applies the fix each time the issue is detected — removing the manual resolution step will reduce the AMS team\'s workload without requiring a cross-client project.',
     ],
     correct: 1,
@@ -148,8 +148,8 @@ export const CASES_CSM6 = [
     framework: 'Cross-client pattern remediation — coordinated fix + client advisory converts a recurring systemic issue into a proactive service moment',
     principle: 'When the same root cause is generating tickets across multiple clients, fixing each ticket individually is a process failure. Coordinate the fix, communicate proactively, and alert the product team.',
     traps: [
-      'Waiting for the product team to resolve the issue in the next release accepts continued monthly ticket volume from a known issue that the AMS team can fix now with a configuration change.',
-      'Continuing to resolve tickets individually on a known systemic issue is a compounding cost — each monthly resolution cycle burns AMS hours that a one-time cross-client sprint would eliminate.',
+      'Resolution macros reduce analyst time per ticket but do not eliminate the volume — all six clients continue submitting 15–20 tickets per month indefinitely, and the macros create a false sense of efficiency that delays the cross-client sprint that would actually close the issue.',
+      'Applying the fix silently without a client advisory misses the proactive service opportunity — clients who discover the fix was applied without explanation may question what else is being changed in their environment without notification.',
       'An automated remediation script removes the manual step but does not proactively fix the issue in client environments or produce the client-facing advisory that converts a reactive support pattern into a proactive service signal.',
     ],
   },
@@ -160,7 +160,7 @@ export const CASES_CSM6 = [
     scenario: 'A strategic AMS client escalates that ticket resolution is consistently slow. Your team\'s internal analysis shows that the bottleneck is not resolution capacity — it is ticket quality. Inbound tickets from this client routinely arrive with vague descriptions ("system not working"), no steps to reproduce, no screenshot or log attachment, and no business impact statement. Analysts spend an average of 40 minutes per ticket in back-and-forth clarification before they can begin the actual fix. The client believes the slowness is your team\'s fault.',
     options: [
       'Share the ticket quality analysis with the client and ask them to train their users to submit better tickets — the intake problem is on their side and they need to own the fix.',
-      'Absorb the clarification overhead as an AMS service standard — requiring clients to change how they submit tickets creates friction and may damage the relationship.',
+      'Establish a 48-hour intake clarification SLA: when a ticket arrives incomplete, the analyst has two business days to gather the missing information before the resolution clock starts — aligning the SLA measurement to realistic resolution timelines given the current ticket quality.',
       'Design a structured intake process: implement a guided ticket submission form with required fields (issue description, steps to reproduce, business impact, screenshot/log), deliver a short intake training session for the client\'s power users, and publish a before/after resolution time comparison after 60 days.',
       'Assign a dedicated intake analyst to triage and enrich every incoming ticket from this client before it reaches the resolution team — inserting a quality layer at intake without changing the client\'s behaviour.',
     ],
@@ -171,7 +171,7 @@ export const CASES_CSM6 = [
     principle: 'Ticket quality is a system design problem, not a client behaviour problem. Build the intake form that makes it easy to submit a complete ticket and hard to submit a vague one.',
     traps: [
       'Asking the client to change their submission behaviour without providing a structured tool and training produces no lasting change — it also risks the client interpreting the request as blame-shifting.',
-      'Absorbing the clarification overhead as a service norm removes any incentive for the intake process to improve and permanently subsidises poor ticket quality with AMS analyst time.',
+      'A 48-hour intake SLA adjustment accommodates the current quality gap without eliminating it — the client continues submitting vague tickets, resolution times remain slow by the client\'s perception, and the SLA change becomes the new baseline rather than a step toward fixing the intake process.',
       'A dedicated intake analyst inserts a human quality layer that adds cost and a processing step without addressing the root cause — the client\'s users will continue submitting vague tickets regardless of who enriches them internally.',
     ],
   },

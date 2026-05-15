@@ -30,7 +30,7 @@ export const CASES_CMO7 = [
       'Hold course: the email performance is strong, the LinkedIn underperformance is not unusual for cold audiences at week 3, and making mid-campaign changes with 3 weeks left introduces execution risk without enough time to recover statistical validity.',
       'Pivot the entire campaign: pause LinkedIn retargeting, shift budget to email-driven webinar promotion to the existing open-rate audience, and send two reminder emails to non-openers using a revised subject line focused on urgency rather than topic.',
       'Diagnose before acting: segment the email list to identify which sub-personas are opening but not registering, adjust the webinar landing page copy to address the conversion drop, and test one revised LinkedIn creative without pausing the existing ads.',
-      'Cancel the webinar and replace it with an on-demand demo asset, redirecting the campaign\'s final 3 weeks to driving demo requests instead of webinar registrations.',
+      'Reach out personally to the 110 registered attendees with a 1:1 email from your VP of Demand Gen offering a private preview call before the webinar — converting the highest-intent registrants into direct pipeline conversations rather than waiting for the group event to do the qualification work.',
     ],
     correct: 2,
     consequences: { growth: 9, customerTrust: 6, executionRisk: -6, strategicPosition: 7 },
@@ -40,7 +40,7 @@ export const CASES_CMO7 = [
     traps: [
       'Holding course entirely ignores that the webinar registration shortfall is both measurable and actionable — if you can identify and fix the conversion gap before the event, you should.',
       'Pivoting the entire campaign to email-driven webinar promotion after week 3 wastes the audience conditioning built through LinkedIn impressions and risks overloading a list that is already performing well with too many touches.',
-      'Replacing the webinar with an on-demand demo discards 110 warm registrations and changes the campaign\'s conversion architecture with 3 weeks remaining — the cost of the change is higher than the cost of the original problem.',
+      'Personal outreach to 110 registrants at week 3 bypasses the webinar\'s role as a credibility and education event, converting warm prospects into sales conversations before they have received the product context the webinar was built to deliver — prospects approached too early convert at lower rates and require more qualification work from the sales team.',
     ],
   },
   {

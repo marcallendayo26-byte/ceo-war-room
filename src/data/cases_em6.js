@@ -6,7 +6,7 @@ export const CASES_EM6 = [
     scenario: 'Your engineering team of 12 has been organized by function — frontend, backend, QA, DevOps. You are growing to 22 engineers and the CEO wants to move to cross-functional squads aligned to product areas. Three of your most senior engineers are resisting, saying functional teams produce higher quality code through deeper specialization. Two of the three have been with the company since founding. You need to make the transition work without losing senior talent.',
     options: [
       'Proceed with the squad model over the objections — organizational design is a management decision, and delayed transitions cost more than the friction of implementing them.',
-      'Delay the transition until you have senior engineer buy-in — structural changes imposed over senior IC resistance tend to fail in execution even when they succeed on paper.',
+      'Restructure around a hybrid model: keep the existing functional teams for the current 12 engineers and assign new hires directly into cross-functional squads, running both structures in parallel until the new model proves itself.',
       'Implement the squad model with functional guilds: squads own delivery and product outcomes, while guilds maintain craft standards, code review norms, and cross-squad technical consistency. Give the three senior engineers guild lead roles.',
       'Let the senior engineers run a 90-day A/B trial — one squad model team and one functional team — and evaluate output quality, velocity, and team satisfaction before full rollout.',
     ],
@@ -17,7 +17,7 @@ export const CASES_EM6 = [
     principle: 'Senior IC resistance to org restructuring usually signals a legitimate craft concern. Find the design that addresses it rather than overriding it.',
     traps: [
       'Proceeding over senior engineer resistance risks losing them to attrition or passive disengagement — two founding-era engineers leaving during a growth transition is a significant knowledge and morale loss.',
-      'Delaying until you have full buy-in creates a dependency on consensus that can block necessary organizational evolution indefinitely.',
+      'Running functional and squad structures in parallel for a 22-person team creates two operating models with different norms, different review processes, and different velocity expectations — the structural gap compounds rather than resolves as new hires observe the inconsistency.',
       'A 90-day A/B trial produces 90 days of organizational ambiguity for a 22-person team that needs structural clarity to scale.',
     ],
   },
@@ -117,7 +117,7 @@ export const CASES_EM6 = [
     options: [
       'Investigate the culture signal first: conduct structured one-on-ones with the two engineers who flagged the change and with a sample of new hires before taking any structural action.',
       'Immediately implement a standardized onboarding program, assign each new hire a formal buddy, and set a 90-day ramp milestone for full PR participation.',
-      'Reduce team size back to 15 effective engineers by reallocating new hires to non-critical projects until they are fully ramped — protect velocity on the core roadmap.',
+      'Assign experienced engineers to pair full-time with new hires for four weeks — a dedicated mentorship sprint that accelerates ramp at the cost of temporarily suspending independent contributions from senior engineers.',
       'Hold a team retrospective specifically on the growth transition: surface the velocity and review cycle data, create space for the culture concern to be named, and jointly identify the highest-impact fixes.',
     ],
     correct: 3,
@@ -128,7 +128,7 @@ export const CASES_EM6 = [
     traps: [
       'Private investigation of the culture signal before any team-level engagement delays action by 2–3 weeks and does not address the shared team experience that produced the signal.',
       'A standardized onboarding program may be the right answer but should be designed with the input of those who experienced the onboarding, not built in a management vacuum and imposed on the team.',
-      'Reallocating new hires to non-critical projects creates a two-tier team that signals to new hires that they are not trusted — a culture-damaging move at precisely the moment when belonging is most fragile.',
+      'A four-week dedicated pairing sprint accelerates individual ramp but suspends senior engineer output during the exact window when velocity has already declined — compounding the short-term productivity loss without addressing the culture signal the experienced engineers flagged.',
     ],
   },
   {
@@ -159,7 +159,7 @@ export const CASES_EM6 = [
     difficulty: 1,
     scenario: 'Your engineering team has been requesting improved development tooling for two quarters: faster CI/CD pipelines (currently 28-minute build times), a standardized local dev environment setup (currently takes 2–3 days for a new hire), and better code review tooling. The total investment is approximately $30K in tooling licenses and 6 weeks of a DevOps engineer\'s time. Your product roadmap is under pressure and the DevOps engineer is currently committed to two in-flight infrastructure projects.',
     options: [
-      'Defer the DevEx investment until the in-flight infrastructure projects complete — the roadmap pressure is real and the tooling gaps are manageable for the current team size.',
+      'Negotiate with the DevOps engineer to allocate their first 30 minutes of each workday to CI/CD optimization — low-disruption daily micro-increments that compound into meaningful pipeline improvements without pulling them off infrastructure projects.',
       'Approve the DevEx investment immediately and reallocate the DevOps engineer — developer productivity compounds over time and the cost of deferral is greater than it appears in the near term.',
       'Scope the DevEx investment into phases: prioritize the CI/CD pipeline reduction in the next sprint cycle as a 2-week effort, and schedule the local dev environment and code review tooling for the following quarter once infrastructure projects clear.',
       'Quantify the current cost of the tooling gaps before making the investment decision: calculate the weekly engineering-hour cost of 28-minute builds across the team, add the onboarding ramp cost of the 2–3 day dev environment setup, and present the business case to the product and engineering leadership jointly.',
@@ -170,7 +170,7 @@ export const CASES_EM6 = [
     framework: 'DevEx investment phasing — sequence by impact and resource availability, not all-or-nothing',
     principle: 'Developer experience investments that affect every engineer on every push should never be fully deferred. Phase them, but start now.',
     traps: [
-      'Full deferral while the team grows from 15 to 22+ engineers compounds the productivity cost — 28-minute builds across 22 engineers are 40% more expensive than across 15.',
+      'Thirty-minute daily micro-increments on CI/CD optimization fragment the DevOps engineer\'s focus without providing the uninterrupted blocks that infrastructure improvement work requires — the pipeline remains at 28 minutes while both the CI/CD work and the in-flight projects progress more slowly than if each had dedicated time.',
       'Full immediate reallocation of the DevOps engineer disrupts two in-flight infrastructure projects and may create delivery risk that exceeds the DevEx gain.',
       'Quantifying the cost before acting adds a 2–3 week decision cycle to a problem the team has been raising for two quarters — by the time the business case is presented, the next quarter\'s roadmap pressure will restart the deferral conversation.',
     ],

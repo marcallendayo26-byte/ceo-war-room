@@ -52,7 +52,7 @@ export const CASES_EM4 = [
     scenario: "Your team's work regularly depends on data from the analytics team, who frequently delivers it late or in inconsistent formats. The analytics EM says 'we have our own priorities.' How do you handle this cross-team dependency?",
     quote: "Cross-team dependencies without explicit agreements will always lose to each team's internal priorities.",
     options: [
-      "Accept the dependency behavior — you can't control another team's priorities.",
+      "Design your data ingestion layer to handle inconsistent formats gracefully — make your team's pipeline format-agnostic so the analytics team's inconsistency stops blocking you.",
       "Build your own data pipeline to remove the dependency entirely.",
       "Work with the analytics EM to formalize the dependency: agree on data formats, delivery timelines, and an escalation path when the SLA is missed.",
       "Escalate to both your managers to resolve the priority conflict."
@@ -63,7 +63,7 @@ export const CASES_EM4 = [
     framework: "Cross-Team Dependency Management: informal expectations → formal service agreements.",
     principle: "Dependencies without SLAs produce delivery failures without accountability.",
     traps: [
-      "Passive acceptance — the pattern continues and your team's delivery suffers",
+      "Format-agnostic pipeline — solves the format inconsistency but not the late delivery problem; your team still can't plan against a dependency that arrives unpredictably",
       "Own pipeline build — expensive solution to a relationship problem that should be solved first",
       "Manager escalation before EM agreement attempt — skips the right level and creates unnecessary conflict"
     ]
@@ -123,7 +123,7 @@ export const CASES_EM4 = [
     options: [
       "Soften your feedback significantly — the architect's seniority means they probably know something you don't.",
       "Deliver your technical concerns clearly and specifically, framed as questions and observations rather than verdicts, with data where possible.",
-      "Decline to provide a review — it's not your system and feedback may create conflict.",
+      "Submit a written review documenting the flaws in detail, with supporting references, so the architect can engage with the concerns on their own timeline without the pressure of a live conversation.",
       "Submit your technical concerns to your manager first and let them decide how to deliver them."
     ],
     correct: 1,
@@ -133,7 +133,7 @@ export const CASES_EM4 = [
     principle: "Technical reviews that don't say what's wrong aren't reviews — they're applause.",
     traps: [
       "Softened feedback — seniority doesn't make flaws less real; the system doesn't care about org charts",
-      "Declining to review — you were asked; abstaining from a hard review is a failure of technical leadership",
+      "Written-only review to avoid live pressure — gives the architect full control to dismiss or deprioritize concerns without dialogue; significant flaws need a conversation, not a document they can ignore",
       "Manager escalation first — passive avoidance of your own professional responsibility"
     ]
   },
@@ -192,7 +192,7 @@ export const CASES_EM4 = [
     options: [
       "Have a conversation with product about the process: 'I accept this decision. For future deprioritizations, can we sync before the announcement so I can manage my team's time better?'",
       "Express your frustration directly to product — this decision cost the team a week of work.",
-      "Accept the decision — product owns the roadmap and can change it.",
+      "Document the engineering work already completed and ensure it's preserved and referenced if the feature is reconsidered — then move on.",
       "Escalate to your manager to push back on the product decision."
     ],
     correct: 0,
@@ -201,8 +201,8 @@ export const CASES_EM4 = [
     framework: "Process Improvement Feedback: accept the decision, improve the process.",
     principle: "You can't change a past decision. You can change the process that produced it.",
     traps: [
-      "Passive acceptance — you're leaving a process gap in place that will repeat",
       "Frustration expression without proposal — venting, not improving",
+      "Documenting completed work and moving on — preserves the artifacts but leaves the process gap in place; the same wasted-week scenario will repeat on the next deprioritization",
       "Escalation to reverse decision — misdirected energy; the issue is the process, not the outcome"
     ]
   },
@@ -213,9 +213,9 @@ export const CASES_EM4 = [
     scenario: "You're a new EM who's discovered that your team has been treated as an internal 'IT team' by the business — they receive requests from other departments without prioritization, often disrupting planned work. Your predecessor accepted this dynamic. What do you change and how?",
     quote: "Engineering teams treated as request-takers become reactive. Engineering teams with intake processes become partners.",
     options: [
-      "Continue the current approach — changing it will create friction with stakeholders who are used to it.",
+      "Map the last quarter's ad-hoc requests by department and volume, then present leadership with a cost analysis of the disruption before proposing any process change.",
       "Implement a formal intake process: requests go through a triage system, are evaluated against product roadmap, and are prioritized with transparent timelines and trade-offs.",
-      "Refuse all ad-hoc requests going forward — the team is not an IT team.",
+      "Set a monthly quota for ad-hoc requests per department — cap the disruption at a manageable level without eliminating flexibility.",
       "Negotiate directly with each requesting department to reduce volume organically."
     ],
     correct: 1,
@@ -224,8 +224,8 @@ export const CASES_EM4 = [
     framework: "Engineering Intake: formalize request management before informality manages you.",
     principle: "Engineers who say yes to everything eventually deliver nothing on time.",
     traps: [
-      "Continuing the dynamic — highest-inertia choice; leaves team morale and delivery reliability to degrade further",
-      "Flat refusal — adversarial framing destroys stakeholder goodwill without offering a path",
+      "Cost analysis before proposing a fix — produces a strong business case but extends the disruption while you gather data; you can present the analysis alongside the proposed fix, not as a prerequisite",
+      "Per-department quota system — arbitrary caps create gaming behavior and require constant renegotiation as request patterns change; the intake process achieves the same protection with less overhead",
       "Individual negotiations — unsustainable and recreates informal dependencies at lower scale"
     ]
   },
@@ -236,7 +236,7 @@ export const CASES_EM4 = [
     scenario: "Two of your engineers are in constant technical conflict — they argue in code reviews, design discussions, and occasionally in public Slack channels. Both are technically strong. The arguments are sometimes productive but often create a tense atmosphere. How do you address this?",
     quote: "Persistent interpersonal conflict is a team tax that everyone pays except the two people having it.",
     options: [
-      "Let it play out — technical disagreement between strong engineers produces good outcomes.",
+      "In your next sprint planning, structure work so the two engineers are reviewing different codebases, reducing the surface area for direct conflict while the team dynamic settles.",
       "Mediate a joint session between them — direct dialogue is more effective than parallel coaching.",
       "Have separate conversations with each engineer: name the pattern and its impact, and ask each to identify one behavior change they can commit to.",
       "Separate their work areas — assign them to components with minimal overlap."
@@ -247,7 +247,7 @@ export const CASES_EM4 = [
     framework: "Interpersonal Conflict Coaching: separate conversations before joint sessions.",
     principle: "Two-person conflicts are almost always two separate coaching opportunities.",
     traps: [
-      "Productive tension defense — some technical conflict is healthy; persistent public arguments aren't",
+      "Codebase separation as first move — reduces review overlap in one sprint but doesn't address the dynamic; they still share design discussions and Slack, and the conflict reasserts at the first intersection",
       "Immediate joint mediation — defensiveness in a joint session often escalates rather than resolves",
       "Component separation — removes the surface area but doesn't resolve the dynamic"
     ]
@@ -261,7 +261,7 @@ export const CASES_EM4 = [
     options: [
       "Run a team survey to understand how safe people feel.",
       "Have individual 1:1s with each engineer: 'What would make you feel safer sharing ideas in team meetings?'",
-      "Declare that the team culture is changing and ask engineers to speak up more.",
+      "Set an explicit team norm in your first all-hands: frame disagreement as expected, demonstrate it yourself, and invite the team to test it — signaling that the environment has changed under new leadership.",
       "Observe team interactions yourself across several meetings and note specifically when silence, deflection, or avoidance occur and what triggered them."
     ],
     correct: 3,
@@ -272,14 +272,14 @@ export const CASES_EM4 = [
     traps: [
       "Survey-only approach — gives perception data but not behavioral specifics",
       "1:1 questions — useful after you have hypotheses, but limited before you've observed the dynamic",
-      "Declaration approach — the least effective change lever; telling people to speak up without addressing the cause"
+      "Norm declaration in all-hands — signals intent but doesn't identify the specific behavior causing silence; engineers who've been burned before won't change until they see the specific trigger handled differently"
     ]
   },
   {
     id: "EM-TC03",
     category: "Team Culture",
     difficulty: 2,
-    scenario: "Your team has been distributed across 3 time zones for 8 months. Collaboration has degraded — async communication is slow, people feel disconnected, and there's a growing split between the in-timezone cluster and the remote engineers. What do you address first?",
+    scenario: "Your team has been distributed across 3 time zones for 8 months. Collaboration has degraded — async communication is slow, people feel disconnected, and there's a growing split between the in-timezone cluster and the remote engineers. How do you address first?",
     quote: "Distributed teams don't degrade because of tools. They degrade because of norms.",
     options: [
       "Establish explicit distributed work norms: response time expectations, meeting-free async hours, documentation standards, and how decisions are communicated across time zones.",
@@ -305,7 +305,7 @@ export const CASES_EM4 = [
     scenario: "You're new to the team and in your first week you notice your team's meetings are unproductive — no agendas, long discussions without decisions, and engineers leave unclear on next steps. How do you introduce structure without coming across as bureaucratic?",
     quote: "Structure in meetings isn't bureaucracy — it's respect for everyone's time.",
     options: [
-      "Observe for a full month before introducing any changes — don't disrupt before you understand.",
+      "Shadow the most frequent meeting types for two weeks and document the recurring patterns where discussions stall, then present the team with a targeted proposal based on what you observed.",
       "Introduce one change at a time: start with agendas 24 hours before meetings, then add a decision log, then a time check at halfway. Frame each as serving the team's time, not as process overhead.",
       "Overhaul the meeting structure completely in your first month — new leadership is a good time to reset norms.",
       "Ask the team how they'd like to improve meetings and implement their suggestions."
@@ -316,7 +316,7 @@ export const CASES_EM4 = [
     framework: "Meeting Culture Change: incremental + rationale-driven > complete overhaul.",
     principle: "The fastest way to improve meeting culture is to make meetings noticeably better, not to announce that you will.",
     traps: [
-      "One-month observation before any change — the team needs to see early leadership, not observation",
+      "Two-week observation before proposing changes — the team needs to see early leadership; observing for two weeks before acting signals passivity and lets the dysfunction continue unnecessarily",
       "Full overhaul in first month — insufficient relationship capital to drive changes; resistance is high",
       "Team input before action — gets you the current norms reflected back; lead first, refine with feedback"
     ]
@@ -328,7 +328,7 @@ export const CASES_EM4 = [
     scenario: "A senior engineer on your team is the unofficial 'culture keeper' — they've been there 4 years, know everything, and are widely liked. However, their technical opinions now resist change and they've been discouraging junior engineers from proposing new approaches. How do you address this?",
     quote: "Culture keepers become culture blockers when their influence stops enabling and starts preventing.",
     options: [
-      "Let it go — their institutional knowledge and culture contribution outweigh the downside.",
+      "Reframe their role explicitly: give them ownership of a technical evolution initiative — something that channels their institutional knowledge toward enabling the team rather than anchoring it.",
       "Give newer engineers opportunities to lead design discussions to shift the influence balance.",
       "Have a direct conversation: acknowledge their value and their specific positive contributions, then name the specific behaviors that are limiting the team's ability to evolve.",
       "Move them to an individual contributor track where their influence is less team-wide."
@@ -339,7 +339,7 @@ export const CASES_EM4 = [
     framework: "Senior Influence Coaching: direct + specific + respectful before structural intervention.",
     principle: "Long tenure earns trust. It doesn't earn the right to limit others.",
     traps: [
-      "Accepting the trade-off — the blocking behavior has a compounding negative impact on junior development",
+      "Role reframing before direct feedback — giving them an evolution initiative sounds constructive, but it sidesteps the specific discouraging behavior; they'll own the initiative while still shutting down junior proposals in daily work",
       "Airtime redistribution only — doesn't address the discouragement behavior",
       "Role-track change as first step — disproportionate response before a direct coaching conversation"
     ]
@@ -375,7 +375,7 @@ export const CASES_EM4 = [
     quote: "How senior engineers treat junior proposals in public determines whether junior engineers make proposals in the future.",
     options: [
       "Re-engage the proposal in the meeting: 'I'd like to go back to [name]'s idea — I think there's something worth exploring here. Can we give it a few minutes?'",
-      "Let it go in the meeting — intervening in real time is awkward.",
+      "Redirect the discussion in the meeting by asking the two senior engineers a specific technical question about the proposal, drawing them into examining it more carefully without overtly reversing their dismissal.",
       "Follow up with the junior engineer privately after the meeting to validate their idea.",
       "Address the senior engineers privately after the meeting about their dismissive behavior."
     ],
@@ -385,7 +385,7 @@ export const CASES_EM4 = [
     framework: "Psychological Safety in Action: re-engage dismissed ideas in the moment.",
     principle: "Psychological safety is built in real time, not after the meeting.",
     traps: [
-      "In-meeting avoidance — the signal to the team is that the dismissal was acceptable",
+      "Redirecting through a question to the seniors — adds a step between dismissal and re-engagement; the junior engineer has already gone quiet and the room has moved on; a direct re-engagement is faster and clearer",
       "Private-only follow-up — helps the individual but doesn't repair the public dynamic",
       "Private senior coaching only — right eventually, but the immediate opportunity is the public re-engagement"
     ]
@@ -397,7 +397,7 @@ export const CASES_EM4 = [
     scenario: "Your team is growing from 5 to 12 engineers over the next 6 months. You're proud of your current team culture but you know team growth can dilute or destroy it. What do you do proactively to scale the culture?",
     quote: "Culture doesn't scale by itself — it scales through deliberate onboarding and explicit norms.",
     options: [
-      "Trust the culture to perpetuate naturally — strong cultures are self-reinforcing.",
+      "Involve current team members in hiring by having them assess culture fit during interviews — prioritize candidates who already reflect the team's values so the culture reinforces itself as headcount grows.",
       "Document your team's explicit norms and expectations, integrate them into onboarding, and involve current team members as culture carriers through formal onboarding pairing.",
       "Only hire people who match the current culture — preserve by selection.",
       "Hold culture-focused all-hands quarterly to reinforce values as the team grows."
@@ -408,7 +408,7 @@ export const CASES_EM4 = [
     framework: "Culture Scaling: explicit norms + structured onboarding + culture pairing.",
     principle: "Culture that isn't written down isn't culture — it's memory, and it doesn't survive growth.",
     traps: [
-      "Natural perpetuation trust — works at 5-6 people; fails at 10+ without explicit transmission",
+      "Culture-fit hiring as primary mechanism — interview assessment of culture fit is highly subjective; using it as the primary scaling mechanism amplifies existing biases and produces the same homogeneity risk as selection-only hiring, without the explicit norm transmission that actually works",
       "Selection-only culture preservation — creates homogeneity that limits team diversity and adaptability",
       "Periodic all-hands only — too infrequent and too indirect to build culture in new hires"
     ]
@@ -443,7 +443,7 @@ export const CASES_EM4 = [
     scenario: "You discover that two of your engineers have been making off-color jokes in a private Slack channel that includes only part of the team. Some engineers who saw it are uncomfortable. No one has formally complained. What do you do?",
     quote: "Unreported discomfort is not the same as acceptable behavior.",
     options: [
-      "Do nothing — if no one has formally complained, it's not your place to intervene.",
+      "Check in individually with the engineers who appeared uncomfortable to understand the impact before deciding how to respond.",
       "Send a general team message about appropriate communication standards without naming anyone.",
       "Escalate to HR immediately — this is a potential policy violation.",
       "Have a direct private conversation with the two engineers: name the specific behavior and its impact on the team environment, without waiting for a formal complaint."
@@ -454,7 +454,7 @@ export const CASES_EM4 = [
     framework: "Culture Accountability: direct private conversation first, without waiting for formal complaints.",
     principle: "Your team's culture is partly defined by the behavior you see and say nothing about.",
     traps: [
-      "No action without complaint — passive management of a witnessed problem",
+      "Individual check-ins before acting — gathering more input sounds thorough, but you already have enough to act; asking uncomfortable engineers to describe the impact before you've addressed the behavior extends the time they're in a team environment where it's still occurring",
       "Immediate HR escalation — disproportionate before a direct conversation has been attempted",
       "General message without accountability — well-intentioned but allows the specific behavior to continue"
     ]

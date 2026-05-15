@@ -36,7 +36,7 @@ export const CASES_CFO9 = [
       'Staff the full onsite team at your cost — $9,600 is a small amount relative to a successful go-live, and client goodwill at go-live is worth more than a margin dispute.',
       'Issue a change order for $9,600 before the go-live weekend, citing that the contract definition of go-live support specifies 1 remote consultant and the client\'s requested staffing is materially different.',
       'Negotiate a middle path: provide 2 senior consultants onsite (the project manager plus one senior consultant) at no additional charge, and offer to put the third senior consultant on paid remote standby at $1,800 — splitting the cost impact between both parties.',
-      'Escalate to your legal team to obtain a formal interpretation of "full go-live support" before the weekend — if the contract language is ambiguous, get legal clarification before staffing.',
+      'Staff the full onsite team to ensure a successful go-live while simultaneously issuing the $9,600 change order for post-weekend review — treating the commercial dispute as a parallel track that does not delay deployment.',
     ],
     correct: 1,
     consequences: {
@@ -51,7 +51,7 @@ export const CASES_CFO9 = [
     traps: [
       'Absorbing the $9,600 as a goodwill investment sets a commercial precedent that any ambiguous contract term defaults to maximum client interpretation — the next go-live will carry the same expectation at the same unstated cost.',
       'A negotiated middle path as the opening move concedes that the client\'s interpretation of "full support" has some basis, which weakens your contractual position on the current dispute and every future one.',
-      'Escalating to legal for a contract interpretation is appropriate for high-stakes disputes but operationally counterproductive when the go-live is imminent — you need a commercial decision, not a legal opinion.',
+      'Staffing the full team before the change order is accepted signals that the commercial dispute is secondary to delivery pressure — the client learns that issuing a staffing request immediately before a milestone is the most effective way to expand scope without approval, because you will resource it and argue the invoice later.',
     ],
   },
 
@@ -92,7 +92,7 @@ export const CASES_CFO9 = [
       'Deliver training to all 180 employees as requested — your project manager did not push back at kickoff, which may constitute implied acceptance of the expanded scope.',
       'Issue a change order for $65,100 covering the 155 additional employees, citing that the SOW defines the training population explicitly as power users and system administrators, and that all-employee training was not in scope at the agreed price.',
       'Propose a tiered training response: deliver the contracted 25-person power user and admin training as scoped, and offer a reduced-rate e-learning-only package for the remaining 155 employees at $180 per person — $27,900 total — as a change order.',
-      'Escalate to your legal team to confirm whether your project manager\'s failure to raise the issue at kickoff constitutes scope acceptance before issuing any change order.',
+      'Issue a change order covering the 155 additional employees but offer to deliver all-employee training concurrently with the contracted power-user sessions — presenting a reduced blended rate of $350 per person (vs. $420) on the grounds that delivering both populations together reduces your logistical overhead.',
     ],
     correct: 1,
     consequences: {
@@ -107,7 +107,7 @@ export const CASES_CFO9 = [
     traps: [
       'Treating the project manager\'s kickoff silence as implied scope acceptance sets a precedent that clients can expand SOW-defined populations by stating new requirements in kickoff meetings without formal change management.',
       'Offering the tiered e-learning option as the first move without issuing a change order concedes that the client\'s all-employee requirement has some contractual basis, which weakens your position on the full $65,100.',
-      'Escalating to legal before issuing a standard change order treats a common scope management situation as a legal dispute, which delays the commercial resolution and signals to the client that your team does not have confidence in its own contract.',
+      'Offering a blended-rate discount on the change order introduces a price concession on expanded scope that was not in the SOW — it signals that the all-employee training requirement has some merit and rewards the client for raising it at kickoff rather than during contracting, when the discount could have been scoped correctly.',
     ],
   },
 
@@ -148,7 +148,7 @@ export const CASES_CFO9 = [
       'Implement compute throttling that limits ad-hoc report execution to off-peak hours (10 PM – 6 AM), capping the current compute overrun without a commercial conversation.',
       'Issue a contract amendment that introduces a compute resource clause retroactively, charging the client $2,800 per month for the overage with a 30-day notice period.',
       'Present the client with a transparent cost analysis: the current reporting behavior is consuming $2,800 per month above the modeled compute assumption. Offer two paths — a revised subscription tier at $5,600 per month that covers the actual resource usage, or a report optimization engagement ($6,000 one-time) where your team rebuilds the most costly reports to run within the original compute model.',
-      'Absorb the cost overrun for 3 more months while renegotiating the contract at renewal, then reprice the subscription at renewal to reflect the actual compute cost.',
+      'Deploy a compute cost monitoring dashboard within the client\'s DMS admin panel so their reporting team can see the infrastructure cost of each ad-hoc query in real time — then use 30 days of client-visible cost data as the basis for a commercial conversation about a subscription amendment.',
     ],
     correct: 2,
     consequences: {
@@ -163,7 +163,7 @@ export const CASES_CFO9 = [
     traps: [
       'Compute throttling without a commercial conversation is a service degradation that the client did not agree to — it will generate escalations and damage the relationship without resolving the underlying commercial misalignment.',
       'A retroactive contract amendment imposes terms the client did not sign, which will be resisted and may require legal escalation — the original contract\'s absence of a resource limit clause weakens your position for a retroactive claim.',
-      'Absorbing the overrun until renewal treats a confirmed $2,800 monthly margin loss as a negotiating chip for a future conversation — 3 months of unnecessary absorption is $8,400 in lost margin that a current commercial conversation could recover.',
+      'Deploying a cost monitoring dashboard is a useful client-facing tool but requires 2–4 weeks of engineering time and delays the commercial conversation by 30 more days — InnoFac absorbs another $2,800–$5,600 in margin loss while building a transparency feature that does not resolve the pricing misalignment until after the client has reviewed the data and agreed to renegotiate.',
     ],
   },
 
@@ -173,10 +173,10 @@ export const CASES_CFO9 = [
     difficulty: 3,
     scenario: 'Your contract defines a go-live milestone that triggers a $60K payment upon system go-live. Your team has completed all technical deliverables, passed UAT, and received sign-off on system readiness from the client\'s IT director. The client is now delaying go-live by 6 weeks for internal change management reasons — their HR team says staff are not ready. The client\'s accounts payable team says they will not release the $60K payment until "go-live has happened." Your project has $48K in unbilled costs tied to the go-live milestone.',
     options: [
-      'Accept the delay and wait for the client to go live before invoicing — the contract ties payment to go-live, the client has not yet gone live, and disputing the payment terms will damage the relationship.',
+      'Send the client a formal written notice acknowledging the internal delay and proposing a milestone re-definition: $36K payable immediately against technical readiness sign-off already achieved, and the remaining $24K payable at operational go-live — framing the split as a fair recognition of completed work rather than a payment dispute.',
       'Issue the $60K invoice immediately, citing that the contractual milestone is defined as system readiness and sign-off — which has been achieved — not operational go-live, which is a client-controlled event.',
       'Negotiate a milestone amendment: accept a partial payment of $30K now against technical readiness sign-off, and release the remaining $30K at operational go-live — splitting the milestone to reflect completed work.',
-      'Place the project in formal hold status until the client confirms a go-live date and releases the milestone payment — do not provide additional support or resources until the commercial dispute is resolved.',
+      'Request a formal legal opinion on whether the client\'s unilateral 6-week delay in operational go-live constitutes a material breach of the payment timeline, then present the opinion to the client\'s CFO as the basis for immediate payment — using the legal analysis as negotiating leverage before issuing the invoice.',
     ],
     correct: 1,
     consequences: {
@@ -189,9 +189,9 @@ export const CASES_CFO9 = [
     framework: 'Milestone Payment Trigger Analysis: before accepting a client\'s refusal to release a milestone payment, review the contract language to determine what the milestone actually requires. Technical readiness milestones and operational go-live milestones are distinct. If the contract supports your position, invoice immediately with contractual basis documented.',
     principle: 'A milestone the client has signed off on is a completed milestone. Invoice it.',
     traps: [
-      'Accepting the delay and waiting for operational go-live surrenders your contractual right to payment for a milestone you have demonstrably completed — the client\'s internal HR readiness problem is not a contractual condition of your payment.',
+      'Proposing a milestone re-definition as the opening move concedes that the current contractual milestone is ambiguous — if the milestone language already supports the invoice position, re-defining it implies the original terms did not, which weakens your contractual standing for the $60K claim and every future milestone dispute on this account.',
       'A partial payment amendment as the first move concedes that the client\'s interpretation of the milestone has some validity, which weakens your contractual position before you have exhausted the direct invoice approach.',
-      'Placing the project on formal hold over a payment dispute that has a clear contractual resolution escalates a commercial disagreement into an operational crisis, damaging both the deployment outcome and the likelihood of a clean renewal.',
+      'Obtaining a legal opinion before issuing the invoice delays action by 5–10 business days and signals to the client that you are uncertain of your own contractual position — a well-drafted milestone clause requires a commercial response, not a legal brief, and the delay burns runway while the client\'s 6-week postponement continues.',
     ],
   },
 
@@ -202,7 +202,7 @@ export const CASES_CFO9 = [
     scenario: 'Your AMS contract was priced assuming the client\'s internal help desk would handle all Level 1 support — password resets, user navigation questions, basic how-to queries — and your team would handle only Level 2 and Level 3 issues. Your AMS rate is $165 per hour, priced for L2/L3 complexity. Three months in, the client\'s help desk is routing all tickets to your team without triage. Your analysis shows 60% of incoming tickets are L1 issues that should not reach your team. Your team has spent 94 hours on L1 tickets in the past month — $15,510 in L2/L3-priced time consumed on L1 work.',
     options: [
       'Implement a ticket triage gate: return all L1 tickets to the client\'s help desk with a one-line explanation of why they are out of scope, and invoice for time already spent on L1 issues at the $165 rate.',
-      'Accept the current routing pattern and raise the monthly AMS rate by 25% at the next renewal to absorb the L1 volume — avoid the commercial conversation until renewal.',
+      'Apply differentiated SLA response times by ticket classification: L1 tickets routed to InnoFac\'s team receive a 48-hour response window instead of the standard 4-hour AMS SLA — creating a natural incentive for the client\'s help desk to handle L1 issues internally rather than routing them to a slower-response external team.',
       'Present the client with a documented analysis of the L1 ticket routing pattern and propose a formal amendment: either the client implements a triage process within 30 days, or the contract is amended to include L1 support at a tiered rate of $85 per hour, with the first month\'s L1 overage ($8,000) credited as a transition allowance.',
       'Build an L1 knowledge base and self-service portal for this client at no charge — if the support tickets are basic navigation questions, a self-service tool will reduce volume without a commercial dispute.',
     ],
@@ -218,7 +218,7 @@ export const CASES_CFO9 = [
     principle: 'A $165 per hour consultant handling password resets is a margin problem and a contract compliance problem. Address both.',
     traps: [
       'Implementing a triage gate that returns L1 tickets without a commercial conversation will generate immediate escalations from the client\'s end users and IT director — unilateral service changes without context read as abandonment, not scope management.',
-      'Deferring the commercial conversation to renewal accepts $15,510 in monthly margin loss for 9 months — over $139K in L2/L3-priced time consumed on L1 work that the client was contractually responsible for.',
+      'Applying slower SLA response times to L1 tickets unilaterally changes the service level the client expects under the AMS agreement and will generate escalations from end users whose password resets now take 48 hours — the client\'s IT director will not connect the slow response to ticket classification, they will cite an SLA breach, which creates a dispute without resolving the margin problem.',
       'Building a self-service portal at no charge converts a contract compliance issue into a product investment — the client learns that exceeding their contracted support responsibility results in your team building them free tools.',
     ],
   },

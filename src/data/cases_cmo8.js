@@ -96,7 +96,7 @@ export const CASES_CMO8 = [
       'Reposition the full brand to mid-market: update all website messaging, customer stories, and brand voice to speak to the mid-market buyer — SMB customers will stay on the product regardless of how the brand is positioned.',
       'Create a separate product line with distinct branding for mid-market, keeping the SMB brand intact — the two segments have different buyers, proof points, and messaging requirements that cannot coexist under one brand.',
       'Keep the SMB brand and messaging unchanged, and build a dedicated mid-market content track (separate web section, case studies, persona-specific collateral) that speaks to the mid-market buyer without displacing the SMB identity.',
-      'Pause all new SMB marketing investment and redirect 100% of marketing capacity to mid-market acquisition — if mid-market is the strategic direction, SMB marketing is a distraction from the transition.',
+      'Keep SMB marketing investment flat but progressively shift messaging toward dealership group language and operational complexity — moving the brand voice upmarket so existing SMB content naturally educates the base on platform depth while new-market prospects encounter mid-market-ready positioning.',
     ],
     correct: 2,
     consequences: { growth: 10, customerTrust: 8, strategicPosition: 9, executionRisk: -7 },
@@ -106,7 +106,7 @@ export const CASES_CMO8 = [
     traps: [
       'Full brand repositioning to mid-market before you have mid-market customers signals the pivot to your SMB base before you have a new base to replace them — brand repositioning is a claim that your customer list must substantiate.',
       'A separate product line brand solves the messaging problem but creates two marketing programs, two sets of collateral, two sales decks, and two pricing architectures for what is ultimately one product — the operational cost is rarely justified until the two segments diverge significantly in product requirements.',
-      'Pausing SMB marketing to concentrate on mid-market treats existing customer retention as a given, but SMB dealers in a competitive market who notice declining vendor communication often interpret it as a sign that the vendor is moving on — churn risk rises in segments that feel deprioritized.',
+      'Shifting SMB marketing language toward mid-market complexity produces content that feels misaligned to the 340 existing customers who bought for SMB-specific reasons — messaging that speaks vaguely to both segments resonates fully with neither, creating confusion in the base without providing enough specificity to win mid-market deals.',
     ],
   },
   {
@@ -140,7 +140,7 @@ export const CASES_CMO8 = [
       'Align with product on the big bang launch: a 14-month engineering effort deserves a single major moment, the press release creates the largest concentrated media coverage, and the user conference is the right venue for a live reveal.',
       'Execute the staged rollout: build narrative momentum over 8 weeks, collect customer feedback between phases to shape the launch story, and extend the visibility window beyond the single press release cycle.',
       'Compromise: launch a teaser campaign and vision announcement now, hold the full product reveal for the user conference keynote in 5 weeks, and use the interim 5 weeks for customer beta access and testimonial collection.',
-      'Defer to product leadership: product owns the launch decision, and marketing\'s job is to execute it at the highest quality — internal conflict over launch strategy undermines the team cohesion needed to execute.',
+      'Launch the vision and brand evolution now, 4 weeks before the product ships, and treat the user conference keynote as the general availability announcement — building anticipation through teaser content and early beta customer stories in the weeks before the conference.',
     ],
     correct: 2,
     consequences: { growth: 8, customerTrust: 9, strategicPosition: 8, executionRisk: -5 },
@@ -150,7 +150,7 @@ export const CASES_CMO8 = [
     traps: [
       'A big bang announcement 4 weeks out followed by nothing gives the press release 48-72 hours of media attention and then falls silent at exactly the moment your user conference audience would have been most receptive to a live reveal.',
       'An 8-week staged rollout fragments the biggest product release in company history into weekly feature updates that individually lack the scale to create a major market impression — narrative momentum requires a peak, not just motion.',
-      'Deferring to product leadership on launch strategy treats the CMO as an execution resource rather than a strategic partner — product teams are excellent at telling you what the product does; marketing teams are better at determining how and when to tell the market.',
+      'Announcing the vision and brand evolution 4 weeks before the product ships commits your market positioning to a promise you cannot yet demonstrate — if the release slips even two weeks, the anticipation narrative collapses before the product can substantiate it, and competitors can counter-position against claims that remain unproven in the market.',
     ],
   },
   {

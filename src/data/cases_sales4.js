@@ -8,7 +8,7 @@ export const CASES_SALES4 = [
     options: [
       "Triage your pipeline: identify what is realistically closeable in 6 weeks and build a specific closing plan for those deals only.",
       "Forecast 100% and work to hit it — optimism drives performance.",
-      "Ask your manager for help — additional support can help close the gap.",
+      "Score each deal by the number of confirmed buying committee members and decision criteria met, then present your manager with a weighted probability analysis before agreeing on a recovery plan together.",
       "Push every deal hard regardless of stage — maximize probability by maximizing activity."
     ],
     correct: 0,
@@ -19,7 +19,7 @@ export const CASES_SALES4 = [
     traps: [
       "Optimistic 100% forecast — feels motivating but leads to poor resource allocation",
       "Pushing all deals equally — spreads attention and kills late-stage close rates",
-      "Asking for manager help before doing your own triage — should be done in parallel, not instead of your own analysis"
+      "Weighted probability scoring before doing your own triage — surfaces useful data but delays action; the scoring exercise becomes a substitute for closing conversations rather than an input to them"
     ]
   },
   {
@@ -52,7 +52,7 @@ export const CASES_SALES4 = [
     scenario: "Your quota was set based on last year's territory performance, but you've since lost your two largest accounts to churn and been assigned a geographic segment with fewer enterprise prospects. You believe your quota is unachievable. What's the appropriate course of action?",
     quote: "A quota divorced from territory reality is a quota that destroys morale and accountability.",
     options: [
-      "Work as hard as possible anyway — complaining about quota is unprofessional.",
+      "Map the new territory's total addressable opportunity — by segment, deal size, and pipeline conversion rate — and use that analysis as the opening argument for a quota reset conversation with your manager.",
       "Accept it and begin negotiating next year's quota in your performance reviews.",
       "Document the specific changes (churn, territory reconfiguration) and make a formal business case to your manager for a quota adjustment.",
       "Verbally raise the concern with your manager and see if they'll adjust informally."
@@ -63,7 +63,7 @@ export const CASES_SALES4 = [
     framework: "Quota Management: fair quotas require accurate territory inputs — advocate formally when they diverge.",
     principle: "An unachievable quota isn't a motivator — it's a resignation letter in slow motion.",
     traps: [
-      "Acceptance without action — unachievable quotas predictably produce demoralization and departure",
+      "TAM mapping as your opening argument — useful data, but you're doing the analysis without the documented business case your manager needs to escalate; it answers 'what's possible' before you've established 'what changed'",
       "Verbal-only escalation — too easily dismissed without data",
       "Annual renegotiation timing — waiting a year with the wrong quota is a year of underperformance on record"
     ]
@@ -75,9 +75,9 @@ export const CASES_SALES4 = [
     scenario: "You've had your best quarter ever — 143% of quota. Your manager is now planning to significantly increase your quota next quarter based on your performance. You believe this quarter was unusually strong due to two large deals that were one-time events. What do you do?",
     quote: "Today's overachievement is tomorrow's inflated quota if you let it be set without context.",
     options: [
-      "Say nothing — higher quota means higher OTE if you hit it.",
-      "Wait for the quota number to come and then negotiate from there.",
-      "Push back hard on any quota increase — you don't want to set an unrealistic precedent.",
+      "Document the two exceptional deals — their source, size, and why they're non-repeatable — and bring a 3-quarter baseline attainment analysis to the quota discussion so the context outlives a single conversation.",
+      "Propose a quota number tied to your historical average attainment plus a realistic growth rate, with supporting pipeline data, and present it before your manager tables their number.",
+      "Push back firmly on any quota increase above 10% — exceptional quarters shouldn't set precedents for structural quota jumps.",
       "Proactively brief your manager on the two exceptional deals: their size, context, and why they aren't repeatable."
     ],
     correct: 3,
@@ -86,9 +86,9 @@ export const CASES_SALES4 = [
     framework: "Performance Context: one-quarter data is a sample, not a trend — communicate the difference.",
     principle: "Set expectations with context. Quota set on outliers produces predictable disappointment.",
     traps: [
-      "Silence — you end up with an unachievable quota and no one to blame but yourself",
-      "Hard pushback on any increase — looks like low ambition rather than analytical accuracy",
-      "Wait and negotiate — delays the conversation past the point where context matters to the planning process"
+      "Written documentation without the briefing conversation — your manager reads the analysis but doesn't have the chance to ask questions; context that lives in a doc is easier to discount than context delivered in a conversation",
+      "Pre-emptive quota proposal — positions you as anchoring low before your manager has even made a proposal; comes across as negotiating defensively rather than providing honest context",
+      "Hard cap on quota increases — looks like low ambition rather than analytical accuracy"
     ]
   },
   {
@@ -100,7 +100,7 @@ export const CASES_SALES4 = [
     options: [
       "Discuss the delivery capacity constraint with your implementation lead and identify whether any workaround exists before deciding.",
       "Close the deal — quota is your number to hit and delivery is their problem to solve.",
-      "Delay the close to next quarter — a bad customer experience is worse than a missed quota.",
+      "Close the deal with a phased implementation plan that spreads the workload over 8 weeks — it addresses the capacity concern without sacrificing the quarter.",
       "Close the deal but be transparent with the prospect that implementation will start in 30 days."
     ],
     correct: 0,
@@ -110,7 +110,7 @@ export const CASES_SALES4 = [
     principle: "Never close something you can't deliver. The short-term math never adds up.",
     traps: [
       "Close and let delivery figure it out — you've just created a delivery crisis and a damaged customer",
-      "Immediate delay to next quarter without exploring workarounds — too fast to surrender",
+      "Phased implementation without delivery team buy-in — you've invented a workaround the implementation lead hasn't agreed to; if they can't staff even a phased ramp, you've closed into the same capacity crisis with a different timeline",
       "Close with delayed start without customer conversation — they find out and feel misled"
     ]
   },
@@ -121,7 +121,7 @@ export const CASES_SALES4 = [
     scenario: "You have a rep on your team who is consistently 120%+ of quota but whose forecast accuracy is poor — he regularly commits deals that don't close and closes deals he never committed. Your VP is frustrated with the forecast unreliability. What's the coaching focus?",
     quote: "Revenue without predictability is valuable to you but costly to the business.",
     options: [
-      "Don't address it — 120% performance should earn forecast flexibility.",
+      "Run a post-mortem with him on the last 10 deals — both committed misses and uncommitted closes — and use the patterns to define together what a commit should actually look like in his pipeline.",
       "Focus coaching on forecast mechanics: what data signals should drive a commit, what should stay in upside.",
       "Put him on a forecast accuracy PIP alongside his revenue recognition.",
       "Pair him with your most forecast-accurate rep to observe and learn."
@@ -132,7 +132,7 @@ export const CASES_SALES4 = [
     framework: "Forecast Coaching: teach the mechanics, not just the standards.",
     principle: "Great reps who forecast poorly need coaching, not consequences.",
     traps: [
-      "Performance excuse — 120% doesn't make forecast chaos acceptable to the organization",
+      "Post-mortem on historical deals — useful for calibration, but it's backward-looking and doesn't give the rep a forward-facing standard to apply next week; pattern analysis replaces the skill definition it should inform",
       "PIP for a skills issue in a high performer — heavy-handed and will damage the relationship",
       "Peer shadowing as a substitute — useful supplement but not the primary intervention"
     ]
@@ -145,7 +145,7 @@ export const CASES_SALES4 = [
     quote: "Forecast frameworks only work when the people submitting them believe in them.",
     options: [
       "Mandate compliance and inspect the forecast weekly until the behavior changes.",
-      "Let resistance run its course — culture changes slowly and compliance will come with time.",
+      "Run the new framework in parallel with the old system for 4 weeks — let experienced reps see their own forecast accuracy improve in the new model before you retire the old one.",
       "Explain the 'why' behind the framework — how it helps them, not just the business — and run training sessions before enforcing compliance.",
       "Enforce for new hires but grandfather the old framework for experienced reps."
     ],
@@ -156,7 +156,7 @@ export const CASES_SALES4 = [
     principle: "Tell them why it helps them first. Enforce second.",
     traps: [
       "Immediate mandated compliance without explanation — produces surface behavior, not real adoption",
-      "Passive waiting for culture change — you'll wait forever",
+      "Parallel system for 4 weeks — the accuracy comparison sounds compelling, but running two forecast systems doubles the administrative burden and gives resistant reps a reason to stick to the familiar one; the old system becomes a refuge rather than a comparison",
       "Grandfathering — signals the new standard is optional, which means it isn't a standard"
     ]
   },
@@ -167,7 +167,7 @@ export const CASES_SALES4 = [
     scenario: "Your company is considering raising quota 20% across the board for next year while adding only 5% to territory size. Leadership argues this is driven by product improvements that increase win rates. You disagree — win rates haven't changed materially. How do you engage with this?",
     quote: "Quotas set without data are aspirations pretending to be plans.",
     options: [
-      "Accept it — quota setting is leadership's prerogative and resisting it looks weak.",
+      "Model out what a 20% quota increase would require in terms of win rate improvement, deal velocity, and pipeline coverage — and present the gap between the model and your actual trailing metrics as the case for revision.",
       "Informally poll other reps to build collective pushback against the change.",
       "Negotiate personally for a lower individual quota and let the systemic issue be someone else's problem.",
       "Present your analysis to your VP: win rate data, territory capacity analysis, and a realistic growth projection with supporting assumptions."
@@ -178,7 +178,7 @@ export const CASES_SALES4 = [
     framework: "Upward Influence: data-driven business cases change plans; complaining doesn't.",
     principle: "If the plan is wrong, bring the analysis that proves it — professionally, directly.",
     traps: [
-      "Silent acceptance — looks cooperative but guarantees a year of missed quotas and attrition",
+      "Modeling the required win rate improvement — useful framing, but it shows leadership what would need to be true rather than what is actually true; it risks being read as a theoretical exercise rather than a concrete rebuttal grounded in your trailing performance data",
       "Individual negotiation — solves your problem while leaving the team with an unrealistic baseline",
       "Informal collective pushback — leadership sees it as resistance, not analysis, and responds accordingly"
     ]
@@ -216,7 +216,7 @@ export const CASES_SALES4 = [
       "Forecast conservatively — submit low numbers until you understand your pipeline better.",
       "Submit your best estimate with explicit confidence levels and caveats per deal, noting that you're still developing pipeline visibility.",
       "Ask your manager how to forecast and copy the format from the previous rep.",
-      "Delay your forecast until you've had 30 days to fully assess your pipeline."
+      "Submit the forecast based on what the previous rep had in their pipeline, noting which deals you've personally validated and which you haven't — so your manager can see exactly where your visibility starts and stops."
     ],
     correct: 1,
     consequences: {"executionRisk":-6,"teamMorale":6,"strategicPosition":5},
@@ -226,7 +226,7 @@ export const CASES_SALES4 = [
     traps: [
       "Artificially conservative numbers — sounds humble but doesn't reflect your actual read of the deals",
       "Copying previous rep's forecast — may perpetuate inaccurate deal statuses you haven't verified",
-      "Delaying the forecast — creates a visibility gap and signals you're not ready to contribute"
+      "Previous rep's pipeline with validation flags — thoughtful transparency, but you're still submitting a forecast built on someone else's deal intelligence; the flags signal uncertainty without resolving it, and your manager now has to re-qualify deals you haven't personally engaged"
     ]
   },
   {
@@ -237,7 +237,7 @@ export const CASES_SALES4 = [
     quote: "An unstructured POC is a way to delay a yes without ever having to say no.",
     options: [
       "Agree to the POC — removing all barriers to purchase shows commitment.",
-      "Decline the POC and explain that your customer references provide better validation.",
+      "Offer a reference-based validation path instead: connect them with 2 customers in an identical use case who can speak to implementation reality, positioning it as faster and more relevant than a POC.",
       "Propose a structured POC with defined success criteria, timeline, and a decision commitment tied to the outcome.",
       "Offer a limited-time free trial instead of a formal POC."
     ],
@@ -248,7 +248,7 @@ export const CASES_SALES4 = [
     principle: "A POC without success criteria is a free trial with professional services attached.",
     traps: [
       "Unconditional POC agreement — you've just funded a delay with your resources",
-      "Declining in favor of references — references and POCs answer different questions",
+      "Reference-based validation instead of POC — references answer different questions than a hands-on evaluation; the prospect asked for a POC because they want to test fit in their own environment, and substituting references can feel like you're avoiding the work",
       "Free trial — even less structure than a POC, even more prone to delay and drift"
     ]
   },
@@ -283,7 +283,7 @@ export const CASES_SALES4 = [
     quote: "Knowing what someone needs to feel good lets you give it to them on your own terms.",
     options: [
       "Build 10% into your pre-negotiation pricing and let the CFO 'negotiate' it back to your original target.",
-      "Ignore it — responding to psychological motivations compromises your negotiating integrity.",
+      "Present your standard pricing with a line-item breakdown that gives the CFO visible cost components to probe — she feels like she's doing diligence rather than just signing, which satisfies the same psychological need as a discount without costing margin.",
       "Give the 10% off immediately when the CFO asks to save time.",
       "Tell your champion to manage the CFO's expectations — that's what internal champions are for."
     ],
@@ -294,7 +294,7 @@ export const CASES_SALES4 = [
     principle: "Price isn't just math — it's theater. Know who needs what performance.",
     traps: [
       "Ignoring champion intelligence about stakeholder psychology — wastes valuable information",
-      "Immediate 10% on first ask — CFO doesn't feel like she won if it was given without resistance",
+      "Line-item cost breakdown — looks analytically credible but the CFO who needs to feel a win won't be satisfied by transparency; she needs to move the number, not just understand it",
       "Delegating CFO management to champion — this is your negotiation to lead"
     ]
   },
@@ -307,7 +307,7 @@ export const CASES_SALES4 = [
     options: [
       "Build the business case yourself and give it to them to present.",
       "Co-build the business case with them — you provide the structure, data, and ROI framework; they provide the internal context, stakeholders, and political framing.",
-      "Tell them it's their job to build the internal case — your role is the external sale.",
+      "Send them your standard ROI template along with a 30-minute working session offer to walk through how to adapt it for their internal stakeholders and financial model.",
       "Provide a standard ROI template and let them fill it in themselves."
     ],
     correct: 1,
@@ -317,7 +317,7 @@ export const CASES_SALES4 = [
     principle: "Enable your champion — don't replace them or abandon them.",
     traps: [
       "Writing it for them — loses internal authenticity and credibility",
-      "Refusing to help — your champion's success is your deal's success",
+      "Template plus working session offer — sounds collaborative but you're still handing them a generic framework; the 30-minute call works through the template rather than building from their actual cost structure, which produces a case that's polished but not grounded in their numbers",
       "Template-only approach — misses the insight you could bring to strengthen the case"
     ]
   },
@@ -328,7 +328,7 @@ export const CASES_SALES4 = [
     scenario: "A deal worth $340K is stuck. Your champion is engaged but the procurement team says they're waiting on sign-off from a 'steering committee' that meets quarterly — and the next meeting is 8 weeks away. Your quarter ends in 4 weeks. What are your options?",
     quote: "Committees don't have urgency. People on committees do.",
     options: [
-      "Accept the 8-week timeline — quarterly steering committees are standard enterprise governance.",
+      "Map the steering committee membership with your champion and identify whether any individual member has delegated approval authority or can sponsor an interim sign-off before the scheduled meeting.",
       "Offer a significant discount for signing before the committee meeting.",
       "Ask your champion to find out who can call an emergency steering committee session or grant an interim approval.",
       "Have your executive team contact the steering committee sponsor to request an expedited review."
@@ -339,7 +339,7 @@ export const CASES_SALES4 = [
     framework: "Governance Navigation: every formal process has an informal escalation path — find it.",
     principle: "Governance structures have workarounds. Your job is to help your champion find them.",
     traps: [
-      "Passive acceptance — steering committees often have flexibility that nobody thinks to ask about",
+      "Committee membership mapping before involving your champion — you're building a governance map your champion already has access to; skipping them and going directly creates the impression you're planning an escalation behind their back",
       "Discount offer — the committee may not be authorized to approve early even with a better price",
       "Executive escalation before internal exploration — your champion should exhaust internal options first"
     ]
@@ -445,7 +445,7 @@ export const CASES_SALES4 = [
     options: [
       "Tell them yes — you'll sort out the implementation scheduling details once the deal is signed.",
       "Offer a premium option to expedite implementation and jump the queue, framing it as a service upgrade.",
-      "Say 'we'll do our best' to avoid committing to a timeline while leaving the question open.",
+      "Tell them you'll escalate internally and confirm the start date within 24 hours — buying time to check with the implementation team before committing.",
       "Tell them the honest timeline — 4–5 weeks — and ask what would make that work for them rather than disappoint them after signing."
     ],
     correct: 3,
@@ -456,7 +456,7 @@ export const CASES_SALES4 = [
     traps: [
       "Agreeing to 2 weeks — you've just started the relationship with a broken commitment",
       "Premium expedite offer — may not be available and feels like upselling at the moment of closing",
-      "'We'll do our best' — non-commitment that will be interpreted as a yes and experienced as a no"
+      "24-hour internal escalation — sounds responsible, but you already know the queue is 4-5 weeks; delaying the honest answer by a day doesn't change the timeline, it just postpones the conversation the prospect needs to have now"
     ]
   },
 ]

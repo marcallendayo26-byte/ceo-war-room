@@ -32,7 +32,7 @@ export const CASES_SALES3 = [
       "Intensify the relationship with your existing champion — loyalty will carry the account.",
       "Reach out directly to the new VP for an executive briefing before they form opinions about your solution.",
       "Ask your champion to introduce you to the new VP immediately.",
-      "Prepare a competitive displacement defense and wait for the VP to initiate a review."
+      "Audit your current contract for renewal milestones and prepare a competitive differentiation deck to present when the new VP requests a formal review."
     ],
     correct: 1,
     consequences: {"strategicPosition":9,"customerTrust":6,"executionRisk":-8},
@@ -41,7 +41,7 @@ export const CASES_SALES3 = [
     principle: "In an account, the power that matters is the power that's current.",
     traps: [
       "Champion loyalty as account defense — champions who've lost authority can't protect you",
-      "Waiting for a formal review — you'll be presenting to an audience that already has a preference",
+      "Waiting for a formal review request — you've let the new VP form a preference before you've made a case",
       "Champion introduction only — the meeting still needs to be yours to lead, not filtered through them"
     ]
   },
@@ -75,7 +75,7 @@ export const CASES_SALES3 = [
     scenario: "Your $500K account has a 90% renewal probability but you've been told they've been approached by a competitor with a new feature you don't have. Your champion says they're 'just taking a look.' Should you be concerned, and what do you do?",
     quote: "'Just taking a look' at a competitor is your first notice of a retention risk.",
     options: [
-      "Don't panic — 90% renewal probability is strong and champions take vendor calls regularly.",
+      "Pull the last 6 months of usage data and share it with your champion as a value reminder before the renewal conversation starts.",
       "Ask your champion directly: 'How serious is this evaluation and what are they offering that we're not?'",
       "Ask your product team to accelerate the missing feature on the roadmap.",
       "Schedule a proactive business review to reinforce value and surface whether the feature gap is actually a concern to them."
@@ -86,7 +86,7 @@ export const CASES_SALES3 = [
     framework: "Proactive Retention: reinforce value before renewal pressure creates a competitive context.",
     principle: "Account retention is won in the months before renewal, not the week of.",
     traps: [
-      "90% confidence as an excuse to be passive — competitive activity is always a risk signal",
+      "Usage data as a substitute for discovery — surfaces what they've done, not whether the feature gap is a real priority",
       "Roadmap pressure based on one retention concern — bad product strategy from sales urgency",
       "Asking champion to reveal competitor's offer — puts them in an awkward position and rarely gets honest data"
     ]
@@ -147,7 +147,7 @@ export const CASES_SALES3 = [
       "Close the expansion immediately and let delivery figure out the timeline.",
       "Be transparent with the customer about the 4-month timeline before closing.",
       "Close the deal with a 4-month start date built into the contract.",
-      "Delay the close until delivery capacity exists — don't sign what you can't deliver."
+      "Propose a phased scope — close the portions your team can deliver in 6 weeks now and contract the remaining modules at 4 months, keeping the commercial momentum without overpromising."
     ],
     correct: 2,
     consequences: {"customerTrust":8,"executionRisk":-8,"profitability":4},
@@ -156,7 +156,7 @@ export const CASES_SALES3 = [
     principle: "A customer who signs with false expectations is a customer who will churn with anger.",
     traps: [
       "Close now and let delivery figure it out — creates a contract dispute when reality sets in",
-      "Delay until capacity exists — loses momentum and the deal may not survive the wait",
+      "Phased scope without the delivery team's input — you've invented a workaround your implementation team hasn't agreed to, and the same capacity problem resurfaces at phase 2",
       "Close with a 4-month start date WITHOUT telling the customer during negotiation — buried terms create anger"
     ]
   },
@@ -168,7 +168,7 @@ export const CASES_SALES3 = [
     quote: "How you deliver bad news is as important as the news itself.",
     options: [
       "Wait for the official company announcement — share pricing changes through official channels only.",
-      "Say nothing until they ask about pricing in the renewal conversation.",
+      "Document the value milestones each account has hit over the past year and build a value-justified pricing narrative before any renewal conversation, so the increase is framed in context rather than delivered cold.",
       "Offer your top accounts grandfathered pricing if they renew before the price increase takes effect.",
       "Proactively call your top accounts before the announcement with a heads-up and a transition plan."
     ],
@@ -179,7 +179,7 @@ export const CASES_SALES3 = [
     principle: "Customers who feel warned are customers who stay. Customers who feel blindsided leave.",
     traps: [
       "Official channels only — impersonal for accounts that trust their AE as a partner",
-      "Silence until asked — the worst outcome; destroys trust when the increase hits",
+      "Value narrative preparation without the heads-up call — you've done the homework but still let the announcement land cold; the customer learns from the email, not from you",
       "Grandfathered pricing offer without a relationship conversation — transactional and misses the real opportunity"
     ]
   },
@@ -192,7 +192,7 @@ export const CASES_SALES3 = [
     options: [
       "Ask for a formal win/loss conversation focused on product gap and pricing — not to change the decision, but to understand it fully.",
       "Offer a significant discount and feature roadmap commitment to win them back.",
-      "Accept the decision and ask what you could have done differently.",
+      "Request a structured 30-minute exit interview with the economic buyer — not your champion — to capture the strategic reasons behind the decision directly from the person who made it.",
       "Escalate to your VP to make a retention offer before the customer's transition date."
     ],
     correct: 0,
@@ -201,7 +201,7 @@ export const CASES_SALES3 = [
     framework: "Win/Loss Analysis: every lost deal contains the seeds of the next won one.",
     principle: "Customers who leave honestly are giving you a gift — accept it and learn.",
     traps: [
-      "Pure graceful acceptance without structured learning — respectful but wastes the intelligence",
+      "Economic buyer exit interview only — useful, but routing around your champion at this stage damages the relationship you'll need if you ever re-engage this account",
       "Discount + roadmap commitment — rarely reverses a decision made on feature and relationship grounds, and commits your product team",
       "Immediate VP escalation — feels like panic, not partnership"
     ]
@@ -216,7 +216,7 @@ export const CASES_SALES3 = [
       "Run usage analytics to see how deeply the product is adopted within the current deployment.",
       "Do a full account mapping — identify who's using the product, who isn't, and which business units are untouched.",
       "Ask the champion: 'What would need to be true for you to expand your usage in the next 12 months?'",
-      "Set a 60-day deadline: if you can't identify a concrete growth path, deprioritize."
+      "Schedule executive sponsor calls with the two largest untouched business units to gauge whether there's organizational interest in expanding beyond the current deployment."
     ],
     correct: 1,
     consequences: {"growth":7,"strategicPosition":6,"executionRisk":-4},
@@ -226,7 +226,7 @@ export const CASES_SALES3 = [
     traps: [
       "Usage analytics alone — shows current adoption depth but not expansion breadth",
       "Asking champion about growth — they can only see their own domain; you need the full org picture",
-      "Immediate deprioritization deadline before investing in diagnosis"
+      "Executive sponsor outreach before mapping — you're asking untouched BUs to act on a value case you haven't built yet; without the org map, you don't know who to call or what to say"
     ]
   },
   {
@@ -239,7 +239,7 @@ export const CASES_SALES3 = [
       "Lead with your feature advantages and minimize the competitor's customer base advantage.",
       "Provide a feature-by-feature comparison chart that objectively shows both strengths.",
       "Acknowledge where the competitor is strong, then pivot to where your solution delivers superior outcomes for their specific use case.",
-      "Avoid direct comparison: 'Every solution is different — let's focus on what you need.'"
+      "Reframe the question toward fit: 'Rather than a generic comparison, let me walk you through where companies with your exact architecture have seen the biggest delta between the two solutions.'"
     ],
     correct: 2,
     consequences: {"customerTrust":8,"strategicPosition":6,"growth":5},
@@ -249,7 +249,7 @@ export const CASES_SALES3 = [
     traps: [
       "Leading with your strengths before acknowledging theirs — sounds defensive, not confident",
       "Feature comparison chart — lets the prospect (and competitor) define the evaluation criteria",
-      "Question avoidance — frustrates and signals weakness"
+      "Reframing without first acknowledging — sounds like you're dodging the question rather than answering it confidently; the prospect asked for a comparison, not a redirect"
     ]
   },
   {
@@ -260,7 +260,7 @@ export const CASES_SALES3 = [
     quote: "In competitive deals, access beats content — almost every time.",
     options: [
       "Outwork the competitor with better discovery, a stronger proposal, and more thorough follow-through.",
-      "Accept that you're disadvantaged and focus on out-competing on product and price.",
+      "Map the economic buyer's reporting structure and identify two board-level or peer executives who have existing relationships with your leadership, then use those connections to get into a separate conversation about strategic value before the final decision.",
       "Have your own VP or CEO reach out directly to the economic buyer to establish a peer relationship.",
       "Ask your champion to facilitate an executive-level meeting between your leadership and the economic buyer."
     ],
@@ -272,7 +272,7 @@ export const CASES_SALES3 = [
     traps: [
       "Content and process excellence alone — rarely beats a relationship advantage at the executive level",
       "VP direct outreach without champion facilitation — bypasses your advocate, risks the relationship",
-      "Accepting disadvantage — premature concession in a competitive situation"
+      "Board-level mapping without your champion's knowledge — creates an independent executive conversation that can make your champion feel sidelined and your company look politically calculated"
     ]
   },
   {
@@ -285,7 +285,7 @@ export const CASES_SALES3 = [
       "Acknowledge the concern without validating it: 'I understand why that would matter. Let me show you our actual retention data and connect you with 3 reference customers in your space.'",
       "Directly refute the claims: 'That's simply not true — here are the facts.'",
       "Report the competitor's behavior to your VP and ask them to address it through formal channels.",
-      "Ignore it and let your product strengths speak for themselves."
+      "Invite the prospect to speak directly with your VP of Customer Success, who can walk them through churn cohort data and answer technical stability questions peer-to-peer."
     ],
     correct: 0,
     consequences: {"customerTrust":9,"strategicPosition":7,"growth":5},
@@ -295,7 +295,7 @@ export const CASES_SALES3 = [
     traps: [
       "Direct refutation — enters a dispute the prospect can't resolve and that benefits the competitor",
       "Formal complaint escalation — rarely works and makes you look unable to handle competitive dynamics",
-      "Letting product speak — doesn't address a specific concern that's already in the prospect's head"
+      "VP of CS peer call without first sharing data — you've escalated to executive engagement before anchoring the conversation with retention numbers; if the VP is asked a question they're not prepared for, it amplifies the concern rather than neutralizing it"
     ]
   },
   {
@@ -305,9 +305,9 @@ export const CASES_SALES3 = [
     scenario: "You're in a competitive evaluation and realize the prospect's evaluation criteria were largely written based on your competitor's feature set — they have several requirements that align exactly with things your competitor does that you don't. What do you do?",
     quote: "Competing on criteria you didn't write is competing on ground the enemy chose.",
     options: [
-      "Respond to all criteria as best you can and hope your overall profile is compelling.",
+      "Submit a detailed RFP response that addresses each criterion on its own terms while weaving in your differentiated strengths — showing coverage gives you credibility before you attempt to reframe.",
       "Ask to schedule a working session to understand the business outcomes behind the criteria, and reframe around outcomes where you're stronger.",
-      "Politely decline the evaluation — the criteria are rigged and you can't win.",
+      "Politely withdraw from the evaluation and reintroduce yourself after the incumbent wins and the customer's expectations aren't met.",
       "Offer a features roadmap commitment to address the gaps in your solution."
     ],
     correct: 1,
@@ -316,7 +316,7 @@ export const CASES_SALES3 = [
     framework: "Evaluation Reframing: shift from feature-matching to outcome-mapping.",
     principle: "Change the criteria or change the evaluator — never just respond to criteria you didn't help write.",
     traps: [
-      "Responding to rigged criteria — fighting a battle on someone else's terrain",
+      "Full RFP response on competitor-shaped criteria — demonstrating coverage feels collaborative but locks the evaluation into a framework you didn't design; you've now validated the criteria by responding to them in full",
       "Declining the evaluation — too early, you may have more influence than you think",
       "Roadmap commitments to fill gaps — creates delivery debt and credibility risk"
     ]
@@ -376,7 +376,7 @@ export const CASES_SALES3 = [
     options: [
       "Proactively build a credibility narrative — relevant customer logos, financial backers, growth trajectory, and partnership depth — and address stability before prospects raise it.",
       "Report the competitor's FUD campaign to your VP and request a formal public rebuttal from marketing.",
-      "Avoid responding to it directly — elevating the concern signals that it's credible.",
+      "Build a targeted reference program: identify 3 customers in each prospect's vertical who've been with you for 3+ years and brief them to speak proactively about stability when engaged by new prospects.",
       "Add a company stability slide to your standard deck and use it to respond when the objection comes up."
     ],
     correct: 0,
@@ -386,7 +386,7 @@ export const CASES_SALES3 = [
     principle: "Stability concerns don't disappear when ignored — they grow. Address them before they're asked.",
     traps: [
       "Formal rebuttal request — marketing rebuttals rarely reach individual prospects and can elevate the story",
-      "Silence strategy — giving FUD room to spread unchallenged is choosing to lose the narrative",
+      "Targeted reference program without the proactive narrative — references are powerful validators but they only engage after the prospect raises the concern; you're still reacting, just with better ammunition",
       "Reactive deck slide — you're still letting the competitor control when the conversation happens"
     ]
   },

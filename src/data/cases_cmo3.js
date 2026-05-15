@@ -33,7 +33,7 @@ export const CASES_CMO3 = [
       "Reduce to 2 high-quality articles per month and present a 90-day ranking improvement plan to the CEO with expected position gains.",
       "Keep output at 6 articles per month but reallocate time within each piece toward better keyword research and more thorough outlines.",
       "Run a 60-day A/B: produce 2 premium pieces per month alongside 4 standard pieces, then compare ranking and traffic outcomes.",
-      "Maintain the 6-article cadence for CEO visibility but repurpose each article into social and email content to demonstrate breadth of output."
+      "Keep the 6-article output but shift 60% of content team time to distribution: proactive outreach for backlinks, syndication to industry publications, and LinkedIn amplification — arguing the page-2 rankings reflect a distribution gap, not a depth gap."
     ],
     "correct": 0,
     "consequences": {
@@ -47,7 +47,7 @@ export const CASES_CMO3 = [
     "traps": [
       "Improving research within the existing 6-article cadence still spreads effort too thin to produce the depth that breaks into page 1",
       "A 60-day A/B experiment delays the right decision and means 8 more underperforming articles ship before you act",
-      "Repurposing solves the internal perception problem but leaves the SEO performance problem completely unaddressed"
+      "Distribution investment cannot compensate for content that fails the depth threshold search engines reward — backlinks to thin content improve domain authority without fixing the on-page quality signal that determines page-1 eligibility"
     ]
   },
   {
@@ -59,7 +59,7 @@ export const CASES_CMO3 = [
       "Continue the series but restructure distribution: repurpose CEO posts into LinkedIn articles, email newsletter content, and sales enablement collateral to extract more value per piece.",
       "Present a 6-month performance review to the CEO showing the pipeline impact gap and propose redirecting half the capacity to high-intent content while continuing the series on a reduced schedule.",
       "Stop the series after the next 2 posts and redirect all capacity to bottom-of-funnel content with clear conversion tracking.",
-      "Keep the series running as-is for another 3 months to build a larger data set before making any resource reallocation decision."
+      "Convert the CEO series from written posts to a short-form video or podcast format and distribute on LinkedIn and YouTube, arguing that the low view count reflects a format mismatch rather than low audience interest in the CEO's perspective."
     ],
     "correct": 1,
     "consequences": {
@@ -67,13 +67,13 @@ export const CASES_CMO3 = [
       "strategicPosition": 5,
       "teamMorale": 4
     },
-    "explanation": "Thought leadership content from a CEO does serve a legitimate brand and culture-signaling purpose, but 20% of content capacity with 0 conversions after 3 posts warrants a data-driven conversation. The right move is to surface the performance gap transparently with the CEO, propose a rebalancing rather than a shutdown, and keep the CEO engaged as a contributor on a reduced schedule. Restructuring distribution first (option A) solves some of the amplification problem but doesn't address the capacity cost. Stopping the series outright (option C) risks damaging your relationship with the CEO by unilaterally cancelling something they value. Waiting 3 more months (option D) defers the conversation and continues the capacity drain. The sustainable path is shared ownership of the data and a collaborative reallocation decision.",
+    "explanation": "Thought leadership content from a CEO does serve a legitimate brand and culture-signaling purpose, but 20% of content capacity with 0 conversions after 3 posts warrants a data-driven conversation. The right move is to surface the performance gap transparently with the CEO, propose a rebalancing rather than a shutdown, and keep the CEO engaged as a contributor on a reduced schedule. Restructuring distribution first (option A) solves some of the amplification problem but doesn't address the capacity cost. Stopping the series outright (option C) risks damaging your relationship with the CEO by unilaterally cancelling something they value. Converting to video or podcast format (option D) reframes the medium but doesn't address the root issue — the content is not aligned to buyer problems that drive pipeline, regardless of format — and video production typically consumes more capacity, not less. The sustainable path is shared ownership of the data and a collaborative reallocation decision.",
     "framework": "Content Portfolio Management: brand content and demand gen content serve different objectives and should be funded accordingly — not from the same constrained capacity pool without explicit tradeoffs.",
     "principle": "The right response to underperforming brand content is not cancellation — it is reframing the investment and right-sizing it against a realistic objective.",
     "traps": [
       "Restructuring distribution improves efficiency but still consumes 20% of capacity for content that may not reach the right audience regardless of format",
       "Cancelling the series without the CEO's buy-in trades a content problem for a leadership relationship problem",
-      "Waiting 3 months to build more data is delay disguised as rigor — 0 conversions after 3 posts is already a clear signal"
+      "Changing format without resolving the topic-to-buyer-intent mismatch shifts the capacity problem rather than solving it — video and podcast production typically costs more time per asset than written posts, compounding the 20% capacity drain without improving pipeline relevance"
     ]
   },
   {

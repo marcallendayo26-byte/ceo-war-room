@@ -9,7 +9,7 @@ export const CASES_CFO2 = [
       'Runway should be calculated on net burn — $4.2M divided by $760K net burn gives 5.5 months of runway.',
       'Runway should be calculated on gross burn — $4.2M divided by $1.1M gross burn gives 3.8 months, which is the conservative and correct approach.',
       'Average gross and net burn — use $930K as the burn rate to give a midpoint runway of 4.5 months.',
-      'Runway is irrelevant when you have recurring revenue — focus on ARR growth rate instead.',
+      'Present both gross and net burn to the board as a range, letting the board choose which figure to use for runway planning based on their risk appetite and fundraising timeline assumptions.',
     ],
     correct: 0,
     consequences: {
@@ -23,7 +23,7 @@ export const CASES_CFO2 = [
     traps: [
       'Using gross burn to be conservative results in a 31% understatement of runway, which can trigger unnecessary cost cuts or premature fundraising that destroys value.',
       'Averaging the two figures produces a number that is neither analytically defensible nor useful — precision matters in cash planning.',
-      'Prioritizing ARR growth over runway when runway is under 6 months is a common founder mistake that ends companies that were otherwise succeeding.',
+      'Presenting a burn range rather than a single operative figure gives the board two incompatible survival timelines — a board that can choose between 3.8 and 5.5 months of runway will split on which number to act on, producing an indecisive response to a situation that requires a clear-eyed cash plan.',
     ],
   },
   {
@@ -117,7 +117,7 @@ export const CASES_CFO2 = [
     options: [
       'Reconcile cash to profit by presenting a cash flow statement that shows operating profit adjusted for AR timing, capitalized development costs, and the deferred revenue treatment — the financials are accurate and the gap is explainable.',
       'The income statement is wrong — capitalized development costs should be expensed, which would reduce operating profit and close the gap.',
-      'The cash flow drop is a temporary artifact — focus only on the income statement for board reporting since it reflects true economic performance.',
+      'Add a footnote to the income statement disclosing the cash-to-profit gap and explaining that it reflects timing differences, rather than presenting a separate cash flow statement that board members may find confusing.',
       'Restate the deferred revenue as immediately recognized revenue to align the cash received with the P&L outcome.',
     ],
     correct: 0,
@@ -131,7 +131,7 @@ export const CASES_CFO2 = [
     principle: 'A profitable company can run out of cash. Always know both the score and the bank balance.',
     traps: [
       'Assuming a cash-profit gap means accounting errors is a common reaction that wastes audit resources on a correctly prepared set of financials.',
-      'Reporting only income statement metrics to the board because they look better withholds the cash reality that determines whether the company survives.',
+      'A footnote disclosure is adequate for audit purposes but inadequate for governance — board members cannot interrogate a $95K cash-profit gap from a two-sentence footnote the way they can from a properly structured cash flow statement that shows each reconciling item with a dollar amount and explanation.',
       'Collapsing deferred revenue to close the reporting gap creates an accounting misstatement and misrepresents the company\'s performance obligations.',
     ],
   },
@@ -228,7 +228,7 @@ export const CASES_CFO2 = [
       'Draw the full $1.4M credit facility immediately while cutting discretionary spend — maximize both cash buffer and runway extension simultaneously.',
       'Cut discretionary spend first — extend runway to 14 months without touching the credit facility, preserving it for a genuine emergency that cannot be addressed operationally.',
       'Draw a moderate amount from the credit facility ($500K) as insurance while implementing 50% of the discretionary cuts — balance buffer building with cost discipline.',
-      'Take no action — 9 months of runway with a $1.4M undrawn facility is adequate headroom. Monitor burn monthly and act if runway drops below 6 months.',
+      'Draw $700K from the credit facility now to extend runway to 12+ months, then evaluate discretionary cuts at the next quarterly review when you have more visibility into whether the opex reduction is still necessary.',
     ],
     correct: 0,
     consequences: {
@@ -243,7 +243,7 @@ export const CASES_CFO2 = [
     traps: [
       'Drawing the full credit facility while also cutting spend pays unnecessary interest for insurance against a problem that the opex cuts already solve.',
       'Partial cuts with a partial draw satisfies neither goal fully — it is a compromise that leaves both levers partially deployed.',
-      'Waiting for runway to drop below 6 months before acting foregoes a costless runway extension that is available right now.',
+      'Drawing $700K from the credit facility to reach 12 months of runway costs $52,500 annually in interest charges and creates quarterly covenant compliance obligations — this pays a recurring cash cost to solve a problem that eliminating $180K/month in discretionary spend already solves for free, while also consuming the facility headroom you may genuinely need if a major customer churns.',
     ],
   },
   {

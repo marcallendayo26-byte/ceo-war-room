@@ -7,7 +7,7 @@ export const CASES_CSM5 = [
     options: [
       'Accept the regulatory change as an AMS obligation — government compliance updates are a reasonable expectation of a maintenance relationship and declining will damage trust.',
       'Escalate to your legal and commercial team to review whether the contract language covers regulatory format changes before making any commitment.',
-      'Decline the request and issue a change request proposal — the contract scope is clear and scope creep must be addressed commercially.',
+      'Absorb the regulatory format change under the AMS contract for this quarter only, with a written note to the client that future regulatory adaptations will require a change request — establishing the boundary prospectively without disrupting the current compliance timeline.',
       'Acknowledge the legitimate urgency of the regulatory deadline, review the contract language with the client present, and propose a structured change request that is expedited given the compliance timeline.',
     ],
     correct: 3,
@@ -18,7 +18,7 @@ export const CASES_CSM5 = [
     traps: [
       'Accepting the regulatory change as maintenance sets a precedent that any compliance-driven format change is within AMS scope — a commercially costly boundary to lose.',
       'Escalating internally before engaging the client adds delay to a compliance-driven timeline and signals that you are prioritizing commercial protection over the client\'s regulatory deadline.',
-      'A flat commercial decline without acknowledging the compliance deadline damages the relationship without providing a path forward.',
+      'A one-time absorption with a written prospective boundary is commercially generous but legally weak — the client\'s next regulatory deadline will cite this precedent as evidence the change qualifies as maintenance, making the boundary harder to hold each time.',
     ],
   },
   {
@@ -30,7 +30,7 @@ export const CASES_CSM5 = [
       'Continue supporting the second branch under the existing contract — disrupting a client mid-acquisition integration over a commercial amendment creates unnecessary tension.',
       'Issue an invoice for backdated usage covering the six weeks the second branch has been live, then negotiate the amended contract.',
       'Raise the commercial amendment immediately: acknowledge the acquisition, confirm the existing contract scope, and present a branch-expansion amendment with a clear effective date — offer to waive backdated charges in exchange for a prompt amendment signature.',
-      'Escalate to your legal team to issue a formal notice that the client is in breach of their single-branch contract.',
+      'Continue supporting the second branch and include the additional usage data in the upcoming renewal negotiation — using six months of documented expanded usage as leverage to price the renewal amendment at the actual scope.',
     ],
     correct: 2,
     consequences: { profitability: 10, customerTrust: 8, executionRisk: -8, growth: 6 },
@@ -40,7 +40,7 @@ export const CASES_CSM5 = [
     traps: [
       'Continuing to support without an amendment allows the client to establish a de facto expanded scope that becomes harder to price into a contract as time passes.',
       'A backdated invoice before an amendment conversation creates an adversarial dynamic over a client who disclosed the acquisition in good faith.',
-      'A legal breach notice is a disproportionate response to what is almost certainly an inadvertent scope expansion by a client who mentioned the acquisition as a courtesy.',
+      'Waiting six months to raise the amendment at renewal converts a straightforward commercial conversation into a retrospective pricing dispute — by then the client considers both branches fully supported under their existing contract and any amendment feels like a retroactive penalty.',
     ],
   },
   {
@@ -52,7 +52,7 @@ export const CASES_CSM5 = [
       'Disclose the gap to the client immediately and take full accountability — your team should have escalated missed DR tests regardless of who cancelled.',
       'Disclose the gap but present the cancellation records as shared accountability — both parties have responsibility for the missed deliverables.',
       'Remediate the DR system immediately, complete the overdue test, and disclose the testing gap and its resolution to the client in the same communication.',
-      'Conduct the overdue DR test before disclosing — confirm the system is functional first so you are not alarming the client unnecessarily.',
+      'Disclose the 14-month gap immediately and present the client\'s cancellation records to establish shared accountability before initiating the remediation test.',
     ],
     correct: 2,
     consequences: { customerTrust: 10, executionRisk: -10, teamMorale: 5 },
@@ -62,7 +62,7 @@ export const CASES_CSM5 = [
     traps: [
       'Immediate disclosure before the DR test confirms whether the gap is theoretical or represents an actual system risk — the severity of the disclosure depends on this finding.',
       'Presenting shared accountability before remediating appears to prioritize commercial protection over the client\'s actual DR exposure.',
-      'Completing the test quietly without disclosure violates the client\'s right to know their DR obligations were not met under an AMS contract they are paying for.',
+      'Disclosing the gap and leading with cancellation records before completing the test reads as blame-shifting — the client\'s response will focus on the accountability dispute rather than the remediation, and you lose the credibility of disclosing alongside a completed resolution.',
     ],
   },
   {
@@ -93,9 +93,9 @@ export const CASES_CSM5 = [
     difficulty: 1,
     scenario: 'An AMS client\'s help desk team is consistently escalating Level 1 support tickets — password resets, basic navigation questions, user access requests — directly to your AMS team rather than resolving them internally. The support operating model in your contract specifies that L1 tickets are to be resolved by the client\'s help desk before escalation. Your AMS team is now handling approximately 40% L1 volume, which is consuming hours budgeted for L2 and L3 technical work.',
     options: [
-      'Return all L1 tickets to the client\'s help desk unresolved with a reference to the operating model — the boundary must be enforced clearly.',
+      'Create a shared L1 resolution guide with step-by-step instructions for the 10 most common L1 categories and deliver it to the help desk team with a 30-day implementation period before enforcing the operating model boundary.',
       'Raise the pattern in the next QBR with ticket volume data by category, confirm the operating model boundary, and jointly agree on a 30-day remediation plan with the client\'s operations lead.',
-      'Accept the L1 volume as a relationship investment — returning tickets creates friction with the help desk team and damages day-to-day goodwill.',
+      'Resolve the L1 tickets as received but track each one with a dual classification — recording both the L1 resolution and the operating model deviation — building a documented audit trail to present at the next contract renewal as evidence of expanded service delivery.',
       'Propose a formal L1 support tier add-on that prices the current volume commercially, giving the client the option to contract for L1 coverage if they want it.',
     ],
     correct: 1,
@@ -104,8 +104,8 @@ export const CASES_CSM5 = [
     framework: 'AMS operating model enforcement — data-driven QBR conversation with joint remediation plan',
     principle: 'Ticket boundary issues require data, a conversation, and a joint plan — not unilateral enforcement or silent acceptance.',
     traps: [
-      'Returning tickets unresolved without a conversation creates help desk frustration and escalates the issue to the client\'s management before you have had a chance to address it constructively.',
-      'Accepting L1 volume as relationship investment sets a norm that the operating model is advisory — which will persist into the next contract period.',
+      'Providing a resolution guide before raising the issue in the QBR skips the formal conversation with the client\'s operations lead — the help desk team uses the guide but the escalation pattern continues because no one with authority has committed to the 30-day correction timeline.',
+      'Tracking L1 tickets with dual classification builds a data record but does not address the operating model deviation — by renewal, the documented volume becomes a negotiation the client can use to argue L1 coverage is already included in the relationship.',
       'A commercial L1 tier proposal before addressing the operating model issue signals that you are monetizing a problem rather than solving it.',
     ],
   },
@@ -138,7 +138,7 @@ export const CASES_CSM5 = [
     scenario: 'An AMS client\'s operations director requests that you extend your support coverage to include Saturday mornings (8am–1pm) to cover their peak car sales period. Your contract specifies Monday–Friday business hours. The operations director mentions they will "raise it with their board" if you cannot accommodate, implying potential escalation. No commercial compensation is offered for the extended coverage.',
     options: [
       'Accommodate the Saturday morning coverage as a relationship investment — a five-hour weekly extension is operationally manageable and the board escalation threat should not be ignored.',
-      'Decline firmly — contract terms are contract terms, and accommodating out-of-scope requests without commercial adjustment sets a precedent.',
+      'Offer to configure automated system health alerts that the client\'s own staff can monitor on Saturday mornings — shifting the monitoring responsibility to the client without extending your team\'s coverage hours.',
       'Acknowledge the business need, confirm the contract scope, and propose a Saturday morning support amendment at a defined rate — present it as a service the client can formally contract for.',
       'Offer a limited trial of Saturday morning coverage for 90 days at no charge, with a formal amendment required to continue beyond the trial period.',
     ],
@@ -149,7 +149,7 @@ export const CASES_CSM5 = [
     principle: 'Out-of-scope coverage requests deserve a commercial path to yes, not a flat no or a free accommodation.',
     traps: [
       'Accommodating Saturday coverage free of charge establishes an expanded service norm that will be expected at renewal — and the "board escalation" framing suggests it will be treated as a given.',
-      'A flat refusal without acknowledging the business need dismisses a legitimate operational requirement and invites the escalation the director referenced.',
+      'Automated alerts address system monitoring but do not provide the actual support coverage the operations director needs — when a vehicle trade-in transaction fails on a Saturday morning, a health alert without a support team to resolve it is not a solution.',
       'A 90-day free trial produces a 90-day expectation of continued free coverage — the commercial conversation at the end of the trial is harder than the one at the beginning.',
     ],
   },
@@ -162,7 +162,7 @@ export const CASES_CSM5 = [
       'Deliver the reconfiguration as AMS support — the root cause is a prior implementation gap and the client should not bear the cost of your team\'s delivery quality.',
       'Propose a shared-cost arrangement: your company absorbs half the reconfiguration cost given the implementation origin, and the client funds the other half.',
       'Propose the reconfiguration as a paid engagement with a clearly articulated commercial case: the 60–70% ticket reduction will reduce their AMS consumption significantly, and the engagement effectively pays for itself through AMS hours recovered.',
-      'Decline the reconfiguration request as out of AMS scope and commit to managing the resulting ticket volume under the existing contract.',
+      'Absorb the reconfiguration as an AMS obligation framed as a quality commitment: document it internally as an implementation remediation item and deliver it without a commercial conversation, treating the 18-month-old gap as your team\'s responsibility to close.',
     ],
     correct: 2,
     consequences: { profitability: 10, customerTrust: 10, executionRisk: -8, growth: 5 },
@@ -172,7 +172,7 @@ export const CASES_CSM5 = [
     traps: [
       'Absorbing the full reconfiguration cost sets a precedent that implementation gaps discovered in AMS — regardless of when they were created or who caused them — are always remediated free of charge.',
       'A shared-cost arrangement is commercially sound but requires an internal attribution discussion about implementation accountability before the client conversation — without that, you may offer a concession your implementation team disputes.',
-      'Declining the reconfiguration and managing the ongoing ticket volume continues the pattern of AMS hours being consumed by root-cause issues — which damages both delivery quality and the client\'s perception of the platform\'s stability.',
+      'Absorbing the reconfiguration as a silent quality commitment closes this instance but sets a precedent that any post-implementation gap discovered during AMS — regardless of age — is remediated at no charge, removing any commercial structure from a recurring category of work.',
     ],
   },
 ]

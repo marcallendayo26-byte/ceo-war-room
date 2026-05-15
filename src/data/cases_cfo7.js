@@ -7,7 +7,7 @@ export const CASES_CFO7 = [
     options: [
       'Cut variable costs first — they can be reduced immediately without severance, lease penalties, or morale damage, and restored quickly when conditions improve.',
       'Cut fixed costs first — they represent the larger structural problem and eliminating them now sends a decisive signal to investors.',
-      'Implement across-the-board cuts of equal percentage across all departments to share the pain fairly.',
+      'Implement equal percentage cuts across all departments, using a zero-based budget review within each function to determine where the reduction falls.',
       'Delay cuts by 30 days and run a zero-based budgeting exercise to identify the optimal reduction targets.',
     ],
     correct: 0,
@@ -35,7 +35,7 @@ export const CASES_CFO7 = [
       'Raise prices across all customer segments immediately to offset rising COGS and restore margin percentage.',
       'Commission a COGS architecture review and prioritize the two highest-impact engineering investments — API call reduction and infrastructure optimization — alongside a review of onboarding labor automation.',
       'Reduce onboarding labor by moving to a self-serve model, since it is the most controllable cost lever without requiring engineering resources.',
-      'Accept the margin compression as a temporary growth-phase phenomenon and revisit once revenue scale offsets the fixed COGS components.',
+      'Renegotiate the third-party API contract to a volume-based pricing tier and lock in a 3-year rate agreement, targeting a 15% unit cost reduction that partially offsets the overall COGS growth.',
     ],
     correct: 1,
     consequences: {
@@ -50,7 +50,7 @@ export const CASES_CFO7 = [
     traps: [
       'Pricing increases feel like a clean solution but they treat a cost problem as a revenue problem and expose you to competitive displacement.',
       'Moving to self-serve onboarding only addresses the smallest cost driver, leaving the two architectural problems — which are compounding — unresolved.',
-      'Framing structural margin erosion as a growth-phase phenomenon delays a fix until the margin is too impaired to fund the engineering investment needed to repair it.',
+      'Renegotiating the API contract addresses unit cost on the third-party line but leaves the underlying call volume inefficiency intact — a 15% price reduction on a 40%-growing cost base recovers only a fraction of the annual margin leakage and does nothing to fix cloud or onboarding costs.',
     ],
   },
   {
@@ -86,7 +86,7 @@ export const CASES_CFO7 = [
     difficulty: 3,
     scenario: 'Your largest SaaS vendor contract — a data enrichment platform you pay $1.2M annually — is up for renewal in 45 days. The vendor has sent a renewal quote at $1.44M, a 20% increase they attribute to expanded API usage. You have validated this is a critical dependency: it powers three customer-facing features and migration would take 9-12 months. You have also discovered that a competitor of yours recently signed with the same vendor at a volume discount, and a second vendor offers comparable coverage at $900K with a 3-month migration effort.',
     options: [
-      'Sign the renewal at $1.44M to avoid any disruption risk to customer-facing features during a critical growth phase.',
+      'Sign a 1-year renewal at $1.44M to preserve optionality — use the next 12 months to evaluate the alternative vendor and renegotiate from a stronger position at the following renewal.',
       'Use the competitor\'s discount and the alternative vendor\'s pricing as negotiation leverage, targeting a renewal at or below the current $1.2M with a 2-year commitment, while simultaneously beginning a low-cost parallel evaluation of the alternative vendor.',
       'Immediately begin migrating to the alternative vendor to capture the $300K annual saving without any negotiation.',
       'Propose a usage-based pricing renegotiation tied to actual API call volume, replacing the flat annual fee with a variable rate that scales with your consumption.',
@@ -102,7 +102,7 @@ export const CASES_CFO7 = [
     framework: 'Vendor Negotiation with BATNA — Best Alternative to Negotiated Agreement. The alternative vendor and competitor pricing are not just data points; they are your BATNA. A credible BATNA transforms a renewal into a negotiation. Deploy it to change the structure, not just the price.',
     principle: 'The best vendor negotiation outcome is not a lower price on the same structure — it is a better structure that protects you from the next renewal.',
     traps: [
-      'Signing without negotiating at all when you have two independent leverage points is a failure of preparation, not a risk management decision.',
+      'A 1-year renewal at the vendor\'s asking price locks in the 20% increase while discarding both leverage points — the competitor discount data and the alternative vendor\'s pricing — before they have been deployed, and delivers no structural improvement to the cost trajectory at the next renewal.',
       'Rushing to migrate immediately ignores that 3-month disruption windows have downstream consequences for customers and revenue that cost more than the $300K saving.',
       'A flat discount negotiation to the prior year\'s rate stops the bleeding but leaves you in the same position 12 months later with the vendor holding all the leverage again.',
     ],

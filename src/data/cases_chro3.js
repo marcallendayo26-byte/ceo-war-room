@@ -8,7 +8,7 @@ export const CASES_CHRO3 = [
       'Apply a 10% across-the-board increase — it is simpler to administer, feels fair to everyone, and closes the market gap broadly.',
       'Apply targeted adjustments to the 9 most underpaid engineers — fix the largest equity gaps first and preserve budget for future hires.',
       'Apply targeted adjustments to the 9 most underpaid engineers, then communicate a 6-month timeline for reviewing the remaining engineers against market benchmarks.',
-      'Delay both options and conduct a full compensation benchmarking exercise across all roles before making any changes — act once with full information.',
+      'Commission a compensation benchmarking refresh through your existing survey vendor for the full engineering function before making any adjustments — the 6–8 week turnaround allows you to build a defensible, role-level equity model rather than acting on band-level estimates.',
     ],
     correct: 2,
     consequences: {
@@ -21,8 +21,8 @@ export const CASES_CHRO3 = [
     principle: 'Fix the most underpaid employees first, but communicate a timeline for the rest — silence after a partial adjustment is more damaging than the adjustment itself.',
     traps: [
       'Across-the-board increases feel equitable but apply the same percentage to employees at different distances from market — a 10% raise on a 30th-percentile salary still leaves that employee further below market than a 45th-percentile employee who receives nothing.',
-      'Delaying for a full benchmarking cycle when candidates are actively declining offers for compensation reasons means the problem compounds during the delay.',
       'Targeted adjustments without communication create a rumor environment — employees who did not receive an increase will speculate about why, often inaccurately.',
+      'Running a full benchmarking refresh before acting delays the decision by 6–8 weeks while candidates continue to decline offers — the existing survey already confirmed a 15% gap at the 50th percentile, which is sufficient data to act on the most acute cases without waiting for role-level granularity.',
     ],
   },
   {
@@ -86,7 +86,7 @@ export const CASES_CHRO3 = [
     options: [
       'Share the 18-month-old 409A valuation of $28M and note that it will be refreshed at the next funding event — this is the only current legally documented value.',
       'Share both the old 409A ($28M) and the post-money funding round valuation ($72M), explain the difference between common stock and preferred stock value, and note that a new 409A is overdue.',
-      'Decline to discuss valuation specifics — direct the candidate to review the option grant agreement and consult their own financial advisor.',
+      'Share the $28M 409A as the official valuation, note that it reflects the common stock strike price used in the option grant, and explain that the preferred stock from the funding round is priced differently — this is a technically accurate framing of the two numbers.',
       'Order an updated 409A before making the offer so that the strike price and disclosed valuation are consistent with current company value.',
     ],
     correct: 3,
@@ -101,7 +101,7 @@ export const CASES_CHRO3 = [
     traps: [
       'Sharing only the old 409A is technically accurate but practically misleading — the candidate will discover the $72M round during due diligence and will question the company\'s transparency.',
       'Sharing both valuations without an updated 409A leaves the candidate with contradictory data and no authoritative basis for valuing their equity.',
-      'Directing the candidate to a financial advisor avoids the CHRO\'s responsibility to disclose known material information about a compensation component.',
+      'Presenting only the 409A as the "official" valuation while noting that preferred stock is "priced differently" gives the candidate technically true information that creates a materially misleading picture — a candidate unfamiliar with 409A mechanics will not recognize that they are receiving an 18-month-old number on a company that has since raised at more than double the valuation.',
     ],
   },
   {

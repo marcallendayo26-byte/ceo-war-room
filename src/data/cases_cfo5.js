@@ -139,7 +139,7 @@ export const CASES_CFO5 = [
       'Choose Alpha — lower NPV but front-loaded cash flows match the business\'s reinvestment cycle and preserve capital.',
       'Choose Beta — higher absolute NPV maximizes value creation over the full investment horizon.',
       'Request a revised Beta proposal with earlier milestone payments to shift cash flow timing.',
-      'Defer both projects to next year and preserve cash for organic growth investments.',
+      'Choose Alpha based on payback period alone — a 14-month faster return on investment makes it the more capital-efficient choice regardless of the NPV differential.',
     ],
     correct: 1,
     consequences: {
@@ -153,7 +153,7 @@ export const CASES_CFO5 = [
     traps: [
       'Preferring front-loaded cash flows without modeling the reinvestment return adds a subjective override to a rigorous NPV analysis without quantitative justification.',
       'Requesting a restructured proposal from Beta introduces negotiation friction and delay that erodes the value being captured.',
-      'Deferring both projects to preserve cash for organic growth forgoes over $3.4M in NPV that is already well within capital reach.',
+      'Selecting Alpha on payback preference alone applies a liquidity lens to a decision that the NPV calculation has already resolved — the 14-month advantage does not offset a $700K NPV gap in a company with $3.5M in free cash flow.',
     ],
   },
   {
@@ -165,7 +165,7 @@ export const CASES_CFO5 = [
       'Choose X — the 14-month payback reduces execution risk and returns capital for reinvestment sooner.',
       'Choose Y without further analysis — higher absolute NPV is always the correct answer for mutually exclusive projects.',
       'Model both projects using NPV, IRR, and payback together, then choose Y if NPV and IRR both favor it over X.',
-      'Delay the decision and commission a sensitivity analysis on both projects\' key assumptions before committing $1.8M.',
+      'Choose X and recommend a phased funding approach — release the first $900K now with a 6-month checkpoint before committing the remaining capital.',
     ],
     correct: 2,
     consequences: {
@@ -179,7 +179,7 @@ export const CASES_CFO5 = [
     traps: [
       'Selecting the shorter-payback project without modeling NPV trades $1.5M in value creation for a liquidity preference that the income statement does not require.',
       'Applying the NPV maximization rule without triangulating IRR assumes the discount rate and cash flow timing in the model are uncontested — in a 8-year project they rarely are.',
-      'Commissioning a new sensitivity analysis before making the decision sounds rigorous but delays a well-scoped $1.8M investment when both projects have already been modeled by the finance team.',
+      'Phased funding on a project with back-loaded implementation cost (Project X) introduces a checkpoint at exactly the point of highest capital deployment, potentially forcing a mid-stream halt that forfeits sunk cost without delivering any return.',
     ],
   },
   {
@@ -188,7 +188,7 @@ export const CASES_CFO5 = [
     difficulty: 1,
     scenario: 'You are reviewing annual ROIC across your three business units to guide capital reallocation. Unit A (enterprise software) generates $8.2M revenue with $1.4M invested capital — ROIC of 58%. Unit B (professional services) generates $5.1M revenue with $3.8M invested capital — ROIC of 13%. Unit C (hardware peripherals) generates $2.3M revenue with $4.1M invested capital — ROIC of 5.6%. The board wants a capital reallocation recommendation. Total new investment capacity for the year is $3M.',
     options: [
-      'Balance capital evenly across all three units to avoid internal conflict and support each business line.',
+      'Distribute the $3M proportionally to each unit\'s revenue contribution — enterprise receives $2.46M, services receives $1.53M, and hardware receives $0.69M.',
       'Invest in Unit B — the mid-tier unit with the largest revenue base has the most to gain from incremental capital.',
       'Invest in Unit C — the hardware unit is capital-intensive; more investment could improve its return profile.',
       'Reallocate the $3M toward Unit A — highest ROIC indicates the most efficient use of incremental capital.',
@@ -203,7 +203,7 @@ export const CASES_CFO5 = [
     framework: 'ROIC-Driven Capital Allocation — capital should follow demonstrated return on invested capital, not revenue size, team enthusiasm, or equal distribution. High-ROIC units compounding with reinvested capital create exponential value over time.',
     principle: 'Always direct incremental capital to the unit that has already proven it can generate the highest return on each dollar invested.',
     traps: [
-      'Distributing capital evenly treats all business units as equally deserving, ignoring a 10x difference in ROIC between the highest and lowest performing units.',
+      'Revenue-weighted capital distribution sends capital to where revenue is largest rather than where it compounds fastest — at 5.6% ROIC, every dollar allocated to hardware in proportion to its revenue is a dollar removed from a 58% ROIC unit.',
       'Choosing the professional services unit because it has the largest revenue base conflates scale with capital efficiency — revenue without ROIC is growth that destroys value.',
       'Investing in the hardware unit to fix its ROIC assumes the problem is underfunding, but 5.6% ROIC more often reflects a structural unit economics problem that more capital will not solve.',
     ],

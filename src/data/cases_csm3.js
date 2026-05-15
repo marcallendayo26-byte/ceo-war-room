@@ -32,7 +32,7 @@ export const CASES_CSM3 = [
       "Present the adoption metrics and usage data you've already prepared — let the numbers speak.",
       "Pause the prepared agenda: 'I want to make sure we answer that question directly. Can you tell me what ROI looked like in your original expectations so we can walk through it together?'",
       "Acknowledge the concern and commit to a separate ROI analysis meeting in the next two weeks.",
-      "Apologize for the gap and offer a discount at renewal to bridge the expectation."
+      "Pull up the usage and adoption data you have on hand and walk the executive through it as your on-the-spot ROI evidence."
     ],
     correct: 1,
     consequences: {"customerTrust":9,"executionRisk":-7,"growth":5},
@@ -42,7 +42,7 @@ export const CASES_CSM3 = [
     traps: [
       "Presenting prepared metrics to an executive who's already signaled they're not enough",
       "Deferral to separate meeting — the executive's question deserves engagement now, not later",
-      "Apology + discount without understanding the gap — premature before you know what they expected"
+      "Usage data as on-the-spot ROI evidence — product metrics are exactly what the executive already said aren't sufficient; this repeats the original problem in real time"
     ]
   },
   {
@@ -75,7 +75,7 @@ export const CASES_CSM3 = [
     scenario: "A customer hasn't accepted your last three QBR invites. You've sent emails and left voicemails. Their renewal is 6 months away and their health score is 'yellow.' What does the lack of QBR engagement mean and what do you do?",
     quote: "Customers who stop showing up to QBRs have already started leaving.",
     options: [
-      "Keep sending QBR invites — they'll respond when the time is right.",
+      "Reframe the next QBR invite as an executive briefing on industry benchmarks and send it with a new subject line and fresh framing.",
       "Stop sending QBR invites and shift to smaller, more targeted touchpoints to re-establish engagement.",
       "Escalate to the economic buyer with a formal account review request.",
       "Treat the silence as an at-risk signal: reach out through a different channel and ask directly if the relationship is working."
@@ -86,7 +86,7 @@ export const CASES_CSM3 = [
     framework: "Engagement Failure: three ignored invites = at-risk signal, not scheduling friction.",
     principle: "When the format fails, change the format. When the channel fails, change the channel.",
     traps: [
-      "Keep sending the same invite — they've told you three times they're not engaged this way",
+      "Reframed invite through the same channel — format change without channel change still registers as the meeting they've been declining; three non-responses signal the medium, not just the subject line",
       "Smaller touchpoints without diagnosing the disengagement — treating symptoms, not cause",
       "Economic buyer escalation as first step — appropriate if direct contact fails, not before"
     ]
@@ -101,7 +101,7 @@ export const CASES_CSM3 = [
       "Share the full roadmap, including the gaps, and proactively discuss how the gaps map to their stated priorities.",
       "Present only the roadmap items you know they'll like — emphasize the positive.",
       "Tell them the roadmap is confidential and offer a redacted version without the specific timelines.",
-      "Let your product manager present the roadmap — they'll know best how to position it."
+      "Have your product manager join the QBR to co-present the roadmap so the customer can ask technical questions in real time."
     ],
     correct: 0,
     consequences: {"customerTrust":9,"executionRisk":-6,"strategicPosition":6},
@@ -111,7 +111,7 @@ export const CASES_CSM3 = [
     traps: [
       "Positive-only roadmap — renewal signed on false premises churns the moment the gap hits",
       "Confidentiality deflection — feels evasive and damages executive trust",
-      "Product manager presentation as a shield — you own the account conversation; PM support is secondary"
+      "PM co-presentation — cedes the account narrative to someone who doesn't know this customer's specific priorities; the gaps that matter most get filtered through a product lens, not a relationship lens"
     ]
   },
   {
@@ -167,7 +167,7 @@ export const CASES_CSM3 = [
     scenario: "During a QBR, the economic buyer asks: 'What would you do differently if you were in our position?' This is an unexpected, open-ended question. How do you respond?",
     quote: "The executive who asks what you'd do in their shoes is testing whether you think like a partner or a vendor.",
     options: [
-      "Deflect: 'That's really your team's call — we're here to support whatever you decide.'",
+      "Acknowledge the question and reflect it back: 'What's your own instinct on this? I'd like to understand your thinking before I share mine.'",
       "Ask clarifying questions to understand exactly what they mean before answering.",
       "Redirect to your product roadmap and upcoming features that might address their situation.",
       "Give a genuine, specific answer based on what you've observed about their deployment and gaps."
@@ -178,7 +178,7 @@ export const CASES_CSM3 = [
     framework: "Partner vs. Vendor: executives ask real questions to see if they're talking to a partner.",
     principle: "When an executive asks for your opinion, give it. The worst thing you can do is not have one.",
     traps: [
-      "Deflection — confirms you're a vendor, not a partner",
+      "Reflecting it back without answering — sounds collaborative, but the executive asked for your perspective, not a facilitation prompt; they leave with no new information about your judgment",
       "Roadmap redirect — non-answer that sidesteps what they actually asked",
       "Clarification delay — can work briefly, but usually reads as stalling before a safe answer"
     ]
@@ -191,7 +191,7 @@ export const CASES_CSM3 = [
     quote: "Don't let marketing borrow trust your customer service hasn't earned yet.",
     options: [
       "Resolve the support ticket before scheduling the case study — ensure the relationship is in good standing before asking for a public endorsement.",
-      "Proceed with the case study immediately — this is a great opportunity and the ticket is a minor issue.",
+      "Proceed with scheduling the case study while simultaneously escalating the support ticket to a senior engineer with a commitment to resolve it before the case study interview date.",
       "Schedule the case study but keep it separate from the support ticket — they're handled by different teams.",
       "Ask the customer if they're comfortable proceeding despite the open ticket."
     ],
@@ -201,7 +201,7 @@ export const CASES_CSM3 = [
     framework: "Reference Readiness: don't ask for advocacy while you have outstanding service debt.",
     principle: "The relationship you ask to borrow for marketing should be in better shape than the marketing opportunity.",
     traps: [
-      "Proceeding immediately — if the customer's team experiences the contrast, you've damaged the reference",
+      "Parallel-tracking the case study and the ticket — operationally reasonable, but the customer experiences both tracks simultaneously; if the ticket drags past the interview date, you've asked for advocacy while the open issue is still visible",
       "Separate tracks — operationally reasonable but ignores the customer's unified experience of your company",
       "Customer permission without resolution — puts burden on them to say it's okay, when you should just fix it"
     ]
@@ -213,7 +213,7 @@ export const CASES_CSM3 = [
     scenario: "An executive at a key customer asks you to stop holding QBRs and just 'be available when we need you.' They say the scheduled reviews feel forced and they prefer ad-hoc interaction. How do you respond?",
     quote: "Ad-hoc relationships are reactive by definition — and reactive is always behind.",
     options: [
-      "Agree completely — if that's how they prefer to work, honor it.",
+      "Replace quarterly QBRs with a standing monthly async email summary — lower overhead, same information flow, no forced calendar time.",
       "Agree to reduce formality but maintain a minimum cadence of structured touchpoints, framed as their call to make anytime.",
       "Explain why QBRs are important for their account health and hold the cadence.",
       "Replace quarterly QBRs with monthly informal check-ins."
@@ -224,7 +224,7 @@ export const CASES_CSM3 = [
     framework: "CSM Flexibility: adapt the format, not the function.",
     principle: "The format is negotiable. The relationship investment is not.",
     traps: [
-      "Full ad-hoc acceptance — reactive model means you lose the proactive account health work that drives renewals",
+      "Monthly async email summary — eliminates calendar friction but also eliminates the real-time dialogue where unstated concerns surface; you learn about problems only when the executive chooses to write them down",
       "Hard QBR cadence insistence — inflexibility on format alienates an executive who's told you what they want",
       "Monthly check-ins without structure — informal frequency doesn't replace one strategic annual review"
     ]
@@ -239,7 +239,7 @@ export const CASES_CSM3 = [
       "Trust your champion — they know their organization and if there were an issue, they'd have flagged it.",
       "Send a formal renewal proposal and let the customer's response tell you where things stand.",
       "Start the renewal conversation now, even if informal: review usage data together, surface any gaps, and understand what renewal looks like internally.",
-      "Wait 30 days and see if health score improves before starting the renewal conversation."
+      "Set up an automated monthly health-score report to the champion and let the trend data organically prompt the renewal conversation when the time is right."
     ],
     correct: 2,
     consequences: {"customerTrust":8,"growth":7,"executionRisk":-8},
@@ -249,7 +249,7 @@ export const CASES_CSM3 = [
     traps: [
       "Champion deference with yellow health score — champions normalize problems; your data is more objective",
       "Formal proposal at 90 days with yellow health — commercial push without resolved issues is premature",
-      "30-day wait — hope is not a renewal strategy"
+      "Automated health report to champion — offloads renewal initiation to a metric the champion has already normalized; you need a human conversation, not another data point they've learned to explain away"
     ]
   },
   {
@@ -259,7 +259,7 @@ export const CASES_CSM3 = [
     scenario: "A customer wants to downgrade at renewal — reducing from an enterprise plan ($180K) to a professional plan ($60K). The stated reason is budget. You know their adoption is strong and the enterprise features are actively used. How do you handle this?",
     quote: "Downgrades requested at renewal are almost never about money — they're about value not yet articulated.",
     options: [
-      "Accept the downgrade — customers should get the plan that fits their needs.",
+      "Accept the downgrade but negotiate an upgrade trigger clause: if their usage data shows they're relying on enterprise features within 6 months, they agree to move back up at that point.",
       "Offer a discount on the enterprise plan to make it closer to the professional plan price.",
       "Ask your VP to call the economic buyer and defend the enterprise value directly.",
       "Quantify what they'd lose in the downgrade specifically — which enterprise features they actively use and the business impact of losing them."
@@ -270,7 +270,7 @@ export const CASES_CSM3 = [
     framework: "Downgrade Defense: quantify the loss before accepting it or discounting to prevent it.",
     principle: "A customer who says 'less plan' often means 'I don't know what I'm paying for.'",
     traps: [
-      "Accepting the downgrade without articulating what they lose — they may not realize the impact",
+      "Downgrade with a usage-triggered upgrade clause — doesn't address the current value-perception gap and rarely gets exercised; the customer downgrades, loses the features, and the clause becomes a commercial dispute instead of a relationship conversation",
       "Immediate discount without value conversation — gives away $120K without addressing the value perception gap",
       "Executive escalation as first response — your analysis should come first; escalation is a second tool"
     ]
@@ -305,7 +305,7 @@ export const CASES_CSM3 = [
     scenario: "Your customer just had a major internal reorganization announced. The buying unit has been restructured and it's unclear who owns the budget for your contract. Renewal is in 45 days. What do you do?",
     quote: "Organizational change is the most common reason known renewals fail to close.",
     options: [
-      "Wait for the reorganization to settle — things will become clearer in a few weeks.",
+      "Email your champion a renewal summary document and ask them to forward it to whoever is handling vendor contracts in the new structure.",
       "Immediately work with your existing champion to understand the new structure and identify who has budget authority.",
       "Send the renewal contract to the same contact as last year and see if it gets approved.",
       "Ask your champion to get the renewal approved before the new structure is formalized."
@@ -316,7 +316,7 @@ export const CASES_CSM3 = [
     framework: "Reorg Renewal Response: map the new structure immediately — don't wait for it to settle.",
     principle: "Organizational change doesn't pause contract timelines. Your response has to be faster than the change.",
     traps: [
-      "Waiting for clarity — 45 days evaporates during a reorg and renewals that 'should' happen don't",
+      "Document forwarding through your champion — assumes your champion still has standing and connections in the new structure, which is exactly what a reorg puts in question; the document may land with the wrong person or sit unread in a flooded inbox",
       "Contract to old contact — may be incorrect and creates delays or the wrong approver",
       "Rush approval before formalization — puts champion in political jeopardy before they know their authority"
     ]
@@ -445,7 +445,7 @@ export const CASES_CSM3 = [
     options: [
       "Lead the healthy account renewal personally — it's the cleanest opportunity for a relationship win this week.",
       "Lead the yellow-health account — there's still time to address the concerns and protect the revenue.",
-      "Delegate all three to a standard renewal process and triage based on which surfaces objections first.",
+      "Assign the yellow and healthy accounts to your standard renewal workflow and bring in your VP to lead the red-health account conversation, freeing you to maintain relationship continuity across all three.",
       "Lead the red-health renewal personally — it carries the highest churn risk. Create a structured check-in for the yellow account this week. Let the healthy renewal proceed through your standard process with a personal note."
     ],
     correct: 3,
@@ -456,7 +456,7 @@ export const CASES_CSM3 = [
     traps: [
       "Healthy account leadership — feels rewarding but it's the lowest-risk renewal in your queue",
       "Yellow account primary — meaningful risk, but red account carries more immediate and certain consequences",
-      "All three to standard process — the red account will not survive a standard renewal process with an open escalation"
+      "VP-led red account with CSM in the background — VP involvement introduces a new relationship variable that can feel escalatory to the customer, and removes the one person whose relationship context is most critical to the recovery"
     ]
   },
 ]

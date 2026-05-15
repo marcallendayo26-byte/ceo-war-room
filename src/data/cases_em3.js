@@ -8,7 +8,7 @@ export const CASES_EM3 = [
     options: [
       "Have a structured conversation with product: acknowledge the urgency, make the swap cost explicit (what gets dropped, what debt is incurred, what's the team cost), and then decide together.",
       "Decline the change — the sprint is committed and scope changes undermine team predictability.",
-      "Accept the change immediately — competitive threats are more important than sprint integrity.",
+      "Swap in the new scope immediately, letting the team absorb the context-switch cost — the competitive threat is time-sensitive enough that planning overhead isn't worth it.",
       "Accept the change but log it as an exception and track sprint scope change frequency."
     ],
     correct: 0,
@@ -17,7 +17,7 @@ export const CASES_EM3 = [
     framework: "Sprint Trade-off: make scope change costs explicit before agreeing or declining.",
     principle: "Never say no to a scope change without making the cost visible. Never say yes without making it a decision.",
     traps: [
-      "Immediate acceptance — product never learns the actual cost of mid-sprint changes",
+      "Immediate swap without trade-off conversation — product never learns the actual cost of mid-sprint changes; the 40% displacement becomes invisible overhead",
       "Flat refusal — inflexible in the face of genuine business urgency",
       "Exception logging only — useful tracking but doesn't replace the trade-off conversation"
     ]
@@ -53,7 +53,7 @@ export const CASES_EM3 = [
     quote: "When estimates and deadlines don't meet, the answer is usually in the scope, not the number.",
     options: [
       "Defend the 8-week estimate — the team's technical judgment should not be overridden by business pressure.",
-      "Accept 4 weeks — the team will figure it out.",
+      "Commit to 4 weeks and staff up the team with two contractors to close the gap without reducing scope.",
       "Facilitate a scope negotiation: what version of this feature could ship in 4 weeks? What would be deferred? What would the technical cost of the deferred scope be?",
       "Ask your manager to mediate — this is an escalation that needs senior resolution."
     ],
@@ -64,7 +64,7 @@ export const CASES_EM3 = [
     principle: "Most technical-business timeline conflicts are scope conflicts in disguise.",
     traps: [
       "Defending estimate as immovable — ignores that scope can flex when time is constrained",
-      "Accepting unrealistic deadline — the team will cut corners and you'll lose visibility into what was cut",
+      "Contractor staffing to close the gap — onboarding two contractors takes 1-2 weeks itself, and unfamiliar engineers on a tight deadline increase rework and review overhead without reducing scope risk",
       "Escalation before scope negotiation — premature; you have the facilitation tools to resolve this yourself"
     ]
   },
@@ -76,7 +76,7 @@ export const CASES_EM3 = [
     quote: "Methodology should serve the team's work style, not impose structure for structure's sake.",
     options: [
       "Decline — sprint cadence provides predictability that product and stakeholders depend on.",
-      "Agree immediately — the engineer knows their own workflow best.",
+      "Ask the engineer to document the specific friction points they're experiencing, then use that analysis to determine whether the issue is the sprint structure or the way sprints are being run.",
       "Try Kanban for one sprint cycle as an experiment.",
       "Evaluate the specific pain: what's causing the artificial pressure? Is it the sprint itself, or the planning and commitment practices around it?"
     ],
@@ -87,7 +87,7 @@ export const CASES_EM3 = [
     principle: "The problem with your sprint is rarely the sprint itself.",
     traps: [
       "Decline without investigation — may be defending a process that's genuinely not working",
-      "Immediate agreement — doesn't establish whether the root cause is the methodology or the practices",
+      "Documentation exercise as diagnosis — produces a list of complaints, not a root cause; you still need to distinguish methodology problems from execution problems",
       "Experiment sprint — premature without understanding what you're testing for"
     ]
   },
@@ -99,7 +99,7 @@ export const CASES_EM3 = [
     quote: "Inter-team dependencies that slip without consequence will slip indefinitely.",
     options: [
       "Escalate to both your managers simultaneously with specific data: dependency requested date, current status, and business impact of continued delay.",
-      "Keep following up with the other EM — patience and persistence will resolve it.",
+      "Request a formal commitment from the other EM — a specific delivery date with named owner — and hold them to it in writing.",
       "Find a workaround to unblock your team — don't depend on another team's timeline.",
       "Ask the other EM for daily status updates to create accountability pressure."
     ],
@@ -109,7 +109,7 @@ export const CASES_EM3 = [
     framework: "Cross-Team Escalation: document facts, surface to both managers simultaneously.",
     principle: "Dependencies that don't have management visibility don't have management priority.",
     traps: [
-      "Continued peer follow-up — three weeks already confirmed this doesn't work",
+      "Written commitment request at peer level — three weeks already confirmed peer-level accountability doesn't stick; a written date without management visibility still has no enforcement mechanism",
       "Workaround only — solving the symptom while the dependency failure becomes someone else's next problem",
       "Daily status pressure — creates accountability theater without structural resolution"
     ]
@@ -124,7 +124,7 @@ export const CASES_EM3 = [
       "Add a 40% buffer to all estimates — accept the team's estimation bias and correct for it.",
       "Investigate what's causing the underestimation: are stories too large when estimated? Are unknowns not surfaced? Are dependencies missing from estimates?",
       "Switch to story points instead of hours — points estimation is less precise but more accurate.",
-      "Accept the variation — 30-40% estimation error is within normal engineering variance."
+      "Run a calibration exercise: compare past estimates to actuals story-by-story and identify the category of work where the gap is largest, then address that category's planning specifically."
     ],
     correct: 1,
     consequences: {"executionRisk":-8,"teamMorale":5,"growth":4},
@@ -134,7 +134,7 @@ export const CASES_EM3 = [
     traps: [
       "Blanket buffer — adaptive coping without skill development; the underlying problem remains",
       "Technique variety — you've already tried this; different technique isn't different diagnosis",
-      "Accepting variance — 30-40% is not normal variance; it's a pattern that can be diagnosed and fixed"
+      "Calibration exercise alone — useful data, but identifies where the gap is largest, not why it exists; without the root cause investigation, the category insight produces no systemic fix"
     ]
   },
   {
@@ -145,7 +145,7 @@ export const CASES_EM3 = [
     quote: "Sprint reviews that hide incompletions hide information the business needs.",
     options: [
       "Only demo what's completed — reviews should show finished work.",
-      "Postpone the sprint review until the incomplete stories are finished.",
+      "Send stakeholders a written summary of what completed and what didn't before the meeting, so the review itself focuses on what's next rather than relitigating the sprint.",
       "Demo completed work and be transparent about the two incompletes: state what happened, where things stand, and what the plan is for each.",
       "Demo the 70% complete story — partial work represents partial value."
     ],
@@ -156,7 +156,7 @@ export const CASES_EM3 = [
     principle: "Stakeholders who see accurate sprint data can plan accurately. Stakeholders who see filtered data can't.",
     traps: [
       "Completed-only demo — stakeholders plan against false completeness",
-      "Review postponement — delays stakeholder information unnecessarily",
+      "Pre-meeting written summary replacing live review — stakeholders lose the ability to ask questions in context; written summaries get skimmed and the incomplete stories don't get the clarifying conversation they require",
       "Partial work demo — creates ambiguity about what's actually live and ready"
     ]
   },
@@ -216,7 +216,7 @@ export const CASES_EM3 = [
       "Tell product the team needs a break and negotiate 2 sprint weeks of lighter load.",
       "Quantify the sustainability risk: present data on sprint velocity trends, quality metrics, and engineer feedback, and frame the lighter load as investment in sustained velocity.",
       "Let the team decide what the next sprint looks like — they've earned autonomy.",
-      "Say nothing — the team should manage their own energy levels."
+      "Schedule a team offsite for the first week of next quarter to signal the recharge and build momentum for the next push."
     ],
     correct: 1,
     consequences: {"teamMorale":9,"executionRisk":-5,"growth":5},
@@ -226,7 +226,7 @@ export const CASES_EM3 = [
     traps: [
       "Morale-only framing — legitimate concern presented in terms leadership can't prioritize",
       "Team autonomy delegation — team can advocate for themselves, but you have influence they don't",
-      "Silence — neglects your responsibility to protect sustainable team performance"
+      "Offsite scheduling as recharge — a team offsite adds travel and social energy expenditure; it doesn't reduce workload and doesn't address the velocity risk that product actually cares about"
     ]
   },
   {
@@ -305,7 +305,7 @@ export const CASES_EM3 = [
     scenario: "A P1 incident is ongoing and your VP sends you a message asking for an update to share with customers. You have partial information — you know the scope of impact but not the root cause or ETA for resolution. What do you communicate?",
     quote: "Customers in an outage need honesty about uncertainty more than false precision.",
     options: [
-      "Wait until you have the root cause before responding to your VP.",
+      "Tell your VP you're consolidating information from the team and will have a complete update with root cause and ETA within the next 30 minutes.",
       "Respond with what you know: scope of impact, that investigation is underway, and a specific time for the next update — without speculating on cause or ETA.",
       "Give a rough ETA based on your current best guess to manage expectations.",
       "Ask an engineer to pause and give you a full status update before responding."
@@ -316,7 +316,7 @@ export const CASES_EM3 = [
     framework: "Incident Communication: scope + investigation status + next update time = minimum viable update.",
     principle: "In a crisis, a scheduled partial update is more trustworthy than a delayed complete one.",
     traps: [
-      "Waiting for complete information — leaves VP and customers without any update during a high-stress period",
+      "Promising a complete update in 30 minutes — creates a secondary commitment you may not be able to keep; if root cause is still unclear at 30 minutes, you've added a missed communication deadline on top of the incident",
       "Rough ETA guess — speculative ETAs that miss create secondary frustration",
       "Pausing engineers for status — extends the incident to improve communication about it"
     ]
@@ -377,7 +377,7 @@ export const CASES_EM3 = [
       "Propose a severity framework based on customer impact and business function scope: P1 (full outage or data loss), P2 (significant feature degraded, workaround exists), P3 (minor bug, low impact).",
       "Let engineers use their judgment on severity — they know the system best.",
       "Adopt an industry-standard severity framework from a vendor's runbook.",
-      "Create a committee to define severity levels over 60 days."
+      "Draft severity definitions collaboratively with the senior engineers most active in incident response, targeting a two-week definition and review cycle before rollout."
     ],
     correct: 0,
     consequences: {"teamMorale":8,"executionRisk":-8,"strategicPosition":5},
@@ -387,7 +387,7 @@ export const CASES_EM3 = [
     traps: [
       "Individual judgment only — inconsistent under pressure, especially for newer engineers",
       "Vendor template adoption without adaptation — may not map to your specific system and customer agreements",
-      "60-day committee — overcomplicated for a framework that should be fast to define and easy to apply"
+      "Two-week collaborative definition cycle — adds process overhead to a definition exercise that should take days; during those two weeks, all issues continue to receive the same urgency, which is the problem you're trying to solve"
     ]
   },
   {
@@ -397,7 +397,7 @@ export const CASES_EM3 = [
     scenario: "During a high-severity incident, the lead debugging engineer is making a mistake that you can see but they can't — they're looking in the wrong place. You know their track record and they're usually right. How do you intervene without damaging their confidence?",
     quote: "In an incident, being right matters more than being polite — but you can be both.",
     options: [
-      "Stay quiet — trust their process and let them find the error on their own.",
+      "Pull up the relevant telemetry yourself and post it directly to the incident channel tagged to the lead, letting the data redirect their attention without requiring them to accept a correction.",
       "Intervene directly but constructively: 'I might be wrong, but I'm noticing the error logs are also showing X in service Y — could that be related?'",
       "Take over the debugging — you see the path to resolution and time is critical.",
       "Ask a second engineer to look at the area you think is relevant without telling the lead."
@@ -408,7 +408,7 @@ export const CASES_EM3 = [
     framework: "Collaborative Incident Debugging: hypothesis as question, not correction.",
     principle: "The fastest incident resolution includes every relevant perspective — delivered as input, not authority.",
     traps: [
-      "Silence — in a P1 incident, 'trust the process' is the wrong priority",
+      "Posting telemetry to the channel — the data without the hypothesis still requires the lead to reinterpret their current theory; it can look like passive-aggressive redirection and delays the conversation that 'could that be related?' would open immediately",
       "Taking over — faster in the moment, damages trust and confidence afterward",
       "Parallel second investigation — adds noise and bypasses the lead without informing them"
     ]
@@ -423,7 +423,7 @@ export const CASES_EM3 = [
       "Defer entirely to legal — this is outside your technical scope.",
       "Send customers a vague notification to satisfy legal while minimizing exposure.",
       "Provide your technical perspective to legal: what specifically was corrupted, how many customers were affected, how it happened, and what's been fixed. Advocate for full disclosure to affected customers.",
-      "Only notify customers who specifically ask — proactive disclosure increases liability."
+      "Notify only customers whose corruption was confirmed by your data analysis — customers with possible but unconfirmed data impact don't need to be alerted."
     ],
     correct: 2,
     consequences: {"customerTrust":9,"strategicPosition":6,"executionRisk":-7},
@@ -433,7 +433,7 @@ export const CASES_EM3 = [
     traps: [
       "Full legal deference without technical input — legal makes better decisions with accurate technical facts",
       "Vague notification — technically compliant but customer-deceptive; builds resentment when details surface",
-      "Passive disclosure — waiting to be asked about a data corruption incident is ethically and legally problematic"
+      "Confirmed-only notification — data corruption analysis often has uncertainty boundaries; customers with possible impact who aren't notified and later discover the gap lose trust faster than if they'd been over-notified"
     ]
   },
   {
@@ -443,7 +443,7 @@ export const CASES_EM3 = [
     scenario: "After a busy incident month, your team's on-call engineer says they're exhausted and need a break from on-call. You have 5 engineers who could share the rotation. Currently 2 are always on call. What's your response?",
     quote: "On-call sustainability is a team design problem, not an individual endurance problem.",
     options: [
-      "Tell them to push through — on-call is part of the role.",
+      "Reduce on-call hours by narrowing the official response window — limit on-call coverage to business hours and route off-hours alerts to a tiered escalation path instead.",
       "Implement better monitoring and automation to reduce the volume of on-call pages.",
       "Hire a dedicated operations engineer to reduce on-call burden on development engineers.",
       "Immediately expand the rotation to all 5 eligible engineers and reduce each individual's on-call frequency."
@@ -454,7 +454,7 @@ export const CASES_EM3 = [
     framework: "On-Call Distribution: sustainable rotations require every eligible engineer participating.",
     principle: "On-call burnout is the most preventable form of team attrition.",
     traps: [
-      "Push through — fastest path to resignation from a key engineer",
+      "Narrowing coverage window — reduces on-call hours on paper but creates an uncovered period where real incidents go unresponded; the risk doesn't disappear, it just becomes unmanaged",
       "Ops engineer hire — right medium-term investment but doesn't solve the immediate burnout",
       "Monitoring improvement — right long-term investment but takes weeks to reduce page volume"
     ]

@@ -7,7 +7,7 @@ export const CASES_CHRO8 = [
     "options": [
       "Tell the employee that salaried professionals are generally expected to work hours necessary to complete their work, and that weekend work may be reasonable without additional pay.",
       "Ask the employee to document all weekend hours worked and submit them to HR for review before taking any action.",
-      "Immediately tell the manager to stop requesting weekend work until a formal overtime policy is developed.",
+      "Draft a weekend work policy with clear overtime provisions and eligibility thresholds, present it to the CEO for approval within the week, and communicate to the employee that HR is formalizing the policy before issuing any determination on their specific situation.",
       "Acknowledge the complaint, review the employee's contract and the applicable labor law provisions for salaried workers in the Philippines, meet with the manager to understand the business need, and follow up with the employee within 48 hours with clarity on what is required and what is not."
     ],
     "correct": 3,
@@ -20,7 +20,7 @@ export const CASES_CHRO8 = [
     "principle": "Employees with complaints in policy gaps deserve an answer, not a deflection. The absence of a policy is not a defense — it is a gap the CHRO must close.",
     "traps": [
       "Citing salaried norms without checking the employee's labor classification assumes a conclusion that may be legally incorrect under Philippine Labor Code provisions.",
-      "Stopping all weekend requests before investigation eliminates the manager's ability to address a legitimate business need and signals HR overreach without due process.",
+      "Prioritizing policy development over the live complaint leaves the employee without clarity for weeks — in the Philippines, an employer actively drafting overtime policy while a complaint is pending can be read as constructive acknowledgment of the violation, worsening the legal exposure rather than resolving it.",
       "Asking for documentation before acknowledging the complaint converts a legitimate inquiry into an audit of the employee, which is adversarial and damages trust."
     ]
   },
@@ -108,7 +108,7 @@ export const CASES_CHRO8 = [
     "difficulty": 3,
     "scenario": "A VP has been informally \"managing out\" a direct report by progressively removing responsibilities, excluding them from key meetings, and assigning them low-visibility work. The employee has noticed and filed a complaint. The VP denies any intent and characterizes the changes as \"role evolution.\" You believe the VP is acting in bad faith but the behavior is subtle and circumstantial. How do you handle this?",
     "options": [
-      "Advise the employee that the behavior, while uncomfortable, does not meet the threshold for a formal disciplinary action against the VP, and recommend that they raise performance concerns directly with their manager.",
+      "Document the pattern of role changes in the HR file as background context for future reference, and schedule a quarterly touchpoint with the employee to monitor their engagement level — maintaining a passive observation posture while the evidence base develops before any escalation.",
       "Document a detailed timeline of the role changes (responsibilities removed, meetings excluded from, task assignments) with dates and witnesses, and present this to the VP and their manager (the CEO) as a pattern that requires explanation — without pre-judging intent, but making clear that the pattern is visible and under review.",
       "Put the VP on a formal behavioral improvement plan for management conduct and require them to restore the employee's responsibilities pending the outcome of the investigation.",
       "Advise the employee that constructive dismissal through informal management-out behavior is a recognized legal risk and offer a severance package as a resolution to avoid a formal complaint."
@@ -123,7 +123,7 @@ export const CASES_CHRO8 = [
     "framework": "Constructive Dismissal Pattern Recognition — informal management-out behavior is legally actionable in the Philippines when it cumulatively degrades the employee's employment conditions. HR's intervention point is when the pattern becomes visible — not after the legal threshold is crossed.",
     "principle": "Management-out campaigns are designed to be individually defensible. The CHRO's job is to see the pattern, name it formally, and create accountability before the employee is forced out.",
     "traps": [
-      "Dismissing the complaint because each action is individually defensible misses the legal and ethical significance of cumulative pattern — the test is not each incident but the trajectory.",
+      "Monitoring without intervening allows the management-out pattern to continue — by the time the evidence base is 'sufficient,' the employee's working conditions may have deteriorated past the constructive dismissal threshold, and HR's documented passive awareness becomes part of the liability rather than part of the defense.",
       "A VP behavioral improvement plan before investigation findings are complete is procedurally incorrect and creates a legal basis for the VP to claim unfair treatment.",
       "An immediate severance offer resolves the immediate situation but signals to other managers that informal management-out behavior results in a paid resolution rather than accountability."
     ]
@@ -215,7 +215,7 @@ export const CASES_CHRO8 = [
       "Advise the manager that their failure to intervene constitutes a management performance issue and issue a formal coaching memo. Request that the manager address the conflict directly in the next 5 business days.",
       "Contact the two conflicting employees directly to conduct individual HR conversations about the impact of their behavior on team performance and the company's conduct expectations, then meet with the manager to set expectations for their role in managing team dynamics going forward.",
       "Hold a facilitated three-way conversation with both employees and the manager present to surface the conflict openly and establish shared behavioral agreements.",
-      "Wait for the conflict to escalate further before intervening — minor interpersonal tension between adults does not require HR involvement at this stage."
+      "Refer the situation to the team's manager with a coaching guide on peer conflict facilitation and ask them to schedule a team retrospective to surface and address the interpersonal dynamics — treating HR's role as advisory to the manager rather than as a direct party in the intervention."
     ],
     "correct": 1,
     "consequences": {
@@ -229,7 +229,7 @@ export const CASES_CHRO8 = [
     "traps": [
       "A formal coaching memo as the first management intervention converts a development conversation into a disciplinary record — this is appropriate for a repeated pattern, not a first instance.",
       "A facilitated three-way session before individual conversations puts both parties in the same room before HR knows the facts, giving the more forceful party a platform to dominate the narrative.",
-      "Waiting for escalation assumes that unmanaged interpersonal conflict resolves itself, which it does not — it redistributes to other team members and to attrition."
+      "Routing the intervention back through the manager who has already declined to act returns the resolution to the party who created the vacuum — the team will observe that HR's response to management abdication is to reinforce management's authority without addressing the behavior, which signals that HR will not intervene when managers opt out."
     ]
   },
   {

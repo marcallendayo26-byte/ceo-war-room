@@ -7,7 +7,7 @@ export const CASES_CFO8 = [
     options: [
       'Use comparable transaction multiples as the anchor for valuation: the 6.2x comparable average suggests a fair value of $31M, and 8x requires clear justification of what specific attributes command the 29% premium over comps.',
       'Accept the 8x valuation because the target\'s 108% net retention and 44 Rule of 40 score are genuinely top-quartile metrics that justify a premium.',
-      'Reject the deal because 8x exceeds the comparable median and overpaying for acquisitions is the most common M&A mistake.',
+      'Counter at 7x ARR ($35M) — the target\'s metrics justify a premium over the 6.2x comp average but not the full asking price, and splitting the difference is a disciplined anchor.',
       'Focus exclusively on DCF valuation rather than ARR multiples, as multiples are market-dependent and DCF reflects intrinsic value.',
     ],
     correct: 0,
@@ -22,7 +22,7 @@ export const CASES_CFO8 = [
     principle: 'A premium over comps is not evidence of value. It is a claim that must be proven.',
     traps: [
       'Accepting a premium valuation because the target has strong metrics conflates company quality with deal price — quality metrics are already reflected in the comp range, and the premium requires justification beyond what the metrics already price in.',
-      'Rejecting the deal because it exceeds the median is as arbitrary as accepting it because the metrics are strong — the right answer requires analyzing what the specific asset is worth to your company, not what the median buyer pays.',
+      'Countering at 7x without first quantifying the synergy value and strategic premium your company specifically captures conflates negotiating posture with valuation discipline — splitting the difference between the comp average and the ask is an arithmetic compromise, not a supported price.',
       'Defaulting to DCF for a high-growth SaaS target is seductive because it feels rigorous, but 70-80% of DCF value sits in the terminal value, which is driven by assumptions that can justify almost any price.',
     ],
   },
@@ -62,7 +62,7 @@ export const CASES_CFO8 = [
       'Build internally — internal IP ownership and full control over the roadmap justify the 14-month timeline and $2.8M investment.',
       'License the technology for $320K annually — it is the fastest path to market and the lowest upfront cost commitment.',
       'Acquire the startup — 8-month delivery requirement makes internal build impossible, and ownership of the IP plus the team creates long-term strategic value that a license cannot.',
-      'Delay the enterprise segment expansion by 6 months and build internally with a reduced-scope MVP to meet a 20-month delivery.',
+      'License the technology for the short term to meet the 8-month deadline while simultaneously starting an internal build, then migrate off the license once the internal version reaches feature parity at month 18.',
     ],
     correct: 2,
     consequences: {
@@ -77,7 +77,7 @@ export const CASES_CFO8 = [
     traps: [
       'Choosing the internal build despite a 14-month timeline against an 8-month market requirement is a planning error dressed as strategic conviction — the delivery date is not negotiable if the competitive window is real.',
       'The license path feels capital-efficient but it creates a permanent dependency on a vendor who has no incentive to help you win against competitors who might also be licensing the same product.',
-      'Delaying market entry by 6 months to save capital is only rational if the opportunity cost of waiting is lower than the capital saved — in a competitive enterprise segment with a defined entry window, it rarely is.',
+      'Running a license and an internal build in parallel doubles engineering resource consumption for 18 months and produces a migration risk at precisely the moment the enterprise segment is scaling — any feature parity gap at migration will create customer-facing instability that jeopardizes the contracts the license was used to win.',
     ],
   },
   {
@@ -115,7 +115,7 @@ export const CASES_CFO8 = [
     options: [
       'Accept the full $4M earn-out at the sellers\' proposed milestones — the earn-out is contingent, so you only pay it if the business performs, and the strategic value justifies the contingent exposure.',
       'Propose an earn-out structure that keeps the $4M total but adjusts the milestone metrics from ARR-only to a blended scorecard including ARR, gross margin, and net retention — reducing the risk of milestone gaming through revenue acceleration at the expense of quality.',
-      'Walk away if the sellers will not accept a $3M cap — overpaying on earn-outs is how deals that look accretive at close become dilutive over 24 months.',
+      'Accept the $4M earn-out but restructure its timing — pay $2M at month 12 regardless of ARR milestone attainment as a goodwill payment, and make the final $2M contingent on the month-24 target.',
       'Counter with a $4M earn-out but paid entirely in company stock rather than cash, converting the contingent liability into a dilution event and preserving cash flow.',
     ],
     correct: 0,
@@ -129,7 +129,7 @@ export const CASES_CFO8 = [
     framework: 'Earn-Out Alignment Theory — earn-outs exist to bridge valuation gaps by making payment contingent on future performance. When the seller insists on an earn-out, it is typically a signal of confidence in their projections. The buyer\'s job is to structure the milestones correctly, not to minimize the contingent obligation arbitrarily.',
     principle: 'An earn-out you pay is a success. An earn-out cap that kills a strategic deal is a failure.',
     traps: [
-      'Capping the earn-out at $3M when the seller is willing to accept full contingent payment at performance milestones is the buyer trying to win the negotiation on a point where they have no real leverage and could lose the deal.',
+      'Making half the earn-out unconditional at month 12 eliminates the performance alignment that makes the earn-out structure valuable — the founders receive $2M whether or not the acquired business hits its targets, removing the incentive mechanism at the point of highest integration risk.',
       'A blended scorecard is structurally superior to pure ARR milestones but the added complexity can introduce post-close disputes that damage the relationship at exactly the time when founder engagement is most critical.',
       'Converting the earn-out to stock transfers the incentive correctly but dilutes existing shareholders for a payment that might never be triggered — you are accepting certain dilution to avoid contingent cash exposure.',
     ],
@@ -142,8 +142,8 @@ export const CASES_CFO8 = [
     options: [
       'Accept the $8M synergy projection and use it to justify the purchase price — bankers calculate synergies conservatively to avoid over-promising.',
       'Apply a risk-adjustment discount: cost synergies at 80% probability, revenue synergies at 30-40% probability, and present the risk-adjusted synergy value of approximately $3.6M to the board rather than the banker\'s headline $8M.',
-      'Reject the synergy analysis entirely and evaluate the deal on a standalone basis — synergies are too speculative to include in an acquisition model.',
-      'Commission an independent consultant to validate the synergy numbers before making any valuation decision.',
+      'Apply the same risk-adjustment discount to both cost and revenue synergies — reduce the full $8M by 40% to arrive at a blended risk-adjusted figure of $4.8M, and use this as the synergy contribution in the valuation model.',
+      'Apply the risk-adjustment to cost synergies only at 80% confidence, exclude revenue synergies entirely from the valuation model as too speculative, and evaluate the deal on cost synergy-adjusted standalone value.',
       ],
     correct: 1,
     consequences: {
@@ -157,8 +157,8 @@ export const CASES_CFO8 = [
     principle: 'Cost synergies are a plan. Revenue synergies are a hope. Price accordingly.',
     traps: [
       'Trusting a banker\'s synergy calculation without risk adjustment is how acquirers overpay for deals that look transformative in the pitch deck and dilutive in the post-close P&L.',
-      'Excluding synergies entirely from the valuation model understates the deal\'s strategic value and may cause you to walk away from a deal that is genuinely value-creating at a risk-adjusted synergy level.',
-      'Commissioning an independent validation for every synergy claim adds process overhead that rarely changes the final answer — the risk adjustment framework applied internally produces a better outcome faster.',
+      'Applying a uniform 40% discount to cost and revenue synergies ignores that these categories have fundamentally different execution profiles — a blended rate systematically overstates the confidence in revenue synergies, which are two to three times harder to realize than cost synergies in a 60-day integration window.',
+      'Excluding revenue synergies entirely from the model understates the deal\'s strategic value and will cause the board to underprice an acquisition where $2M of the cross-sell synergies are supported by existing customer overlap and a shared sales motion.',
     ],
   },
   {
@@ -167,7 +167,7 @@ export const CASES_CFO8 = [
     difficulty: 3,
     scenario: 'You are acquiring a $15M ARR business for $78M (5.2x ARR). Post-acquisition, the combined entity\'s blended gross margin will drop from 74% to 68% because the target operates at 58% gross margin due to a more services-intensive delivery model. Revenue will grow from $42M to $57M (a 36% increase), but the EBITDA margin will compress from 18% to 13% on a combined basis. The board is pushing back on the margin dilution. The deal has strong strategic rationale: the target gives you access to a new vertical with 200 potential customers.',
     options: [
-      'Abandon the acquisition — margin dilution is a permanent structural problem that will compound as the acquired business grows.',
+      'Restructure the deal as an acqui-hire: acquire the team and customer relationships for $20M, exclude the services delivery infrastructure, and rebuild the delivery model at higher margins post-close.',
       'Proceed only if you can contractually commit the target to improve their gross margin to 65% within 18 months as a condition of the acquisition.',
       'Present the dilutive acquisition thesis clearly to the board: the 6-point gross margin compression is the cost of acquiring 200 new enterprise customers in a strategically important vertical, and the correct evaluation is whether the long-term revenue opportunity justifies the short-term margin trade.',
       'Structure the deal as a minority investment rather than a full acquisition, limiting margin dilution impact while maintaining strategic access.',
@@ -183,7 +183,7 @@ export const CASES_CFO8 = [
     framework: 'Dilutive Acquisition Analysis — an acquisition that is accretive to revenue but dilutive to margins is not inherently a bad deal. The correct framework is to calculate the cost of the margin dilution in absolute dollars per year, compare it to the expected revenue value of what you are acquiring, and present the trade to the board explicitly. The trade is acceptable if the strategic asset\'s value exceeds the ongoing margin cost.',
     principle: 'Margin dilution is not a reason to reject an acquisition. It is a cost that must be weighed against what you are buying.',
     traps: [
-      'Rejecting a dilutive acquisition based on margin compression alone treats a financial ratio as a strategic filter — the margin compression is a cost, not a verdict.',
+      'Restructuring as an acqui-hire removes the operating infrastructure that delivers the $15M ARR — the acquired team cannot maintain the 200-customer vertical relationships without the delivery model that generates the 58% gross margin, and attempting to rebuild it post-close extends the margin compression period while eliminating the revenue certainty the full acquisition provides.',
       'Conditioning close on a gross margin improvement commitment introduces a target that may be structurally unachievable and creates post-close conflict with the acquired management team whose delivery model is already priced into the deal.',
       'A minority investment approach sounds like a compromise but it limits your ability to realize the customer base integration that is the entire premise of the vertical entry thesis.',
     ],
@@ -194,7 +194,7 @@ export const CASES_CFO8 = [
     difficulty: 1,
     scenario: 'A competitor has just been acquired by a large strategic buyer for $95M. This competitor owns a proprietary dataset that, in combination with your platform, would create a category-defining intelligence layer. The acquirer has indicated they would be willing to sell the dataset license or the competitor\'s IP assets for $28M — significantly above what any financial model would support on a standalone basis. Your board wants a CFO recommendation on whether to pay the strategic premium.',
     options: [
-      'Decline the strategic premium — financial models do not support $28M and paying above model creates a dangerous precedent of emotion-driven M&A.',
+      'Approve the $28M IP acquisition if the board can formally document a 5-year revenue model in which the proprietary dataset generates incremental ARR that justifies the premium on a risk-adjusted NPV basis.',
       'Approve the acquisition of the IP assets at up to $28M if the strategic analysis supports that a defensible competitive advantage is being purchased, and the board formally documents its strategic rationale for the premium.',
       'Negotiate the price down to a financially supportable level before approving any transaction.',
       'Pursue an alternative: license the dataset from the new owner at an annual fee rather than acquiring it, avoiding the upfront strategic premium.',
@@ -210,7 +210,7 @@ export const CASES_CFO8 = [
     framework: 'Strategic Premium Justification Framework — a premium above financial model value is only justified if (1) the asset creates durable competitive differentiation, (2) the differentiation cannot be accessed through a lower-cost alternative (license, partnership, internal build), and (3) the premium is formally approved with documented strategic rationale. Always evaluate alternatives before paying the premium.',
     principle: 'Before you pay a strategic premium, prove there is no strategic alternative.',
     traps: [
-      'Declining a strategic premium reflexively because financial models do not support it ignores that models capture what is measurable and miss what is strategic — competitive moats often do not fit in a DCF.',
+      'Approving the $28M acquisition based on a 5-year revenue model skips the most important prior question: whether the same dataset access is achievable through a license, which would make the premium unnecessary without any 5-year model needing to justify it.',
       'Negotiating the price down without first determining whether a license alternative exists removes your strongest bargaining chip — if the license is adequate, you do not need the acquisition at all.',
       'Assuming the license alternative is inferior without testing it is the most common way acquirers end up paying $28M for something they could have accessed for $2M per year.',
     ],

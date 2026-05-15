@@ -8,7 +8,7 @@ export const CASES_CFO3 = [
       'Switch to zero-based budgeting for all departments — require every dollar to be justified from scratch.',
       'Keep incremental budgeting but add a 10% across-the-board efficiency target to force discipline.',
       'Use zero-based budgeting only for the three largest cost centers and keep incremental for the rest.',
-      'Delay the decision to next year — changing the budgeting methodology mid-growth-phase creates unnecessary disruption.',
+      'Keep incremental budgeting but add a mandatory sunset review for any cost line that has grown more than 50% in the past two years without a corresponding revenue attribution.',
     ],
     correct: 0,
     consequences: {
@@ -22,7 +22,7 @@ export const CASES_CFO3 = [
     traps: [
       'An across-the-board efficiency target feels rigorous but is actually a way to avoid hard choices — departments with fat baselines cut superficially, while efficient departments cut into muscle.',
       'Partial zero-basing sounds pragmatic but means the largest, most entrenched cost centers — which are exactly the ones that need scrutiny — remain protected.',
-      'Avoiding methodology change because of disruption is the sunk-cost fallacy applied to process — the cost of clarity is always worth paying.',
+      'A 50%-growth sunset trigger sounds analytical but creates an arbitrary threshold that misses cost lines that have grown slowly but persistently with no strategic rationale — incremental budgeting with a patch rule still produces an incremental cost structure; it just takes longer to recognize the problem.',
     ],
   },
   {
@@ -60,7 +60,7 @@ export const CASES_CFO3 = [
       'Hold the original plan and present the recovery thesis to the board — changing the plan mid-year signals weakness.',
       'Issue a formal reforecast to the board with the three scenarios, a revised base case, and a specific set of cost actions that will be triggered if Q3 comes in below the partial recovery threshold.',
       'Reforecast revenue down to the 75% scenario and cut operating expenses proportionally to protect margin.',
-      'Wait until Q3 results are in before communicating any changes — you will have real data at that point.',
+      'Schedule a special board call in four weeks to share the Q3 pipeline health data and present the reforecast then, giving the team time to build a more defensible model before going to the board.',
     ],
     correct: 2,
     consequences: {
@@ -74,7 +74,7 @@ export const CASES_CFO3 = [
     traps: [
       'Holding the original plan while 20% behind confuses confidence with denial — boards can read momentum data, and arriving at year-end with a large miss destroys more credibility than a midyear reforecast.',
       'Cutting costs immediately to match the worst-case scenario destroys capacity for the partial and full recovery scenarios, which are actually more probable than a second consecutive miss.',
-      'Waiting for Q3 actuals before communicating is the most damaging option — it compresses response time and signals the CFO was watching the problem develop without acting.',
+      'A four-week delay to build a more defensible model is a reasonable instinct under normal conditions, but 20% behind at midyear is not a normal condition — the board already knows Q1 was weak and is expecting a response, not a scheduling email, and a four-week wait compresses the board\'s response window from 90 to 60 days for no analytical improvement that a scenario range does not already provide.',
     ],
   },
   {
@@ -138,7 +138,7 @@ export const CASES_CFO3 = [
     options: [
       'Build the base case around the sales target, and construct bull and bear cases as simple percentage adjustments above and below.',
       'Build driver-based scenarios with different assumptions for new logo growth, expansion revenue, and churn — each scenario should reflect a coherent set of business conditions, not just revenue line adjustments.',
-      'Present only the base case to inspire board confidence — showing bear scenarios signals that management lacks conviction.',
+      'Build three scenarios using ±15% adjustments to the sales target as the revenue range, then layer in corresponding cost structure adjustments to show EBITDA sensitivity across the range.',
       'Present the base and bull cases only, and include the bear case only in the board package appendix rather than in the main presentation.',
     ],
     correct: 1,
@@ -152,7 +152,7 @@ export const CASES_CFO3 = [
     principle: 'A board that has never been shown the bear case cannot govern. Give them the full picture and the reasoning behind each scenario.',
     traps: [
       'Percentage adjustments around a central target produce numbers that look like scenarios but cannot be stress-tested because they have no underlying business logic attached to them.',
-      'Omitting or burying the bear case to inspire confidence confuses board optics with board governance — a board that is not shown downside risk cannot make informed decisions about reserves, hiring, or capital deployment.',
+      'Revenue sensitivity ranges with corresponding EBITDA adjustments describe what happens to the financials under different revenue outcomes, but they do not describe why the business is in each scenario — without a narrative of what changed in customer behavior, sales execution, or market conditions, the board cannot challenge the assumptions or use the model to govern decisions about reserves, hiring, or capital deployment.',
       'Presenting only base and bull cases and hiding the bear case in an appendix is a form of selective disclosure that erodes credibility the moment the bear case materializes.',
     ],
   },
@@ -219,7 +219,7 @@ export const CASES_CFO3 = [
       'Issue a full reforecast — any deviation from plan requires a formal update to the operating model.',
       'Agree with the CEO — nine months in with revenue at 98% does not justify the overhead of a reforecast.',
       'Issue a targeted reforecast on EBITDA and expenses only, leaving the revenue line unchanged, and present the updated numbers to the board with a memo explaining the expense overage.',
-      'Defer the reforecast until Q4 is complete, then produce a full-year actuals vs. plan comparison for the board.',
+      'Issue a one-page written CFO memo to the board disclosing the EBITDA variance and the expense overage, but defer a formal reforecast until Q4 results give you the full-year data needed to replan accurately.',
     ],
     correct: 0,
     consequences: {
@@ -233,7 +233,7 @@ export const CASES_CFO3 = [
     traps: [
       'Conflating a reforecast with a distraction misunderstands the purpose — a reforecast is a communication tool for the board, not an internal planning exercise that pulls the sales team off their work.',
       'Agreeing that 98% revenue performance means "close enough" ignores the EBITDA story, which is the more important deviation from a capital efficiency standpoint.',
-      'Deferring until year-end eliminates the board\'s ability to respond — by the time actuals are available, the opportunity to adjust Q4 expense commitments has already passed.',
+      'A memo disclosing the variance is the right transparency instinct, but stopping there without a reforecast gives the board the problem without the updated model — they cannot make informed decisions about Q4 resource allocation or next-year planning without knowing where full-year EBITDA is now expected to land, which requires a reforecast, not just a disclosure.',
     ],
   },
   {

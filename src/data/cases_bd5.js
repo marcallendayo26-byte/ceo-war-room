@@ -73,7 +73,7 @@ export const CASES_BD5 = [
     options: [
       'Proceed with submitting the deal for board approval and let the governance process run — the investor blocking a commercially sound deal for competitive reasons is a conflict of interest the board should address on its merits.',
       'Restructure the deal to $499K to avoid the reserved matter threshold and execute without board approval.',
-      'Withdraw from the deal — the board relationship with the investor is worth more than one $520K contract.',
+      'Engage external legal counsel to assess whether the investor\'s stated intent to block the deal constitutes a breach of their fiduciary duty as a board member, and use that opinion to negotiate their voluntary abstention before the board vote.',
       'Request an emergency board session to address the investor\'s conflict of interest directly, and seek independent director guidance before the deal closes.',
     ],
     correct: 0,
@@ -83,7 +83,7 @@ export const CASES_BD5 = [
     principle: 'Never restructure a deal to circumvent governance thresholds. Submit through the correct process and let an investor\'s conflict of interest be addressed as the governance issue it is.',
     traps: [
       'Restructuring to $499K to avoid the threshold intentionally circumvents a shareholder-protection mechanism and creates legal exposure if challenged.',
-      'Withdrawing from a $520K enterprise deal to protect an investor relationship rewards the investor\'s use of board leverage for competitive purposes.',
+      'Seeking a legal opinion on fiduciary breach and negotiating privately with the investor bypasses the governance process — if the opinion is obtained and the investor still does not abstain, you have consumed the 14-day window without submitting the deal through the mechanism designed to handle exactly this situation.',
       'An emergency board session is a legitimate parallel action, but it should not replace the standard submission process — the deal needs to be submitted regardless.',
     ],
   },
@@ -137,7 +137,7 @@ export const CASES_BD5 = [
     difficulty: 1,
     scenario: 'An existing enterprise DMS client has learned that a dealer group who is their direct competitor owns 12% of your company and holds a board observer role. The client is concerned that their operational data — monthly sales volumes, inventory turns, gross profit per unit — may be accessible to or discussed in the presence of the investor. The concern is not grounded in your current governance documents but is commercially real.',
     options: [
-      'Reassure the client verbally that your data governance practices are rigorous and that investor board involvement does not include customer data access.',
+      'Propose adding a contractual data protection clause to the client\'s DMS agreement that explicitly prohibits the investor and their affiliates from accessing the client\'s operational data — addressing the concern through the commercial contract rather than through governance document updates.',
       'Offer to share your data governance policy and board charter to demonstrate that investor roles are scoped to financial governance, not operational data.',
       'Commission a formal data governance review and offer the client an independent attestation once completed.',
       'Proactively update your board charter and data governance policy to formally exclude investor board roles from any context where customer operational data is discussed, and confirm this in writing to the client.',
@@ -148,7 +148,7 @@ export const CASES_BD5 = [
     framework: 'Investor governance and data separation — close the governance gap formally before it becomes a contract or churn issue',
     principle: 'A client concern about investor data access requires a documented governance response, not a verbal reassurance. Close the gap they identified.',
     traps: [
-      'Verbal reassurance without documentation provides no protection for the client relationship and no foundation for your claim if challenged.',
+      'A contractual data protection clause in the client\'s DMS agreement addresses their specific exposure but does not close the underlying governance gap — the board charter and data governance policy still permit the investor board observer to be present in contexts where other clients\' operational data is visible, leaving the structural risk intact across the portfolio.',
       'Sharing existing documents without updates confirms that investor governance and data protection are not explicitly separated — which may heighten rather than alleviate the client\'s concern.',
       'A third-party attestation is the strongest outcome but takes 6–10 weeks and leaves the client relationship at risk in the interim.',
     ],
@@ -159,7 +159,7 @@ export const CASES_BD5 = [
     difficulty: 1,
     scenario: 'A new dealer group prospect is in active evaluation of your DMS platform. During a discovery call, they disclose that they are aware your investor-partner is one of their direct competitors. They ask directly: "If [investor name] owns 12% of your company and has a board observer role, can you guarantee they will have no visibility into our deal pipeline, pricing, or operational data if we become a customer?" The question is direct and the answer has to be too.',
     options: [
-      'Confirm the guarantee verbally on the call — the investor governance safeguards are sufficient and hesitation risks the deal.',
+      'Respond to the prospect\'s concern by offering to schedule a governance briefing with your CEO and the board observer directly — positioning the conversation as a relationship-building moment that demonstrates openness and transparency.',
       'Be transparent: explain your current data governance and board observer scope, acknowledge the legitimate concern, and commit to a written data governance confirmation before they sign.',
       'Offer to introduce the prospect to your CEO to address the governance question at the right level.',
       'Provide a written data governance policy and board charter before the next meeting, and include a specific contractual data non-disclosure clause covering the investor and their affiliates in the proposed agreement.',
@@ -170,7 +170,7 @@ export const CASES_BD5 = [
     framework: 'Investor data protection — convert governance assurance into a contractual clause to convert trust concern into enforceable commitment',
     principle: 'When a prospect asks for a data governance guarantee, provide one in the contract — not on a call.',
     traps: [
-      'A verbal guarantee on the call creates a commitment without the contractual backing that would actually protect the prospect — and exposes you if the guarantee is later disputed.',
+      'Arranging a governance briefing with the board observer present asks the prospect to trust a relationship conversation with the very party whose access they are concerned about — it signals that the best protection InnoFac can offer is a meeting, not a contract clause.',
       'Transparency with written governance documents but no contractual clause leaves the concern acknowledged but unresolved in the one place that matters: the signed agreement.',
       'Escalating to the CEO is appropriate for relationship purposes but signals that the question cannot be answered by the team managing the deal — which raises rather than lowers the prospect\'s concern level.',
     ],
