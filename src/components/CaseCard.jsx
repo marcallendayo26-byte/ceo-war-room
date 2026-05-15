@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CATEGORY_COLORS } from '../data/config'
+import { playSelect, playDeal } from '../lib/sounds'
 
 const DIFFICULTY_LABELS = { 1: 'Foundational', 2: 'Intermediate', 3: 'Executive' }
 const DIFFICULTY_COLORS = { 1: '#34d399', 2: '#fbbf24', 3: '#f87171' }
@@ -32,8 +33,12 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
   const [selected, setSelected]   = useState(null)
   const [thinking, setThinking]   = useState(false)
 
+  // Deal sound plays once when this card arrives
+  useEffect(() => { playDeal() }, [])
+
   const handleSelect = (idx) => {
     if (selected !== null) return
+    playSelect()
     setSelected(idx)
     setThinking(true)
     // 450 ms of suspense — enough to feel the weight of the decision
@@ -61,9 +66,10 @@ export default function CaseCard({ caseData, onAnswer, isDaily = false, isRetry 
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      initial={{ opacity: 0, x: 28, y: 6 }}
+      animate={{ opacity: 1, x: 0,  y: 0 }}
+      exit={{    opacity: 0, x: -22,       transition: { duration: 0.18 } }}
+      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
       className="relative rounded-2xl overflow-hidden"
       style={{
         background: '#0d1b2e',

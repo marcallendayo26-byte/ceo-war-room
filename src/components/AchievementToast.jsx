@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { playAchievement } from '../lib/sounds'
 
 export default function AchievementToast({ achievement, onDismiss }) {
   useEffect(() => {
     if (!achievement) return
+    playAchievement()
     const t = setTimeout(onDismiss, 4000)
     return () => clearTimeout(t)
   }, [achievement, onDismiss])

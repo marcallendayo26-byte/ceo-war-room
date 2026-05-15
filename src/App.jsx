@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import ProfileSelect from './components/ProfileSelect'
 import Header from './components/Header'
 import CaseCard from './components/CaseCard'
@@ -25,6 +26,11 @@ import {
 } from './lib/storage'
 import { checkNewAchievements } from './data/achievements'
 import { applyFontSize, getFontSize } from './lib/prefs'
+import { CATEGORY_COLORS } from './data/config'
+import {
+  isMuted, toggleMuted,
+  playCorrect, playXP, playWrong, playStreak,
+} from './lib/sounds'
 
 // ─── Game state helpers ────────────────────────────────────────────────────
 
@@ -61,6 +67,11 @@ export default function App() {
   })
   const [game, setGame] = useState(null)
 
+  // Sound + shake state
+  const [sfxMuted,    setSfxMuted]    = useState(isMuted)
+  const [shakeActive, setShakeActive] = useState(false)
+  const prevSoundTs = useRef(0)
+
   // Restore font-size preference immediately on mount
   useEffect(() => { applyFontSize(getFontSize()) }, [])
 
@@ -75,6 +86,27 @@ export default function App() {
       }
     }
   }, [])
+
+  // ─── Sound + shake orchestration ────────────────────────────────────────
+
+  useEffect(() => {
+    const ts = game?.lastResult?.soundTs
+    if (!ts || ts === prevSoundTs.current) return
+    prevSoundTs.current = ts
+    const { isCorrect, newStreak } = game.lastResult
+    if (isCorrect) {
+      playCorrect()
+      setTimeout(() => playXP(), 195)
+      if ([3, 5, 10].includes(newStreak)) setTimeout(() => playStreak(newStreak), 380)
+    } else {
+      playWrong()
+      setShakeActive(true)
+      const t = setTimeout(() => setShakeActive(false), 480)
+      return () => clearTimeout(t)
+    }
+  }, [game?.lastResult?.soundTs])
+
+  const handleToggleMute = useCallback(() => setSfxMuted(toggleMuted()), [])
 
   // ─── Profile selection ───────────────────────────────────────────────────
 
@@ -201,6 +233,7 @@ export default function App() {
           healthDelta: isCorrect ? c.consequences : {},
           isDaily,
           isRetry,
+          soundTs: Date.now(),   // used by sound/shake effects
         },
         leveledUpTo: leveledUp ? getLevelInfo(totalXP).current : null,
         prestigedTo: shouldPrestige ? newPrestige : null,
@@ -304,10 +337,38 @@ export default function App() {
     weakSpotAlert, showLeaderboard, showAchievements, showHistory, showAnalytics,
     showSettings, isDaily, isRetry } = game
 
-  const dailyAvailable = !isDailyCompleted(profile)
+  const dailyAvailable    = !isDailyCompleted(profile)
+  const activeCase        = phase === 'playing' ? currentCase : lastResult?.caseData
+  const activeCategoryColor = CATEGORY_COLORS[activeCase?.category] || '#0066cc'
 
   return (
-    <div className="min-h-screen" style={{ background: 'rgb(7 15 28)' }}>
+    <div className="min-h-screen relative overflow-x-hidden" style={{ background: 'rgb(7 15 28)' }}>
+
+      {/* ── Ambient category glow ── sits behind all content ─────────────── */}
+      <AnimatePresence>
+        <motion.div
+          key={activeCategoryColor}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{    opacity: 0 }}
+          transition={{ duration: 1.8, ease: 'easeInOut' }}
+          className="absolute inset-0 pointer-events-none overflow-hidden"
+          style={{ zIndex: 0 }}
+        >
+          <div style={{
+            position: 'absolute',
+            top: '-25vh', left: '-15vw',
+            width: '65vw', height: '65vw',
+            borderRadius: '50%',
+            background: activeCategoryColor,
+            filter: 'blur(130px)',
+            opacity: 0.038,
+          }} />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* ── All content above glow ────────────────────────────────────────── */}
+      <div style={{ position: 'relative', zIndex: 1 }}>
       <Header
         profile={profile}
         onSwitchProfile={handleSwitchProfile}
@@ -318,6 +379,8 @@ export default function App() {
         onDailyChallenge={handleDailyChallenge}
         dailyAvailable={dailyAvailable}
         onSettings={handleOpenSettings}
+        sfxMuted={sfxMuted}
+        onToggleMute={handleToggleMute}
       />
 
       <main className="max-w-4xl mx-auto px-4 py-6 grid lg:grid-cols-[1fr_220px] gap-6 items-start">
@@ -366,23 +429,34 @@ export default function App() {
             </div>
           )}
 
-          {phase === 'playing' && currentCase && (
-            <CaseCard
-              key={currentCase.id + (isRetry ? '-retry' : '') + (isDaily ? '-daily' : '')}
-              caseData={currentCase}
-              onAnswer={isDaily ? handleDailyAnswer : handleAnswer}
-              isDaily={isDaily}
-              isRetry={isRetry}
-              keyboardActive={!showLeaderboard && !showAchievements && !showHistory && !showAnalytics && !showSettings}
-            />
-          )}
-          {phase === 'result' && lastResult && (
-            <ResultPanel
-              result={lastResult}
-              onNext={handleNext}
-              onRetry={handleRetry}
-            />
-          )}
+          {/* Shake wrapper — wrong answers nudge the play area */}
+          <motion.div
+            animate={shakeActive
+              ? { x: [0, -7, 6, -5, 4, -2, 0], transition: { duration: 0.38, ease: 'easeOut' } }
+              : { x: 0 }
+            }
+          >
+            <AnimatePresence mode="wait">
+              {phase === 'playing' && currentCase && (
+                <CaseCard
+                  key={currentCase.id + (isRetry ? '-retry' : '') + (isDaily ? '-daily' : '')}
+                  caseData={currentCase}
+                  onAnswer={isDaily ? handleDailyAnswer : handleAnswer}
+                  isDaily={isDaily}
+                  isRetry={isRetry}
+                  keyboardActive={!showLeaderboard && !showAchievements && !showHistory && !showAnalytics && !showSettings}
+                />
+              )}
+              {phase === 'result' && lastResult && (
+                <ResultPanel
+                  key="result"
+                  result={lastResult}
+                  onNext={handleNext}
+                  onRetry={handleRetry}
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
         </div>
 
         {/* Sidebar */}
@@ -455,6 +529,7 @@ export default function App() {
       {showSettings && (
         <SettingsPanel onClose={() => setGame(p => ({ ...p, showSettings: false }))} />
       )}
+      </div>{/* end content-above-glow wrapper */}
     </div>
   )
 }

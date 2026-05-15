@@ -1,4 +1,4 @@
-import { BarChart2, ClipboardList, Award, Trophy, CalendarDays, Settings } from 'lucide-react'
+import { BarChart2, ClipboardList, Award, Trophy, CalendarDays, Settings, Volume2, VolumeX } from 'lucide-react'
 import { getLevelInfo } from '../lib/engine'
 import { getProfile as loadProfile } from '../lib/storage'
 
@@ -20,6 +20,7 @@ export default function Header({
   onLeaderboard, onAchievements, onHistory, onAnalytics,
   onDailyChallenge, dailyAvailable,
   onSettings,
+  sfxMuted, onToggleMute,
 }) {
   const { current, next, progress, xpIntoLevel, xpForLevel } = getLevelInfo(profile.totalXP)
 
@@ -93,6 +94,9 @@ export default function Header({
 
             <div className="w-px h-4 bg-white/10 mx-1" />
 
+            <button onClick={onToggleMute} {...iconBtn(sfxMuted ? 'Unmute sounds' : 'Mute sounds')}>
+              {sfxMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+            </button>
             <button onClick={onSettings} {...iconBtn('Settings')}><Settings size={15} /></button>
           </div>
         </div>
