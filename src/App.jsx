@@ -26,6 +26,7 @@ import {
 } from './lib/storage'
 import { checkNewAchievements } from './data/achievements'
 import { applyFontSize, getFontSize } from './lib/prefs'
+import { startMusic, isMusicPlaying } from './lib/music'
 import { CATEGORY_COLORS } from './data/config'
 import {
   isMuted, toggleMuted,
@@ -105,6 +106,21 @@ export default function App() {
 
   // Restore font-size preference immediately on mount
   useEffect(() => { applyFontSize(getFontSize()) }, [])
+
+  // Auto-start background music on first user interaction
+  useEffect(() => {
+    const start = () => {
+      if (!isMusicPlaying()) startMusic()
+      window.removeEventListener('pointerdown', start)
+      window.removeEventListener('keydown',     start)
+    }
+    window.addEventListener('pointerdown', start, { once: true })
+    window.addEventListener('keydown',     start, { once: true })
+    return () => {
+      window.removeEventListener('pointerdown', start)
+      window.removeEventListener('keydown',     start)
+    }
+  }, [])
 
 
   // Load active profile on mount
